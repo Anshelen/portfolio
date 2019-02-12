@@ -28,6 +28,10 @@ public class Account extends AbstractPersistable<Long> {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -54,12 +58,12 @@ public class Account extends AbstractPersistable<Long> {
 
     public void addRole(Role role) {
         roles.add(role);
-        role.getAccounts().add(this);
+        role.addAccount(this);
     }
 
     public void removeRole(Role role) {
         roles.remove(role);
-        role.getAccounts().remove(this);
+        role.removeAccount(this);
     }
 
     public void clearRoles() {
