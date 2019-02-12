@@ -39,12 +39,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public ExceptionMappingAuthenticationFailureHandler authenticationFailureHandler() {
-        ExceptionMappingAuthenticationFailureHandler handler = new ExceptionMappingAuthenticationFailureHandler();
+        ExceptionMappingAuthenticationFailureHandler handler
+            = new ExceptionMappingAuthenticationFailureHandler();
         Map<String, String> map = new HashMap<>();
-        map.put(BadCredentialsException.class.getName(), "/login.html?error=BadCredentials");
-        map.put(CredentialsExpiredException.class.getName(), "/login.html?error=CredentialsExpired");
-        map.put(LockedException.class.getName(), "/login.html?error=Locked");
-        map.put(DisabledException.class.getName(), "/login.html?error=Disabled");
+        map.put(BadCredentialsException.class.getName(),
+            "/login.html?error=BadCredentials");
+        map.put(CredentialsExpiredException.class.getName(),
+            "/login.html?error=CredentialsExpired");
+        map.put(LockedException.class.getName(),
+            "/login.html?error=Locked");
+        map.put(DisabledException.class.getName(),
+            "/login.html?error=Disabled");
         handler.setExceptionMappings(map);
         return handler;
     }
