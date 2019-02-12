@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/>
+    <title>ERROR</title>
+</head>
+<body class="h-100">
+<div class="container-fluid d-flex justify-content-center align-items-center h-100 bg-info">
+    <div class="d-flex flex-column">
+        <p class="mx-auto my-4 display-1 text-white" th:text="${status}">500</p>
+        <p class="mx-auto my-4 display-2 text-white text-center" th:text="${#strings.toUpperCase(error)}">INTERNAL SERVER ERROR</p>
+        <h2 class="mx-auto my-4 font-weight-light text-white">Стыдно, но что то сломалось...</h2>
+        <a class="btn btn-outline-light btn-lg mx-auto my-4 px-5" href="/" th:href="@{/}">HOME</a>
+    </div>
+</div>
+</body>
+</html>
