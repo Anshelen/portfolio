@@ -11,13 +11,14 @@ public class ExtendedUser extends User {
 
     private String name;
 
-    public ExtendedUser(String username, String password, boolean enabled,
-                        boolean accountNonExpired, boolean credentialsNonExpired,
-                        boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities,
+    ExtendedUser(String email, String password, boolean enabled,
+                        Collection<? extends GrantedAuthority> authorities,
                         String name) {
-
-        super(username, password, enabled, accountNonExpired,
-            credentialsNonExpired, accountNonLocked, authorities);
+        super(email, password, enabled,
+            true,
+            true,
+            true,
+            authorities);
         this.name = name;
     }
 

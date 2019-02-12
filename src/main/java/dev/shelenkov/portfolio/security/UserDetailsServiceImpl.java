@@ -23,19 +23,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private AccountRepository accountRepository;
 
+    @SuppressWarnings("FeatureEnvy")
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) {
         Account account = accountRepository.getByEmailWithRoles(email);
         if (account == null) {
+            LOG.debug("User not found for email: {}", email);
             throw new UsernameNotFoundException(email + " not found");
         }
         return new ExtendedUser(
             email,
             account.getPassword(),
             account.isEnabled(),
-            true,
-            true,
-            true,
             generateAuthoritiesList(account),
             account.getUsername());
     }
