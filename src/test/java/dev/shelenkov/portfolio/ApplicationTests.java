@@ -1,15 +1,15 @@
 package dev.shelenkov.portfolio;
 
+import dev.shelenkov.portfolio.annotations.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.web.controller.HomeController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(HomeController.class)
+@ConfiguredWebMvcTest(HomeController.class)
 public class ApplicationTests {
 
     @Autowired
