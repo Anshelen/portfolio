@@ -16,6 +16,13 @@ public class Role extends AbstractPersistable<Long> {
     @ManyToMany(mappedBy = "roles")
     private Set<Account> accounts = new HashSet<>();
 
+    public Role() {
+    }
+
+    public Role(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

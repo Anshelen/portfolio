@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,6 +24,22 @@ public class Account extends AbstractPersistable<Long> {
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Role> roles = new HashSet<>();
+
+    public Account() {
+    }
+
+    public Account(String username, String email, String password,
+                   Collection<? extends Role> roles) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.enabled = true;
+        roles.forEach(this::addRole);
+    }
+
+    public Account(String username, String email, String password, Role role) {
+        this(username, email, password, Collections.singleton(role));
+    }
 
     public String getEmail() {
         return email;
