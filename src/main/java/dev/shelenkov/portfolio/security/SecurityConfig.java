@@ -2,6 +2,7 @@ package dev.shelenkov.portfolio.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
@@ -19,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @EnableWebSecurity
+@Import(SecurityProperties.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
