@@ -1,7 +1,6 @@
-package dev.shelenkov.portfolio;
+package dev.shelenkov.portfolio.web.controller;
 
 import dev.shelenkov.portfolio.annotations.ConfiguredWebMvcTest;
-import dev.shelenkov.portfolio.web.controller.HomeController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
@@ -10,7 +9,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ConfiguredWebMvcTest(HomeController.class)
-public class ApplicationTests {
+public class HomeControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
