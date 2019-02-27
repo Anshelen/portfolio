@@ -1,5 +1,8 @@
 # The Portfolio Project
 
+[![Build Status](https://travis-ci.com/Anshelen/portfolio.svg?branch=master)](https://travis-ci.com/Anshelen/portfolio)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+
 ## About
 
 Describe your project here.
