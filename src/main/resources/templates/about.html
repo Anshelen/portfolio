@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      class="h-100">
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+          crossorigin="anonymous">
+</head>
+<body class="h-100">
+<div class="h-75">
+    <div>
+        <nav style="background-color:rgb(255,222,62);"
+             class="navbar navbar-expand-sm navbar-light border border-dark">
+            <div class="container"
+                 th:with="auth=${#authentication.getPrincipal()}">
+                <a class="navbar-brand" href="#">
+                    <img src="../static/img/logo.png" alt="logo"
+                         style="width:50px;">
+                </a>
+                <button class="navbar-toggler" type="button"
+                        data-toggle="collapse"
+                        data-target=".dual-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse dual-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mx-3">
+                            <a class="nav-link h5" href="index.html">Главная</a>
+                        </li>
+                        <li class="nav-item mx-3 active">
+                            <a class="nav-link h5" href="about.html">Обо мне</a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link h5" href="#">Технологии</a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link h5" href="#">Портфолио</a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link h5" href="#">Контакты</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse dual-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown"
+                            sec:authorize="isAuthenticated()">
+                            <a class="nav-link dropdown-toggle h5" href="#"
+                               id="navbardrop"
+                               data-toggle="dropdown">
+                                <i class="fas fa-user"></i>
+                                <span th:text="${auth.name}">Антон</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item h6"
+                                   href="/logout">Выйти</a>
+                            </div>
+                        </li>
+                        <li class="nav-item" sec:authorize="!isAuthenticated()">
+                            <a class="nav-link h5" href="/login.html">Войти</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mt-5 mb-5">
+            <h2 class="mt-5">Образование</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <p> C раннего детства мне нравилось в чем-то разбираться, анализировать
+                и изучать. В 15 лет я поступил
+                в лицей № 1502 при МЭИ на физико-математическое направление
+                (2010-2013г). Там я познакомился с программированием на языке
+                Turbo Pascal. В тот момент меня это не заинтересовало - очень многое
+                делалось методом "скопируй - вставь", и учебные задачи казались
+                чересчур надуманными. В лицее физика была основным моим
+                увлечением, и я всерьез намеревался связать с ней свое будущее.
+            </p>
+            <p> После лицея я поступил в МГТУ им. Н.Э.Баумана на специальность
+                "Холодильная и криогенная техника и системы кондиционирования и
+                жизнеобеспечения" (2013-2019г). На первых курсах для
+                программирования использовали тот же Pascal вместе с IDE Lazarus,
+                что позволяло разрабатывать простенькие графические интерфейсы.
+                Это меня заинтересовало.
+            </p>
+            <h2 class="mt-5">Симплекс Софтвер</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <p> С тех пор я начал интересоваться программированием и параллельно
+                с учебой изучать Java. Институтская специальность отодвинулась
+                на второй план. Приблизительно за год я прошел курс JavaRush и
+                изучил несколько книг по программированию, таких как "Философия
+                Java" Брюса Эккеля и "Эффективное программирование
+                на Java" Джошуа Блоха. Это дало мне необходимый багаж знаний для
+                получения первой работы.
+            </p>
+            <p> С 2017 по 2018 года я совмещал учебу с работой в небольшой компании
+                <a class="text-warning" href="http://simplex-software.ru/">"Симплекс Софтвер"</a> на
+                должности младшего программиста. В это время я познакомился со
+                широким спектром новых для меня технологий и принял участие во многих
+                проектах (в основном web, но также имел дело с такими экзотическими
+                направлениями как блокчейн). Через год я вел проект,
+                координируя действия небольшой команды из еще двух разработчиков.
+                Это дало мне большой опыт в области
+                построения архитектуры приложений и ведения проекта в целом.
+                Однако разработка ПО в этой компании часто велась с
+                использованием устоявшегося стека технологий, некоторые из
+                которых, на мой взгляд, потеряли актуальность. Также практикуемые методы
+                разработки не очень меня устраивали как специалиста. Поэтому
+                я принял решение покинуть компанию.
+            </p>
+            <h2 class="mt-5">Сегодня</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <p> Следующий год параллельно с написанием диплома в институте, я
+                плотно занимался изучением востребованных на сегодняшний день
+                технологий и реализацией домашних проектов. Таких как этот сайт:)
+                Также я изучил основы такого языка как Python,
+                что помогло мне в автоматизации моего труда.
+            </p>
+            <p> С 2018 года по настоящее время, помимо домашних проектов, я
+                занимаюсь поддержкой сервиса по организации мероприятий
+                <a class="text-warning" href="iqmanager.org">iqmanager</a>,
+                где реализовываю ряд работ,
+                связанных с добавлением нового функционала и доработкой существующего.
+                На сегодняшний день мне интересен весь цикл разработки
+                информационных систем самых различных назначений. От frontend'а
+                до проектирования баз данных и devops. Но все же
+                основное направление моей деятельности - разработка backend'а
+                приложений. Особое внимание в моих проектах я уделяю настройке
+                безопасности, тестированию и максимальной автоматизации рабочего процесса.
+            </p>
+        </div>
+    </div>
+    <footer style="background-color:rgb(255,248,194);">
+        <div class="row py-2">
+        </div>
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h6>Контакты</h6>
+                        <hr class="mb-4 mt-0 d-inline-block bg-dark"
+                            style="width: 60px;">
+                        <p>anshelen@yandex.ru</p>
+                    </div>
+                    </hr>
+                </div>
+            </div>
+        </div>
+        <div style="background-color:rgb(255,222,62);">
+            <p class="h6 text-center">&copy No Rights Reserved.</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
