@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      class="h-100">
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+          crossorigin="anonymous">
+    <style>
+
+        .card {
+            height: 200px;
+            width: 200px;
+        }
+
+        .card img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            margin: auto auto;
+        }
+
+        .large-popover .popover {
+            width: 250%;
+            max-width: 50vw;
+        }
+    </style>
+</head>
+<body class="h-100">
+<div class="h-75">
+    <div>
+        <nav style="background-color:rgb(255,222,62);"
+             class="navbar navbar-expand-sm navbar-light border border-dark">
+            <div class="container"
+                 th:with="auth=${#authentication.getPrincipal()}">
+                <a class="navbar-brand" href="#">
+                    <img src="../static/img/logo.png" alt="logo"
+                         style="width:50px;">
+                </a>
+                <button class="navbar-toggler" type="button"
+                        data-toggle="collapse"
+                        data-target=".dual-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse dual-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mx-3">
+                            <a class="nav-link h5" href="index.html">Главная</a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link h5" href="about.html">Обо мне</a>
+                        </li>
+                        <li class="nav-item mx-3 active">
+                            <a class="nav-link h5" href="skills.html">Технологии</a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link h5" href="projects.html">Портфолио</a>
+                        </li>
+                        <li class="nav-item mx-3 active">
+                            <a class="nav-link h5" href="contacts.html">Контакты</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse dual-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown"
+                            sec:authorize="isAuthenticated()">
+                            <a class="nav-link dropdown-toggle h5" href="#"
+                               id="navbardrop"
+                               data-toggle="dropdown">
+                                <i class="fas fa-user"></i>
+                                <span th:text="${auth.name}">Антон</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item h6"
+                                   href="/logout">Выйти</a>
+                            </div>
+                        </li>
+                        <li class="nav-item" sec:authorize="!isAuthenticated()">
+                            <a class="nav-link h5" href="/login.html">Войти</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="mt-5 p-4 border" style="border-radius: 1em; background-color: rgba(253,255,131,0.2)">
+                <p class="h4" >На этой странице я перечислил основные навыки и технологии, которыми
+                я владею.</p>
+            </div>
+
+            <h2 class="mt-5">Общее</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/bmstu.png"
+                             alt="Bauman Moscow State University logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="bmstu">
+                    </div>
+                    <div id="bmstu" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">МГТУ им. Н.Э.Баумана</h2>
+                            <p class="card-text">Я закончил бакалавриат МГТУ им. Н.Э.Баумана
+                                по специальности "Холодильная, криогенная техника и системы
+                                жизнеобеспечения". На данный момент я студент магистратуры 2 года на
+                                той же кафедре.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="english_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/english.png"
+                             alt="English logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#english_wrap"
+                             data-details="english">
+                    </div>
+                    <div id="english" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Upper Intermediate English</h2>
+                            <p class="card-text">Я владею английским языком на уровне Upper
+                                Intermediate. Дважды был в Англии в языковых школах (2010 и 2012г),
+                                один раз на Мальте (2011г). В 2013г я получил сертификат FCE
+                                (Первый Кембриджский сертификат), сданный на оценку B, что
+                                соответствует уровню владения языком B2. К сожалению, в настоящее
+                                время я не имею живой практики общения на английском языке, что
+                                был бы рад исправить. В процессе работы не испытываю трудностей
+                                с документацией на английском языке.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="personal_qualities_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/personal_qualities.png"
+                             alt="Soft Skills logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#personal_qualities_wrap"
+                             data-details="personal_qualities">
+                    </div>
+                    <div id="personal_qualities" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Личностные качества</h2>
+                            <p class="card-text">
+                            </p>
+                            <br/>
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Интерес к новым технологиям
+                                    </li>
+                                    <li class="list-group-item">Желание развиваться в области
+                                        программирования на Java
+                                    </li>
+                                    <li class="list-group-item">Быстрая обучаемость</li>
+                                    <li class="list-group-item">Скрупулезность и усидчивость</li>
+                                    <li class="list-group-item">Стремление к самосовершенствованию
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="softskills_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/softskills.png"
+                             alt="Soft Skills logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#softskills_wrap"
+                             data-details="softskills">
+                    </div>
+                    <div id="softskills" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Гибкие навыки</h2>
+                            <p class="card-text">
+                            </p>
+                            <br/>
+                            <div>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Ответственность и дисциплина</li>
+                                    <li class="list-group-item">Коммуникабельность</li>
+                                    <li class="list-group-item">Способность работать в команде</li>
+                                    <li class="list-group-item">Опыт управления проектом и небольшой
+                                        командой разработчиков
+                                    </li>
+                                    <li class="list-group-item">Чувство такта и управление эмоциями</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5">Слой баз данных приложения</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="postgresql_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/postgresql.png"
+                             alt="PostgreSQL logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#postgresql_wrap"
+                             data-details="postgresql">
+                    </div>
+                    <div id="postgresql" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">PostgreSQL</h2>
+                            <p class="card-text">Свободная объектно-реляционная система
+                                управления базами данных. Это на данный момент единственная СУБД, с
+                                которой мне приходилось работать.
+                            </p>
+                            <br/>
+                            <div>
+                                <h4>Интересный опыт</h4>
+                                <ul class="list-group mt-3">
+                                    <li class="list-group-item">Работа со специфичными для этой СУБД
+                                        типами (inet, enums, arrays)
+                                    </li>
+                                    <li class="list-group-item">Написание запросов в процедурном
+                                        стиле с помощью языкового расширения PL/pgSQL
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="hibernate_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/hibernate.png"
+                             alt="Hibernate logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#hibernate_wrap"
+                             data-details="hibernate">
+                    </div>
+                    <div id="hibernate" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Hibernate</h2>
+                            <p class="card-text">Реализация JPA спецификации, предназначенная
+                                для решения задач объектно-реляционного отображения. Из всех
+                                известных мне фреймворков, думаю, Hibernate я знаю лучше всего.
+                            </p>
+                            <br/>
+                            <div>
+                                <h4>Интересный опыт</h4>
+                                <ul class="list-group mt-3">
+                                    <li class="list-group-item">Оптимизация запросов
+                                    </li>
+                                    <li class="list-group-item">Реализация адаптеров
+                                        (AttributeConverter/UserType) для работы со специфичными для
+                                        PostgreSQL типами
+                                    </li>
+                                    <li class="list-group-item">Решение проблем с ленивой
+                                        инициализацией путем расширения байткода (bytecode
+                                        enhancement)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="hibernate_envers_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/hibernate_envers.png"
+                             alt="Hibernate Envers logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#hibernate_envers_wrap"
+                             data-details="envers">
+                    </div>
+                    <div id="envers" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Hibernate Envers</h2>
+                            <p class="card-text">Модуль Hibernate, позволяющий отслеживать
+                                изменение сущностей. Нужен для осуществления контроля над такими
+                                критическими элементами как платежи и права, а также регистрировать
+                                действия пользователей/администраторов.
+                            </p>
+                            <br/>
+                            <div>
+                                <h4>Интересный опыт</h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Расширение сущности ревизий для
+                                        хранения большего количества служебной информации
+                                    </li>
+                                    <li class="list-group-item">Настройка аудита согласно условиям
+                                        (conditional auditing)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="hibernate_search_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/hibernate_search.png"
+                             alt="Hibernate Search logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#hibernate_search_wrap"
+                             data-details="search">
+                    </div>
+                    <div id="search" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Hibernate Search</h2>
+                            <p class="card-text">Модуль Hibernate для осуществления
+                                полнотекстового поиска (надстройка над Apache Lucene).
+                            </p>
+                            <br/>
+                            <div>
+                                <h4>Интересный опыт</h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Настройка индексирования сущностей
+                                        по условию
+                                    </li>
+                                    <li class="list-group-item">Настройка анализатора и запроса с
+                                        нечетким приближением поиска
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/flyway.png"
+                             alt="Flyway logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="flyway">
+                    </div>
+                    <div id="flyway" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Flyway</h2>
+                            <p class="card-text">Библиотека, обеспечивающая версионность и
+                                управление миграциями баз данных. Нужно для синхронизации состояния
+                                БД у всей команды разработчиков.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5">Сервисный слой приложения</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/java.png"
+                             alt="Java logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="java">
+                    </div>
+                    <div id="java" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Java</h2>
+                            <p class="card-text">Мой основной язык программирования. Использую
+                                Java 8. </p>
+                            <br/>
+                            <div>
+                                <h4>Интересный опыт</h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Разработка и отладка многопоточного
+                                        проекта
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/spring_framework.png"
+                             alt="Spring framework logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="spring">
+                    </div>
+                    <div id="spring" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Spring Framework</h2>
+                            <p class="card-text">Универсальный фреймворк, обеспечивающий IoC и
+                                DI и многие другие дополнительные возможности, такие как управление
+                                транзакциями и упрощение тестирования.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/spring-data.png"
+                             alt="Spring Data JPA logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="spring-data">
+                    </div>
+                    <div id="spring-data" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Spring Data JPA</h2>
+                            <p class="card-text">Модуль Spring, обеспечивающий расширенные
+                                возможности взаимодействия с ORM-фреймворком, таким как Hibernate.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/spring-security.png"
+                             alt="Spring Security logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="spring-security">
+                    </div>
+                    <div id="spring-security" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Spring Security</h2>
+                            <p class="card-text">Модуль Spring, предоставляющий механизмы
+                                построения систем аутентификации и авторизации, а также другие
+                                возможности обеспечения безопасности для промышленных приложений.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/spring-boot.png"
+                             alt="Spring Boot logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="spring-boot">
+                    </div>
+                    <div id="spring-boot" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Spring Boot</h2>
+                            <p class="card-text">Модуль Spring для быстрой настройки и
+                                развертывания приложений. Также предоставляет ряд решений для
+                                повышения производительности разработки, таких как LiveReload и Hot
+                                Restart.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/spring_mvc.png"
+                             alt="Spring MVC logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="spring_mvc">
+                    </div>
+                    <div id="spring_mvc" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Spring MVC</h2>
+                            <p class="card-text">Модуль для поддержки архитектуры
+                                модель-представление-контроллер (model-view-controller).
+                                Обеспечивает готовые компоненты, которые могут быть использованы для
+                                разработки веб-приложений.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5">Технологии генерации представлений</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/thymeleaf.png"
+                             alt="Thymeleaf logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="thymeleaf">
+                    </div>
+                    <div id="thymeleaf" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Thymeleaf</h2>
+                            <p class="card-text">Современный серверный механизм Java-шаблонов.
+                                Отлично взаимодействует со Spring технологиями.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/jsp.png"
+                             alt="JSP logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="jsp">
+                    </div>
+                    <div id="jsp" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">JSP</h2>
+                            <p class="card-text">Технология, позволяющая веб-разработчикам
+                                создавать содержимое, которое имеет как статические, так и
+                                динамические компоненты.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="wicket_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/wicket.png"
+                             alt="Wicket logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#wicket_wrap"
+                             data-details="wicket">
+                    </div>
+                    <div id="wicket" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Apache Wicket</h2>
+                            <p class="card-text">Веб-фреймворк использующий подход, основанный
+                                на использовании компонентов. Пожалуй, это фреймворк, в применении
+                                которого я имею больше всего опыта.
+                            </p>
+                            <br/>
+                            <div>
+                                <h4>Интересный опыт</h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Вызов изменения модели из JavaScript
+                                        кода
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="zk_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/zk.png"
+                             alt="ZK logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#zk_wrap"
+                             data-details="zk">
+                    </div>
+                    <div id="zk" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Zk Framework</h2>
+                            <p class="card-text">Фреймворк для разработки веб-приложений в
+                                событийно-ориентированной парадигме и компонентной модели.
+                                Позволяет
+                                писать интерфейсы в стиле MVVM, что делает разработку очень
+                                быстрой.
+                                Но при этом, из-за внутреннего устройства фреймворк не
+                                обеспечивает
+                                достаточной "мощности" для публичных сайтов. Поэтому во время
+                                работы
+                                этот фреймворк у нас использовался в основном для админок или
+                                корпоративных сайтов.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5">Вспомогательные серверные технологии</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img
+                            class="mx-auto d-block p-3"
+                            src="../static/img/techlogos/slf4j.png"
+                            alt="SLF4J logo"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            data-details="slf4j">
+                    </div>
+                    <div id="slf4j"
+                         class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">SLF4J</h2>
+                            <p class="card-text">
+                                Библиотека для протоколирования, ставящая своей целью предоставить
+                                максимально простой, но при этом мощный фасад для различных систем
+                                протоколирования на Java
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img
+                            class="mx-auto d-block p-3"
+                            src="../static/img/techlogos/logback.jpg"
+                            alt="Logback logo"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            data-details="logback">
+                    </div>
+                    <div id="logback"
+                         class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Logback</h2>
+                            <p class="card-text">
+                                Фреймворк логирования, реализующий фасад SLF4j
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img
+                            class="mx-auto d-block p-3"
+                            src="../static/img/techlogos/velocity.png"
+                            alt="Velocity logo"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            data-details="velocity">
+                    </div>
+                    <div id="velocity"
+                         class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Apache Velocity</h2>
+                            <p class="card-text">
+                                Процессор шаблонов, предоставляющий простой, но одновременно гибкий
+                                шаблонный язык. В основном использовался мной для генерации e-mail
+                                сообщений
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img
+                            class="mx-auto d-block p-3"
+                            src="../static/img/techlogos/jackson.png"
+                            alt="Jackson logo"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            data-details="jackson">
+                    </div>
+                    <div id="jackson" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Jackson</h2>
+                            <p class="card-text">
+                                Java библиотека для работы с данными в формате JSON
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img
+                            class="mx-auto d-block p-3"
+                            src="../static/img/techlogos/jaxb.png"
+                            alt="JAXB logo"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            data-details="jaxb">
+                    </div>
+                    <div id="jaxb" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">JAXB</h2>
+                            <p class="card-text">
+                                Java библиотека для работы с данными в формате XML
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5">Тестирование</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/junit5.png"
+                             alt="JUnit 5 logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="junit5">
+                    </div>
+                    <div id="junit5" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">JUnit</h2>
+                            <p class="card-text">Библиотека для модульного тестирования
+                                программного обеспечения. Я работал как с 4, так и с 5 версиями
+                                этого фреймворка.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/mockito.png"
+                             alt="Mockito logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="mockito">
+                    </div>
+                    <div id="mockito" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Mockito</h2>
+                            <p class="card-text">Фреймворк, упрощающий создание заглушек
+                                компонентов системы с заранее установленным поведением.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/powermock.png"
+                             alt="Powermock logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="powermock">
+                    </div>
+                    <div id="powermock"
+                         class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Powermock</h2>
+                            <p class="card-text">
+                                Фреймворк, предоставляющий дополнительные возможности для создание
+                                заглушек по сравнению с Mockito (№ задавать поведение приватных или
+                                же final методов)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img
+                            class="mx-auto d-block p-3"
+                            src="../static/img/techlogos/selenium.png"
+                            alt="Selenium logo"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            data-details="selenium">
+                    </div>
+                    <div id="selenium"
+                         class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Selenium</h2>
+                            <p class="card-text">
+                                Библиотека, предоставляющая возможности тестирования end-to-end
+                                тестирования веб-интерфейса.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5">Фронтенд</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <div
+                class="row">
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img
+                            class="mx-auto d-block p-3"
+                            src="../static/img/techlogos/javascript.png"
+                            alt="Javascript logo"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            data-details="javascript">
+                    </div>
+                    <div id="javascript" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Javascript</h2>
+                            <p class="card-text">
+                                Язык программирования, с помощью которого страницы сайтов становятся
+                                интерактивными.
+                            </p>
+                            <br/>
+                            <div>
+                                <h4>
+                                    Интересный опыт</h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        Разработка календаря с использованием ООП в прототипном
+                                        стиле
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img
+                            class="mx-auto d-block p-3"
+                            src="../static/img/techlogos/html_5.png"
+                            alt="HTML 5 logo"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            data-details="html_5">
+                    </div>
+                    <div id="html_5" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">HTML 5</h2>
+                            <p class="card-text">
+                                Язык для структурирования и представления содержимого всемирной
+                                паутины.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img
+                            class="mx-auto d-block p-3"
+                            src="../static/img/techlogos/css_3.png"
+                            alt="CSS 3 logo"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            data-details="css_3">
+                    </div>
+                    <div id="css_3" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">CSS 3</h2>
+                            <p class="card-text">
+                                Язык описания внешнего вида документа, написанного с использованием
+                                языка разметки.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img
+                            class="mx-auto d-block p-3"
+                            src="../static/img/techlogos/bootstrap.png"
+                            alt="Bootstrap 4 logo"
+                            data-toggle="popover"
+                            data-trigger="hover"
+                            data-details="bootstrap">
+                    </div>
+                    <div
+                        id="bootstrap"
+                        class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Bootstrap 4</h2>
+                            <p class="card-text">
+                                Свободный набор инструментов для создания сайтов и веб-приложений.
+                                Этот сайт сделан с использованием Bootstrap 4
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5">Сборка и развертывание проектов</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/maven.png"
+                             alt="Maven logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="maven">
+                    </div>
+                    <div id="maven" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Maven</h2>
+                            <p class="card-text">Фреймворк для автоматизации сборки проектов.
+                            </p>
+                            <br/>
+                            <div>
+                                <h4>Интересный опыт</h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Создание архетипа</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/travis.png"
+                             alt="Travis logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="travis">
+                    </div>
+                    <div id="travis" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Travis CI</h2>
+                            <p class="card-text">Веб-сервис для сборки и тестирования
+                                программного обеспечения.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/tomcat.png"
+                             alt="Tomcat logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="tomcat">
+                    </div>
+                    <div id="tomcat" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Apache Tomcat</h2>
+                            <p class="card-text">Контейнер сервлетов
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5">Блокчейн</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/ethereum.png"
+                             alt="Ethereum logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="ethereum">
+                    </div>
+                    <div id="ethereum" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Ethereum</h2>
+                            <p class="card-text">Блокчейн-платформа для создания
+                                децентрализованных онлайн-сервисов на базе умных контрактов. Для
+                                тестирования использовался тестовый блокчейн Rinkeby.
+                            </p>
+                            <br/>
+                            <div>
+                                <h4 class="mt-2">Интересный опыт</h4>
+                                <ul class="list-group mt-3">
+                                    <li class="list-group-item">Создание приватного блокчейна с
+                                        помощью Geth
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="solidity_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/solidity.png"
+                             alt="Solidity logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#solidity_wrap"
+                             data-details="solidity">
+                    </div>
+                    <div id="solidity" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Solidity</h2>
+                            <p class="card-text">Объектно-ориентированный язык программирования
+                                самовыполняющихся контрактов для платформы Ethereum. De facto
+                                является стандартом для написания смартконтрактов.
+                            </p>
+                            <br/>
+                            <div>
+                                <h4 class="mt-2">Интересный опыт</h4>
+                                <ul class="list-group mt-3">
+                                    <li class="list-group-item">Написание смартконтракта обменника
+                                        эфира на токены (и наоборот) при привязке цены к внешнему
+                                        фактору (рублю)
+                                    </li>
+                                    <li class="list-group-item">Отладка смартконтрактов с помощью
+                                        Solidity IDE Remix
+                                    </li>
+                                    <li class="list-group-item">Использование Oraclize</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="web3j_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/web3j.png"
+                             alt="Web3j logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#web3j_wrap"
+                             data-details="web3j">
+                    </div>
+                    <div id="web3j" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Web3j</h2>
+                            <p class="card-text">Библиотека, предоставляющая Java API к
+                                ethereum ноде.
+                            </p>
+                            <br/>
+                            <div>
+                                <h4>Интересный опыт</h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Развернута тестовая среда TestRPC и
+                                        тестовый приватный блокчейн, а также разработаны тесты
+                                        для проверки проекта с повышенными требованиями к
+                                        корректности
+                                        данных
+                                    </li>
+                                    <li class="list-group-item">Разработан оракул для информирования
+                                        смартконтракта об изменении внешнего параметра
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="mt-5">Вспомогательные инструменты</h2>
+            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <div class="row ">
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/git.png"
+                             alt="Git logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="git">
+                    </div>
+                    <div id="git" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Git</h2>
+                            <p class="card-text">Система контроля версий.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div id="python_wrap" class="card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/python.png"
+                             alt="Python logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-container="#python_wrap"
+                             data-details="python">
+                    </div>
+                    <div id="python" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Python 3</h2>
+                            <p class="card-text">Интерпретируемый язык программирования общего
+                                назначения. Какие-либо проекты на Python еще не делал, но писал на
+                                нем скрипты для единоразового применения. В настоящее время
+                                закрепляю
+                                основы языка, решая задачи на сервисе py.checkio.org
+                            </p>
+                            <br/>
+                            <div>
+                                <h4 class="mt-2">Интересный опыт</h4>
+                                <ul class="list-group mt-3">
+                                    <li class="list-group-item">Написание скрипта - анализатора
+                                        логов
+                                    </li>
+                                    <li class="list-group-item">Написание скрипта для замены
+                                        символов
+                                        конца строки после копирования текста из PDF
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card mx-4 w-100">
+                        <img class="mx-auto d-block p-3"
+                             src="../static/img/techlogos/IntelliJ_IDEA.png"
+                             alt="Intellij IDEA logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="intellij_idea">
+                    </div>
+                    <div id="intellij_idea" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">IntelliJ IDEA</h2>
+                            <p class="card-text">Среда разработки для Java</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+                $('[data-toggle="popover"]').popover({
+                    html: true,
+                    content: function () {
+                        var id = $(this).data('details');
+                        return $('#' + id).html();
+                    }
+                });
+            </script>
+
+        </div>
+    </div>
+
+    <footer style="background-color:rgb(255,248,194);" class="mt-5">
+        <div
+            class="row py-2">
+        </div>
+        <div>
+            <div
+                class="container">
+                <div
+                    class="row">
+                    <div
+                        class="col-12 text-center">
+                        <h6>
+                            Контакты</h6>
+                        <hr class="mb-4 mt-0 d-inline-block bg-dark"
+                            style="width: 60px;">
+                        <p>
+                            anshelen@yandex.ru</p>
+                    </div>
+                    </hr>
+                </div>
+            </div>
+        </div>
+        <div
+            style="background-color:rgb(255,222,62);">
+            <p class="h6 text-center">
+                &copy
+                No
+                Rights
+                Reserved.</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
