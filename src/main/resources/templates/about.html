@@ -19,17 +19,16 @@
           href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/style.css"/>
 </head>
 <body class="h-100">
 <div class="h-75">
     <div>
-        <nav style="background-color:rgb(255,222,62);"
-             class="navbar navbar-expand-sm navbar-light border border-dark">
+        <nav class="navbar navbar-expand-sm navbar-light border border-dark back-ocher">
             <div class="container"
                  th:with="auth=${#authentication.getPrincipal()}">
                 <a class="navbar-brand" href="#">
-                    <img src="../static/img/logo.png" alt="logo"
-                         style="width:50px;">
+                    <img src="../static/img/logo.png" alt="logo" class="w-50-px">
                 </a>
                 <button class="navbar-toggler" type="button"
                         data-toggle="collapse"
@@ -80,7 +79,7 @@
 
         <div class="container mt-5 mb-5">
             <h2 class="mt-5">Образование</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <p> C раннего детства мне нравилось в чем-то разбираться, анализировать
                 и изучать. В 15 лет я поступил
                 в лицей № 1502 при МЭИ на физико-математическое направление
@@ -98,7 +97,7 @@
                 Это меня заинтересовало.
             </p>
             <h2 class="mt-5">Симплекс Софтвер</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <p> С тех пор я начал интересоваться программированием и параллельно
                 с учебой изучать Java. Институтская специальность отодвинулась
                 на второй план. Приблизительно за год я прошел курс JavaRush и
@@ -123,7 +122,7 @@
                 я принял решение покинуть компанию.
             </p>
             <h2 class="mt-5">Сегодня</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <p> Следующий год параллельно с написанием диплома в институте, я
                 плотно занимался изучением востребованных на сегодняшний день
                 технологий и реализацией домашних проектов. Таких как этот сайт:)
@@ -144,7 +143,7 @@
             </p>
         </div>
     </div>
-    <footer style="background-color:rgb(255,248,194);" class="mt-5">
+    <footer class="mt-5 back-l-ocher">
         <div class="row py-2">
         </div>
         <div>
@@ -152,15 +151,14 @@
                 <div class="row">
                     <div class="col-12 text-center">
                         <h6>Контакты</h6>
-                        <hr class="mb-4 mt-0 d-inline-block bg-dark"
-                            style="width: 60px;">
+                        <hr class="mb-4 mt-0 d-inline-block bg-dark w-50-px"/>
                         <p>anshelen@yandex.ru</p>
                     </div>
                     </hr>
                 </div>
             </div>
         </div>
-        <div style="background-color:rgb(255,222,62);">
+        <div class="back-ocher">
             <p class="h6 text-center">&copy No Rights Reserved.</p>
         </div>
     </footer>

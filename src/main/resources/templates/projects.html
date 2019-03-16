@@ -19,22 +19,16 @@
           href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
           crossorigin="anonymous">
-    <style>
-        .media img {
-            width: 15vw;
-        }
-    </style>
+    <link rel="stylesheet" href="../static/css/style.css"/>
 </head>
 <body class="h-100">
 <div class="h-75">
     <div>
-        <nav style="background-color:rgb(255,222,62);"
-             class="navbar navbar-expand-sm navbar-light border border-dark">
+        <nav class="navbar navbar-expand-sm navbar-light border border-dark back-ocher">
             <div class="container"
                  th:with="auth=${#authentication.getPrincipal()}">
                 <a class="navbar-brand" href="#">
-                    <img src="../static/img/logo.png" alt="logo"
-                         style="width:50px;">
+                    <img src="../static/img/logo.png" alt="logo" class="w-50-px">
                 </a>
                 <button class="navbar-toggler" type="button"
                         data-toggle="collapse"
@@ -84,14 +78,15 @@
         </nav>
 
         <div class="container h6">
-            <div class="mt-5 mb-5 p-4 border" style="border-radius: 1em; background-color: rgba(253,255,131,0.2)">
+            <div class="mt-5 mb-5 p-4 border hint__back--ocher border-r-1">
                 <p class="h4">На этой странице я перечислил некоторые из проектов, над которыми
-                работал.</p>
+                    работал.</p>
             </div>
 
             <div class="media border rounded p-3 my-3">
                 <div class="media-body">
-                    <h4 class="mb-4"><a href="https://iqmanager.org" class="text-warning">IQManager</a>
+                    <h4 class="mb-4"><a href="https://iqmanager.org"
+                                        class="text-warning">IQManager</a>
                         - портал для организации мероприятий</h4>
                     <p> Этот портал служит для связи артистов, музыкантов, владельцев площадок и
                         других работников индустрии развлечений напрямую
@@ -114,14 +109,17 @@
                     </ul>
                 </div>
                 <a href="https://iqmanager.org">
-                    <img src="../static/img/projects/iqmanager.png" alt="John Doe" class="ml-3 mt-3 border rounded shadow">
+                    <img src="../static/img/projects/iqmanager.png" alt="John Doe"
+                         class="ml-3 mt-3 border rounded shadow project__img">
                 </a>
             </div>
             <div class="media border rounded p-3 my-3">
                 <div class="media-body">
-                    <h4 class="mb-4">Arbitr - парсер <a href="http://kad.arbitr.ru/" class="text-warning">
+                    <h4 class="mb-4">Arbitr - парсер <a href="http://kad.arbitr.ru/"
+                                                        class="text-warning">
                         картотеки административных дел</a></h4>
-                    <p> Этот парсер может извлекать информацию по заданному списку ИНН в двух режимах:
+                    <p> Этот парсер может извлекать информацию по заданному списку ИНН в двух
+                        режимах:
                         историческом и инкрементальном. Исторический инициируется пользователем и
                         считывает судебные дела за условленный промежуток времени, тогда как
                         инкрементальный режим запускается регулярно в автоматическом режиме.
@@ -138,12 +136,14 @@
                     </p>
                 </div>
                 <a href="http://kad.arbitr.ru/">
-                    <img src="../static/img/projects/arbitr.png" alt="John Doe" class="ml-3 mt-3 border rounded shadow">
+                    <img src="../static/img/projects/arbitr.png" alt="John Doe"
+                         class="ml-3 mt-3 border rounded shadow project__img">
                 </a>
             </div>
             <div class="media border rounded p-3 my-3">
                 <div class="media-body">
-                    <h4 class="mb-4">Форум <a href="http://talksift.ru/" class="text-warning">Talksift</a></h4>
+                    <h4 class="mb-4">Форум <a href="http://talksift.ru/" class="text-warning">Talksift</a>
+                    </h4>
                     <p> Это дискуссионная площадка для ведения споров на любые темы. Она имеет очень
                         запутанную систему фильтров, оценок, рейтингов и ведения бесед. Это дало мне
                         опыт работы с очень объемными запросами к БД и с запутанной навигацией по
@@ -151,7 +151,8 @@
                     </p>
                 </div>
                 <a href="http://talksift.ru/">
-                    <img src="../static/img/projects/talksift.png" alt="John Doe" class="ml-3 mt-3 border rounded shadow">
+                    <img src="../static/img/projects/talksift.png" alt="John Doe"
+                         class="ml-3 mt-3 border rounded shadow project__img">
                 </a>
             </div>
             <div class="media border rounded p-3 my-3">
@@ -165,16 +166,19 @@
                         версия, использующая сервис Oraclize, однако, впоследствии по экономическим
                         соображениям было решено разработать собственную реализацию. Это решение
                         позволило существенно снизить операционные расходы и, как следствие,
-                        комиссию обменника. Я принимал участие в разработке всех компонентов системы.
+                        комиссию обменника. Я принимал участие в разработке всех компонентов
+                        системы.
                     </p>
                 </div>
                 <a href="https://www.pajcoin.com/">
-                    <img src="../static/img/projects/pajcoin.webp" alt="John Doe" class="ml-3 mt-3 border rounded shadow">
+                    <img src="../static/img/projects/pajcoin.webp" alt="John Doe"
+                         class="ml-3 mt-3 border rounded shadow project__img">
                 </a>
             </div>
             <div class="media border rounded p-3 my-3">
                 <div class="media-body">
-                    <h4 class="mb-4">Changer - закрытая акционерная площадка для Bitcoin и Ethereum</h4>
+                    <h4 class="mb-4">Changer - закрытая акционерная площадка для Bitcoin и
+                        Ethereum</h4>
                     <p> Этот ресурс позволяет клиентам переводить на кошелек фирмы криптовалюту,
                         что отражается в их личном кабинете. Администраторы же могут автоматически
                         распределить дивиденды пропорционально вкладам. В команде я выполнял
@@ -192,7 +196,8 @@
                         реализованного функционала опубликован на
                         <a class="text-warning" href="index.html#features">заглавной странице</a>.
                     </p>
-                    <p> Ссылка на <a href="https://github.com/Anshelen/portfolio" class="text-warning">
+                    <p> Ссылка на <a href="https://github.com/Anshelen/portfolio"
+                                     class="text-warning">
                         репозиторий</a></p>
                 </div>
             </div>
@@ -203,7 +208,8 @@
                         с использованием Spring Boot и Thymeleaf. В моих планах улучшать его
                         параллельно с этим сайтом.
                     </p>
-                    <p> Ссылка на <a href="https://github.com/Anshelen/quick-web-archetype" class="text-warning">
+                    <p> Ссылка на <a href="https://github.com/Anshelen/quick-web-archetype"
+                                     class="text-warning">
                         репозиторий</a></p>
                 </div>
             </div>
@@ -211,7 +217,7 @@
     </div>
 
 
-    <footer style="background-color:rgb(255,248,194);" class="mt-5">
+    <footer class="mt-5 back-l-ocher">
         <div class="row py-2">
         </div>
         <div>
@@ -219,15 +225,14 @@
                 <div class="row">
                     <div class="col-12 text-center">
                         <h6>Контакты</h6>
-                        <hr class="mb-4 mt-0 d-inline-block bg-dark"
-                            style="width: 60px;">
+                        <hr class="mb-4 mt-0 d-inline-block bg-dark w-50-px"/>
                         <p>anshelen@yandex.ru</p>
                     </div>
                     </hr>
                 </div>
             </div>
         </div>
-        <div style="background-color:rgb(255,222,62);">
+        <div class="back-ocher">
             <p class="h6 text-center">&copy No Rights Reserved.</p>
         </div>
     </footer>

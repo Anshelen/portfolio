@@ -15,41 +15,20 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script
         src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
           crossorigin="anonymous">
-    <style>
-
-        .card {
-            height: 200px;
-            width: 200px;
-        }
-
-        .card img {
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
-            margin: auto auto;
-        }
-
-        .large-popover .popover {
-            width: 250%;
-            max-width: 50vw;
-        }
-    </style>
+    <link rel="stylesheet" href="../static/css/style.css"/>
 </head>
 <body class="h-100">
 <div class="h-75">
     <div>
-        <nav style="background-color:rgb(255,222,62);"
-             class="navbar navbar-expand-sm navbar-light border border-dark">
+        <nav class="navbar navbar-expand-sm navbar-light border border-dark back-ocher">
             <div class="container"
                  th:with="auth=${#authentication.getPrincipal()}">
                 <a class="navbar-brand" href="#">
-                    <img src="../static/img/logo.png" alt="logo"
-                         style="width:50px;">
+                    <img src="../static/img/logo.png" alt="logo" class="w-50-px">
                 </a>
                 <button class="navbar-toggler" type="button"
                         data-toggle="collapse"
@@ -70,7 +49,7 @@
                         <li class="nav-item mx-3">
                             <a class="nav-link h5" href="projects.html">Портфолио</a>
                         </li>
-                        <li class="nav-item mx-3 active">
+                        <li class="nav-item mx-3">
                             <a class="nav-link h5" href="contacts.html">Контакты</a>
                         </li>
                     </ul>
@@ -99,17 +78,17 @@
         </nav>
 
         <div class="container">
-            <div class="mt-5 p-4 border" style="border-radius: 1em; background-color: rgba(253,255,131,0.2)">
+            <div class="mt-5 p-4 border border-r-1 hint__back--ocher">
                 <p class="h4" >На этой странице я перечислил основные навыки и технологии, которыми
                 я владею.</p>
             </div>
 
             <h2 class="mt-5">Общее</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/bmstu.png"
                              alt="Bauman Moscow State University logo"
                              data-toggle="popover"
@@ -128,8 +107,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="english_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="english_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/english.png"
                              alt="English logo"
                              data-toggle="popover"
@@ -153,8 +132,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="personal_qualities_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="personal_qualities_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/personal_qualities.png"
                              alt="Soft Skills logo"
                              data-toggle="popover"
@@ -185,8 +164,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="softskills_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="softskills_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/softskills.png"
                              alt="Soft Skills logo"
                              data-toggle="popover"
@@ -217,11 +196,11 @@
             </div>
 
             <h2 class="mt-5">Слой баз данных приложения</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="postgresql_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="postgresql_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/postgresql.png"
                              alt="PostgreSQL logo"
                              data-toggle="popover"
@@ -252,8 +231,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="hibernate_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="hibernate_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/hibernate.png"
                              alt="Hibernate logo"
                              data-toggle="popover"
@@ -288,8 +267,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="hibernate_envers_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="hibernate_envers_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/hibernate_envers.png"
                              alt="Hibernate Envers logo"
                              data-toggle="popover"
@@ -321,8 +300,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="hibernate_search_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="hibernate_search_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/hibernate_search.png"
                              alt="Hibernate Search logo"
                              data-toggle="popover"
@@ -352,8 +331,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/flyway.png"
                              alt="Flyway logo"
                              data-toggle="popover"
@@ -373,11 +352,11 @@
             </div>
 
             <h2 class="mt-5">Сервисный слой приложения</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/java.png"
                              alt="Java logo"
                              data-toggle="popover"
@@ -402,8 +381,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/spring_framework.png"
                              alt="Spring framework logo"
                              data-toggle="popover"
@@ -421,8 +400,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/spring-data.png"
                              alt="Spring Data JPA logo"
                              data-toggle="popover"
@@ -439,8 +418,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/spring-security.png"
                              alt="Spring Security logo"
                              data-toggle="popover"
@@ -457,8 +436,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/spring-boot.png"
                              alt="Spring Boot logo"
                              data-toggle="popover"
@@ -477,8 +456,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/spring_mvc.png"
                              alt="Spring MVC logo"
                              data-toggle="popover"
@@ -499,11 +478,11 @@
             </div>
 
             <h2 class="mt-5">Технологии генерации представлений</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/thymeleaf.png"
                              alt="Thymeleaf logo"
                              data-toggle="popover"
@@ -520,8 +499,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/jsp.png"
                              alt="JSP logo"
                              data-toggle="popover"
@@ -539,8 +518,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="wicket_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="wicket_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/wicket.png"
                              alt="Wicket logo"
                              data-toggle="popover"
@@ -568,8 +547,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="zk_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="zk_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/zk.png"
                              alt="ZK logo"
                              data-toggle="popover"
@@ -598,12 +577,12 @@
             </div>
 
             <h2 class="mt-5">Вспомогательные серверные технологии</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
+                    <div class="card tech-card mx-4 w-100">
                         <img
-                            class="mx-auto d-block p-3"
+                            class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/slf4j.png"
                             alt="SLF4J logo"
                             data-toggle="popover"
@@ -623,9 +602,9 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
+                    <div class="card tech-card mx-4 w-100">
                         <img
-                            class="mx-auto d-block p-3"
+                            class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/logback.jpg"
                             alt="Logback logo"
                             data-toggle="popover"
@@ -644,9 +623,9 @@
                 </div>
                 <div
                     class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
+                    <div class="card tech-card mx-4 w-100">
                         <img
-                            class="mx-auto d-block p-3"
+                            class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/velocity.png"
                             alt="Velocity logo"
                             data-toggle="popover"
@@ -667,9 +646,9 @@
                 </div>
                 <div
                     class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
+                    <div class="card tech-card mx-4 w-100">
                         <img
-                            class="mx-auto d-block p-3"
+                            class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/jackson.png"
                             alt="Jackson logo"
                             data-toggle="popover"
@@ -686,9 +665,9 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
+                    <div class="card tech-card mx-4 w-100">
                         <img
-                            class="mx-auto d-block p-3"
+                            class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/jaxb.png"
                             alt="JAXB logo"
                             data-toggle="popover"
@@ -707,11 +686,11 @@
             </div>
 
             <h2 class="mt-5">Тестирование</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/junit5.png"
                              alt="JUnit 5 logo"
                              data-toggle="popover"
@@ -729,8 +708,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/mockito.png"
                              alt="Mockito logo"
                              data-toggle="popover"
@@ -747,8 +726,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/powermock.png"
                              alt="Powermock logo"
                              data-toggle="popover"
@@ -768,9 +747,9 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
+                    <div class="card tech-card mx-4 w-100">
                         <img
-                            class="mx-auto d-block p-3"
+                            class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/selenium.png"
                             alt="Selenium logo"
                             data-toggle="popover"
@@ -791,13 +770,13 @@
             </div>
 
             <h2 class="mt-5">Фронтенд</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <div
                 class="row">
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
+                    <div class="card tech-card mx-4 w-100">
                         <img
-                            class="mx-auto d-block p-3"
+                            class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/javascript.png"
                             alt="Javascript logo"
                             data-toggle="popover"
@@ -826,9 +805,9 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
+                    <div class="card tech-card mx-4 w-100">
                         <img
-                            class="mx-auto d-block p-3"
+                            class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/html_5.png"
                             alt="HTML 5 logo"
                             data-toggle="popover"
@@ -846,9 +825,9 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
+                    <div class="card tech-card mx-4 w-100">
                         <img
-                            class="mx-auto d-block p-3"
+                            class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/css_3.png"
                             alt="CSS 3 logo"
                             data-toggle="popover"
@@ -866,9 +845,9 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
+                    <div class="card tech-card mx-4 w-100">
                         <img
-                            class="mx-auto d-block p-3"
+                            class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/bootstrap.png"
                             alt="Bootstrap 4 logo"
                             data-toggle="popover"
@@ -890,11 +869,11 @@
             </div>
 
             <h2 class="mt-5">Сборка и развертывание проектов</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/maven.png"
                              alt="Maven logo"
                              data-toggle="popover"
@@ -917,8 +896,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/travis.png"
                              alt="Travis logo"
                              data-toggle="popover"
@@ -935,8 +914,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/tomcat.png"
                              alt="Tomcat logo"
                              data-toggle="popover"
@@ -954,11 +933,11 @@
             </div>
 
             <h2 class="mt-5">Блокчейн</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/ethereum.png"
                              alt="Ethereum logo"
                              data-toggle="popover"
@@ -985,8 +964,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="solidity_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="solidity_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/solidity.png"
                              alt="Solidity logo"
                              data-toggle="popover"
@@ -1019,8 +998,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="web3j_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="web3j_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/web3j.png"
                              alt="Web3j logo"
                              data-toggle="popover"
@@ -1055,11 +1034,11 @@
             </div>
 
             <h2 class="mt-5">Вспомогательные инструменты</h2>
-            <hr class="mb-4 mt-0 d-inline-block bg-dark" style="width: 90px;">
+            <hr class="mb-4 mt-0 d-inline-block bg-dark w-90-px">
             <div class="row ">
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/git.png"
                              alt="Git logo"
                              data-toggle="popover"
@@ -1074,8 +1053,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="python_wrap" class="card mx-4 w-100 large-popover">
-                        <img class="mx-auto d-block p-3"
+                    <div id="python_wrap" class="card tech-card mx-4 w-100 large-popover">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/python.png"
                              alt="Python logo"
                              data-toggle="popover"
@@ -1109,8 +1088,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div class="card mx-4 w-100">
-                        <img class="mx-auto d-block p-3"
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/IntelliJ_IDEA.png"
                              alt="Intellij IDEA logo"
                              data-toggle="popover"
@@ -1140,35 +1119,23 @@
         </div>
     </div>
 
-    <footer style="background-color:rgb(255,248,194);" class="mt-5">
-        <div
-            class="row py-2">
+    <footer class="mt-5 back-l-ocher">
+        <div class="row py-2">
         </div>
         <div>
-            <div
-                class="container">
-                <div
-                    class="row">
-                    <div
-                        class="col-12 text-center">
-                        <h6>
-                            Контакты</h6>
-                        <hr class="mb-4 mt-0 d-inline-block bg-dark"
-                            style="width: 60px;">
-                        <p>
-                            anshelen@yandex.ru</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h6>Контакты</h6>
+                        <hr class="mb-4 mt-0 d-inline-block bg-dark w-50-px"/>
+                        <p>anshelen@yandex.ru</p>
                     </div>
                     </hr>
                 </div>
             </div>
         </div>
-        <div
-            style="background-color:rgb(255,222,62);">
-            <p class="h6 text-center">
-                &copy
-                No
-                Rights
-                Reserved.</p>
+        <div class="back-ocher">
+            <p class="h6 text-center">&copy No Rights Reserved.</p>
         </div>
     </footer>
 </div>
