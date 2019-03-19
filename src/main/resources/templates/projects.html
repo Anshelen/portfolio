@@ -19,7 +19,7 @@
           href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/style.css"/>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
 </head>
 <body class="h-100">
 <div class="h-75">
@@ -27,8 +27,9 @@
         <nav class="navbar navbar-expand-sm navbar-light border border-dark back-ocher">
             <div class="container"
                  th:with="auth=${#authentication.getPrincipal()}">
-                <a class="navbar-brand" href="#">
-                    <img src="../static/img/logo.png" alt="logo" class="w-50-px">
+                <a class="navbar-brand" href="index.html" th:href="@{/index.html}">
+                    <img src="../static/img/logo.png" alt="logo"
+                         th:src="@{/resources/img/logo.png}" class="w-50-px">
                 </a>
                 <button class="navbar-toggler" type="button"
                         data-toggle="collapse"
@@ -83,7 +84,7 @@
                     работал.</p>
             </div>
 
-            <div class="media border rounded p-3 my-3">
+            <div id="iqmanager" class="media border rounded p-3 my-3">
                 <div class="media-body">
                     <h4 class="mb-4"><a href="https://iqmanager.org"
                                         class="text-warning">IQManager</a>
@@ -109,7 +110,8 @@
                     </ul>
                 </div>
                 <a href="https://iqmanager.org">
-                    <img src="../static/img/projects/iqmanager.png" alt="John Doe"
+                    <img src="../static/img/projects/iqmanager.png"
+                         th:src="@{/resources/img/projects/iqmanager.png}" alt="IQManager project"
                          class="ml-3 mt-3 border rounded shadow project__img">
                 </a>
             </div>
@@ -136,7 +138,8 @@
                     </p>
                 </div>
                 <a href="http://kad.arbitr.ru/">
-                    <img src="../static/img/projects/arbitr.png" alt="John Doe"
+                    <img src="../static/img/projects/arbitr.png"
+                         th:src="@{/resources/img/projects/arbitr.png}" alt="Arbitr project"
                          class="ml-3 mt-3 border rounded shadow project__img">
                 </a>
             </div>
@@ -151,7 +154,8 @@
                     </p>
                 </div>
                 <a href="http://talksift.ru/">
-                    <img src="../static/img/projects/talksift.png" alt="John Doe"
+                    <img src="../static/img/projects/talksift.png"
+                         th:src="@{/resources/img/projects/talksift.png}" alt="Talksift project"
                          class="ml-3 mt-3 border rounded shadow project__img">
                 </a>
             </div>
@@ -171,7 +175,8 @@
                     </p>
                 </div>
                 <a href="https://www.pajcoin.com/">
-                    <img src="../static/img/projects/pajcoin.webp" alt="John Doe"
+                    <img src="../static/img/projects/pajcoin.webp"
+                         th:src="@{/resources/img/projects/pajcoin.webp}" alt="PajCoin logo"
                          class="ml-3 mt-3 border rounded shadow project__img">
                 </a>
             </div>

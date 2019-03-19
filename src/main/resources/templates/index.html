@@ -19,7 +19,7 @@
           href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/style.css"/>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
 </head>
 <body class="h-100">
 <div class="jumbotron text-center mb-0 p-0 h-25 w-100 d-none d-xl-block main-banner">
@@ -42,8 +42,9 @@
         <nav class="navbar navbar-expand-sm navbar-light border border-dark back-ocher">
             <div class="container"
                  th:with="auth=${#authentication.getPrincipal()}">
-                <a class="navbar-brand" href="#">
-                    <img src="../static/img/logo.png" alt="logo" class="w-50-px">
+                <a class="navbar-brand" href="index.html" th:href="@{/index.html}">
+                    <img src="../static/img/logo.png" alt="logo"
+                         th:src="@{/resources/img/logo.png}" class="w-50-px">
                 </a>
                 <button class="navbar-toggler" type="button"
                         data-toggle="collapse"
@@ -53,19 +54,19 @@
                 <div class="collapse navbar-collapse dual-collapse">
                     <ul class="navbar-nav">
                         <li class="nav-item mx-3 active">
-                            <a class="nav-link h5" href="index.html">Главная</a>
+                            <a class="nav-link h5" href="index.html" th:href="@{/index.html}">Главная</a>
                         </li>
                         <li class="nav-item mx-3">
-                            <a class="nav-link h5" href="about.html">Обо мне</a>
+                            <a class="nav-link h5" href="about.html" th:href="@{/about.html}">Обо мне</a>
                         </li>
                         <li class="nav-item mx-3">
-                            <a class="nav-link h5" href="skills.html">Технологии</a>
+                            <a class="nav-link h5" href="skills.html" th:href="@{/skills.html}">Технологии</a>
                         </li>
                         <li class="nav-item mx-3">
-                            <a class="nav-link h5" href="projects.html">Портфолио</a>
+                            <a class="nav-link h5" href="projects.html" th:href="@{/projects.html}">Портфолио</a>
                         </li>
                         <li class="nav-item mx-3">
-                            <a class="nav-link h5" href="contacts.html">Контакты</a>
+                            <a class="nav-link h5" href="contacts.html" th:href="@{/contacts.html}">Контакты</a>
                         </li>
                     </ul>
                 </div>
@@ -100,7 +101,8 @@
                     <p><img class="border rounded shadow w-25 mr-4 mb-2"
                             src="../static/img/me.png"
                             align="left"
-                            alt="My photo">
+                            alt="My photo"
+                            th:src="@{/resources/img/me.png}">
                     </p>
                     <p> Создаю сайты, и внутрикорпоративные системы, а также поддерживаю и улучшаю
                         старые, чтобы они стали удобнее и быстрее. Чтобы добиться высокой
