@@ -1,11 +1,14 @@
 language: java
 jdk: oraclejdk8
-
 cache:
   directories:
-    - $HOME/.m2
-
+  - "$HOME/.m2"
 notifications:
   email:
     on_success: change
     on_failure: always
+deploy:
+  provider: heroku
+  api_key:
+    secure: Cb9p9pR25pooCbMRJ4gfLPDWZo0pOlC+7bnX5i2YadjZRRLpMrnlv3A8SiohPwYXqI8C+4oPrMhIznCAdYd6oTM6Whgf7IuKPiC6JSbieMfoshj2KXy4wjQ2ocYTfAkh8piRFdlpt0BtO5QSVf36TyfpxmsWALH1kRcxjSBLwknP9V32wWB1QU2RRH/zAbTxv10WvAnwbEavz+tsw8Jm7FyteA69ZXxeuL77XIH7dzW3OjfpSNnEhbOGBrv9iKtYs6bMqzCOOfGQOi1lKvUdxm1ZwdW8iqd2XZ1/p1PZB53VLqq0e3cKWxrY/Erzqsg7Gu/cJ6TvLy5I4kEqXNjnysxvpaj8fzw0sfp3rthnR+ZdOTOPus9QUxiZTFgqWa4AnpBkj9ZqiHjXw4r80A3BiE8tVsMhY2Ab2bjYSG//vpRibm71KAKH72QbgT7HpTMC/G0D7v/69KuzG7IiV4021bAnkBBjgs8HDfIJPyt2A4EfNQmYbp326c7IhONsC5Iurja8XV8V/Hbzla8cAJ4K5YyX4qhLLKEK8RP7tie7XLAzPKl1JYwPuB+YZv7TL9AABd4NEKp3sLYEDQ0C+Dg4LBwNhY24eLi9jooLttacInOvqz3M469UbxfKRmWy1lVdXqjg1Da+gVR587S5KIGJ7QXaJD4P5/f+XwbK2MJ39oI=
+  app: shelenkov
