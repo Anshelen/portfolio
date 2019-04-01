@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
 </head>
 <body class="h-100">
-<nav th:replace="fragments::navbar('skills')" class="navbar navbar-expand-sm navbar-light border border-dark back-ocher">
+<nav th:replace="fragments::navbar('skills')"
+     class="navbar navbar-expand-sm navbar-light border border-dark back-ocher">
     <div class="container">
         <a class="navbar-brand" href="index.html">
             <img src="../static/img/logo.png" alt="logo" class="w-50-px">
@@ -75,8 +76,8 @@
     <div>
         <div class="container">
             <div class="mt-5 p-4 border border-r-1 hint__back--ocher">
-                <p class="h4" >На этой странице я перечислил основные навыки и технологии, которыми
-                я владею.</p>
+                <p class="h4">На этой странице я перечислил основные навыки и технологии, которыми
+                    я владею.</p>
             </div>
 
             <h2 class="mt-5">Общее</h2>
@@ -128,7 +129,8 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-lg-2 p-2">
-                    <div id="personal_qualities_wrap" class="card tech-card mx-4 w-100 large-popover">
+                    <div id="personal_qualities_wrap"
+                         class="card tech-card mx-4 w-100 large-popover">
                         <img class="mx-auto d-block p-3 tech-logo"
                              src="../static/img/techlogos/personal_qualities.png"
                              th:src="@{/resources/img/techlogos/personal_qualities.png}"
@@ -594,7 +596,7 @@
                         <img
                             class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/slf4j.png"
-                             th:src="@{/resources/img/techlogos/slf4j.png}"
+                            th:src="@{/resources/img/techlogos/slf4j.png}"
                             alt="SLF4J logo"
                             data-toggle="popover"
                             data-trigger="hover"
@@ -617,7 +619,7 @@
                         <img
                             class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/logback.jpg"
-                             th:src="@{/resources/img/techlogos/logback.jpg}"
+                            th:src="@{/resources/img/techlogos/logback.jpg}"
                             alt="Logback logo"
                             data-toggle="popover"
                             data-trigger="hover"
@@ -639,7 +641,7 @@
                         <img
                             class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/velocity.png"
-                             th:src="@{/resources/img/techlogos/velocity.png}"
+                            th:src="@{/resources/img/techlogos/velocity.png}"
                             alt="Velocity logo"
                             data-toggle="popover"
                             data-trigger="hover"
@@ -663,7 +665,7 @@
                         <img
                             class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/jackson.png"
-                             th:src="@{/resources/img/techlogos/jackson.png}"
+                            th:src="@{/resources/img/techlogos/jackson.png}"
                             alt="Jackson logo"
                             data-toggle="popover"
                             data-trigger="hover"
@@ -683,7 +685,7 @@
                         <img
                             class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/jaxb.png"
-                             th:src="@{/resources/img/techlogos/jaxb.png}"
+                            th:src="@{/resources/img/techlogos/jaxb.png}"
                             alt="JAXB logo"
                             data-toggle="popover"
                             data-trigger="hover"
@@ -769,7 +771,7 @@
                         <img
                             class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/selenium.png"
-                             th:src="@{/resources/img/techlogos/selenium.png}"
+                            th:src="@{/resources/img/techlogos/selenium.png}"
                             alt="Selenium logo"
                             data-toggle="popover"
                             data-trigger="hover"
@@ -797,7 +799,7 @@
                         <img
                             class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/javascript.png"
-                             th:src="@{/resources/img/techlogos/javascript.png}"
+                            th:src="@{/resources/img/techlogos/javascript.png}"
                             alt="Javascript logo"
                             data-toggle="popover"
                             data-trigger="hover"
@@ -829,7 +831,7 @@
                         <img
                             class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/html_5.png"
-                             th:src="@{/resources/img/techlogos/html_5.png}"
+                            th:src="@{/resources/img/techlogos/html_5.png}"
                             alt="HTML 5 logo"
                             data-toggle="popover"
                             data-trigger="hover"
@@ -850,7 +852,7 @@
                         <img
                             class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/css_3.png"
-                             th:src="@{/resources/img/techlogos/css_3.png}"
+                            th:src="@{/resources/img/techlogos/css_3.png}"
                             alt="CSS 3 logo"
                             data-toggle="popover"
                             data-trigger="hover"
@@ -871,7 +873,7 @@
                         <img
                             class="mx-auto d-block p-3 tech-logo"
                             src="../static/img/techlogos/bootstrap.png"
-                             th:src="@{/resources/img/techlogos/bootstrap.png}"
+                            th:src="@{/resources/img/techlogos/bootstrap.png}"
                             alt="Bootstrap 4 logo"
                             data-toggle="popover"
                             data-trigger="hover"
@@ -952,6 +954,26 @@
                         <div class="card-body h6">
                             <h2 class="card-title mb-4">Apache Tomcat</h2>
                             <p class="card-text">Контейнер сервлетов
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 p-2">
+                    <div class="card tech-card mx-4 w-100">
+                        <img class="mx-auto d-block p-3 tech-logo"
+                             src="../static/img/techlogos/heroku.png"
+                             th:src="@{/resources/img/techlogos/heroku.png}"
+                             alt="Heroku logo"
+                             data-toggle="popover"
+                             data-trigger="hover"
+                             data-details="heroku">
+                    </div>
+                    <div id="heroku" class="card h-100 d-none">
+                        <div class="card-body h6">
+                            <h2 class="card-title mb-4">Heroku</h2>
+                            <p class="card-text">Heroku - это PaaS-платформа,
+                                которая позволяет создавать, запускать и
+                                эксплуатировать приложения в облаке.
                             </p>
                         </div>
                     </div>
