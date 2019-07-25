@@ -11,6 +11,8 @@
     <script
         src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script
+        src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+    <script
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script
         src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
@@ -19,6 +21,8 @@
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
           crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
+    <script src="../static/js/dal.js" th:src="@{/resources/js/dal.js}"></script>
+    <script src="../static/js/contacts.js" th:src="@{/resources/js/contacts.js}"></script>
 </head>
 <body class="h-100">
 <nav th:replace="fragments::navbar('contacts')" class="navbar navbar-expand-sm navbar-light border border-dark back-ocher">
@@ -93,7 +97,69 @@
                         </tr>
                     </tbody>
                 </table>
-
+                <div class="container w-75 border rounded mt-4">
+                    <h3 class="mt-4">Отправить письмо</h3>
+                    <form id="emailForm" class="mb-4">
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="name">Имя:</label>
+                                <input id="name" type="text" class="form-control" name="name"
+                                       placeholder="Пожалуйста, укажите Ваше имя.">
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="subject">Заголовок:</label>
+                                <input id="subject" type="text" class="form-control" name="subject"
+                                       placeholder="Пожалуйста, укажите тему письма.">
+                            </div>
+                        </div>
+                        <div class="control-group form-group">
+                            <div class="controls">
+                                <label for="text">Сообщение:</label>
+                                <textarea id="text" name="text" rows="10" cols="100"
+                                          class="form-control mail-form__text-input"
+                                          placeholder="Пожалуйста, заполните тело письма."></textarea>
+                            </div>
+                        </div>
+                        <div id="success"></div>
+                        <button id="submitBtn" type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                    <div id="successModal" class="modal fade">
+                        <div class="modal-dialog modal-dialog-centered modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Сообщение доставлено</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                        Закрыть</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="failModal" class="modal fade">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Ошибка при отправке сообщения</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    Код ошибки: <span id="failCode">[error code]</span>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                        Закрыть</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img id="loader" class="loading-image" src="../static/img/loading.gif"
+                         th:src="@{/resources/img/loading.gif}"
+                         alt="Loading. Wait please.">
+                </div>
             </div>
         </div>
     </div>
