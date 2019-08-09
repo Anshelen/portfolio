@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-          crossorigin="anonymous"/>
-    <title>FORBIDDEN</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous"/>
+  <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/resources/css/style.css}"/>
+  <title>FORBIDDEN</title>
 </head>
-<body class="h-100">
-<div class="container-fluid d-flex justify-content-center align-items-center h-100 bg-danger">
-    <div class="d-flex flex-column">
-        <p class="mx-auto my-4 display-1 text-white">403</p>
-        <p class="mx-auto my-4 display-2 text-white text-center">FORBIDDEN</p>
-        <h2 class="mx-auto my-4 font-weight-light text-white">Недостаточно
-            прав</h2>
-        <a class="btn btn-outline-light btn-lg mx-auto my-4 px-5" href="/"
-           th:href="@{/}">HOME</a>
-    </div>
+<body>
+<div
+  class="container-fluid d-flex justify-content-center align-items-center error__container h-100 bg-danger">
+  <div class="d-flex flex-column">
+    <p class="error__status text-white">403</p>
+    <p class="error__status text-white">FORBIDDEN</p>
+    <p class="error__explanation text-white">Недостаточно прав</p>
+    <a class="btn btn-outline-light btn-lg mx-auto my-4 px-5" href="../index.html"
+       th:href="@{/}">На главную</a>
+  </div>
 </div>
 </body>
 </html>

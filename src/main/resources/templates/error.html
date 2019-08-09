@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/>
-    <title>Ошибка</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous"/>
+  <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
+  <title>Ошибка</title>
 </head>
-<body class="h-100">
-<div class="container-fluid d-flex justify-content-center align-items-center h-100 bg-info">
-    <div class="d-flex flex-column">
-        <p class="mx-auto my-4 display-1 text-white" th:text="${status}">500</p>
-        <p class="mx-auto my-4 display-2 text-white text-center" th:text="${#strings.toUpperCase(error)}">INTERNAL SERVER ERROR</p>
-        <h2 class="mx-auto my-4 font-weight-light text-white">Стыдно, но что то сломалось...</h2>
-        <a class="btn btn-outline-light btn-lg mx-auto my-4 px-5" href="/" th:href="@{/}">HOME</a>
-    </div>
+<body>
+<div
+  class="error__container container-fluid d-flex justify-content-center align-items-center h-100 bg-info">
+  <div class="d-flex flex-column">
+    <p class="error__status text-white" th:text="${status}">500</p>
+    <p class="error__status text-white"
+       th:text="${#strings.toUpperCase(error)}">INTERNAL SERVER ERROR</p>
+    <h2 class="error__explanation text-white">Что то сломалось...</h2>
+    <a class="btn btn-outline-light btn-lg mx-auto my-4 px-5" href="index.html" th:href="@{/}">На
+      главную</a>
+  </div>
 </div>
 </body>
 </html>

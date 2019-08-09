@@ -1,23 +1,25 @@
 ﻿<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-          crossorigin="anonymous"/>
-    <title>PAGE NOT FOUND</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous"/>
+  <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/resources/css/style.css}"/>
+  <title>PAGE NOT FOUND</title>
 </head>
-<body class="h-100">
-<div class="container-fluid d-flex justify-content-center align-items-center h-100 bg-warning">
-    <div class="d-flex flex-column">
-        <p class="mx-auto my-4 display-1">404</p>
-        <p class="mx-auto my-4 display-2 text-center">PAGE NOT FOUND</p>
-        <h2 class="mx-auto my-4 font-weight-light">Страница не найдена</h2>
-        <a class="btn btn-outline-dark btn-lg mx-auto my-4 px-5" href="/"
-           th:href="@{/}">HOME</a>
-    </div>
+<body>
+<div
+  class="error__container container-fluid d-flex justify-content-center align-items-center h-100 bg-warning">
+  <div class="d-flex flex-column">
+    <p class="error__status">404</p>
+    <p class="error__status">PAGE NOT FOUND</p>
+    <p class="error__explanation">Страница не найдена</p>
+    <a class="btn btn-outline-dark btn-lg mx-auto my-4 px-5" href="../index.html"
+       th:href="@{/}">На главную</a>
+  </div>
 </div>
 </body>
 </html>
