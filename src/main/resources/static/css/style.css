@@ -237,6 +237,11 @@ label.error {
   margin: auto 0;
 }
 
+.skills-block__content-title {
+  line-height: 20px;
+  margin-bottom: 3px;
+}
+
 .skills-block__more-link {
   font-size: 12px;
   width: min-content;
