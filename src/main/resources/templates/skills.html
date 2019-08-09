@@ -135,6 +135,33 @@
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
           <img class="skills-block__image"
+               src="../static/img/techlogos/experience.png"
+               th:src="@{/resources/img/techlogos/experience.png}"
+               alt="Experience logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p>Опыт работы 1.5 года</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="experience"></i>
+        </div>
+        <div id="experience" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4">Опыт работы</h3>
+            <p class="card-text"> Я занимаюсь программированием на Java в течение 3 лет, из них
+              1.5 года коммерческой разработкой. Один год работал в компании Симплекс Софтвер на
+              должности Java программиста. После, в течение одного года я занимался поддержкой
+              и доработкой одноименного проекта фирмы "Ай Кью Менеджер" (частичная занятость).
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
                src="../static/img/techlogos/english.png"
                th:src="@{/resources/img/techlogos/english.png}"
                alt="English logo">
@@ -162,6 +189,50 @@
             <h3 class="card-title mb-4">Upper Intermediate English</h3>
             <p class="card-text">Я владею английским языком на уровне Upper Intermediate (B2).
               В процессе работы я не испытываю трудностей с документацией на английском языке.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/algorithms.png"
+               th:src="@{/resources/img/techlogos/algorithms.png}"
+               alt="Algorithms and data structures logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p>Алгоритмы и структуры данных</p>
+            <a href="javascript:void(0);" class="skills-block__more-link"
+               data-toggle="popover"
+               data-trigger="focus"
+               data-details="algorithms_more">Подробнее...</a>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="algorithms"></i>
+        </div>
+        <div id="algorithms_more" class="d-none">
+          Я изучал алгоритмы и стуктуры данных по онлайн-курсам Stepic. Ссылки на сертификаты:
+          <div class="list-group my-2">
+            <a href="https://stepik.org/cert/187216" target="_blank"
+               class="list-group-item list-group-item-action py-1">Алгоритмы: теория и практика.
+              Методы</a>
+            <a href="https://stepik.org/cert/194175" target="_blank"
+               class="list-group-item list-group-item-action py-1">Алгоритмы: теория и практика.
+              Структуры данных</a>
+          </div>
+          Изученные мной алгоритмы и структуры данных были реализованы и собраны в
+          <a href="https://github.com/Anshelen/algorithms-explore" target="_blank">репозитории</a>.
+        </div>
+        <div id="algorithms" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4">Алгоритмы и структуры данных</h3>
+            <p class="card-text">Я знаю основные алгоритмы и структуры данных, могу провести оценку
+              сложности алгоритма, имею хорошую математическую базу. Также я некоторое время изучал
+              устройство нейронных сетей, но к сожалению мои знания в этом направлении пока не
+              подкреплены практикой.
             </p>
           </div>
         </div>
@@ -227,8 +298,7 @@
         <div id="java" class="card d-none">
           <div class="card-body p-2">
             <h3 class="card-title mb-4">Java</h3>
-            <p class="card-text">Мой основной язык программирования. Использую Java 8 в течение
-              3 лет (1.5 года коммерческой разработки).</p>
+            <p class="card-text">Мой основной язык программирования. Использую Java 8.</p>
           </div>
         </div>
       </div>
@@ -508,6 +578,31 @@
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
           <img class="skills-block__image"
+               src="../static/img/techlogos/hibernate_validator.png"
+               th:src="@{/resources/img/techlogos/hibernate_validator.png}"
+               alt="Hibernate Validator logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p>Hibernate Validator</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="hibernate_validator"></i>
+        </div>
+        <div id="hibernate_validator" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4">Hibernate Validator</h3>
+            <p class="card-text">Модуль Hibernate для проверки верности и целостности данных
+              согласно спецификации JSR 380 (Bean Validation 2.0).
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
                src="../static/img/techlogos/flyway.png"
                th:src="@{/resources/img/techlogos/flyway.png}"
                alt="Flyway logo">
@@ -770,6 +865,32 @@
             <p class="card-text">
               Свободный набор инструментов для создания сайтов и веб-приложений. Этот сайт сделан
               с использованием Bootstrap 4
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/jquery.png"
+               th:src="@{/resources/img/techlogos/jquery.png}"
+               alt="jQuery logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p>jQuery</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="jquery"></i>
+        </div>
+        <div id="jquery" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4">jQuery</h3>
+            <p class="card-text">
+              Библиотека JavaScript, облегчающая доступ и манипуляюцию элементами DOM. Также
+              предоставляет удобный API для работы с AJAX.
             </p>
           </div>
         </div>
@@ -1198,7 +1319,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p>SLF4J</p>
+            <p>SLF4J + Logback</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1208,10 +1329,11 @@
         <div id="slf4j"
              class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">SLF4J</h3>
+            <h3 class="card-title mb-4">SLF4J + Logback</h3>
             <p class="card-text">
-              Библиотека для протоколирования, ставящая своей целью предоставить максимально
-              простой, но при этом мощный фасад для различных систем протоколирования на Java
+              SLF4J - библиотека для протоколирования, ставящая своей целью предоставить максимально
+              простой, но при этом мощный фасад для различных систем протоколирования на Java.
+              Logback - фреймворк логирования, реализующий этот фасад.
             </p>
           </div>
         </div>
@@ -1219,24 +1341,29 @@
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
           <img class="skills-block__image"
-               src="../static/img/techlogos/logback.jpg"
-               th:src="@{/resources/img/techlogos/logback.jpg}"
-               alt="Logback logo">
+               src="../static/img/techlogos/quartz.png"
+               th:src="@{/resources/img/techlogos/quartz.png}"
+               alt="Quartz logo">
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p>Logback</p>
+            <p>Quartz</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
-             data-details="logback"></i>
+             data-details="quartz"></i>
         </div>
-        <div id="logback"
-             class="card d-none">
+        <div id="quartz" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Logback</h3>
-            <p class="card-text">Фреймворк логирования, реализующий фасад SLF4J.</p>
+            <h3 class="card-title mb-4">Quartz</h3>
+            <p class="card-text">
+              Quartz представляет собой среду разработки для планирования заданий с открытым
+              исходным кодом, которая обеспечивает эффективный механизм планирования заданий
+              в приложениях Java. Из коробки поддерживает хранение задач и триггеров в базе данных,
+              что позволяет гарантировать их выполнение даже при временном отказе системы или же
+              после перезагрузки сервера.
+            </p>
           </div>
         </div>
       </div>
@@ -1286,7 +1413,7 @@
         <div id="jackson" class="card d-none">
           <div class="card-body p-2">
             <h3 class="card-title mb-4">Jackson</h3>
-            <p class="card-text">Java библиотека для работы с данными в формате JSON</p>
+            <p class="card-text">Java библиотека для работы с данными в формате JSON.</p>
           </div>
         </div>
       </div>
@@ -1309,7 +1436,7 @@
         <div id="jaxb" class="card d-none">
           <div class="card-body p-2">
             <h3 class="card-title mb-4">JAXB</h3>
-            <p class="card-text">Java библиотека для работы с данными в формате XML</p>
+            <p class="card-text">Java библиотека для работы с данными в формате XML.</p>
           </div>
         </div>
       </div>
