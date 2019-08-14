@@ -1,4 +1,4 @@
 /**
- * JPA Domain Objects
+ * Domain Objects.
  */
 package dev.shelenkov.portfolio.model;

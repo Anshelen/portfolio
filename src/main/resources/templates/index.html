@@ -16,6 +16,7 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         rel="stylesheet">
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
+  <script src="../static/js/index.js" th:src="@{/resources/js/index.js}"></script>
 </head>
 <body>
 <!--/*/<th:block th:replace="fragments::navbar('index')">/*/-->
@@ -84,9 +85,42 @@
   </nav>
 </header>
 <!--/*/</th:block>/*/-->
-<div class="container mt-lg-5 mt-md-4 mt-3 mb-5">
-  <div class="text-center">
-    <h1 class="mt-5">Java разработчик Антон Шеленков</h1>
+<div class="container mt-lg-3 mt-2 mb-5">
+
+  <div class="text-right">
+    <div class="btn-group">
+      <a id="download_link" class="download-resume__link"
+         href="/resume" th:href="@{/resume}" download>
+        <i class="fa fa-download mr-1" aria-hidden="true"></i>
+        Резюме
+      </a>
+      <div class="btn-group">
+        <div id="btnGroupDrop1"
+             class="px-2 btn btn-warning dropdown-toggle download-resume__lang-container"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span id="resume_lang">EN</span>
+        </div>
+        <div id="resume_lang_container" class="p-1 dropdown-menu" aria-labelledby="btnGroupDrop1">
+          <div data-option="en" class="dropdown-item download-resume__option">EN</div>
+          <div data-option="ru" class="dropdown-item download-resume__option">RU</div>
+        </div>
+      </div>
+      <div class="btn-group">
+        <div id="btnGroupDrop2"
+             class="px-2 btn btn-warning dropdown-toggle download-resume__format-container"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span id="resume_format">PDF</span>
+        </div>
+        <div id="resume_format_container" class="p-1 dropdown-menu" aria-labelledby="btnGroupDrop2">
+          <div data-option="pdf" class="dropdown-item download-resume__option">PDF</div>
+          <div data-option="docx" class="dropdown-item download-resume__option">DOCX</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <h1>Java разработчик Антон Шеленков</h1>
     <hr class="mb-3 mt-0 header-line"/>
   </div>
 

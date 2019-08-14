@@ -1,7 +1,10 @@
 package dev.shelenkov.portfolio.config;
 
+import dev.shelenkov.portfolio.web.converter.ResumeFormatConverter;
+import dev.shelenkov.portfolio.web.converter.ResumeLanguageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -24,6 +27,12 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/projects.html").setViewName("projects");
         registry.addViewController("/contacts.html").setViewName("contacts");
         registry.addViewController("/login.html").setViewName("login");
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new ResumeLanguageConverter());
+        registry.addConverter(new ResumeFormatConverter());
     }
 
     @Override

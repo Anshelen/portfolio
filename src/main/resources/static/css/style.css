@@ -177,6 +177,45 @@ label.error {
   }
 }
 
+.download-resume__link {
+  display: inline-block;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  line-height: 1.5;
+  border-radius: .25rem 0 0 .25rem;
+  background-color: rgb(255, 193, 7);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+a.download-resume__link {
+  text-decoration: none;
+}
+
+a.download-resume__link:hover {
+  color: inherit;
+  background-color: #e0a800;
+}
+
+.download-resume__lang-container {
+  border-left: 1px solid white;
+  width: 60px;
+  font-weight: 500;
+}
+
+.download-resume__format-container {
+  border-left: 1px solid white;
+  width: 80px;
+  font-weight: 500;
+}
+
+.download-resume__option {
+  cursor: pointer;
+}
+
 /** Skills page */
 
 .skill-group {
