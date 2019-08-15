@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1">
-  <title>Войти в систему</title>
+  <title>Регистрация</title>
 
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous"/>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        rel="stylesheet">
   <script
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        rel="stylesheet">
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
 </head>
 <body>
@@ -78,11 +78,8 @@
                  href="/logout">Выйти</a>
             </div>
           </li>
-          <li class="nav-item ml-md-3 ml-lg-5">
-            <a class="nav-link h5" href="register.html">Регистрация</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link h5" href="login.html">Вход</a>
+          <li class="nav-item ml-lg-5">
+            <a class="nav-link h5" href="login.html">Войти</a>
           </li>
         </ul>
       </div>
@@ -90,53 +87,46 @@
   </nav>
 </header>
 <!--/*/</th:block>/*/-->
-<div class="my-auto">
+<div class="my-2">
   <div class="row my-3">
-    <form
-      class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 m-auto border border-warning rounded"
-      method="post" action="/login.html" th:action="@{/login.html}">
-      <div class="text-center mt-3 mb-3">
-        <h1 class="font-weight-light">Вход</h1>
+    <form action="/register" th:action="@{/register}"
+          th:object="${user}" method="POST"
+          class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 m-auto border border-warning rounded">
+      <div class="text-center mt-1">
+        <h1 class="font-weight-light">Регистрация</h1>
         <hr class="mb-3 mt-0 header-line"/>
       </div>
-
       <div class="form-group">
-        <label for="inputEmail"><span class="font-weight-light">Электронная почта</span></label>
-        <input type="email" id="inputEmail" name="email"
-               class="form-control" placeholder="Электронная почта" required
-               autofocus>
+        <label for="userName" class="font-weight-light">Имя пользователя</label>
+        <input id="userName" th:field="*{userName}" class="form-control" autofocus/>
+        <p th:each="error: ${#fields.errors('userName')}"
+           class="font-weight-light text-danger m-0"
+           th:text="${error}">Validation error</p>
       </div>
-
       <div class="form-group">
-        <label for="inputPassword"><span class="font-weight-light">Пароль</span></label>
-        <input type="password" id="inputPassword" name="password"
-               class="form-control" placeholder="Пароль" required>
+        <label for="email" class="font-weight-light">Электронная почта</label>
+        <input id="email" type="text" th:field="*{email}" class="form-control"/>
+        <p th:each="error : ${#fields.errors('email')}"
+           class="font-weight-light text-danger m-0"
+           th:text="${error}">Validation error</p>
       </div>
-
-      <div class="custom-control custom-checkbox">
-        <input id="rememberMeCB" type="checkbox" class="custom-control-input" name="remember-me"/>
-        <label class="custom-control-label" for="rememberMeCB">
-          <span class="font-weight-light">Запомнить меня</span>
-        </label>
+      <div class="form-group">
+        <label for="password" class="font-weight-light">Пароль</label>
+        <input id="password" type="password" th:field="*{password}" class="form-control"/>
+        <p th:each="error : ${#fields.errors('password')}"
+           class="font-weight-light text-danger m-0"
+           th:text="${error}">Validation error</p>
       </div>
-
-      <div th:if="${param.error}" class="mb-4 mt-2">
-        <p th:if="${param.error[0]} == 'BadCredentials'"
-           class="text-center font-weight-light text-danger">
-          Неверный адрес электронной почты или пароль</p>
-        <p th:if="${param.error[0]} == 'CredentialsExpired'"
-           class="text-center font-weight-light text-danger">
-          Полномочия пользователя истекли</p>
-        <p th:if="${param.error[0]} == 'Locked'"
-           class="text-center font-weight-light text-danger">
-          Аккаунт заблокирован</p>
-        <p th:if="${param.error[0]} == 'Disabled'"
-           class="text-center font-weight-light text-danger">
-          Аккаунт не активирован</p>
+      <div class="form-group">
+        <label for="matchingPassword" class="font-weight-light">Подтвердите пароль</label>
+        <input id="matchingPassword" type="password" th:field="*{matchingPassword}" class="form-control"/>
+        <p th:each="error : ${#fields.errors('global')}"
+           class="font-weight-light text-danger m-0"
+           th:text="${error}">Validation error</p>
       </div>
-
-      <button class="btn btn-lg btn-outline-dark btn-block mt-4 mb-4" type="submit">
-        <span class="font-weight-light">Войти</span>
+      <button class="btn btn-lg btn-outline-dark btn-block mt-4 mb-4 font-weight-light"
+              type="submit">
+        Зарегистрироваться
       </button>
     </form>
   </div>
