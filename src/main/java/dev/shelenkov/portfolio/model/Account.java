@@ -33,7 +33,6 @@ public class Account extends AbstractPersistable<Long> {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.enabled = true;
         roles.forEach(this::addRole);
     }
 

@@ -366,9 +366,13 @@ a.download-resume__link:hover {
   }
 }
 
-/** Register success page */
+/** Register pages */
 
-.success-register__container {
+.register__container {
   width: 60%;
   min-width: min-content;
+}
+
+.registration__button {
+  width: 200px;
 }

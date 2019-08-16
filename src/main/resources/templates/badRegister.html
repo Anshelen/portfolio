@@ -1,10 +1,10 @@
-<!doctype html >
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1">
-  <title>Регистрация успешна</title>
+  <title>Регистрация</title>
 
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -78,8 +78,11 @@
                  href="/logout">Выйти</a>
             </div>
           </li>
-          <li class="nav-item ml-lg-5">
-            <a class="nav-link h5" href="login.html">Войти</a>
+          <li class="nav-item ml-md-3 ml-lg-5">
+            <a class="nav-link h5" href="register.html">Регистрация</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h5" href="login.html">Вход</a>
           </li>
         </ul>
       </div>
@@ -87,13 +90,16 @@
   </nav>
 </header>
 <!--/*/</th:block>/*/-->
+
 <div class="container my-auto">
-  <div class="text-center my-3 " th:object="${account}">
+  <div class="text-center my-3 ">
     <div class="register__container border border-warning rounded p-3 mx-auto">
-      <h2><span th:text="*{username}">UserName</span>, ваш аккаунт активирован и готов к работе.</h2>
+      <!--/*/<th:block th:switch="${error}">/*/-->
+        <h2 th:case="'InvalidToken'">Токен не валиден</h2>
+        <h2 th:case="'TokenExpired'">Срок действия токена истек</h2>
+      <!--/*/</th:block>/*/-->
       <a class="btn btn-lg btn-outline-dark btn-block my-4 mx-auto registration__button"
-         href="login.html" th:href="@{/login.html}">
-        Войти в аккаунт</a>
+         href="register.html" th:href="@{/register}">Регистрация</a>
     </div>
   </div>
 </div>
@@ -102,10 +108,10 @@
   <div class="container">
     <div class="row position-relative">
       <div class="text-center mx-auto">
-        <a th:href="@{/index.html}" href="index.html"
+        <a href="index.html"
            class="footer__navigation-link">Главная</a>
         ●
-        <a th:href="@{/contacts.html}" href="contacts.html"
+        <a href="contacts.html"
            class="footer__navigation-link">Контакты</a>
       </div>
       <div class="footer__social">

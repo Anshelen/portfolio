@@ -88,9 +88,10 @@
 </header>
 <!--/*/</th:block>/*/-->
 <div class="container my-auto">
-  <div class="text-center my-3 " th:object="${account}">
+  <div class="text-center my-3 " th:object="${user}">
     <div class="register__container border border-warning rounded p-3 mx-auto">
-      <h2><span th:text="*{username}">UserName</span>, ваш аккаунт активирован и готов к работе.</h2>
+      <h2><span th:text="*{userName}">UserName</span>, на ваш адрес было отправлено письмо со
+        ссылкой для подтверждения вашей электронной почты.</h2>
       <a class="btn btn-lg btn-outline-dark btn-block my-4 mx-auto registration__button"
          href="login.html" th:href="@{/login.html}">
         Войти в аккаунт</a>
