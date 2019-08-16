@@ -120,18 +120,16 @@
         </label>
       </div>
 
-      <div th:if="${param.error}" class="mb-4 mt-2">
-        <p th:if="${param.error[0]} == 'BadCredentials'"
-           class="text-center font-weight-light text-danger">
+      <!--suppress ThymeleafVariablesResolveInspection -->
+      <div th:if="${param.error}" th:switch="${param.error[0]}"
+           class="mb-4 mt-2 text-center font-weight-light text-danger">
+        <p th:case="'BadCredentials'">
           Неверный адрес электронной почты или пароль</p>
-        <p th:if="${param.error[0]} == 'CredentialsExpired'"
-           class="text-center font-weight-light text-danger">
+        <p th:case="'CredentialsExpired'">
           Полномочия пользователя истекли</p>
-        <p th:if="${param.error[0]} == 'Locked'"
-           class="text-center font-weight-light text-danger">
+        <p th:case="'Locked'">
           Аккаунт заблокирован</p>
-        <p th:if="${param.error[0]} == 'Disabled'"
-           class="text-center font-weight-light text-danger">
+        <p th:case="'Disabled'">
           Аккаунт не активирован</p>
       </div>
 
