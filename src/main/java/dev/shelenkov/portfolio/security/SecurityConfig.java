@@ -14,7 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +22,6 @@ import java.util.Map;
 @Import(SecurityProperties.class)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -40,9 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public ExceptionMappingAuthenticationFailureHandler authenticationFailureHandler() {
-        ExceptionMappingAuthenticationFailureHandler handler
-            = new ExceptionMappingAuthenticationFailureHandler();
+    public ParametersMappingAuthenticationFailureHandler authenticationFailureHandler() {
+        ParametersMappingAuthenticationFailureHandler handler
+            = new ParametersMappingAuthenticationFailureHandler();
         Map<String, String> map = new HashMap<>();
         map.put(BadCredentialsException.class.getName(),
             "/login.html?error=BadCredentials");
@@ -51,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         map.put(LockedException.class.getName(),
             "/login.html?error=Locked");
         map.put(DisabledException.class.getName(),
-            "/login.html?error=Disabled");
+            "/login.html?error=Disabled&email=${email}");
         handler.setExceptionMappings(map);
         return handler;
     }

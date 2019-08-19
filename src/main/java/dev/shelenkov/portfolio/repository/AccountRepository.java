@@ -10,5 +10,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     @Query("FROM Account a JOIN FETCH a.roles WHERE a.email = :email")
     Account getByEmailWithRoles(@Param("email") String email);
 
+    Account getByEmail(String email);
+
     boolean existsByEmail(String email);
 }

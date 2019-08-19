@@ -19,6 +19,8 @@
   <script
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
+  <script src="../static/js/dal.js" th:src="@{/resources/js/dal.js}"></script>
+  <script src="../static/js/registration.js" th:src="@{/resources/js/registration.js}"></script>
 </head>
 <body>
 <!--/*/ <th:block th:replace="fragments::navbar('')"> /*/-->
@@ -92,11 +94,49 @@
     <div class="register__container border border-warning rounded p-3 mx-auto">
       <h2><span th:text="*{userName}">UserName</span>, на ваш адрес было отправлено письмо со
         ссылкой для подтверждения вашей электронной почты.</h2>
+      <a id="resend" href="#" data-email="anshelen@yandex.ru" th:attr="data-email=*{email}">
+        Отправить еще раз</a>
       <a class="btn btn-lg btn-outline-dark btn-block my-4 mx-auto registration__button"
          href="login.html" th:href="@{/login.html}">
         Войти в аккаунт</a>
     </div>
   </div>
+  <div id="successModal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Сообщение отправлено</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">
+            Закрыть
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="failModal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Ошибка при отправке сообщения</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          Код ошибки: <span id="failCode">[error code]</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">
+            Закрыть
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img id="loader" class="loading-image" src="../static/img/loading.gif"
+       th:src="@{/resources/img/loading.gif}"
+       alt="Loading. Wait please.">
 </div>
 
 <footer th:replace="fragments::footer" class="mt-5 footer">

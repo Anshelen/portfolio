@@ -13,3 +13,11 @@ function sendMailRequest(name, subject, text) {
       data: JSON.stringify(data)
     })
 }
+
+function resendEmailConfirmationRequest(email) {
+  return $.ajax({
+    type: 'GET',
+    contentType: "application/json",
+    url: '/resendRegistrationEmail?email=' + email
+  });
+}

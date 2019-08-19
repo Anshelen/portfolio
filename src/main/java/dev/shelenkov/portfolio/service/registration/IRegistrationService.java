@@ -28,4 +28,18 @@ public interface IRegistrationService {
      *                                account was already activated)
      */
     Account confirmRegistration(UUID token) throws TokenNotValidException;
+
+    /**
+     * Sends email with a link to confirm email ownership.
+     *
+     * @param email user's email
+     */
+    void sendConfirmationEmail(String email);
+
+    /**
+     * Checks if a confirmation email can be sent.
+     *
+     * @param email user's email
+     */
+     boolean canSendConfirmationEmail(String email);
 }

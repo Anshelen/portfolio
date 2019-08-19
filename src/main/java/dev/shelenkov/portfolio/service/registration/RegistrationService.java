@@ -6,6 +6,7 @@ import dev.shelenkov.portfolio.model.VerificationToken;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.RoleRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
+import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -52,8 +53,7 @@ public class RegistrationService implements IRegistrationService {
             passwordEncoder.encode(password),
             role);
         accountRepository.save(account);
-        eventPublisher.publishEvent(
-            new OnRegistrationCompleteEvent(this, account));
+        sendConfirmationEmail(email);
     }
 
     /**
@@ -78,5 +78,21 @@ public class RegistrationService implements IRegistrationService {
 
         account.setEnabled(true);
         return accountRepository.save(account);
+    }
+
+    @Transactional
+    @Override
+    public void sendConfirmationEmail(String email) {
+        Validate.isTrue(canSendConfirmationEmail(email),
+            "Confirmation email can't be sent");
+        Account account = accountRepository.getByEmail(email);
+        eventPublisher.publishEvent(
+            new OnRegistrationCompleteEvent(this, account));
+    }
+
+    @Override
+    public boolean canSendConfirmationEmail(String email) {
+        Account account = accountRepository.getByEmail(email);
+        return (account != null) && !account.isEnabled();
     }
 }

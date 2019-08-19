@@ -19,6 +19,8 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         rel="stylesheet">
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
+  <script src="../static/js/dal.js" th:src="@{/resources/js/dal.js}"></script>
+  <script src="../static/js/registration.js" th:src="@{/resources/js/registration.js}"></script>
 </head>
 <body>
 <!--/*/ <th:block th:replace="fragments::navbar('')"> /*/-->
@@ -129,8 +131,12 @@
           Полномочия пользователя истекли</p>
         <p th:case="'Locked'">
           Аккаунт заблокирован</p>
-        <p th:case="'Disabled'">
-          Аккаунт не активирован</p>
+        <!--suppress ThymeleafVariablesResolveInspection -->
+        <div th:case="'Disabled'" th:with="mail=${param.email[0]}">
+          <p>Аккаунт не активирован.</p>
+          <a id="resend" href="#" data-email="anshelen@yandex.ru" th:attr="data-email=${mail}">
+            Повторно отослать письмо подтверждения</a>
+        </div>
       </div>
 
       <button class="btn btn-lg btn-outline-dark btn-block mt-4 mb-4" type="submit">
@@ -138,6 +144,42 @@
       </button>
     </form>
   </div>
+  <div id="successModal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Сообщение отправлено</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">
+            Закрыть
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="failModal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Ошибка при отправке сообщения</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          Код ошибки: <span id="failCode">[error code]</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">
+            Закрыть
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img id="loader" class="loading-image" src="../static/img/loading.gif"
+       th:src="@{/resources/img/loading.gif}"
+       alt="Loading. Wait please.">
 </div>
 
 <footer th:replace="fragments::footer" class="mt-5 footer">

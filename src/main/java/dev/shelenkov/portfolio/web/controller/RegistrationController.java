@@ -1,11 +1,12 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import dev.shelenkov.portfolio.model.Account;
-import dev.shelenkov.portfolio.service.registration.RegistrationService;
+import dev.shelenkov.portfolio.service.registration.IRegistrationService;
 import dev.shelenkov.portfolio.service.registration.TokenExpiredException;
 import dev.shelenkov.portfolio.service.registration.TokenNotValidException;
 import dev.shelenkov.portfolio.web.wrappers.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,7 +23,7 @@ import java.util.UUID;
 public class RegistrationController {
 
     @Autowired
-    private RegistrationService registrationService;
+    private IRegistrationService registrationService;
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -56,6 +57,16 @@ public class RegistrationController {
         } catch (TokenNotValidException e) {
             return new ModelAndView("badRegister",
                 "error", "InvalidToken");
+        }
+    }
+
+    @GetMapping("/resendRegistrationEmail")
+    public ResponseEntity<Void> resendConfirmationEmail(@RequestParam("email") String email) {
+        if (registrationService.canSendConfirmationEmail(email)) {
+            registrationService.sendConfirmationEmail(email);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
         }
     }
 }
