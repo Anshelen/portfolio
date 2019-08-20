@@ -73,13 +73,13 @@ public class EmailServiceTests {
 
         Document document = Jsoup.parse(String.valueOf(message.getContent()));
         softly.assertThat(document.getElementById("logo").attr("src"))
-            .isEqualTo("http://test.ru/resources/img/logo.png");
+            .isEqualTo("http://test.ru/app/resources/img/logo.png");
         softly.assertThat(document.getElementById("confirmationLink").attr("href"))
-            .isEqualTo("http://test.ru/confirmRegistration?token=" + token.getToken());
+            .isEqualTo("http://test.ru/app/confirmRegistration?token=" + token.getToken());
         softly.assertThat(document.getElementById("loginLink").attr("href"))
-            .isEqualTo("http://test.ru/login.html");
+            .isEqualTo("http://test.ru/app/login.html");
         softly.assertThat(document.getElementById("copyright").text())
-            .isEqualTo("© 2019 http://test.ru");
+            .isEqualTo("© 2019 http://test.ru/app");
         softly.assertAll();
     }
 

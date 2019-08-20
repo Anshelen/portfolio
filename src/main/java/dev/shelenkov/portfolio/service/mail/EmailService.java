@@ -32,8 +32,8 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String from;
 
-    @Value("#{'${application.base-url}' + servletContext.contextPath}")
-    private String siteUrl;
+    @Value("${application.root-url}")
+    private String rootUrl;
 
     /**
      * Sends a simple email message to admin.
@@ -69,9 +69,9 @@ public class EmailService {
             helper.setSubject("Подтверждение регистрации");
 
             Context context = new Context();
-            context.setVariable("siteUrl", siteUrl);
+            context.setVariable("siteUrl", rootUrl);
             context.setVariable("confirmationUrl",
-                siteUrl + "/confirmRegistration?token=" + token.getToken());
+                rootUrl + "/confirmRegistration?token=" + token.getToken());
             String content = templateEngine.process("email/verifyEmailAddress.html", context);
 
             helper.setText(content, true);
