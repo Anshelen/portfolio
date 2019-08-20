@@ -59,7 +59,7 @@ public class EmailControllerTests {
     @Test
     public void test_server_error() throws Exception {
         doThrow(MailSendException.class).when(emailService)
-            .sendSimpleEmail(anyString(), anyString(), anyString());
+            .sendSimpleEmailToAdmin(anyString(), anyString(), anyString());
 
         EmailDTO data = new EmailDTO("name", "subject", "text");
         String body = objectMapper.writeValueAsString(data);
@@ -71,7 +71,7 @@ public class EmailControllerTests {
             .andExpect(jsonPath("$.message").value("Can't send e'mail"));
 
         verify(emailService, times(1))
-            .sendSimpleEmail(anyString(), anyString(), anyString());
+            .sendSimpleEmailToAdmin(anyString(), anyString(), anyString());
         verifyNoMoreInteractions(emailService);
     }
 }

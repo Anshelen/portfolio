@@ -57,7 +57,7 @@ public class EmailServiceTests {
         Account account = createAccount();
         VerificationToken token = createVerificationToken(account);
 
-        emailService.sendConfirmationEmail(account, token);
+        emailService.sendConfirmationEmail(token);
 
         MimeMessage[] receivedMessages = smtpServer.getReceivedMessages();
         SoftAssertions softly = new SoftAssertions();

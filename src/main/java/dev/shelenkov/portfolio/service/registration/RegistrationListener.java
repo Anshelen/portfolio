@@ -32,6 +32,6 @@ public class RegistrationListener
     private void confirmEmailAddress(Account account) {
         VerificationToken token = new VerificationToken(account);
         token = tokenRepository.save(token);
-        emailService.sendConfirmationEmail(account, token);
+        emailService.sendConfirmationEmail(token);
     }
 }

@@ -24,7 +24,7 @@ public class EmailController {
     @SuppressWarnings("FeatureEnvy")
     @PostMapping("/email/send")
     public ResponseEntity<Void> sendEmail(@Valid @RequestBody EmailDTO emailDTO) {
-        emailService.sendSimpleEmail(
+        emailService.sendSimpleEmailToAdmin(
             emailDTO.getName(), emailDTO.getSubject(), emailDTO.getText());
         return ResponseEntity.ok().build();
     }

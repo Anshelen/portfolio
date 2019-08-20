@@ -1,6 +1,5 @@
 package dev.shelenkov.portfolio.service.mail;
 
-import dev.shelenkov.portfolio.model.Account;
 import dev.shelenkov.portfolio.model.VerificationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,7 +41,7 @@ public class EmailService {
      * @param subject email subject
      * @param text email plain content
      */
-    public void sendSimpleEmail(String name, String subject, String text) {
+    public void sendSimpleEmailToAdmin(String name, String subject, String text) {
         MimeMessagePreparator messagePreparator = (MimeMessage mimeMessage) -> {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
             helper.setFrom(from);
@@ -58,14 +57,13 @@ public class EmailService {
      * Sends an email to a user-registered email address with a link (composed
      * from token) to confirm ownership of this address.
      *
-     * @param account user's account
-     * @param token verification token to prove email accessory
+     * @param token verification token to prove email accessory for a user
      */
-    public void sendConfirmationEmail(Account account, VerificationToken token) {
+    public void sendConfirmationEmail(VerificationToken token) {
         MimeMessagePreparator messagePreparator = (MimeMessage mimeMessage) -> {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
             helper.setFrom(from);
-            helper.setTo(account.getEmail());
+            helper.setTo(token.getAccount().getEmail());
             helper.setSubject("Подтверждение регистрации");
 
             Context context = new Context();
