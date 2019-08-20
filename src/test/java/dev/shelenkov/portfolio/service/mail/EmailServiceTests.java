@@ -78,6 +78,8 @@ public class EmailServiceTests {
             .isEqualTo("http://test.ru/app/confirmRegistration?token=" + token.getToken());
         softly.assertThat(document.getElementById("loginLink").attr("href"))
             .isEqualTo("http://test.ru/app/login.html");
+        softly.assertThat(document.getElementById("toBrowserLink").attr("href"))
+            .isEqualTo("http://test.ru/app/mail/verifyEmailAddress?token=" + token.getToken());
         softly.assertThat(document.getElementById("copyright").text())
             .isEqualTo("© 2019 http://test.ru/app");
         softly.assertAll();

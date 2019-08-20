@@ -67,6 +67,7 @@ public class EmailService {
             helper.setSubject("Подтверждение регистрации");
 
             Context context = new Context();
+            context.setVariable("webVersion", false);
             context.setVariable("rootUrl", rootUrl);
             context.setVariable("token", token.getToken());
             String content = templateEngine.process("email/verifyEmailAddress.html", context);
