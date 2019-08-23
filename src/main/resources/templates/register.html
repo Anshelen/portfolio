@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1">
-  <title>Регистрация</title>
+  <title th:text="#{register.head.title}">Регистрация</title>
 
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -18,23 +18,35 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script src="literals.js" th:src="@{/literals.js}"></script>
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
 </head>
 <body>
 <!--/*/ <th:block th:replace="fragments::navbar('')"> /*/-->
 <div class="headline">
   <div class="container">
-    Разработка на JAVA
-    <div class="headline__social">
-      <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-github social-widget"></i>
-      </a>
-      <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-vk social-widget"></i>
-      </a>
-      <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
-        <i class="fa fa-envelope-o social-widget"></i>
-      </a>
+    <span>Разработка на JAVA</span>
+    <div class="headline__right d-flex align-items-center">
+      <div class="btn-group headline__locale mr-4">
+        <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ru</button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item disabled" href="?lang=ru">ru</a>
+          <a class="dropdown-item" href="?lang=en">en</a>
+        </div>
+      </div>
+      <div class="headline__social">
+        <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-github social-widget"></i>
+        </a>
+        <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-vk social-widget"></i>
+        </a>
+        <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
+          <i class="fa fa-envelope-o social-widget"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -93,39 +105,43 @@
           th:object="${user}" method="POST"
           class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 m-auto border border-warning rounded">
       <div class="text-center mt-1">
-        <h1 class="font-weight-light">Регистрация</h1>
+        <h1 class="font-weight-light" th:text="#{register.title}">Регистрация</h1>
         <hr class="mb-3 mt-0 header-line"/>
       </div>
       <div class="form-group">
-        <label for="userName" class="font-weight-light">Имя пользователя</label>
+        <label for="userName" class="font-weight-light" th:text="#{register.username}">
+          Имя пользователя</label>
         <input id="userName" th:field="*{userName}" class="form-control" autofocus/>
         <p th:each="error: ${#fields.errors('userName')}"
            class="font-weight-light text-danger m-0"
            th:text="${error}">Validation error</p>
       </div>
       <div class="form-group">
-        <label for="email" class="font-weight-light">Электронная почта</label>
+        <label for="email" class="font-weight-light" th:text="#{register.email}">
+          Электронная почта</label>
         <input id="email" type="text" th:field="*{email}" class="form-control"/>
         <p th:each="error : ${#fields.errors('email')}"
            class="font-weight-light text-danger m-0"
            th:text="${error}">Validation error</p>
       </div>
       <div class="form-group">
-        <label for="password" class="font-weight-light">Пароль</label>
+        <label for="password" class="font-weight-light" th:text="#{register.password}">
+          Пароль</label>
         <input id="password" type="password" th:field="*{password}" class="form-control"/>
         <p th:each="error : ${#fields.errors('password')}"
            class="font-weight-light text-danger m-0"
            th:text="${error}">Validation error</p>
       </div>
       <div class="form-group">
-        <label for="matchingPassword" class="font-weight-light">Подтвердите пароль</label>
+        <label for="matchingPassword" class="font-weight-light" th:text="#{register.confirm-password}">
+          Подтвердите пароль</label>
         <input id="matchingPassword" type="password" th:field="*{matchingPassword}" class="form-control"/>
         <p th:each="error : ${#fields.errors('global')}"
            class="font-weight-light text-danger m-0"
            th:text="${error}">Validation error</p>
       </div>
       <button class="btn btn-lg btn-outline-dark btn-block mt-4 mb-4 font-weight-light"
-              type="submit">
+              type="submit" th:text="#{register.confirm}">
         Зарегистрироваться
       </button>
     </form>

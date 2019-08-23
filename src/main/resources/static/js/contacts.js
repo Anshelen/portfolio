@@ -21,18 +21,18 @@ $(function(){
     },
     messages: {
       name: {
-        required: "Укажите от кого письмо",
-        minlength: "Введите не менее 2-х символов в поле 'Имя'",
-        maxlength: "Слишком длинное имя"
+        required: messages["contacts.js.validation.name.required"],
+        minlength: messages["contacts.js.validation.name.minlength"],
+        maxlength: messages["contacts.js.validation.name.maxlength"]
       },
       subject: {
-        required: "Тема письма обязательна к заполнению",
-        minlength: "Введите не менее 2-х символов в заголовок",
-        maxlength: "Слишком длинный заголовок"
+        required: messages["contacts.js.validation.subject.required"],
+        minlength: messages["contacts.js.validation.subject.minlength"],
+        maxlength: messages["contacts.js.validation.subject.maxlength"]
       },
       text: {
-        required: "Заполните тело письма",
-        maxlength: "Слишком длинное письмо"
+        required: messages["contacts.js.validation.text.required"],
+        maxlength: messages["contacts.js.validation.text.maxlength"]
       }
     },
     submitHandler: function () {

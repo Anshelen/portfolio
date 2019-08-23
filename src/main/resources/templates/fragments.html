@@ -3,108 +3,131 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <meta charset="UTF-8">
-    <title>Fragments</title>
+  <meta charset="UTF-8">
+  <title>Fragments</title>
 </head>
 <body>
 
 <th:block th:fragment="navbar(activebar)" th:with="auth=${#authentication.getPrincipal()}">
-    <div class="headline">
-        <div class="container">
-            Разработка на JAVA
-            <div class="headline__social">
-                <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
-                    <i class="fa fa-github social-widget"></i>
-                </a>
-                <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
-                    <i class="fa fa-vk social-widget"></i>
-                </a>
-                <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
-                    <i class="fa fa-envelope-o social-widget"></i>
-                </a>
-            </div>
+  <div class="headline">
+    <div class="container">
+      <span th:text="#{fragments.headline.slogan}">Разработка на JAVA</span>
+      <div class="headline__right d-flex align-items-center">
+        <div class="btn-group headline__locale mr-sm-4 mr-2">
+          <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  th:text="${#locale.language}">ru
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="?lang=ru"
+               th:classappend="${#locale.language == 'ru'} ? 'disabled'">ru</a>
+            <a class="dropdown-item" href="?lang=en"
+               th:classappend="${#locale.language == 'en'} ? 'disabled'">en</a>
+          </div>
         </div>
+        <div class="headline__social">
+          <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
+            <i class="fa fa-github social-widget"></i>
+          </a>
+          <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
+            <i class="fa fa-vk social-widget"></i>
+          </a>
+          <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
+            <i class="fa fa-envelope-o social-widget"></i>
+          </a>
+        </div>
+      </div>
     </div>
-    <header>
-        <nav class="navbar sticky-top navbar-expand-md navbar-light">
-            <div class="container">
-                <a th:href="@{/index.html}" class="navbar-brand" href="index.html">
-                    <img class="logo" th:src="@{/resources/img/logo.png}"
-                         src="../static/img/logo.png" alt="logo">
-                </a>
-                <button class="navbar-toggler" type="button"
-                        data-toggle="collapse"
-                        data-target=".dual-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse dual-collapse">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-lg-3" th:classappend="${activebar == 'index'} ? 'active'">
-                            <a th:href="@{/index.html}" class="nav-link h5" href="index.html">Главная</a>
-                        </li>
-                        <li class="nav-item mx-lg-3" th:classappend="${activebar == 'about'} ? 'active'">
-                            <a th:href="@{/about.html}" class="nav-link h5" href="about.html">Обо&nbspмне</a>
-                        </li>
-                        <li class="nav-item mx-lg-3" th:classappend="${activebar == 'skills'} ? 'active'">
-                            <a th:href="@{/skills.html}" class="nav-link h5" href="skills.html">Технологии</a>
-                        </li>
-                        <li class="nav-item mx-lg-3" th:classappend="${activebar == 'projects'} ? 'active'">
-                            <a th:href="@{/projects.html}" class="nav-link h5" href="projects.html">Портфолио</a>
-                        </li>
-                        <li class="nav-item mx-lg-3" th:classappend="${activebar == 'contacts'} ? 'active'">
-                            <a th:href="@{/contacts.html}" class="nav-link h5" href="contacts.html">Контакты</a>
-                        </li>
-                        <li sec:authorize="isAuthenticated()" class="nav-item dropdown ml-lg-5">
-                            <a class="nav-link dropdown-toggle h5" href="#"
-                               id="navbardrop"
-                               data-toggle="dropdown">
-                                <i class="fa fa-user"></i>
-                                <span th:text="${auth.name}">Антон</span>
-                            </a>
-                            <div class="dropdown-menu py-1">
-                                <a class="dropdown-item"
-                                   th:href="@{/logout}"
-                                   href="/logout">Выйти</a>
-                            </div>
-                        </li>
-                        <li sec:authorize="!isAuthenticated()" class="nav-item ml-md-3 ml-lg-5">
-                            <a class="nav-link h5" href="register.html"
-                               th:href="@{/register}">Регистрация</a>
-                        </li>
-                        <li sec:authorize="!isAuthenticated()" class="nav-item">
-                            <a class="nav-link h5" href="login.html"
-                               th:href="@{/login.html}">Вход</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
+  </div>
+  <header>
+    <nav class="navbar sticky-top navbar-expand-md navbar-light">
+      <div class="container">
+        <a th:href="@{/index.html}" class="navbar-brand" href="index.html">
+          <img class="logo" th:src="@{/resources/img/logo.png}"
+               src="../static/img/logo.png" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button"
+                data-toggle="collapse"
+                data-target=".dual-collapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse dual-collapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-lg-3" th:classappend="${activebar == 'index'} ? 'active'">
+              <a th:href="@{/index.html}" class="nav-link h5" href="index.html"
+                 th:text="#{fragments.navbar.home}">Главная</a>
+            </li>
+            <li class="nav-item mx-lg-3" th:classappend="${activebar == 'about'} ? 'active'">
+              <a th:href="@{/about.html}" class="nav-link h5" href="about.html"
+                 th:text="#{fragments.navbar.about}">Обо&nbspмне</a>
+            </li>
+            <li class="nav-item mx-lg-3" th:classappend="${activebar == 'skills'} ? 'active'">
+              <a th:href="@{/skills.html}" class="nav-link h5" href="skills.html"
+                 th:text="#{fragments.navbar.skills}">Технологии</a>
+            </li>
+            <li class="nav-item mx-lg-3" th:classappend="${activebar == 'projects'} ? 'active'">
+              <a th:href="@{/projects.html}" class="nav-link h5" href="projects.html"
+                 th:text="#{fragments.navbar.projects}">Портфолио</a>
+            </li>
+            <li class="nav-item mx-lg-3" th:classappend="${activebar == 'contacts'} ? 'active'">
+              <a th:href="@{/contacts.html}" class="nav-link h5" href="contacts.html"
+                 th:text="#{fragments.navbar.contacts}">Контакты</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item dropdown ml-lg-5">
+              <a class="nav-link dropdown-toggle h5" href="#"
+                 id="navbardrop"
+                 data-toggle="dropdown">
+                <i class="fa fa-user"></i>
+                <span th:text="${auth.name}">Антон</span>
+              </a>
+              <div class="dropdown-menu py-1">
+                <a class="dropdown-item"
+                   th:href="@{/logout}"
+                   th:text="#{fragments.navbar.logout}"
+                   href="/logout">Выйти</a>
+              </div>
+            </li>
+            <li sec:authorize="!isAuthenticated()" class="nav-item ml-md-3 ml-lg-5">
+              <a class="nav-link h5" href="register.html"
+                 th:href="@{/register}" th:text="#{fragments.navbar.sign_up}">
+                Регистрация</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
+              <a class="nav-link h5" href="login.html"
+                 th:href="@{/login.html}" th:text="#{fragments.navbar.login}">Вход</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
 </th:block>
 
 <footer th:fragment="footer" class="mt-5 footer">
-    <div class="container">
-        <div class="row position-relative">
-            <div class="text-center mx-auto">
-                <a th:href="@{/index.html}" href="index.html"
-                   class="footer__navigation-link">Главная</a>
-                ●
-                <a th:href="@{/contacts.html}" href="contacts.html"
-                   class="footer__navigation-link">Контакты</a>
-            </div>
-            <div class="footer__social">
-                <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
-                    <i class="fa fa-github social-widget"></i>
-                </a>
-                <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
-                    <i class="fa fa-vk social-widget"></i>
-                </a>
-                <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
-                    <i class="fa fa-envelope-o social-widget"></i>
-                </a>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row position-relative">
+      <div class="text-center mx-auto">
+        <a th:href="@{/index.html}" href="index.html"
+           class="footer__navigation-link" th:text="#{fragments.footer.home}">
+          Главная</a>
+        ●
+        <a th:href="@{/contacts.html}" href="contacts.html"
+           class="footer__navigation-link" th:text="#{fragments.footer.contacts}">
+          Контакты</a>
+      </div>
+      <div class="footer__social">
+        <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-github social-widget"></i>
+        </a>
+        <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-vk social-widget"></i>
+        </a>
+        <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
+          <i class="fa fa-envelope-o social-widget"></i>
+        </a>
+      </div>
     </div>
+  </div>
 </footer>
 </body>
 </html>

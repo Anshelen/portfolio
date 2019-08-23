@@ -3,23 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="#{error.head.title}">Ошибка</title>
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous"/>
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
-  <title>Ошибка</title>
 </head>
 <body>
 <div
   class="error__container container-fluid d-flex justify-content-center align-items-center h-100 bg-info">
   <div class="d-flex flex-column">
+    <!--suppress ThymeleafVariablesResolveInspection -->
     <p class="error__status text-white" th:text="${status}">500</p>
+    <!--suppress ThymeleafVariablesResolveInspection -->
     <p class="error__status text-white"
        th:text="${#strings.toUpperCase(error)}">INTERNAL SERVER ERROR</p>
-    <h2 class="error__explanation text-white">Что то сломалось...</h2>
-    <a class="btn btn-outline-light btn-lg mx-auto my-4 px-5" href="index.html" th:href="@{/}">На
-      главную</a>
+    <h2 class="error__explanation text-white" th:text="#{error.explanation}">
+      Упс.. Что то сломалось...</h2>
+    <a class="btn btn-outline-light btn-lg mx-auto my-4 px-5" href="index.html" th:href="@{/}"
+       th:text="#{error.home}">На главную</a>
   </div>
 </div>
 </body>

@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Контакты</title>
+  <title th:text="#{contacts.head.title}">Контакты</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="stylesheet"
@@ -18,6 +18,7 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         rel="stylesheet">
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
+  <script src="literals.js" th:src="@{/literals.js}"></script>
   <script src="../static/js/dal.js" th:src="@{/resources/js/dal.js}"></script>
   <script src="../static/js/contacts.js" th:src="@{/resources/js/contacts.js}"></script>
 </head>
@@ -25,17 +26,28 @@
 <!--/*/ <th:block th:replace="fragments::navbar('contacts')"> /*/-->
 <div class="headline">
   <div class="container">
-    Разработка на JAVA
-    <div class="headline__social">
-      <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-github social-widget"></i>
-      </a>
-      <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-vk social-widget"></i>
-      </a>
-      <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
-        <i class="fa fa-envelope-o social-widget"></i>
-      </a>
+    <span>Разработка на JAVA</span>
+    <div class="headline__right d-flex align-items-center">
+      <div class="btn-group headline__locale mr-4">
+        <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ru</button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item disabled" href="?lang=ru">ru</a>
+          <a class="dropdown-item" href="?lang=en">en</a>
+        </div>
+      </div>
+      <div class="headline__social">
+        <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-github social-widget"></i>
+        </a>
+        <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-vk social-widget"></i>
+        </a>
+        <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
+          <i class="fa fa-envelope-o social-widget"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -93,18 +105,18 @@
 <!--/*/</th:block>/*/-->
 <div class="container mt-5 mb-5">
   <div class="text-center">
-    <h1 class="mt-5">Контакты</h1>
+    <h1 class="mt-5" th:text="#{contacts.title}">Контакты</h1>
     <hr class="mb-3 mt-0 header-line"/>
   </div>
 
   <table class="table table-bordered mt-3">
     <tbody>
     <tr>
-      <td>Телефон:</td>
+      <td><span th:text="#{contacts.phone}">Телефон</span>:</td>
       <td>+7-926-534-26-61</td>
     </tr>
     <tr>
-      <td>E-mail:</td>
+      <td><span th:text="#{contacts.email}">Электронная почта</span>:</td>
       <td><a href="mailto:anshelen@yandex.ru">anshelen@yandex.ru</a></td>
     </tr>
     <tr>
@@ -114,42 +126,47 @@
     </tbody>
   </table>
   <div class="container border rounded mt-4 email-container">
-    <h2 class="mt-4">Отправить письмо</h2>
+    <h2 class="mt-4" th:text="#{contacts.send-message.title}">Отправить письмо</h2>
     <form id="emailForm" class="my-4">
       <div class="control-group form-group">
         <div class="controls">
-          <label for="name">Имя:</label>
+          <label for="name"><span th:text="#{contacts.send-message.name}">Имя</span>:</label>
           <input id="name" type="text" class="form-control" name="name"
+                 th:placeholder="#{contacts.send-message.name.placeholder}"
                  placeholder="Укажите Ваше имя">
         </div>
       </div>
       <div class="control-group form-group">
         <div class="controls">
-          <label for="subject">Заголовок:</label>
+          <label for="subject"><span th:text="#{contacts.send-message.subject}">Заголовок</span>:</label>
           <input id="subject" type="text" class="form-control" name="subject"
+                 th:placeholder="#{contacts.send-message.subject.placeholder}"
                  placeholder="Укажите тему письма">
         </div>
       </div>
       <div class="control-group form-group">
         <div class="controls">
-          <label for="text">Сообщение:</label>
+          <label for="text"><span th:text="#{contacts.send-message.body}">Сообщение</span>:</label>
           <textarea id="text" name="text" rows="10" cols="100"
                     class="form-control mail-form__text-input"
+                    th:placeholder="#{contacts.send-message.body.placeholder}"
                     placeholder="Заполните тело письма"></textarea>
         </div>
       </div>
       <div id="success"></div>
-      <button id="submitBtn" type="submit" class="btn btn-warning">Отправить</button>
+      <button id="submitBtn" type="submit" class="btn btn-warning"
+              th:text="#{contacts.send-message.submit}">Отправить</button>
     </form>
     <div id="successModal" class="modal fade">
       <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Сообщение доставлено</h4>
+            <h4 class="modal-title" th:text="#{notification.message-sent}">Сообщение отправлено</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-warning" data-dismiss="modal">
+            <button type="button" class="btn btn-warning" data-dismiss="modal"
+                    th:text="#{notification.close}">
               Закрыть
             </button>
           </div>
@@ -160,14 +177,17 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Ошибка при отправке сообщения</h4>
+            <h4 class="modal-title" th:text="#{notification.message-failed}">
+              Ошибка при отправке сообщения</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
-            Код ошибки: <span id="failCode">[error code]</span>
+            <span th:text="#{notification.error-code}">Код ошибки</span>:
+            <span id="failCode">500</span>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-warning" data-dismiss="modal">
+            <button type="button" class="btn btn-warning" data-dismiss="modal"
+                    th:text="#{notification.close}">
               Закрыть
             </button>
           </div>

@@ -8,14 +8,17 @@ import javax.validation.constraints.Size;
 @PasswordMatches
 public class UserDTO {
 
-    @Size(min = 5, max = 30, message = "{Register.UserName}")
+    @Size(min = 5, max = 30,
+        message = "{javax.validation.constraints.Size.UserDTO.userName}")
     private String userName;
 
     @UniqueEmail
-    @Size(max = 50, message = "{Register.Email}")
+    @Size(max = 50,
+        message = "{javax.validation.constraints.Size.UserDTO.email}")
     private String email;
 
-    @Size(min = 5, max = 30, message = "{Register.Password}")
+    @Size(min = 5, max = 30,
+        message = "{javax.validation.constraints.Size.UserDTO.password}")
     private String password;
 
     private String matchingPassword;

@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Антон Шеленков</title>
+  <title th:text="#{index.head.title}">Антон Шеленков</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="stylesheet"
@@ -15,6 +15,7 @@
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         rel="stylesheet">
+  <script src="literals.js" th:src="@{/literals.js}"></script>
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
   <script src="../static/js/index.js" th:src="@{/resources/js/index.js}"></script>
 </head>
@@ -22,17 +23,29 @@
 <!--/*/<th:block th:replace="fragments::navbar('index')">/*/-->
 <div class="headline">
   <div class="container">
-    Разработка на JAVA
-    <div class="headline__social">
-      <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-github social-widget"></i>
-      </a>
-      <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-vk social-widget"></i>
-      </a>
-      <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
-        <i class="fa fa-envelope-o social-widget"></i>
-      </a>
+    <span>Разработка на JAVA</span>
+    <div class="headline__right d-flex align-items-center">
+      <div class="btn-group headline__locale mr-4">
+        <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ru
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item disabled" href="?lang=ru">ru</a>
+          <a class="dropdown-item" href="?lang=en">en</a>
+        </div>
+      </div>
+      <div class="headline__social">
+        <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-github social-widget"></i>
+        </a>
+        <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-vk social-widget"></i>
+        </a>
+        <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
+          <i class="fa fa-envelope-o social-widget"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -95,7 +108,7 @@
       <a id="download_link" class="download-resume__link"
          href="/resume" th:href="@{/resume}" download>
         <i class="fa fa-download mr-1" aria-hidden="true"></i>
-        Резюме
+        <span th:text="#{index.resume}">Резюме</span>
       </a>
       <div class="btn-group">
         <div id="btnGroupDrop1"
@@ -123,7 +136,7 @@
   </div>
 
   <div class="text-center mt-4">
-    <h1>Java разработчик Антон Шеленков</h1>
+    <h1 th:text="#{index.title}">Java разработчик Антон Шеленков</h1>
     <hr class="mb-3 mt-0 header-line"/>
   </div>
 
@@ -133,32 +146,37 @@
          alt="My photo"
          th:src="@{/resources/img/me.jpg}">
     <div class="text-left">
-      <p> Создаю сайты и внутрикорпоративные программы, а также поддерживаю и улучшаю
-        старые, чтобы они стали удобнее и быстрее. Чтобы добиться высокой
-        скорости разработки и ясности кода, я использую актуальные фреймворки и
-        придерживаюсь гибкого цикла разработки. Это позволяет улучшать продукт
-        мелкими шажками, чтобы конечные пользователи могли сразу же оценить новый
-        функционал и дать обратную связь. Я всегда стараюсь разрабатывать максимально
-        автоматизированное решение. В идеале после каждого коммита проект должен быть
-        собран, протестирован и готовым к публикации на боевом сервере.
+      <p th:text="#{index.content1}">
+        Создаю сайты и внутрикорпоративные программы, а также поддерживаю и улучшаю старые, чтобы
+        они стали удобнее и быстрее. Чтобы добиться высокой скорости разработки и лёгкого
+        сопровождения продукта, я использую актуальные фреймворки и технологии. Также я уделяю
+        повышенное внимание автоматическому тестированию кода, так как ненадежный код в процессе
+        доработок накапливает ошибки, а это тормозит разработку и вызывает недовольство конечных
+        пользователей продукта. Я всегда стараюсь разрабатывать максимально автоматизированное
+        решение. В идеале после каждого коммита проект должен быть собран, протестирован и готовым к
+        публикации на боевом сервере.
       </p>
-      <p> Основное направление моей деятельности - разработка backend'а приложений.
+      <p th:text="#{index.content2}">
+        Основное направление моей деятельности - разработка backend'а приложений.
         Я знаю, как организовать безопасность сайта и как подключать платежную
         систему. Я умею разрабатывать смартконтракты и извлекать данные из
         защищенных от парсинга сайтов.
       </p>
-      <p> Помимо функционала, для того чтобы публичное приложение или сайт
+      <p th:text="#{index.content3}">
+        Помимо функционала, для того чтобы публичное приложение или сайт
         пользовались успехом, ему нужен привлекательный дизайн. Я этим не занимаюсь,
         но если вы не знаете к кому обратиться, то могу посоветовать знающего
         человека.
       </p>
-      <p> Я стараюсь программировать максимально чисто, с оглядкой на расширение
+      <p th:text="#{index.content4}">
+        Я стараюсь программировать максимально чисто, с оглядкой на расширение
         проекта в будущем. Мне важно, чтобы, видя мой код, у моих коллег не возникало
         желание его отрефакторить.
       </p>
       <br/>
-      <p class="mb-5"> Код этого проекта доступен на
-        <a class="text-warning" href="https://github.com/Anshelen/portfolio">GitHub</a>
+      <p class="mb-5" th:utext="#{index.remark}">
+        Код этого проекта доступен на
+        <a href="https://github.com/Anshelen/portfolio">GitHub</a>
       </p>
     </div>
   </div>

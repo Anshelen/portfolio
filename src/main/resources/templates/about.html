@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Обо мне</title>
+  <title th:text="#{about.head.title}">Обо мне</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="stylesheet"
@@ -15,13 +15,25 @@
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         rel="stylesheet">
+  <script src="literals.js" th:src="@{/literals.js}"></script>
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
 </head>
 <body>
 <!--/*/ <th:block th:replace="fragments::navbar('about')"> /*/-->
-  <div class="headline">
-    <div class="container">
-      Разработка на JAVA
+<div class="headline">
+  <div class="container">
+    <span>Разработка на JAVA</span>
+    <div class="headline__right d-flex align-items-center">
+      <div class="btn-group headline__locale mr-4">
+        <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ru
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item disabled" href="?lang=ru">ru</a>
+          <a class="dropdown-item" href="?lang=en">en</a>
+        </div>
+      </div>
       <div class="headline__social">
         <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
           <i class="fa fa-github social-widget"></i>
@@ -35,125 +47,127 @@
       </div>
     </div>
   </div>
-  <header>
-    <nav class="navbar sticky-top navbar-expand-md navbar-light">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <img class="logo" src="../static/img/logo.png" alt="logo">
-        </a>
-        <button class="navbar-toggler" type="button"
-                data-toggle="collapse"
-                data-target=".dual-collapse">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse dual-collapse">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item mx-lg-3">
-              <a class="nav-link h5" href="index.html">Главная</a>
-            </li>
-            <li class="nav-item mx-lg-3 active">
-              <a class="nav-link h5" href="about.html">Обо&nbspмне</a>
-            </li>
-            <li class="nav-item mx-lg-3">
-              <a class="nav-link h5" href="skills.html">Технологии</a>
-            </li>
-            <li class="nav-item mx-lg-3">
-              <a class="nav-link h5" href="projects.html">Портфолио</a>
-            </li>
-            <li class="nav-item mx-lg-3">
-              <a class="nav-link h5" href="contacts.html">Контакты</a>
-            </li>
-            <li class="nav-item dropdown ml-lg-5">
-              <a class="nav-link dropdown-toggle h5" href="#"
-                 id="navbardrop"
-                 data-toggle="dropdown">
-                <i class="fa fa-user"></i>
-                <span>Антон</span>
-              </a>
-              <div class="dropdown-menu py-1">
-                <a class="dropdown-item"
-                   href="/logout">Выйти</a>
-              </div>
-            </li>
-            <li class="nav-item ml-md-3 ml-lg-5">
-              <a class="nav-link h5" href="register.html">Регистрация</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link h5" href="login.html">Вход</a>
-            </li>
-          </ul>
-        </div>
+</div>
+<header>
+  <nav class="navbar sticky-top navbar-expand-md navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img class="logo" src="../static/img/logo.png" alt="logo">
+      </a>
+      <button class="navbar-toggler" type="button"
+              data-toggle="collapse"
+              data-target=".dual-collapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse dual-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-lg-3">
+            <a class="nav-link h5" href="index.html">Главная</a>
+          </li>
+          <li class="nav-item mx-lg-3 active">
+            <a class="nav-link h5" href="about.html">Обо&nbspмне</a>
+          </li>
+          <li class="nav-item mx-lg-3">
+            <a class="nav-link h5" href="skills.html">Технологии</a>
+          </li>
+          <li class="nav-item mx-lg-3">
+            <a class="nav-link h5" href="projects.html">Портфолио</a>
+          </li>
+          <li class="nav-item mx-lg-3">
+            <a class="nav-link h5" href="contacts.html">Контакты</a>
+          </li>
+          <li class="nav-item dropdown ml-lg-5">
+            <a class="nav-link dropdown-toggle h5" href="#"
+               id="navbardrop"
+               data-toggle="dropdown">
+              <i class="fa fa-user"></i>
+              <span>Антон</span>
+            </a>
+            <div class="dropdown-menu py-1">
+              <a class="dropdown-item"
+                 href="/logout">Выйти</a>
+            </div>
+          </li>
+          <li class="nav-item ml-md-3 ml-lg-5">
+            <a class="nav-link h5" href="register.html">Регистрация</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link h5" href="login.html">Вход</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
 <!--/*/</th:block>/*/-->
 <div class="container my-5">
   <div class="text-center">
-    <h1 class="mt-2">Обо мне</h1>
+    <h1 class="mt-2" th:text="#{about.title}">Обо мне</h1>
     <hr class="mb-3 mt-0 header-line"/>
   </div>
 
-  <h2 class="mt-5">Образование</h2>
+  <h2 class="mt-5" th:text="#{about.education.title}">Образование</h2>
   <hr class="mb-4 mt-0 header-line"/>
-  <p> C раннего детства мне нравилось в чем-то разбираться, анализировать
-    и изучать. В 15 лет я поступил
-    в лицей № 1502 при МЭИ на физико-математическое направление
-    (2010-2013г). Там я познакомился с программированием на языке
-    Turbo Pascal. В тот момент меня это не заинтересовало - очень многое
-    делалось методом "скопируй - вставь", и учебные задачи казались
-    чересчур надуманными. В лицее физика была основным моим
-    увлечением, и я всерьез намеревался связать с ней свое будущее.
+  <p th:text="#{about.education.content1}">
+    C раннего детства мне нравилось в чем-то разбираться, анализировать и изучать. В 15 лет я
+    поступил в лицей № 1502 при МЭИ на физико-математическое направление (2010-2013г). Там я
+    познакомился с программированием на языке Turbo Pascal. В тот момент меня это не заинтересовало
+    - очень многое делалось методом "скопируй - вставь", и учебные задачи казались чересчур
+    надуманными. В лицее физика была основным моим увлечением, и я всерьез намеревался связать с
+    ней свое будущее.
   </p>
-  <p> После лицея я поступил в МГТУ им. Н.Э.Баумана на специальность
-    "Холодильная, криогенная техника и системы кондиционирования и
-    жизнеобеспечения" (2013-2019г). На первых курсах для
-    программирования использовали тот же Pascal вместе с IDE Lazarus,
-    что позволяло разрабатывать простенькие графические интерфейсы.
+  <p th:text="#{about.education.content2}"> После лицея я поступил в МГТУ им. Н.Э.Баумана на
+    специальность "Холодильная, криогенная техника и системы кондиционирования и жизнеобеспечения"
+    (2013-2019г). На первых курсах для программирования использовали тот же Pascal вместе с IDE
+    Lazarus, что позволяло разрабатывать простенькие графические интерфейсы.
   </p>
-  <h2 class="mt-5">Симплекс Софтвер</h2>
+  <p th:text="#{about.education.content3}">
+    С тех пор я начал интересоваться программированием и параллельно с учебой изучать Java.
+    Приблизительно за год я прошел курс JavaRush и изучил несколько книг по программированию,
+    таких как "Философия Java" Брюса Эккеля и "Эффективное программирование на Java" Джошуа Блоха.
+    Это дало мне необходимый багаж знаний для получения первой работы.
+  </p>
+  <h2 class="mt-5" th:text="#{about.simplex-software.title}">Симплекс Софтвер</h2>
   <hr class="mb-4 mt-0 header-line"/>
-  <p> С тех пор я начал интересоваться программированием и параллельно
-    с учебой изучать Java. Приблизительно за год я прошел курс JavaRush и
-    изучил несколько книг по программированию, таких как "Философия
-    Java" Брюса Эккеля и "Эффективное программирование
-    на Java" Джошуа Блоха. Это дало мне необходимый багаж знаний для
-    получения первой работы.
+  <p th:utext="#{about.simplex-software.content1}">
+    С 2017 по 2018 года я совмещал учебу в институте с работой в небольшой компании
+    <a class="text-warning" href="http://simplex-software.ru/">"Симплекс Софтвер"</a>
+    на должности младшего программиста. В это время я познакомился со широким спектром новых для
+    меня технологий и принял участие во многих проектах (в основном web, но также имел дело с такими
+    направлениями как блокчейн). Через год я вел проект, координируя действия небольшой команды из
+    еще двух разработчиков. Это дало мне новый опыт в области построения архитектуры приложений и
+    ведения проекта в целом. Однако разработка ПО в этой компании часто велась с использованием
+    устоявшегося стека технологий, некоторые из которых, на мой взгляд, потеряли актуальность. Также
+    практикуемые методы разработки не очень меня устраивали как специалиста. Поэтому я принял
+    решение покинуть компанию.
   </p>
-  <p> С 2017 по 2018 года я совмещал учебу в институте с работой в небольшой компании
-    <a class="text-warning" href="http://simplex-software.ru/">"Симплекс Софтвер"</a> на
-    должности младшего программиста. В это время я познакомился со
-    широким спектром новых для меня технологий и принял участие во многих
-    проектах (в основном web, но также имел дело с такими
-    направлениями как блокчейн). Через год я вел проект,
-    координируя действия небольшой команды из еще двух разработчиков.
-    Это дало мне большой опыт в области
-    построения архитектуры приложений и ведения проекта в целом.
-    Однако разработка ПО в этой компании часто велась с
-    использованием устоявшегося стека технологий, некоторые из
-    которых, на мой взгляд, потеряли актуальность. Также практикуемые методы
-    разработки не очень меня устраивали как специалиста. Поэтому
-    я принял решение покинуть компанию.
-  </p>
-  <h2 class="mt-5">Сегодня</h2>
+  <h2 class="mt-5" th:text="#{about.iqmanager.title}">Ай Кью Менеджер</h2>
   <hr class="mb-4 mt-0 header-line"/>
-  <p> Следующий год параллельно с написанием диплома в институте, я
-    плотно занимался изучением востребованных на сегодняшний день
-    технологий и реализацией домашних проектов. Таких как этот сайт:)
-    Также я изучил основы такого языка как Python,
+  <p th:text="#{about.iqmanager.content1}">
+    Следующий год параллельно с написанием диплома в институте, я плотно занимался изучением
+    востребованных на сегодняшний день технологий и реализацией домашних проектов. Таких как этот
+    сайт:) Также я углубил свои знания в области алгоритмов и изучил основы такого языка как Python,
     что помогло мне в автоматизации моего труда.
   </p>
-  <p> С 2018 года по настоящее время, помимо домашних проектов, я
-    занимаюсь поддержкой сервиса по организации мероприятий
+  <p>
+    <span th:text="#{about.iqmanager.content2.part1}">
+      С октября 2018 по июль 2019 года, помимо домашних проектов, я занимался поддержкой сервиса по
+      организации мероприятий</span>
     <a class="text-warning" href="projects.html#iqmanager"
-       th:href="@{/projects.html#iqmanager}">
-      iqmanager</a>, где выполняю ряд работ,
-    связанных с добавлением нового функционала и доработкой существующего.
-    На сегодняшний день мне интересен весь цикл разработки
-    информационных систем самых различных назначений - от frontend'а
-    до проектирования баз данных и devops. Но все же
-    основное направление моей деятельности - разработка backend'а
-    приложений. Особое внимание в моих проектах я уделяю настройке
-    безопасности, тестированию и максимальной автоматизации рабочего процесса.
+       th:href="@{/projects.html#iqmanager}">iqmanager</a>
+    <span th:text="#{about.iqmanager.content2.part2}">, где выполнял ряд работ, связанных с
+      добавлением нового функционала и доработкой существующего. Помимо доработки бекенда системы я
+      участвовал в улучшении фронтенда сайта (например, подключал Google Maps и дорабатывал
+      пользовательские календари). Я выполнил свою работу и сейчас ищу интересный для меня проект.
+    </span>
+  </p>
+  <h2 class="mt-5" th:text="#{about.today.title}">Сегодня</h2>
+  <hr class="mb-4 mt-0 header-line"/>
+  <p th:text="#{about.today.content1}">
+    На сегодняшний день мне интересен весь цикл разработки информационных систем самых различных
+    назначений - от frontend'а до проектирования баз данных и DevOps. Но все же основное направление
+    моей деятельности - разработка бекэнда приложений. В будущем я бы хотел поучаствовать в
+    разработке высоконагруженных систем, а также поработать с микросервисами.
   </p>
 </div>
 <footer th:replace="fragments::footer" class="mt-5 footer">

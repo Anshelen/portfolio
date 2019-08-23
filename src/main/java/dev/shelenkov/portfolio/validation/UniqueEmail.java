@@ -25,7 +25,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = UniqueEmailValidator.class)
 @Documented
 public @interface UniqueEmail {
-    String message() default "{UniqueEmailValidator.message}";
+    String message() default "{javax.validation.constraints.UniqueEmail.message}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

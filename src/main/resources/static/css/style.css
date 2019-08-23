@@ -99,13 +99,36 @@ label.error {
   color: white;
 }
 
-.headline__social {
-  height: 32px;
-  line-height: 32px;
-  font-size: 22px;
+.headline__right {
   display: inline-block;
   float: right;
   position: relative;
+  height: 32px;
+  line-height: 32px;
+}
+
+.headline__locale {
+  z-index: 1500;
+  display: inline-block;
+}
+
+.headline__locale-btn {
+  height: 25px;
+  width: 60px;
+  line-height: 10px;
+  color: white;
+  border-color: white;
+  border-width: 2px;
+}
+
+.headline__locale-btn:hover {
+  border-color: #fdc134;
+  color: #fdc134;
+}
+
+.headline__social {
+  font-size: 22px;
+  display: inline-block;
 }
 
 .headline__social a {

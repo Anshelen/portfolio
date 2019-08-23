@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1">
-  <title>Войти в систему</title>
+  <title th:text="#{login.head.title}">Войти в систему</title>
 
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -19,6 +19,7 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         rel="stylesheet">
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
+  <script src="literals.js" th:src="@{/literals.js}"></script>
   <script src="../static/js/dal.js" th:src="@{/resources/js/dal.js}"></script>
   <script src="../static/js/registration.js" th:src="@{/resources/js/registration.js}"></script>
 </head>
@@ -26,17 +27,29 @@
 <!--/*/ <th:block th:replace="fragments::navbar('')"> /*/-->
 <div class="headline">
   <div class="container">
-    Разработка на JAVA
-    <div class="headline__social">
-      <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-github social-widget"></i>
-      </a>
-      <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-vk social-widget"></i>
-      </a>
-      <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
-        <i class="fa fa-envelope-o social-widget"></i>
-      </a>
+    <span>Разработка на JAVA</span>
+    <div class="headline__right d-flex align-items-center">
+      <div class="btn-group headline__locale mr-4">
+        <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ru
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item disabled" href="?lang=ru">ru</a>
+          <a class="dropdown-item" href="?lang=en">en</a>
+        </div>
+      </div>
+      <div class="headline__social">
+        <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-github social-widget"></i>
+        </a>
+        <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-vk social-widget"></i>
+        </a>
+        <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
+          <i class="fa fa-envelope-o social-widget"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -98,49 +111,54 @@
       class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 m-auto border border-warning rounded"
       method="post" action="/login.html" th:action="@{/login.html}">
       <div class="text-center mt-3 mb-3">
-        <h1 class="font-weight-light">Вход</h1>
+        <h1 class="font-weight-light" th:text="#{login.title}">Вход</h1>
         <hr class="mb-3 mt-0 header-line"/>
       </div>
 
       <div class="form-group">
-        <label for="inputEmail"><span class="font-weight-light">Электронная почта</span></label>
+        <label for="inputEmail" class="font-weight-light" th:text="#{login.email}">
+          Электронная почта</label>
         <input type="email" id="inputEmail" name="email"
                class="form-control" placeholder="Электронная почта" required
-               autofocus>
+               th:placeholder="#{login.email.placeholder}" autofocus>
       </div>
 
       <div class="form-group">
-        <label for="inputPassword"><span class="font-weight-light">Пароль</span></label>
+        <label for="inputPassword" class="font-weight-light" th:text="#{login.password}">
+          Пароль</label>
         <input type="password" id="inputPassword" name="password"
-               class="form-control" placeholder="Пароль" required>
+               class="form-control" placeholder="Пароль"
+               th:placeholder="#{login.password.placeholder}" required>
       </div>
 
       <div class="custom-control custom-checkbox">
         <input id="rememberMeCB" type="checkbox" class="custom-control-input" name="remember-me"/>
         <label class="custom-control-label" for="rememberMeCB">
-          <span class="font-weight-light">Запомнить меня</span>
+          <span class="font-weight-light" th:text="#{login.remember-me}">Запомнить меня</span>
         </label>
       </div>
 
       <!--suppress ThymeleafVariablesResolveInspection -->
       <div th:if="${param.error}" th:switch="${param.error[0]}"
            class="mb-4 mt-2 text-center font-weight-light text-danger">
-        <p th:case="'BadCredentials'">
+        <p th:case="'BadCredentials'" th:text="#{login.error.bad-credentials}">
           Неверный адрес электронной почты или пароль</p>
-        <p th:case="'CredentialsExpired'">
+        <p th:case="'CredentialsExpired'" th:text="#{login.error.credentials-expired}">
           Полномочия пользователя истекли</p>
-        <p th:case="'Locked'">
+        <p th:case="'Locked'" th:text="#{login.error.account-banned}">
           Аккаунт заблокирован</p>
         <!--suppress ThymeleafVariablesResolveInspection -->
         <div th:case="'Disabled'" th:with="mail=${param.email[0]}">
-          <p>Аккаунт не активирован.</p>
-          <a id="resend" href="#" data-email="anshelen@yandex.ru" th:attr="data-email=${mail}">
+          <p th:text="#{login.error.account-disabled}">Аккаунт не активирован.</p>
+          <a id="resend" href="#" data-email="anshelen@yandex.ru" th:attr="data-email=${mail}"
+             th:text="#{login.send-confirmation-again}">
             Повторно отослать письмо подтверждения</a>
         </div>
       </div>
 
-      <button class="btn btn-lg btn-outline-dark btn-block mt-4 mb-4" type="submit">
-        <span class="font-weight-light">Войти</span>
+      <button class="btn btn-lg btn-outline-dark btn-block mt-4 mb-4 font-weight-light"
+              type="submit" th:text="#{login.submit}">
+        Войти
       </button>
     </form>
   </div>
@@ -148,11 +166,12 @@
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Сообщение отправлено</h4>
+          <h4 class="modal-title" th:text="#{notification.message-sent}">Сообщение отправлено</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal">
+          <button type="button" class="btn btn-warning" data-dismiss="modal"
+                  th:text="#{notification.close}">
             Закрыть
           </button>
         </div>
@@ -163,14 +182,17 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Ошибка при отправке сообщения</h4>
+          <h4 class="modal-title" th:text="#{notification.message-failed}">
+            Ошибка при отправке сообщения</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          Код ошибки: <span id="failCode">[error code]</span>
+          <span th:text="#{notification.error-code}">Код ошибки</span>:
+          <span id="failCode">500</span>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal">
+          <button type="button" class="btn btn-warning" data-dismiss="modal"
+                  th:text="#{notification.close}">
             Закрыть
           </button>
         </div>

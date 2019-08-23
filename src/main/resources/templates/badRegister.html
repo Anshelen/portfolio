@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1">
-  <title>Регистрация</title>
+  <title th:text="#{badRegister.head.title}">Регистрация</title>
 
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -18,23 +18,35 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script src="literals.js" th:src="@{/literals.js}"></script>
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
 </head>
 <body>
 <!--/*/ <th:block th:replace="fragments::navbar('')"> /*/-->
 <div class="headline">
   <div class="container">
-    Разработка на JAVA
-    <div class="headline__social">
-      <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-github social-widget"></i>
-      </a>
-      <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-vk social-widget"></i>
-      </a>
-      <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
-        <i class="fa fa-envelope-o social-widget"></i>
-      </a>
+    <span>Разработка на JAVA</span>
+    <div class="headline__right d-flex align-items-center">
+      <div class="btn-group headline__locale mr-4">
+        <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ru</button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item disabled" href="?lang=ru">ru</a>
+          <a class="dropdown-item" href="?lang=en">en</a>
+        </div>
+      </div>
+      <div class="headline__social">
+        <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-github social-widget"></i>
+        </a>
+        <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-vk social-widget"></i>
+        </a>
+        <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
+          <i class="fa fa-envelope-o social-widget"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -95,11 +107,12 @@
   <div class="text-center my-3 ">
     <div class="register__container border border-warning rounded p-3 mx-auto">
       <!--/*/<th:block th:switch="${error}">/*/-->
-        <h2 th:case="'InvalidToken'">Токен не валиден</h2>
-        <h2 th:case="'TokenExpired'">Срок действия токена истек</h2>
+        <h2 th:case="'InvalidToken'" th:text="#{badRegister.invalid-token}">Токен не валиден</h2>
+        <h2 th:case="'TokenExpired'" th:text="#{badRegister.token-expired}">Срок действия токена истек</h2>
       <!--/*/</th:block>/*/-->
       <a class="btn btn-lg btn-outline-dark btn-block my-4 mx-auto registration__button"
-         href="register.html" th:href="@{/register}">Регистрация</a>
+         href="register.html" th:href="@{/register}" th:text="#{badRegister.sign_up}">
+         Регистрация</a>
     </div>
   </div>
 </div>

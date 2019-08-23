@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Технологии</title>
+  <title th:text="#{skills.head.title}">Технологии</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="stylesheet"
@@ -16,23 +16,36 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         rel="stylesheet">
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
+  <script src="literals.js" th:src="@{/literals.js}"></script>
   <script src="../static/js/skills.js" th:src="@{/resources/js/skills.js}"></script>
 </head>
 <body>
 <!--/*/ <th:block th:replace="fragments::navbar('skills')"> /*/-->
 <div class="headline">
   <div class="container">
-    Разработка на JAVA
-    <div class="headline__social">
-      <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-github social-widget"></i>
-      </a>
-      <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-vk social-widget"></i>
-      </a>
-      <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
-        <i class="fa fa-envelope-o social-widget"></i>
-      </a>
+    <span>Разработка на JAVA</span>
+    <div class="headline__right d-flex align-items-center">
+      <div class="btn-group headline__locale mr-4">
+        <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ru
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item disabled" href="?lang=ru">ru</a>
+          <a class="dropdown-item" href="?lang=en">en</a>
+        </div>
+      </div>
+      <div class="headline__social">
+        <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-github social-widget"></i>
+        </a>
+        <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-vk social-widget"></i>
+        </a>
+        <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
+          <i class="fa fa-envelope-o social-widget"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -90,7 +103,7 @@
 <!--/*/</th:block>/*/-->
 <div class="container">
   <div class="text-center">
-    <h1 class="mt-5">Мои навыки</h1>
+    <h1 class="mt-5" th:text="#{skills.title}">Мои навыки</h1>
     <hr class="mb-3 mt-0 header-line"/>
   </div>
 
@@ -98,7 +111,7 @@
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
-        <h3 class="skills-header__text my-auto">Общее</h3>
+        <h3 class="skills-header__text my-auto" th:text="#{skills.general.title}">Общее</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -109,30 +122,31 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">МГТУ им. Н.Э.Баумана</p>
+            <p class="skills-block__content-title" th:text="#{skills.bmstu.title}">
+              МГТУ им. Н.Э.Баумана</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="bmstu_more">Подробнее...</a>
+               data-details="bmstu_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="bmstu"></i>
         </div>
-        <div id="bmstu_more" class="d-none">
-          Я учился с 2013 по 2019г. В дипломном проекте мной изучались сетевые технологии и
-          протоколы для автоматизации работы хладоцентра промышленных зданий. В результате
-          закончил магистратуру с красным дипломом.
-        </div>
         <div id="bmstu" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">МГТУ им. Н.Э.Баумана</h3>
-            <p class="card-text">Я имею высшее образование МГТУ им. Н.Э.Баумана
-              по специальности "Холодильная, криогенная техника и системы
+            <h3 class="card-title mb-4" th:text="#{skills.bmstu.title}">МГТУ им. Н.Э.Баумана</h3>
+            <p class="card-text" th:text="#{skills.bmstu.content}">Я имею высшее образование МГТУ
+              им. Н.Э.Баумана по специальности "Холодильная, криогенная техника и системы
               жизнеобеспечения" (магистр).
             </p>
           </div>
+        </div>
+        <div id="bmstu_more" class="d-none" th:text="#{skills.bmstu.more.content}">
+          Я учился с 2013 по 2019г. В дипломном проекте мной изучались сетевые технологии и
+          протоколы для автоматизации работы хладоцентра промышленных зданий. В результате
+          закончил магистратуру с красным дипломом.
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
@@ -144,7 +158,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Опыт работы 1.5 года</p>
+            <p class="skills-block__content-title" th:text="#{skills.experience.title}">
+              Опыт работы 1.5 года</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -153,11 +168,13 @@
         </div>
         <div id="experience" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Опыт работы</h3>
-            <p class="card-text"> Я занимаюсь программированием на Java в течение 3 лет, из них
-              1.5 года коммерческой разработкой. Один год работал в компании Симплекс Софтвер на
-              должности Java программиста. После, в течение одного года я занимался поддержкой
-              и доработкой одноименного проекта фирмы "Ай Кью Менеджер" (частичная занятость).
+            <h3 class="card-title mb-4" th:text="#{skills.experience.title}">Опыт работы</h3>
+            <p class="card-text" th:text="#{skills.experience.content}">
+              Я занимаюсь программированием на Java в течение 3 лет, из них 1.5 года коммерческой
+              разработкой. 9 месяцев работал в компании Симплекс Софтвер на должности младшего Java
+              программиста. После, в течение еще 10 месяцев я занимался поддержкой и доработкой
+              одноименного проекта фирмы "Ай Кью Менеджер" (частичная занятость, неофициальное
+              трудоустройство).
             </p>
           </div>
         </div>
@@ -171,29 +188,32 @@
         </div>
         <div class="d-flex skills-block__content ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Upper Intermediate English</p>
+            <p class="skills-block__content-title" th:text="#{skills.english.title}">
+              Upper Intermediate English</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="english_more">Подробнее...</a>
+               data-details="english_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="english"></i>
         </div>
-        <div id="english_more" class="d-none">
+        <div id="english" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.english.title}">Upper Intermediate
+              English</h3>
+            <p class="card-text" th:text="#{skills.english.content}">
+              У меня хороший разговорный и письменный английский язык на уровне Upper Intermediate
+              (B2). В процессе работы я не испытываю трудностей с документацией на английском языке.
+            </p>
+          </div>
+        </div>
+        <div id="english_more" class="d-none" th:text="#{skills.english.more.content}">
           Дважды был в Англии в языковых школах (2010 и 2012г), один раз на Мальте (2011г).
           В 2013г я получил сертификат FCE (Первый Кембриджский сертификат), сданный на оценку B,
           что соответствует уровню владения языком B2.
-        </div>
-        <div id="english" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4">Upper Intermediate English</h3>
-            <p class="card-text">Я владею английским языком на уровне Upper Intermediate (B2).
-              В процессе работы я не испытываю трудностей с документацией на английском языке.
-            </p>
-          </div>
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
@@ -205,18 +225,31 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Алгоритмы и структуры данных</p>
+            <p class="skills-block__content-title" th:text="#{skills.algorithms.title}">
+              Алгоритмы и структуры данных</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="algorithms_more">Подробнее...</a>
+               data-details="algorithms_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="algorithms"></i>
         </div>
-        <div id="algorithms_more" class="d-none">
+        <div id="algorithms" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.algorithms.title}">
+              Алгоритмы и структуры данных</h3>
+            <p class="card-text" th:text="#{skills.algorithms.content}">
+              Я знаю основные алгоритмы и структуры данных, могу провести оценку сложности
+              алгоритма, имею хорошую математическую базу. Также я некоторое время изучал устройство
+              нейронных сетей, но к сожалению мои знания в этом направлении пока не подкреплены
+              практикой.
+            </p>
+          </div>
+        </div>
+        <div id="algorithms_more" class="d-none" th:utext="#{skills.algorithms.more.content}">
           Я изучал алгоритмы и стуктуры данных по онлайн-курсам Stepic. Ссылки на сертификаты:
           <div class="list-group my-2">
             <a href="https://stepik.org/cert/187216" target="_blank"
@@ -229,16 +262,6 @@
           Изученные мной алгоритмы и структуры данных были реализованы и собраны в
           <a href="https://github.com/Anshelen/algorithms-explore" target="_blank">репозитории</a>.
         </div>
-        <div id="algorithms" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4">Алгоритмы и структуры данных</h3>
-            <p class="card-text">Я знаю основные алгоритмы и структуры данных, могу провести оценку
-              сложности алгоритма, имею хорошую математическую базу. Также я некоторое время изучал
-              устройство нейронных сетей, но к сожалению мои знания в этом направлении пока не
-              подкреплены практикой.
-            </p>
-          </div>
-        </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -249,7 +272,8 @@
         </div>
         <div class="d-flex skills-block__content ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Мягкие навыки</p>
+            <p class="skills-block__content-title" th:text="#{skills.soft-skills.title}">
+              Мягкие навыки</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -258,11 +282,12 @@
         </div>
         <div id="softskills" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Мягкие навыки</h3>
-            <p class="card-text">Я имею опыт работы в команде, а также имею опыт управления
-              проектом и небольшой командой разработчиков. В мои обязанности входили ревью
-              кода других разработчиков, оценка временных затрат проектов, а также управление
-              задачами с помощью программы Redmine (аналог Jira).
+            <h3 class="card-title mb-4" th:text="#{skills.soft-skills.title}">Мягкие навыки</h3>
+            <p class="card-text" th:text="#{skills.soft-skills.content}">
+              Я имею опыт работы в команде, а также имею опыт управления проектом и небольшой
+              командой разработчиков. В мои обязанности входили ревью кода других разработчиков,
+              оценка временных затрат проектов, а также управление задачами с помощью программы
+              Redmine (аналог Jira).
             </p>
           </div>
         </div>
@@ -271,7 +296,8 @@
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
-        <h3 class="skills-header__text my-auto">Сервисный слой приложения</h3>
+        <h3 class="skills-header__text my-auto" th:text="#{skills.service.title}">
+          Сервисный слой приложения</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -282,27 +308,28 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Java</p>
+            <p class="skills-block__content-title" th:text="#{skills.java.title}">Java</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="java_more">Подробнее...</a>
+               data-details="java_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="java"></i>
         </div>
-        <div id="java_more" class="d-none">
+        <div id="java" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.java.title}">Java</h3>
+            <p class="card-text" th:text="#{skills.java.content}">
+              Мой основной язык программирования. Использую Java 8.</p>
+          </div>
+        </div>
+        <div id="java_more" class="d-none" th:text="#{skills.java.more.content}">
           Я знаю паттерны разработки, владею ООП, имею опыт в разработке и отладке многопоточного
           кода. Также имел дело с профилированием приложения с помощью таких программ, как
           VisualVM, YourKit Java Profiler.
-        </div>
-        <div id="java" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4">Java</h3>
-            <p class="card-text">Мой основной язык программирования. Использую Java 8.</p>
-          </div>
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
@@ -314,7 +341,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Spring Framework</p>
+            <p class="skills-block__content-title" th:text="#{skills.spring.title}">
+              Spring Framework</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -323,8 +351,9 @@
         </div>
         <div id="spring" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Spring Framework</h3>
-            <p class="card-text">Универсальный фреймворк, обеспечивающий IoC и DI и многие другие
+            <h3 class="card-title mb-4" th:text="#{skills.spring.title}">Spring Framework</h3>
+            <p class="card-text" th:text="#{skills.spring.content}">
+              Универсальный фреймворк, обеспечивающий IoC и DI и многие другие
               дополнительные возможности, такие как управление транзакциями и упрощение
               тестирования.
             </p>
@@ -340,7 +369,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Spring Data JPA</p>
+            <p class="skills-block__content-title" th:text="#{skills.spring-data.title}">
+              Spring Data JPA</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -349,9 +379,10 @@
         </div>
         <div id="spring-data" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Spring Data JPA</h3>
-            <p class="card-text">Модуль Spring, обеспечивающий расширенные возможности
-              взаимодействия с ORM-фреймворком, таким как Hibernate.
+            <h3 class="card-title mb-4" th:text="#{skills.spring-data.title}">Spring Data JPA</h3>
+            <p class="card-text" th:text="#{skills.spring-data.content}">
+              Модуль Spring, обеспечивающий расширенные возможности взаимодействия с
+              ORM-фреймворком, таким как Hibernate.
             </p>
           </div>
         </div>
@@ -365,7 +396,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Spring Security</p>
+            <p class="skills-block__content-title" th:text="#{skills.spring-security.title}">
+              Spring Security</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -374,10 +406,12 @@
         </div>
         <div id="spring-security" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Spring Security</h3>
-            <p class="card-text">Модуль Spring, предоставляющий механизмы построения систем
-              аутентификации и авторизации, а также другие возможности обеспечения безопасности
-              для промышленных приложений.
+            <h3 class="card-title mb-4" th:text="#{skills.spring-security.title}">
+              Spring Security</h3>
+            <p class="card-text" th:text="#{skills.spring-security.content}">
+              Модуль Spring, предоставляющий механизмы построения систем аутентификации и
+              авторизации, а также другие возможности обеспечения безопасности для промышленных
+              приложений.
           </div>
         </div>
       </div>
@@ -390,7 +424,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Spring Boot</p>
+            <p class="skills-block__content-title" th:text="#{skills.spring-boot.title}">
+              Spring Boot</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -399,10 +434,11 @@
         </div>
         <div id="spring-boot" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Spring Boot</h3>
-            <p class="card-text">Модуль Spring для быстрой настройки и развертывания приложений.
-              Также предоставляет ряд решений для повышения производительности разработки, таких
-              как LiveReload и Hot Restart.
+            <h3 class="card-title mb-4" th:text="#{skills.spring-boot.title}">Spring Boot</h3>
+            <p class="card-text" th:text="#{skills.spring-boot.content}">
+              Модуль Spring для быстрой настройки и развертывания приложений. Также предоставляет
+              ряд решений для повышения производительности разработки, таких как LiveReload и Hot
+              Restart.
             </p>
           </div>
         </div>
@@ -416,7 +452,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Spring MVC</p>
+            <p class="skills-block__content-title" th:text="#{skills.spring-mvc.title}">
+              Spring MVC</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -425,8 +462,9 @@
         </div>
         <div id="spring_mvc" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Spring MVC</h3>
-            <p class="card-text">Модуль для поддержки архитектуры модель-представление-контроллер
+            <h3 class="card-title mb-4" th:text="#{skills.spring-mvc.title}">Spring MVC</h3>
+            <p class="card-text" th:text="#{skills.spring-mvc.content}">
+              Модуль для поддержки архитектуры модель-представление-контроллер
               (model-view-controller). Обеспечивает готовые компоненты, которые могут быть
               использованы для разработки веб-приложений.
             </p>
@@ -437,7 +475,8 @@
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
-        <h3 class="skills-header__text my-auto">Слой баз данных приложения</h3>
+        <h3 class="skills-header__text my-auto" th:text="#{skills.database.title}">
+          Слой баз данных приложения</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -448,30 +487,32 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">PostgreSQL</p>
+            <p class="skills-block__content-title" th:text="#{skills.postgresql.title}">
+              PostgreSQL</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="postgresql_more">Подробнее...</a>
+               data-details="postgresql_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="postgresql"></i>
         </div>
-        <div id="postgresql_more" class="d-none">
+        <div id="postgresql" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.postgresql.title}">PostgreSQL</h3>
+            <p class="card-text" th:text="#{skills.postgresql.content}">
+              Свободная объектно-реляционная система управления базами данных. Я имею опыт написания
+              запросов, а также проектирования небольших БД.
+            </p>
+          </div>
+        </div>
+        <div id="postgresql_more" class="d-none" th:text="#{skills.postgresql.more.content}">
           Это единственная СУБД, с которой я имел дело. У меня есть опыт написания SQL
           запросов различной сложности, а также опыт работы со специфичными для PostgreSQL
           типами (№ inet, enums, arrays). В работе мне не раз приходилось писать запросы
           в процедурном стиле с помощью языкового расширения PL/pgSQL.
-        </div>
-        <div id="postgresql" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4">PostgreSQL</h3>
-            <p class="card-text">Свободная объектно-реляционная система управления базами
-              данных. Я имею опыт написания запросов, а также проектирования небольших БД.
-            </p>
-          </div>
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
@@ -483,29 +524,30 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Hibernate</p>
+            <p class="skills-block__content-title" th:text="#{skills.hibernate.title}">Hibernate</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="hibernate_more">Подробнее...</a>
+               data-details="hibernate_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="hibernate"></i>
         </div>
-        <div id="hibernate_more" class="d-none">
+        <div id="hibernate" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.hibernate.title}">Hibernate</h3>
+            <p class="card-text" th:text="#{skills.hibernate.content}">
+              Реализация JPA спецификации, предназначенная для решения задач объектно-реляционного
+              отображения.
+            </p>
+          </div>
+        </div>
+        <div id="hibernate_more" class="d-none" th:text="#{skills.hibernate.more.content}">
           Из всех известных мне фреймворков, думаю, Hibernate я знаю лучше всего. В процессе
           работы я имел дело с оптимизацией запросов, имею опыт в реализации адаптеров для работы
           со специфичными для PostgreSQL типами.
-        </div>
-        <div id="hibernate" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4">Hibernate</h3>
-            <p class="card-text">Реализация JPA спецификации, предназначенная для решения задач
-              объектно-реляционного отображения.
-            </p>
-          </div>
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
@@ -517,31 +559,36 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Hibernate Envers</p>
+            <p class="skills-block__content-title" th:text="#{skills.hibernate-envers.title}">
+              Hibernate Envers</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="envers_more">Подробнее...</a>
+               data-details="envers_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="envers"></i>
         </div>
-        <div id="envers_more" class="d-none">
-          С помощью Hibernate Envers я реализовывал аудит действий пользователей в проекте
-          <a href="projects.html#iqmanager" th:href="@{/projects.html#iqmanager}">iqmanager</a>.
-          Мной была реализована настройка аудита сущностей согласно условиям (conditional
-          auditing).
-        </div>
         <div id="envers" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Hibernate Envers</h3>
-            <p class="card-text">Модуль Hibernate, позволяющий отслеживать изменение сущностей.
-              Нужен для осуществления контроля над такими критическими элементами как платежи и
-              права, а также регистрировать действия пользователей/администраторов.
+            <h3 class="card-title mb-4" th:text="#{skills.hibernate-envers.title}">
+              Hibernate Envers</h3>
+            <p class="card-text" th:text="#{skills.hibernate-envers.content}">
+              Модуль Hibernate, позволяющий отслеживать изменение сущностей. Нужен для осуществления
+              контроля над такими критическими элементами как платежи и права, а также
+              регистрировать действия пользователей/администраторов.
             </p>
           </div>
+        </div>
+        <div id="envers_more" class="d-none">
+          <span th:text="#{skills.hibernate-envers.more.content.part1}">
+            С помощью Hibernate Envers я реализовывал аудит действий пользователей в проекте</span>
+          <a href="projects.html#iqmanager" th:href="@{/projects.html#iqmanager}">iqmanager</a>.
+          <span th:text="#{skills.hibernate-envers.more.content.part2}">
+          Мной была реализована настройка аудита сущностей согласно условиям (conditional
+          auditing).</span>
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
@@ -553,29 +600,32 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Hibernate Search</p>
+            <p class="skills-block__content-title" th:text="#{skills.hibernate-search.title}">
+              Hibernate Search</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="search_more">Подробнее...</a>
+               data-details="search_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="search"></i>
         </div>
-        <div id="search_more" class="d-none">
+        <div id="search" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.hibernate-search.title}">
+              Hibernate Search</h3>
+            <p class="card-text" th:text="#{skills.hibernate-search.content}">
+              Модуль Hibernate для осуществления полнотекстового поиска (надстройка над Apache
+              Lucene).
+            </p>
+          </div>
+        </div>
+        <div id="search_more" class="d-none" th:text="#{skills.hibernate-search.more.content}">
           Я имею опыт в составлении анализаторов полнотекстового поиска, а также написания
           запросов к ним. Также я осуществлял доработку анализатора, анализируя содержимое индекса
           с помощью модуля luke.
-        </div>
-        <div id="search" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4">Hibernate Search</h3>
-            <p class="card-text">Модуль Hibernate для осуществления полнотекстового поиска
-              (надстройка над Apache Lucene).
-            </p>
-          </div>
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
@@ -587,7 +637,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Hibernate Validator</p>
+            <p class="skills-block__content-title" th:text="#{skills.hibernate-validator.title}">
+              Hibernate Validator</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -596,9 +647,11 @@
         </div>
         <div id="hibernate_validator" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Hibernate Validator</h3>
-            <p class="card-text">Модуль Hibernate для проверки верности и целостности данных
-              согласно спецификации JSR 380 (Bean Validation 2.0).
+            <h3 class="card-title mb-4" th:text="#{skills.hibernate-validator.title}">
+              Hibernate Validator</h3>
+            <p class="card-text" th:text="#{skills.hibernate-validator.content}">
+              Модуль Hibernate для проверки верности и целостности данных согласно спецификации
+              JSR 380 (Bean Validation 2.0).
             </p>
           </div>
         </div>
@@ -612,7 +665,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Flyway</p>
+            <p class="skills-block__content-title" th:text="#{skills.flyway.title}">Flyway</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -621,9 +674,10 @@
         </div>
         <div id="flyway" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Flyway</h3>
-            <p class="card-text">Библиотека, обеспечивающая версионность и управление миграциями
-              баз данных. Нужно для синхронизации состояния БД у всей команды разработчиков.
+            <h3 class="card-title mb-4" th:text="#{skills.flyway.title}">Flyway</h3>
+            <p class="card-text" th:text="#{skills.flyway.content}">
+              Библиотека, обеспечивающая версионность и управление миграциями баз данных. Нужна для
+              синхронизации состояния БД у всей команды разработчиков.
             </p>
           </div>
         </div>
@@ -632,7 +686,8 @@
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
-        <h3 class="skills-header__text my-auto">Технологии генерации представлений</h3>
+        <h3 class="skills-header__text my-auto" th:text="#{skills.presentations-generation.title}">
+          Технологии генерации представлений</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -643,7 +698,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Thymeleaf</p>
+            <p class="skills-block__content-title" th:text="#{skills.thymeleaf.title}">Thymeleaf</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -652,9 +707,10 @@
         </div>
         <div id="thymeleaf" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Thymeleaf</h3>
-            <p class="card-text">Современный серверный механизм Java-шаблонов. Отлично
-              взаимодействует со Spring технологиями.
+            <h3 class="card-title mb-4" th:text="#{skills.thymeleaf.title}">Thymeleaf</h3>
+            <p class="card-text" th:text="#{skills.thymeleaf.content}">
+              Современный серверный механизм Java-шаблонов. Отлично взаимодействует со Spring
+              технологиями.
             </p>
           </div>
         </div>
@@ -668,7 +724,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">JSP</p>
+            <p class="skills-block__content-title" th:text="#{skills.jsp.title}">JSP</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -677,9 +733,10 @@
         </div>
         <div id="jsp" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">JSP</h3>
-            <p class="card-text">Технология, позволяющая веб-разработчикам создавать содержимое,
-              которое имеет как статические, так и динамические компоненты.
+            <h3 class="card-title mb-4" th:text="#{skills.jsp.title}">JSP</h3>
+            <p class="card-text" th:text="#{skills.jsp.content}">
+              Технология, позволяющая веб-разработчикам создавать содержимое, которое имеет как
+              статические, так и динамические компоненты.
             </p>
           </div>
         </div>
@@ -693,18 +750,28 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Apache Wicket</p>
+            <p class="skills-block__content-title" th:text="#{skills.wicket.title}">
+              Apache Wicket</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="wicket_more">Подробнее...</a>
+               data-details="wicket_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="wicket"></i>
         </div>
-        <div id="wicket_more" class="d-none">
+        <div id="wicket" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.wicket.title}">Apache Wicket</h3>
+            <p class="card-text" th:text="#{skills.wicket.content}">
+              Веб-фреймворк использующий подход, основанный на использовании компонентов. Пожалуй,
+              это фреймворк, в применении которого я имею больше всего опыта.
+            </p>
+          </div>
+        </div>
+        <div id="wicket_more" class="d-none" th:utext="#{skills.wicket.more.content}">
           <p>
             В моей работе большинство проектов были построены с использованием этого фреймворка.
             Наиболее сложными задачами, с которыми я сталкивался, была интеграция Wicket'а с
@@ -718,15 +785,6 @@
             фреймворка ведет к быстрой деградации кодовой базы и появлению большого количества
             спагетти-кода. Этот фреймворк требует твердых методик кодирования.</p>
         </div>
-        <div id="wicket" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4">Apache Wicket</h3>
-            <p class="card-text">Веб-фреймворк использующий подход, основанный на использовании
-              компонентов. Пожалуй, это фреймворк, в применении которого я имею больше всего
-              опыта.
-            </p>
-          </div>
-        </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -737,7 +795,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Zk Framework</p>
+            <p class="skills-block__content-title" th:text="#{skills.zk.title}">Zk Framework</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -746,12 +804,12 @@
         </div>
         <div id="zk" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Zk Framework</h3>
-            <p class="card-text">Фреймворк для разработки веб-приложений в
-              событийно-ориентированной парадигме и компонентной модели. Позволяет писать
-              интерфейсы в стиле MVVM, что заметно ускоряет разработку в ущерб производительности.
-              Поэтому во время работы этот фреймворк у нас использовался в основном для админок
-              или внутрикорпоративных сайтов.
+            <h3 class="card-title mb-4" th:text="#{skills.zk.title}">Zk Framework</h3>
+            <p class="card-text" th:text="#{skills.zk.content}">
+              Фреймворк для разработки веб-приложений в событийно-ориентированной парадигме и
+              компонентной модели. Позволяет писать интерфейсы в стиле MVVM, что заметно ускоряет
+              разработку в ущерб производительности. Поэтому во время работы этот фреймворк у нас
+              использовался в основном для админок или внутрикорпоративных сайтов.
             </p>
           </div>
         </div>
@@ -760,7 +818,7 @@
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
-        <h3 class="skills-header__text my-auto">Фронтенд</h3>
+        <h3 class="skills-header__text my-auto" th:text="#{skills.frontend.title}">Фронтенд</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -771,28 +829,29 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Javascript</p>
+            <p class="skills-block__content-title" th:text="#{skills.javascript.title}">
+              Javascript</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="javascript_more">Подробнее...</a>
+               data-details="javascript_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="javascript"></i>
         </div>
-        <div id="javascript_more" class="d-none">
-          Я знаком со спецификацией ES6. У меня есть опыт разработки календаря с использованием
-          ООП в прототипном стиле, а также работы с Google Maps API.
-        </div>
         <div id="javascript" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Javascript</h3>
-            <p class="card-text">
+            <h3 class="card-title mb-4" th:text="#{skills.javascript.title}">Javascript</h3>
+            <p class="card-text" th:text="#{skills.javascript.content}">
               Язык программирования, с помощью которого страницы сайтов становятся интерактивными.
             </p>
           </div>
+        </div>
+        <div id="javascript_more" class="d-none" th:text="#{skills.javascript.more.content}">
+          Я знаком со спецификацией ES6. У меня есть опыт разработки календаря с использованием
+          ООП в прототипном стиле, а также работы с Google Maps API.
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
@@ -804,7 +863,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">HTML 5</p>
+            <p class="skills-block__content-title" th:text="#{skills.html.title}">HTML 5</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -813,9 +872,9 @@
         </div>
         <div id="html_5" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">HTML 5</h3>
-            <p class="card-text">Язык для структурирования и представления содержимого всемирной
-              паутины.</p>
+            <h3 class="card-title mb-4" th:text="#{skills.html.title}">HTML 5</h3>
+            <p class="card-text" th:text="#{skills.html.content}">
+              Язык для структурирования и представления содержимого всемирной паутины.</p>
           </div>
         </div>
       </div>
@@ -828,7 +887,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">CSS 3</p>
+            <p class="skills-block__content-title" th:text="#{skills.css.title}">CSS 3</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -837,8 +896,8 @@
         </div>
         <div id="css_3" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">CSS 3</h3>
-            <p class="card-text">
+            <h3 class="card-title mb-4" th:text="#{skills.css.title}">CSS 3</h3>
+            <p class="card-text" th:text="#{skills.css.content}">
               Язык описания внешнего вида документа, написанного с использованием языка
               разметки.</p>
           </div>
@@ -853,7 +912,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Bootstrap 4</p>
+            <p class="skills-block__content-title" th:text="#{skills.bootstrap.title}">
+              Bootstrap 4</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -864,10 +924,10 @@
           id="bootstrap"
           class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Bootstrap 4</h3>
-            <p class="card-text">
+            <h3 class="card-title mb-4" th:text="#{skills.bootstrap.title}">Bootstrap 4</h3>
+            <p class="card-text" th:text="#{skills.bootstrap.content}">
               Свободный набор инструментов для создания сайтов и веб-приложений. Этот сайт сделан
-              с использованием Bootstrap 4
+              с использованием Bootstrap 4.
             </p>
           </div>
         </div>
@@ -881,7 +941,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">jQuery</p>
+            <p class="skills-block__content-title" th:text="#{skills.jquery.title}">jQuery</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -890,8 +950,8 @@
         </div>
         <div id="jquery" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">jQuery</h3>
-            <p class="card-text">
+            <h3 class="card-title mb-4" th:text="#{skills.jquery.title}">jQuery</h3>
+            <p class="card-text" th:text="#{skills.jquery.content}">
               Библиотека JavaScript, облегчающая доступ и манипуляюцию элементами DOM. Также
               предоставляет удобный API для работы с AJAX.
             </p>
@@ -902,7 +962,7 @@
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
-        <h3 class="skills-header__text my-auto">Тестирование</h3>
+        <h3 class="skills-header__text my-auto" th:text="#{skills.testing.title}">Тестирование</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -913,7 +973,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">JUnit</p>
+            <p class="skills-block__content-title" th:text="#{skills.junit.title}">JUnit</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -922,9 +982,10 @@
         </div>
         <div id="junit5" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">JUnit</h3>
-            <p class="card-text">Библиотека для модульного тестирования программного обеспечения.
-              Я работал как с 4, так и с 5 версиями этого фреймворка.
+            <h3 class="card-title mb-4" th:text="#{skills.junit.title}">JUnit</h3>
+            <p class="card-text" th:text="#{skills.junit.content}">Библиотека для модульного
+              тестирования программного обеспечения. Я работал как с 4, так и с 5 версиями этого
+              фреймворка.
             </p>
           </div>
         </div>
@@ -938,7 +999,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Mockito</p>
+            <p class="skills-block__content-title" th:text="#{skills.mockito.title}">Mockito</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -947,9 +1008,9 @@
         </div>
         <div id="mockito" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Mockito</h3>
-            <p class="card-text">Фреймворк, упрощающий создание заглушек компонентов системы с
-              заранее установленным поведением.
+            <h3 class="card-title mb-4" th:text="#{skills.mockito.title}">Mockito</h3>
+            <p class="card-text" th:text="#{skills.mockito.content}">Фреймворк, упрощающий создание
+              заглушек компонентов системы с заранее установленным поведением.
             </p>
           </div>
         </div>
@@ -963,7 +1024,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Powermock</p>
+            <p class="skills-block__content-title" th:text="#{skills.powermock.title}">Powermock</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -973,8 +1034,8 @@
         <div id="powermock"
              class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Powermock</h3>
-            <p class="card-text">
+            <h3 class="card-title mb-4" th:text="#{skills.powermock.title}">Powermock</h3>
+            <p class="card-text" th:text="#{skills.powermock.content}">
               Фреймворк, предоставляющий дополнительные возможности для создание заглушек по
               сравнению с Mockito (№ задавать поведение приватных или же final методов).
             </p>
@@ -990,7 +1051,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Selenium</p>
+            <p class="skills-block__content-title" th:text="#{skills.selenium.title}">Selenium</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1000,10 +1061,9 @@
         <div id="selenium"
              class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Selenium</h3>
-            <p class="card-text">
-              Библиотека, предоставляющая возможности end-to-end тестирования
-              веб-интерфейса.
+            <h3 class="card-title mb-4" th:text="#{skills.selenium.title}">Selenium</h3>
+            <p class="card-text" th:text="#{skills.selenium.content}">
+              Библиотека, предоставляющая возможности end-to-end тестирования веб-интерфейса.
             </p>
           </div>
         </div>
@@ -1012,7 +1072,7 @@
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
-        <h3 class="skills-header__text my-auto">Блокчейн</h3>
+        <h3 class="skills-header__text my-auto" th:text="#{skills.blockchain.title}">Блокчейн</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -1023,7 +1083,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Ethereum</p>
+            <p class="skills-block__content-title" th:text="#{skills.ethereum.title}">Ethereum</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1032,10 +1092,11 @@
         </div>
         <div id="ethereum" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Ethereum</h3>
-            <p class="card-text">Блокчейн-платформа для создания децентрализованных
-              онлайн-сервисов на базе умных контрактов. Для ручного тестирования смарт-контрактов
-              использовался тестовый блокчейн Rinkeby.
+            <h3 class="card-title mb-4" th:text="#{skills.ethereum.title}">Ethereum</h3>
+            <p class="card-text" th:text="#{skills.ethereum.content}">
+              Блокчейн-платформа для создания децентрализованных онлайн-сервисов на базе умных
+              контрактов. Для ручного тестирования смарт-контрактов использовался тестовый блокчейн
+              Rinkeby.
             </p>
           </div>
         </div>
@@ -1049,33 +1110,32 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Solidity</p>
+            <p class="skills-block__content-title" th:text="#{skills.solidity.title}">Solidity</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="solidity_more">Подробнее...</a>
+               data-details="solidity_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="solidity"></i>
         </div>
-        <div id="solidity_more" class="d-none">
+        <div id="solidity" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.solidity.title}">Solidity</h3>
+            <p class="card-text" th:text="#{skills.solidity.content}">Объектно-ориентированный язык
+              программирования самовыполняющихся контрактов для платформы Ethereum. De facto
+              является стандартом для написания смарт-контрактов.
+            </p>
+          </div>
+        </div>
+        <div id="solidity_more" class="d-none" th:text="#{skills.solidity.more.content}">
           Мной был разработан смарт-контракт обменника эфира на токены (и наоборот) при привязке
           цены к внешнему фактору (курс эфира к рублю). Для получения курса доллара изначально был
           использован оракул Oraclize, однако, затраты на содержание обменника оказались для
-          заказчика неприемлемыми. Мной были произведен поиск решения и было принято решение
-          реализовать свой сервис-оракул. Это позволило сократить затраты на содержание обменника
-          в 4 раза.
-        </div>
-        <div id="solidity" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4">Solidity</h3>
-            <p class="card-text">Объектно-ориентированный язык программирования самовыполняющихся
-              контрактов для платформы Ethereum. De facto является стандартом для написания
-              смарт-контрактов.
-            </p>
-          </div>
+          заказчика неприемлемыми. В итоге было принято решение реализовать свой сервис-оракул.
+          Это позволило сократить затраты на содержание обменника в 4 раза.
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
@@ -1087,36 +1147,38 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Web3j</p>
+            <p class="skills-block__content-title" th:text="#{skills.web3j.title}">Web3j</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="web3j_more">Подробнее...</a>
+               data-details="web3j_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="web3j"></i>
         </div>
-        <div id="web3j_more" class="d-none">
+        <div id="web3j" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.web3j.title}">Web3j</h3>
+            <p class="card-text" th:text="#{skills.web3j.content}">Библиотека, предоставляющая Java
+              API к ethereum ноде.</p>
+          </div>
+        </div>
+        <div id="web3j_more" class="d-none" th:text="#{skills.web3j.more.content}">
           На этом фреймворке мной был разработан оракул для информирования смарт-контракта об
           изменении внешнего параметра (курса эфира). Также с использованием Web3j я разрабатывал
           тесты для проекта (ЗАО с криптовалютами в роли акций) с повышенными требованиями к
           корректности данных. Тестирование проводилось в тестовой среде TestRPC, а также в
           тестовом приватном блокчейне.
         </div>
-        <div id="web3j" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4">Web3j</h3>
-            <p class="card-text">Библиотека, предоставляющая Java API к ethereum ноде.</p>
-          </div>
-        </div>
       </div>
     </div>
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
-        <h3 class="skills-header__text my-auto">Вспомогательные инструменты</h3>
+        <h3 class="skills-header__text my-auto" th:text="#{skills.tools.title}">Вспомогательные
+          инструменты</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -1127,33 +1189,33 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Python 3</p>
+            <p class="skills-block__content-title" th:text="#{skills.python.title}">Python 3</p>
             <a href="javascript:void(0);" class="skills-block__more-link"
                data-toggle="popover"
                data-trigger="focus"
-               data-details="python_more">Подробнее...</a>
+               data-details="python_more" th:text="#{skills.more}">Подробнее...</a>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
              data-details="python"></i>
         </div>
-        <div id="python_more" class="d-none">
+        <div id="python" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.python.title}">Python 3</h3>
+            <p class="card-text" th:text="#{skills.python.content}">Интерпретируемый язык
+              программирования общего назначения. У меня нет опыта написания полноценных проектов на
+              Python, но я использовал его для написания единоразовых скриптов.
+            </p>
+          </div>
+        </div>
+        <div id="python_more" class="d-none" th:utext="#{skills.python.more.content}">
           Я знаю основы языка, прочел несколько книг по данной тематике ("Изучаем питон"
           Лутца и "Укус питона" Сварупа), изучил стандартную библиотеку. Из-за его простоты
           и выразительности я использовал питон для реализации и тестирования алгоритмов и
           структур данных. Также с помощью этого языка я написал анализатор логов приложения,
           а также <a href="https://github.com/Anshelen/thumbnails-gen">скрипт для генерации
           изображений-миниатюр (thumbnails) сайта</a>.
-        </div>
-        <div id="python" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4">Python 3</h3>
-            <p class="card-text">Интерпретируемый язык программирования общего назначения.
-              У меня нет опыта написания полноценных проектов на Python, но я использовал
-              его для написания единоразовых скриптов.
-            </p>
-          </div>
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
@@ -1165,7 +1227,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Git</p>
+            <p class="skills-block__content-title" th:text="#{skills.git.title}">Git</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1174,8 +1236,8 @@
         </div>
         <div id="git" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Git</h3>
-            <p class="card-text">Система контроля версий.</p>
+            <h3 class="card-title mb-4" th:text="#{skills.git.title}">Git</h3>
+            <p class="card-text" th:text="#{skills.git.content}">Система контроля версий.</p>
           </div>
         </div>
       </div>
@@ -1188,7 +1250,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">IntelliJ IDEA</p>
+            <p class="skills-block__content-title" th:text="#{skills.intellij-idea.title}">
+              IntelliJ IDEA</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1197,8 +1260,9 @@
         </div>
         <div id="intellij_idea" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">IntelliJ IDEA</h3>
-            <p class="card-text">Среда разработки для Java</p>
+            <h3 class="card-title mb-4" th:text="#{skills.intellij-idea.title}">IntelliJ IDEA</h3>
+            <p class="card-text" th:text="#{skills.intellij-idea.content}">
+              Среда разработки для Java.</p>
           </div>
         </div>
       </div>
@@ -1206,7 +1270,8 @@
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
-        <h3 class="skills-header__text my-auto">Сборка и развертывание проектов</h3>
+        <h3 class="skills-header__text my-auto" th:text="#{skills.assembly.title}">
+          Сборка и развертывание проектов</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -1217,7 +1282,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Maven</p>
+            <p class="skills-block__content-title" th:text="#{skills.maven.title}">Maven</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1226,10 +1291,11 @@
         </div>
         <div id="maven" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Maven</h3>
-            <p class="card-text">Фреймворк для автоматизации сборки проектов. В качестве домашнего
-              проекта я создал maven-архетип для быстрого создания веб-приложений с использованием
-              Spring Boot + Thymeleaf.
+            <h3 class="card-title mb-4" th:text="#{skills.maven.title}">Maven</h3>
+            <p class="card-text" th:text="#{skills.maven.content}">
+              Фреймворк для автоматизации сборки проектов. В качестве домашнего проекта я создал
+              maven-архетип для быстрого создания веб-приложений с использованием Spring Boot +
+              Thymeleaf.
             </p>
           </div>
         </div>
@@ -1243,7 +1309,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Travis CI</p>
+            <p class="skills-block__content-title" th:text="#{skills.travis.title}">Travis CI</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1252,9 +1318,9 @@
         </div>
         <div id="travis" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Travis CI</h3>
-            <p class="card-text">Веб-сервис для сборки и тестирования
-              программного обеспечения.
+            <h3 class="card-title mb-4" th:text="#{skills.travis.title}">Travis CI</h3>
+            <p class="card-text" th:text="#{skills.travis.content}">Веб-сервис для сборки и
+              тестирования программного обеспечения.
             </p>
           </div>
         </div>
@@ -1268,7 +1334,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Apache Tomcat</p>
+            <p class="skills-block__content-title" th:text="#{skills.tomcat.title}">
+              Apache Tomcat</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1277,8 +1344,8 @@
         </div>
         <div id="tomcat" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Apache Tomcat</h3>
-            <p class="card-text">Контейнер сервлетов.</p>
+            <h3 class="card-title mb-4" th:text="#{skills.tomcat.title}">Apache Tomcat</h3>
+            <p class="card-text" th:text="#{skills.tomcat.content}">Контейнер сервлетов.</p>
           </div>
         </div>
       </div>
@@ -1291,7 +1358,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Heroku</p>
+            <p class="skills-block__content-title" th:text="#{skills.heroku.title}">Heroku</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1300,9 +1367,9 @@
         </div>
         <div id="heroku" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Heroku</h3>
-            <p class="card-text">Heroku - это PaaS-платформа, которая позволяет создавать,
-              запускать и эксплуатировать приложения в облаке.
+            <h3 class="card-title mb-4" th:text="#{skills.heroku.title}">Heroku</h3>
+            <p class="card-text" th:text="#{skills.heroku.content}">Heroku - это PaaS-платформа,
+              которая позволяет создавать, запускать и эксплуатировать приложения в облаке.
             </p>
           </div>
         </div>
@@ -1311,7 +1378,8 @@
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
-        <h3 class="skills-header__text my-auto">Вспомогательные серверные технологии</h3>
+        <h3 class="skills-header__text my-auto" th:text="#{skills.auxiliary-technologies.title}">
+          Вспомогательные серверные технологии</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -1322,7 +1390,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">SLF4J + Logback</p>
+            <p class="skills-block__content-title" th:text="#{skills.slf4j.title}">
+              SLF4J + Logback</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1332,8 +1401,8 @@
         <div id="slf4j"
              class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">SLF4J + Logback</h3>
-            <p class="card-text">
+            <h3 class="card-title mb-4" th:text="#{skills.slf4j.title}">SLF4J + Logback</h3>
+            <p class="card-text" th:text="#{skills.slf4j.content}">
               SLF4J - библиотека для протоколирования, ставящая своей целью предоставить максимально
               простой, но при этом мощный фасад для различных систем протоколирования на Java.
               Logback - фреймворк логирования, реализующий этот фасад.
@@ -1350,7 +1419,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Quartz</p>
+            <p class="skills-block__content-title" th:text="#{skills.quartz.title}">Quartz</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1359,8 +1428,8 @@
         </div>
         <div id="quartz" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Quartz</h3>
-            <p class="card-text">
+            <h3 class="card-title mb-4" th:text="#{skills.quartz.title}">Quartz</h3>
+            <p class="card-text" th:text="#{skills.quartz.content}">
               Quartz представляет собой среду разработки для планирования заданий с открытым
               исходным кодом, которая обеспечивает эффективный механизм планирования заданий
               в приложениях Java. Из коробки поддерживает хранение задач и триггеров в базе данных,
@@ -1379,7 +1448,8 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Apache Velocity</p>
+            <p class="skills-block__content-title" th:text="#{skills.velocity.title}">
+              Apache Velocity</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1389,8 +1459,8 @@
         <div id="velocity"
              class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Apache Velocity</h3>
-            <p class="card-text">
+            <h3 class="card-title mb-4" th:text="#{skills.velocity.title}">Apache Velocity</h3>
+            <p class="card-text" th:text="#{skills.velocity.content}">
               Процессор шаблонов, предоставляющий простой, но одновременно гибкий шаблонный язык.
               В основном использовался мной для генерации e-mail сообщений.
             </p>
@@ -1406,7 +1476,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">Jackson</p>
+            <p class="skills-block__content-title" th:text="#{skills.jackson.title}">Jackson</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1415,8 +1485,9 @@
         </div>
         <div id="jackson" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">Jackson</h3>
-            <p class="card-text">Java библиотека для работы с данными в формате JSON.</p>
+            <h3 class="card-title mb-4" th:text="#{skills.jackson.title}">Jackson</h3>
+            <p class="card-text" th:text="#{skills.jackson.content}">Java библиотека для работы с
+              данными в формате JSON.</p>
           </div>
         </div>
       </div>
@@ -1429,7 +1500,7 @@
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title">JAXB</p>
+            <p class="skills-block__content-title" th:text="#{skills.jaxb.title}">JAXB</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -1438,8 +1509,9 @@
         </div>
         <div id="jaxb" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4">JAXB</h3>
-            <p class="card-text">Java библиотека для работы с данными в формате XML.</p>
+            <h3 class="card-title mb-4" th:text="#{skills.jaxb.title}">JAXB</h3>
+            <p class="card-text" th:text="#{skills.jaxb.content}">Java библиотека для работы с
+              данными в формате XML.</p>
           </div>
         </div>
       </div>

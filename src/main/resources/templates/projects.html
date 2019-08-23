@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Портфолио</title>
+  <title th:text="#{projects.head.title}">Портфолио</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="stylesheet"
@@ -15,23 +15,35 @@
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         rel="stylesheet">
+  <script src="literals.js" th:src="@{/literals.js}"></script>
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
 </head>
 <body>
 <!--/*/ <th:block th:replace="fragments::navbar('projects')"> /*/-->
 <div class="headline">
   <div class="container">
-    Разработка на JAVA
-    <div class="headline__social">
-      <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-github social-widget"></i>
-      </a>
-      <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
-        <i class="fa fa-vk social-widget"></i>
-      </a>
-      <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
-        <i class="fa fa-envelope-o social-widget"></i>
-      </a>
+    <span>Разработка на JAVA</span>
+    <div class="headline__right d-flex align-items-center">
+      <div class="btn-group headline__locale mr-4">
+        <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ru</button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item disabled" href="?lang=ru">ru</a>
+          <a class="dropdown-item" href="?lang=en">en</a>
+        </div>
+      </div>
+      <div class="headline__social">
+        <a href="https://github.com/Anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-github social-widget"></i>
+        </a>
+        <a href="https://vk.com/anshelen" rel="nofollow" target="_blank">
+          <i class="fa fa-vk social-widget"></i>
+        </a>
+        <a href="mailto:anshelen@yandex.ru" rel="nofollow" target="_blank">
+          <i class="fa fa-envelope-o social-widget"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -89,7 +101,7 @@
 <!--/*/</th:block>/*/-->
 <div class="container">
   <div class="text-center">
-    <h1 class="mt-5">Проекты, в которых я участвовал</h1>
+    <h1 class="mt-5" th:text="#{projects.title}">Проекты, в которых я участвовал</h1>
     <hr class="mb-3 mt-0 header-line"/>
   </div>
 
@@ -100,25 +112,33 @@
              th:src="@{/resources/img/projects/iqmanager.png}" alt="IQManager project"
              class="border rounded shadow w-100 h-auto">
       </a>
-      <h2 class="mb-4">
+      <h2 class="mb-4" th:utext="#{projects.iqmanager.title}">
         <a href="https://iqmanager.org" target="_blank" class="text-warning">IQManager</a>
         - портал для организации мероприятий</h2>
-      <p> Этот портал служит для связи артистов, музыкантов, владельцев площадок и других работников
+      <p th:text="#{projects.iqmanager.content1}">
+        Этот портал служит для связи артистов, музыкантов, владельцев площадок и других работников
         индустрии развлечений напрямую с заказчиком. Пользователь может выступать как в роли
         заказчика, так и исполнителя. Система позволяет клиенту организовать празник онлайн, даже
         без нужды созваниваться с исполнителем.
       </p>
-      <p> В настоящее время я занимаюсь поддержкой этого проекта - исправляю ошибки и дорабатываю
+      <p th:text="#{projects.iqmanager.content2}">
+        В настоящее время я занимаюсь поддержкой этого проекта - исправляю ошибки и дорабатываю
         новый функционал. Некоторые из задач, которые я решал в этом проекте:
       </p>
       <ul class="list-group">
-        <li class="list-group-item">
-          Разработка рабочего календаря исполнителя на JavaScript с использованием ООП в прототипном
-          стиле
+        <li class="list-group-item" th:text="#{projects.iqmanager.challenge1}">
+          Разработка рабочих календарей на JavaScript, а также подключение и кастомизация Google
+          Maps
         </li>
-        <li class="list-group-item">Подключение эквайринга от Сбербанка</li>
-        <li class="list-group-item">Профилирование узких мест системы</li>
-        <li class="list-group-item">Доработка полнотекстового поиска сайта</li>
+        <li class="list-group-item" th:text="#{projects.iqmanager.challenge2}">
+          Подключение эквайринга от Сбербанка, настройка возможности частичной оплаты и
+          автоматического возврата средств</li>
+        <li class="list-group-item" th:text="#{projects.iqmanager.challenge3}">
+          Профилирование и устранение узких мест системы, что ускорило загрузку некоторых страниц
+          на порядок</li>
+        <li class="list-group-item" th:text="#{projects.iqmanager.challenge4}">
+          Доработка полнотекстового поиска сайта - настройка нечеткого поиска, улучшение логики
+          поиска, анализ индексов</li>
       </ul>
     </div>
   </div>
@@ -129,20 +149,24 @@
              th:src="@{/resources/img/projects/arbitr.png}" alt="Arbitr project"
              class="border rounded shadow w-100 h-auto">
       </a>
-      <h2 class="mb-4">Arbitr - парсер
+      <h2 class="mb-4" th:utext="#{projects.arbitr.title}">
+        Arbitr - парсер
         <a href="http://kad.arbitr.ru/" target="_blank" class="text-warning">
           картотеки административных дел</a></h2>
-      <p> Этот парсер может извлекать информацию по заданному списку ИНН в двух режимах:
+      <p th:text="#{projects.arbitr.content1}">
+        Этот парсер может извлекать информацию по заданному списку ИНН в двух режимах:
         историческом и инкрементальном. Исторический инициируется пользователем и считывает судебные
         дела за условленный промежуток времени, тогда как инкрементальный режим запускается
         регулярно в автоматическом режиме.
       </p>
-      <p> Основная техническая сложность в этом проекте заключалась в преодолении защиты сайта. Эта
+      <p th:utext="#{projects.arbitr.content2}">
+        Основная техническая сложность в этом проекте заключалась в преодолении защиты сайта. Эта
         задача решалась с помощью прокси-серверов и интеграции с сервисом расшифровки капч
         <a href="https://rucaptcha.com/" target="_blank" class="text-warning">Rucaptcha.com</a>.
         Также эта программа активно использует многопоточность.
       </p>
-      <p> Во время разработки в мои обязанности входила разработка архитектуры программы, а также
+      <p th:text="#{projects.arbitr.content3}">
+        Во время разработки в мои обязанности входила разработка архитектуры программы, а также
         координирование работы еще двух программистов. Это был очень полезный и интересный опыт.
       </p>
     </div>
@@ -154,10 +178,11 @@
              th:src="@{/resources/img/projects/talksift.png}" alt="Talksift project"
              class="border rounded shadow w-100 h-auto">
       </a>
-      <h2 class="mb-4">Форум
+      <h2 class="mb-4" th:utext="#{projects.talksift.title}">Форум
         <a href="http://talksift.ru/" target="_blank" class="text-warning">Talksift</a>
       </h2>
-      <p> Это дискуссионная площадка для ведения споров на любые темы. Она имеет очень запутанную
+      <p th:text="#{projects.talksift.content}">
+        Это дискуссионная площадка для ведения споров на любые темы. Она имеет очень запутанную
         систему фильтров, оценок, рейтингов и ведения бесед. Это дало мне опыт работы с очень
         объемными запросами к БД и с запутанной навигацией по проекту.
       </p>
@@ -170,9 +195,11 @@
              th:src="@{/resources/img/projects/pajcoin.webp}" alt="PajCoin logo"
              class="border rounded shadow w-100 h-auto">
       </a>
-      <h2 class="mb-4"><a href="https://www.pajcoin.com/" target="_blank" class="text-warning">
-        PajCoin</a> - токен на базе Ethereum</h2>
-      <p> Проект состоит из трех составляющих: токена, смарт-контракта обменника и сервиса-оракула.
+      <h2 class="mb-4" th:utext="#{projects.pajcoin.title}">
+        <a href="https://www.pajcoin.com/" target="_blank" class="text-warning">PajCoin</a>
+        - токен на базе Ethereum</h2>
+      <p th:text="#{projects.pajcoin.content}">
+        Проект состоит из трех составляющих: токена, смарт-контракта обменника и сервиса-оракула.
         Токен поддерживает стандарт ERC223 и привязан к рублю (1 токен PJC = 1000 рублей). Для
         приобретения/продажи токенов используется контракт-обменник, курс которого изменяется извне
         оракулом. Была написана версия, использующая сервис Oraclize, однако, впоследствии по
@@ -184,9 +211,10 @@
   </div>
   <div class="media border rounded p-3 my-3">
     <div class="media-body">
-      <h2 class="mb-4">Changer - закрытая акционерная площадка для Bitcoin и
-        Ethereum</h2>
-      <p> Этот ресурс позволяет клиентам переводить на кошелек фирмы криптовалюту, что отражается в
+      <h2 class="mb-4" th:text="#{projects.changer.title}">
+        Changer - закрытая акционерная площадка для Bitcoin и Ethereum</h2>
+      <p th:text="#{projects.changer.content}">
+        Этот ресурс позволяет клиентам переводить на кошелек фирмы криптовалюту, что отражается в
         их личном кабинете. Администраторы же могут автоматически распределить дивиденды
         пропорционально вкладам. В команде я выполнял работу по автоматизации тестирования этого
         приложения, так как заказчики предъявляли повышенные требования к безопасности и надежности.
@@ -196,22 +224,27 @@
   </div>
   <div class="media border rounded p-3 my-3">
     <div class="media-body">
-      <h2 class="mb-4">Этот сайт-портфолио</h2>
-      <p> В качестве домашнего проекта я разработал этот сайт. Помимо информации обо мне он является
+      <h2 class="mb-4" th:text="#{projects.portfolio.title}">Этот сайт-портфолио</h2>
+      <p th:text="#{projects.portfolio.content}">
+        В качестве домашнего проекта я разработал этот сайт. Помимо информации обо мне он является
         площадкой, на которой я отрабатываю новые технологии.
       </p>
-      <p> Ссылка на <a href="https://github.com/Anshelen/portfolio" target="_blank"
-                       class="text-warning">репозиторий</a></p>
+      <p th:utext="#{projects.portfolio.link}">
+        Ссылка на <a href="https://github.com/Anshelen/portfolio" target="_blank"
+                     class="text-warning">репозиторий</a>
+      </p>
     </div>
   </div>
   <div class="media border rounded p-3 my-3">
     <div class="media-body">
-      <h2 class="mb-4">Архетип quick-web-archetype</h2>
-      <p> Для этого сайта и на будущее я создал Maven архетип для web-приложения с использованием
+      <h2 class="mb-4" th:text="#{projects.archetype.title}">Архетип quick-web-archetype</h2>
+      <p th:text="#{projects.archetype.content}">
+        Для этого сайта и на будущее я создал Maven архетип для web-приложения с использованием
         Spring Boot и Thymeleaf. В моих планах улучшать его параллельно с этим сайтом.
       </p>
-      <p> Ссылка на <a href="https://github.com/Anshelen/quick-web-archetype" target="_blank"
-                       class="text-warning">репозиторий</a></p>
+      <p th:utext="#{projects.archetype.link}">
+        Ссылка на <a href="https://github.com/Anshelen/quick-web-archetype" target="_blank"
+                     class="text-warning">репозиторий</a></p>
     </div>
   </div>
 </div>
