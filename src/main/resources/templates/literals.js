@@ -4,6 +4,12 @@ const messages = {};
   messages[ [[${key}]] ] = [[${#messages.msg(key)}]]
 [/]
 +]*/
+const ajax_urls = {};
+/*[+
+[# th:each="entry : ${@ajaxUrlMap}"]
+  ajax_urls[ [[${entry.key}]] ] = [[@{${entry.value}}]]
+[/]
++]*/
 
 /*[- */
 messages["contacts.js.validation.name.required"] = "Укажите от кого письмо";
@@ -14,4 +20,7 @@ messages["contacts.js.validation.subject.minlength"] = "Введите не ме
 messages["contacts.js.validation.subject.maxlength"] = "Слишком длинный заголовок";
 messages["contacts.js.validation.text.required"] = "Заполните тело письма";
 messages["contacts.js.validation.text.maxlength"] = "Слишком длинное письмо";
+
+ajax_urls["sendMail"] = "/email/send";
+ajax_urls["resendRegistrationEmail"] = "/resendRegistrationEmail";
 /* -]*/

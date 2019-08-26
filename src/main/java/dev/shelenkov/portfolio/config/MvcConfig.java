@@ -22,7 +22,9 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
@@ -119,5 +121,19 @@ public class MvcConfig implements WebMvcConfigurer {
             "contacts.js.validation.text.required",
             "contacts.js.validation.text.maxlength"
         };
+    }
+
+    /**
+     * A map with keys and corresponding urls that should be available to a JS
+     * code via 'ajax_urls' object. This object contains context-corrected urls
+     * for ajax requests.
+     * See literals.js.
+     */
+    @Bean
+    public Map<String, String> ajaxUrlMap() {
+        Map<String, String> ajaxMap = new HashMap<>();
+        ajaxMap.put("sendMail", "/email/send");
+        ajaxMap.put("resendRegistrationEmail", "/resendRegistrationEmail");
+        return ajaxMap;
     }
 }
