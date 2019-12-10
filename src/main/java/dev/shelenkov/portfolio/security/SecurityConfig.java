@@ -1,6 +1,9 @@
 package dev.shelenkov.portfolio.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
+import org.springframework.boot.actuate.health.HealthEndpoint;
+import org.springframework.boot.actuate.info.InfoEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -68,6 +71,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
             .antMatchers("/admin/**").hasRole("ADMIN");
+
+        http.authorizeRequests()
+            .requestMatchers(EndpointRequest.to(HealthEndpoint.class, InfoEndpoint.class)).permitAll()
+            .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN");
 
         http.formLogin()
             .loginPage("/login.html")
