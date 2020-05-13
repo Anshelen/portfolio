@@ -2,16 +2,16 @@ package dev.shelenkov.portfolio.validation.validator;
 
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.validation.UniqueEmail;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+@RequiredArgsConstructor
 public class UniqueEmailValidator
     implements ConstraintValidator<UniqueEmail, String> {
 
-    @Autowired
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
     @Override
     public void initialize(UniqueEmail constraintAnnotation) {

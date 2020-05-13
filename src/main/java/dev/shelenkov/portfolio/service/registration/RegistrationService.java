@@ -6,8 +6,8 @@ import dev.shelenkov.portfolio.model.VerificationToken;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.RoleRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.Validate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,22 +21,14 @@ import java.util.UUID;
  * Basic implementation of service for registering new users.
  */
 @Service
+@RequiredArgsConstructor
 public class RegistrationService implements IRegistrationService {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private AccountRepository accountRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
-    private VerificationTokenRepository tokenRepository;
-
-    @Autowired
-    private ApplicationEventPublisher eventPublisher;
+    private final PasswordEncoder passwordEncoder;
+    private final AccountRepository accountRepository;
+    private final RoleRepository roleRepository;
+    private final VerificationTokenRepository tokenRepository;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Transactional
     @Override

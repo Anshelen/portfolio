@@ -5,22 +5,18 @@ import dev.shelenkov.portfolio.model.VerificationToken;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
 import dev.shelenkov.portfolio.service.mail.EmailService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class RegistrationListener
     implements ApplicationListener<OnRegistrationCompleteEvent> {
 
-    @Autowired
-    private EmailService emailService;
-
-    @Autowired
-    private VerificationTokenRepository tokenRepository;
-
-    @Autowired
-    private AccountRepository accountRepository;
+    private final EmailService emailService;
+    private final VerificationTokenRepository tokenRepository;
+    private final AccountRepository accountRepository;
 
     @Override
     public void onApplicationEvent(OnRegistrationCompleteEvent event) {

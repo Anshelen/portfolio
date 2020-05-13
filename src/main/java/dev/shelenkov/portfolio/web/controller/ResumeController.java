@@ -3,7 +3,7 @@ package dev.shelenkov.portfolio.web.controller;
 import dev.shelenkov.portfolio.model.resume.ResumeFormat;
 import dev.shelenkov.portfolio.model.resume.ResumeLanguage;
 import dev.shelenkov.portfolio.service.resume.ResumeResourceFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequiredArgsConstructor
 public class ResumeController {
 
-    @Autowired
-    private ResumeResourceFactory resumeResourceFactory;
+    private final ResumeResourceFactory resumeResourceFactory;
 
     @GetMapping(value = "/resume", produces = MediaType.APPLICATION_PDF_VALUE)
     @ResponseBody

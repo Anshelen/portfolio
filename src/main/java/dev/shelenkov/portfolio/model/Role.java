@@ -1,5 +1,8 @@
 package dev.shelenkov.portfolio.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
@@ -9,25 +12,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NoArgsConstructor
 public class Role extends AbstractPersistable<Long> {
 
+    @Getter
+    @Setter
     private String name;
 
     @ManyToMany(mappedBy = "roles")
     private Set<Account> accounts = new HashSet<>();
 
-    public Role() {
-    }
-
     public Role(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 

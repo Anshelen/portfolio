@@ -5,7 +5,7 @@ import dev.shelenkov.portfolio.service.registration.IRegistrationService;
 import dev.shelenkov.portfolio.service.registration.TokenExpiredException;
 import dev.shelenkov.portfolio.service.registration.TokenNotValidException;
 import dev.shelenkov.portfolio.web.wrappers.dto.UserDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +20,10 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 @Controller
+@RequiredArgsConstructor
 public class RegistrationController {
 
-    @Autowired
-    private IRegistrationService registrationService;
+    private final IRegistrationService registrationService;
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {

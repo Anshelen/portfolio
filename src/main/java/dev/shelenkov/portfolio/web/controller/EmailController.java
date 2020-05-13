@@ -3,7 +3,7 @@ package dev.shelenkov.portfolio.web.controller;
 import dev.shelenkov.portfolio.service.mail.EmailService;
 import dev.shelenkov.portfolio.web.wrappers.dto.EmailDTO;
 import dev.shelenkov.portfolio.web.wrappers.error.ServerErrorResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailSendException;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
+@RequiredArgsConstructor
 public class EmailController {
 
-    @Autowired
-    private EmailService emailService;
+    private final EmailService emailService;
 
     @SuppressWarnings("FeatureEnvy")
     @PostMapping("/email/send")

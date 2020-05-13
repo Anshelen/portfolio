@@ -1,5 +1,7 @@
 package dev.shelenkov.portfolio.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Immutable;
 
 import javax.persistence.Entity;
@@ -14,6 +16,8 @@ import java.util.UUID;
 
 @Entity
 @Immutable
+@NoArgsConstructor
+@Getter
 public class VerificationToken {
 
     private static final int EXPIRATION_DAYS = 1;
@@ -30,10 +34,6 @@ public class VerificationToken {
 
     private Instant expirationDate;
 
-    @SuppressWarnings("unused")
-    public VerificationToken() {
-    }
-
     public VerificationToken(Account account) {
         this.account = account;
     }
@@ -42,21 +42,5 @@ public class VerificationToken {
     public void prePersist() {
         creationDate = Instant.now();
         expirationDate = creationDate.plus(EXPIRATION_DAYS, ChronoUnit.DAYS);
-    }
-
-    public UUID getToken() {
-        return token;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public Instant getCreationDate() {
-        return creationDate;
-    }
-
-    public Instant getExpirationDate() {
-        return expirationDate;
     }
 }

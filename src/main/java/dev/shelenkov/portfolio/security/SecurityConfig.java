@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.boot.actuate.info.InfoEndpoint;
@@ -23,17 +23,11 @@ import java.util.Map;
 
 @EnableWebSecurity
 @Import(SecurityProperties.class)
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    private SecurityProperties securityProperties;
-
-    @Autowired
-    public SecurityConfig(SecurityProperties securityProperties) {
-        this.securityProperties = securityProperties;
-    }
+    private final UserDetailsService userDetailsService;
+    private final SecurityProperties securityProperties;
 
     @Bean
     public PasswordEncoder passwordEncoder() {

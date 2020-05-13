@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.service.mail;
 
 import dev.shelenkov.portfolio.model.VerificationToken;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -17,16 +17,12 @@ import java.util.Date;
  * Service for sending email messages.
  */
 @Service
+@RequiredArgsConstructor
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender javaMailSender;
-
-    @Autowired
-    private MailProperties mailProperties;
-
-    @Autowired
-    private TemplateEngine templateEngine;
+    private final JavaMailSender javaMailSender;
+    private final MailProperties mailProperties;
+    private final TemplateEngine templateEngine;
 
     @Value("${spring.mail.username}")
     private String from;

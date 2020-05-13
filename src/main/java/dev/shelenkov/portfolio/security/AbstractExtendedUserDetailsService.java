@@ -1,8 +1,7 @@
 package dev.shelenkov.portfolio.security;
 
 import dev.shelenkov.portfolio.model.Account;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,16 +11,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+@Slf4j
 public abstract class AbstractExtendedUserDetailsService implements UserDetailsService {
-
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractExtendedUserDetailsService.class);
 
     @SuppressWarnings("FeatureEnvy")
     @Override
     public UserDetails loadUserByUsername(String email) {
         Account account = getAccountByEmail(email);
         if (account == null) {
-            LOG.debug("User not found for email: {}", email);
+            log.debug("User not found for email: {}", email);
             throw new UsernameNotFoundException(email + " not found");
         }
         return new ExtendedUser(

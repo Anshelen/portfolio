@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.web.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -16,13 +16,13 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Map;
 
 @Controller
+@RequiredArgsConstructor
 public class EmailWebViewController {
+
+    private final ResourceLoader resourceLoader;
 
     @Value("${application.root-url}")
     private String rootUrl;
-
-    @Autowired
-    private ResourceLoader resourceLoader;
 
     @GetMapping("/mail/{view:\\w+}")
     public String viewMail(@PathVariable("view") String viewName,
