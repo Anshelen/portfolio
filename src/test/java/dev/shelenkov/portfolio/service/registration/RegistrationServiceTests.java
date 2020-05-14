@@ -271,8 +271,8 @@ class RegistrationServiceTests {
         int tokenTTL = (int) ReflectionTestUtils.getField(VerificationToken.class, "EXPIRATION_DAYS");
         Instant creationDate = (Instant) ReflectionTestUtils.getField(token, "creationDate");
         Instant expirationDate = (Instant) ReflectionTestUtils.getField(token, "expirationDate");
-        ReflectionTestUtils.setField(token, "creationDate", creationDate.minus(tokenTTL, ChronoUnit.DAYS));
-        ReflectionTestUtils.setField(token, "expirationDate", expirationDate.minus(tokenTTL, ChronoUnit.DAYS));
+        ReflectionTestUtils.setField(token, "creationDate", creationDate.minus(tokenTTL + 1, ChronoUnit.DAYS));
+        ReflectionTestUtils.setField(token, "expirationDate", expirationDate.minus(tokenTTL + 1, ChronoUnit.DAYS));
         return token;
     }
 }
