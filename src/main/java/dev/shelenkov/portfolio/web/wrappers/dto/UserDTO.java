@@ -2,16 +2,14 @@ package dev.shelenkov.portfolio.web.wrappers.dto;
 
 import dev.shelenkov.portfolio.validation.PasswordMatches;
 import dev.shelenkov.portfolio.validation.UniqueEmail;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Size;
 
 @PasswordMatches
 @NoArgsConstructor
-@AllArgsConstructor
-@Getter
+@Data
 public class UserDTO {
 
     @Size(min = 5, max = 30,
