@@ -5,7 +5,7 @@
 
 ## About
 
-Describe your project here.
+Source code of private site hosted on https://shelenkov.herokuapp.com. 
 
 ## Prerequisites
 
@@ -15,7 +15,26 @@ Describe your project here.
 
 ## Installation
 
-Fill out with installation instructions for your project.
+You may need to override a few properties. It can be done by setting the
+following environment variables:
+  * APPLICATION_BASE_URL
+  * SPRING_DATASOURCE_URL
+  * SPRING_DATASOURCE_PASSWORD
+  * SPRING_DATASOURCE_USERNAME
+  * SECURITY_REMEMBER_ME_KEY
+  * SPRING_SENDGRID_API_KEY
+  * MAIL_ADMIN_ADDRESS
+  * MAIL_ADMIN_NAME
+
+Optionally you can set all these variables in `application.properties`. Launch
+locally:
+```bash
+mvn package -DskipTests
+java -jar target/portfolio-*.jar
+```
+
+Project can be deployed to Heroku as is.
+ 
 
 ## License
 
