@@ -4,6 +4,7 @@ import dev.shelenkov.portfolio.service.mail.EmailService;
 import dev.shelenkov.portfolio.web.wrappers.dto.EmailDTO;
 import dev.shelenkov.portfolio.web.wrappers.error.ServerErrorResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,6 +18,7 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class EmailController {
 
     private final EmailService emailService;
@@ -34,6 +36,7 @@ public class EmailController {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(IOException.class)
     public ServerErrorResponse handleSendingMailError(Exception ex) {
+        log.error("Error sending message to admin", ex);
         return new ServerErrorResponse("Can't send e'mail");
     }
 }
