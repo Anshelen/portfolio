@@ -8,8 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.mail.MailSendException;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.io.IOException;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasSize;
@@ -58,7 +59,7 @@ public class EmailControllerTests {
 
     @Test
     public void test_server_error() throws Exception {
-        doThrow(MailSendException.class).when(emailService)
+        doThrow(IOException.class).when(emailService)
             .sendSimpleEmailToAdmin(anyString(), anyString(), anyString());
 
         EmailDTO data = new EmailDTO("name", "subject", "text");

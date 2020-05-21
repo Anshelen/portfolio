@@ -6,8 +6,11 @@ import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
 import dev.shelenkov.portfolio.service.mail.EmailService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
@@ -25,6 +28,7 @@ public class RegistrationListener
         confirmEmailAddress(account);
     }
 
+    @SneakyThrows(IOException.class)
     private void confirmEmailAddress(Account account) {
         VerificationToken token = new VerificationToken(account);
         token = tokenRepository.save(token);

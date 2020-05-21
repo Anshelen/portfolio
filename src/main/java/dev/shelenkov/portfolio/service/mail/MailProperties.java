@@ -8,5 +8,6 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("mail")
 @Data
 public class MailProperties {
-    private String addressee;
+    private String adminAddress;
+    private String adminName;
 }

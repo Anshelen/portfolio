@@ -6,7 +6,6 @@ import dev.shelenkov.portfolio.web.wrappers.error.ServerErrorResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailSendException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,15 +23,17 @@ public class EmailController {
 
     @SuppressWarnings("FeatureEnvy")
     @PostMapping("/email/send")
-    public ResponseEntity<Void> sendEmail(@Valid @RequestBody EmailDTO emailDTO) {
+    public ResponseEntity<Void> sendEmail(@Valid @RequestBody EmailDTO emailDTO)
+        throws IOException {
+
         emailService.sendSimpleEmailToAdmin(
             emailDTO.getName(), emailDTO.getSubject(), emailDTO.getText());
         return ResponseEntity.ok().build();
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(MailSendException.class)
-    public ServerErrorResponse handleSendingMailError() {
+    @ExceptionHandler(IOException.class)
+    public ServerErrorResponse handleSendingMailError(Exception ex) {
         return new ServerErrorResponse("Can't send e'mail");
     }
 }
