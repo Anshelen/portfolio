@@ -1,6 +1,7 @@
 package dev.shelenkov.portfolio.security;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.boot.actuate.info.InfoEndpoint;
@@ -17,6 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +30,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final SecurityProperties securityProperties;
+
+    @Value("${server.servlet.session.cookie.name}")
+    private String cookieName;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -51,6 +56,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return handler;
     }
 
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
@@ -70,6 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .requestMatchers(EndpointRequest.to(HealthEndpoint.class, InfoEndpoint.class)).permitAll()
             .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN");
 
+        http.sessionManagement()
+            .maximumSessions(1).expiredUrl("/expiredSession.html");
+
         http.formLogin()
             .loginPage("/login.html")
             .usernameParameter("email")
@@ -77,7 +90,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .failureHandler(authenticationFailureHandler())
             .permitAll();
 
-        http.logout();
+        http.logout().deleteCookies(cookieName);
 
         http.rememberMe().key(securityProperties.getRememberMeKey());
 
