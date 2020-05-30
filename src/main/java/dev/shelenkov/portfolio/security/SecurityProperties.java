@@ -8,5 +8,12 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("security")
 @Data
 public class SecurityProperties {
-    private String rememberMeKey;
+
+    private SecurityProperties.RememberMeProperties rememberMe;
+
+    @SuppressWarnings({"WeakerAccess", "PublicInnerClass"})
+    @Data
+    public static class RememberMeProperties {
+        private boolean secure;
+    }
 }

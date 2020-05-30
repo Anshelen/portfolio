@@ -1,6 +1,7 @@
 package dev.shelenkov.portfolio.security;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.actuate.health.HealthEndpoint;
@@ -18,6 +19,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 import java.util.HashMap;
@@ -30,6 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final SecurityProperties securityProperties;
+
+    @Autowired
+    private PersistentTokenRepository tokenRepository;
 
     @Value("${server.servlet.session.cookie.name}")
     private String cookieName;
@@ -92,7 +97,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.logout().deleteCookies(cookieName);
 
-        http.rememberMe().key(securityProperties.getRememberMeKey());
+        http.rememberMe()
+            .tokenRepository(tokenRepository)
+            .useSecureCookie(securityProperties.getRememberMe().isSecure());
 
         http.csrf().disable();
     }
