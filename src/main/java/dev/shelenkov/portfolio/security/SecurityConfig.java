@@ -77,33 +77,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
-            .antMatchers("/admin/**").hasRole("ADMIN");
-
-        http.authorizeRequests()
+        http.authorizeRequests(e -> e
+            .antMatchers("/admin/**").hasRole("ADMIN")
             .requestMatchers(EndpointRequest.to(HealthEndpoint.class, InfoEndpoint.class)).permitAll()
-            .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN");
+            .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
+        );
 
-        http.sessionManagement()
-            .maximumSessions(1).expiredUrl("/expiredSession.html");
+        http.sessionManagement(e -> e
+            .maximumSessions(1)
+            .expiredUrl("/expiredSession.html")
+        );
 
-        http.formLogin()
+        http.formLogin(e -> e
             .loginPage("/login.html")
             .usernameParameter("email")
             .defaultSuccessUrl("/")
             .failureHandler(authenticationFailureHandler())
-            .permitAll();
+            .permitAll()
+        );
 
-        http.oauth2Login()
+        http.oauth2Login(e -> e
             .loginPage("/login.html")
             .defaultSuccessUrl("/")
-            .failureHandler(authenticationFailureHandler());
+            .failureHandler(authenticationFailureHandler())
+        );
 
-        http.logout().deleteCookies(cookieName);
+        http.logout(e -> e.deleteCookies(cookieName));
 
-        http.rememberMe()
+        http.rememberMe(e -> e
             .tokenRepository(tokenRepository)
-            .useSecureCookie(securityProperties.getRememberMe().isSecure());
+            .useSecureCookie(securityProperties.getRememberMe().isSecure())
+        );
 
         http.csrf().disable();
     }
