@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.ArrayList;
@@ -22,11 +23,18 @@ public class Account extends AbstractPersistable<Long> {
 
     private String username;
 
+    @Column(unique = true)
     private String email;
 
     private String password;
 
     private boolean enabled;
+
+    @Column(name = "github_id")
+    private String githubId;
+
+    @Column(name = "google_id")
+    private String googleId;
 
     @Setter(AccessLevel.NONE)
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})

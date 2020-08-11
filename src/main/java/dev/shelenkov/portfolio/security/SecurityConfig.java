@@ -1,5 +1,6 @@
 package dev.shelenkov.portfolio.security;
 
+import dev.shelenkov.portfolio.security.oauth2.OAuth2NoVerifiedEmailException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,6 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/login.html?error=Locked");
         map.put(DisabledException.class.getName(),
             "/login.html?error=Disabled&email=${email}");
+        map.put(OAuth2NoVerifiedEmailException.class.getName(),
+            "/login.html?error=NoVerifiedEmail");
         handler.setExceptionMappings(map);
         return handler;
     }
@@ -90,6 +93,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .defaultSuccessUrl("/")
             .failureHandler(authenticationFailureHandler())
             .permitAll();
+
+        http.oauth2Login()
+            .loginPage("/login.html")
+            .defaultSuccessUrl("/")
+            .failureHandler(authenticationFailureHandler());
 
         http.logout().deleteCookies(cookieName);
 

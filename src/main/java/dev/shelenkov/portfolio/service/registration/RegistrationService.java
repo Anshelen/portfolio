@@ -7,6 +7,7 @@ import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.RoleRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -48,6 +49,42 @@ public class RegistrationService implements IRegistrationService {
         sendConfirmationEmail(email);
     }
 
+    @Transactional
+    @Override
+    public Account registerNewGitHubUser(String userName, String email, String githubId) {
+        Role role = roleRepository.getByName("ROLE_USER");
+        String password = getRandomPassword();
+
+        Account account = new Account(
+            userName,
+            email,
+            passwordEncoder.encode(password),
+            role);
+        account.setGithubId(githubId);
+        account.setEnabled(true);
+
+        accountRepository.save(account);
+        return account;
+    }
+
+    @Transactional
+    @Override
+    public Account registerNewGoogleUser(String userName, String email, String googleId) {
+        Role role = roleRepository.getByName("ROLE_USER");
+        String password = getRandomPassword();
+
+        Account account = new Account(
+            userName,
+            email,
+            passwordEncoder.encode(password),
+            role);
+        account.setGoogleId(googleId);
+        account.setEnabled(true);
+
+        accountRepository.save(account);
+        return account;
+    }
+
     /**
      * @throws TokenExpiredException in case of token is expired
      */
@@ -86,5 +123,9 @@ public class RegistrationService implements IRegistrationService {
     public boolean canSendConfirmationEmail(String email) {
         Account account = accountRepository.getByEmail(email);
         return (account != null) && !account.isEnabled();
+    }
+
+    private static String getRandomPassword() {
+        return RandomStringUtils.random(8);
     }
 }

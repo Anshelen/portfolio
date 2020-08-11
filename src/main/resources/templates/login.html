@@ -148,6 +148,8 @@
           Полномочия пользователя истекли</p>
         <p th:case="'Locked'" th:text="#{login.error.account-banned}">
           Аккаунт заблокирован</p>
+        <p th:case="'NoVerifiedEmail'" th:text="#{login.error.no-verified-account}">
+          К провайдеру входа не привязан адрес электронной почты</p>
         <!--suppress ThymeleafVariablesResolveInspection -->
         <div th:case="'Disabled'" th:with="mail=${param.email[0]}">
           <p th:text="#{login.error.account-disabled}">Аккаунт не активирован.</p>
@@ -161,6 +163,21 @@
               type="submit" th:text="#{login.submit}">
         Войти
       </button>
+
+      <div class="separator" th:text="#{login.separator}">или</div>
+      <div class="d-flex my-3">
+        <div class="d-flex justify-content-center w-50">
+          <a th:href="@{/oauth2/authorization/google}">
+            <i class="fa fa-google oauth-link-icon"></i>
+          </a>
+        </div>
+        <div class="d-flex justify-content-center w-50">
+          <a th:href="@{/oauth2/authorization/github}">
+            <i class="fa fa-github oauth-link-icon"></i>
+          </a>
+        </div>
+      </div>
+
     </form>
   </div>
   <div id="successModal" class="modal fade">

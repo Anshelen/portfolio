@@ -399,3 +399,37 @@ a.download-resume__link:hover {
 .registration__button {
   width: 200px;
 }
+
+/** OAuth2 registration block*/
+
+.oauth-link-icon {
+  color: black;
+  font-size: 25px;
+}
+
+.oauth-link-icon:hover {
+  color: grey;
+  cursor: pointer;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-style: italic;
+  text-transform: lowercase;
+}
+
+.separator::before, .separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #000;
+}
+
+.separator::before {
+  margin-right: .25em;
+}
+
+.separator::after {
+  margin-left: .25em;
+}

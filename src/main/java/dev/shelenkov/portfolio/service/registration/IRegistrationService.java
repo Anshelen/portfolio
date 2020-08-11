@@ -19,6 +19,26 @@ public interface IRegistrationService {
     void registerNewUser(String userName, String email, String password);
 
     /**
+     * Register new GitHub user. Account is enabled immediately.
+     *
+     * @param userName user's login
+     * @param email    user's email
+     * @param githubId user's github id
+     * @return created account
+     */
+    Account registerNewGitHubUser(String userName, String email, String githubId);
+
+    /**
+     * Register new Google user. Account is enabled immediately.
+     *
+     * @param userName user's login
+     * @param email    user's email
+     * @param googleId user's google id
+     * @return created account
+     */
+    Account registerNewGoogleUser(String userName, String email, String googleId);
+
+    /**
      * Enables previously created account if token provided by user is correct.
      *
      * @param token verification token (provided by user)
@@ -41,5 +61,5 @@ public interface IRegistrationService {
      *
      * @param email user's email
      */
-     boolean canSendConfirmationEmail(String email);
+    boolean canSendConfirmationEmail(String email);
 }

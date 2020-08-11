@@ -13,4 +13,10 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     Account getByEmail(String email);
 
     boolean existsByEmail(String email);
+
+    @Query("FROM Account a JOIN FETCH a.roles WHERE a.githubId = :githubId")
+    Account getByGithubIdWithRoles(@Param("githubId") String githubId);
+
+    @Query("FROM Account a JOIN FETCH a.roles WHERE a.googleId = :googleId")
+    Account getByGoogleIdWithRoles(@Param("googleId") String googleId);
 }

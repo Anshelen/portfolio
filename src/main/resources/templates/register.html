@@ -145,6 +145,20 @@
               type="submit" th:text="#{register.confirm}">
         Зарегистрироваться
       </button>
+
+      <div class="separator" th:text="#{login.separator}">или</div>
+      <div class="d-flex my-3">
+        <div class="d-flex justify-content-center w-50">
+          <a th:href="@{/oauth2/authorization/google}">
+            <i class="fa fa-google oauth-link-icon"></i>
+          </a>
+        </div>
+        <div class="d-flex justify-content-center w-50">
+          <a th:href="@{/oauth2/authorization/github}">
+            <i class="fa fa-github oauth-link-icon"></i>
+          </a>
+        </div>
+      </div>
     </form>
   </div>
 </div>
