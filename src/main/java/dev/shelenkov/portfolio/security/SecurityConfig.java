@@ -123,6 +123,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .useSecureCookie(securityProperties.getRememberMe().isSecure())
         );
 
+        http.headers(e -> e
+            .httpStrictTransportSecurity()
+            .includeSubDomains(true)
+        );
+
         http.cors();
 
         http.csrf().disable();
