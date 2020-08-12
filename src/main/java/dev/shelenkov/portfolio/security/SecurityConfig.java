@@ -74,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
+        CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
         configuration.setAllowedOrigins(securityProperties.getHeaders().getAccessControlAllowOrigin());
         configuration.setMaxAge(securityProperties.getHeaders().getAccessControlMaxAge());
 
