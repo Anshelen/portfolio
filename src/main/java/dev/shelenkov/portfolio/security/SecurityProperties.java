@@ -37,7 +37,7 @@ public class SecurityProperties {
         private String contentSecurityPolicy = "default-src 'self'";
 
         private ReferrerPolicyHeaderWriter.ReferrerPolicy referrerPolicy
-            = ReferrerPolicyHeaderWriter.ReferrerPolicy.ORIGIN_WHEN_CROSS_ORIGIN;
+            = ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN;
 
         private String featurePolicy = "geolocation 'none'";
     }
