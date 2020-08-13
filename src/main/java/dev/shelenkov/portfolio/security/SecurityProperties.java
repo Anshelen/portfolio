@@ -32,5 +32,7 @@ public class SecurityProperties {
 
         @DurationUnit(ChronoUnit.SECONDS)
         private Duration accessControlMaxAge = Duration.ofMinutes(30);
+
+        private String contentSecurityPolicy = "default-src 'self'";
     }
 }

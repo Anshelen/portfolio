@@ -124,8 +124,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         );
 
         http.headers(e -> e
-            .httpStrictTransportSecurity()
-            .includeSubDomains(true)
+            .httpStrictTransportSecurity(hsts -> hsts.includeSubDomains(true))
+            .contentSecurityPolicy(csp -> csp.policyDirectives(
+                securityProperties.getHeaders().getContentSecurityPolicy()))
         );
 
         http.cors();
