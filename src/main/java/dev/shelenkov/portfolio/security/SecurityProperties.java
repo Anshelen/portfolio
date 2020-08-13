@@ -3,6 +3,7 @@ package dev.shelenkov.portfolio.security;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.convert.DurationUnit;
+import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -34,5 +35,10 @@ public class SecurityProperties {
         private Duration accessControlMaxAge = Duration.ofMinutes(30);
 
         private String contentSecurityPolicy = "default-src 'self'";
+
+        private ReferrerPolicyHeaderWriter.ReferrerPolicy referrerPolicy
+            = ReferrerPolicyHeaderWriter.ReferrerPolicy.ORIGIN_WHEN_CROSS_ORIGIN;
+
+        private String featurePolicy = "geolocation 'none'";
     }
 }
