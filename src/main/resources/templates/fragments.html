@@ -81,10 +81,11 @@
                 <span th:text="${auth.name}">Антон</span>
               </a>
               <div class="dropdown-menu py-1">
-                <a class="dropdown-item"
-                   th:href="@{/logout}"
+                <form id="logout-form" action="/logout" method="POST" th:action="@{/logout}">
+                </form>
+                <a id="logout" class="dropdown-item"
                    th:text="#{fragments.navbar.logout}"
-                   href="/logout">Выйти</a>
+                   href="javascript:void(0);">Выйти</a>
               </div>
             </li>
             <li sec:authorize="!isAuthenticated()" class="nav-item ml-md-3 ml-lg-5">

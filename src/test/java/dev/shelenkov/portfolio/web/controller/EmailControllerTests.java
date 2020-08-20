@@ -19,6 +19,7 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,12 +37,24 @@ public class EmailControllerTests {
     private EmailService emailService;
 
     @Test
-    public void test_normal() throws Exception {
+    public void test_noCsrfToken_forbidden() throws Exception {
         EmailDTO data = new EmailDTO("name", "subject", "text");
         String body = objectMapper.writeValueAsString(data);
         mockMvc.perform(post("/email/send")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
             .content(body))
+            .andExpect(status().isForbidden());
+    }
+
+
+    @Test
+    public void test_normal() throws Exception {
+        EmailDTO data = new EmailDTO("name", "subject", "text");
+        String body = objectMapper.writeValueAsString(data);
+        mockMvc.perform(post("/email/send")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(body)
+            .with(csrf()))
             .andExpect(status().isOk());
     }
 
@@ -51,7 +64,8 @@ public class EmailControllerTests {
         String body = objectMapper.writeValueAsString(data);
         mockMvc.perform(post("/email/send")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(body))
+            .content(body)
+            .with(csrf()))
             .andExpect(status().is4xxClientError())
             .andExpect(jsonPath("$.violations", hasSize(2)))
             .andExpect(jsonPath("$.violations[*].fieldName", containsInAnyOrder("name", "subject")));
@@ -67,7 +81,8 @@ public class EmailControllerTests {
 
         mockMvc.perform(post("/email/send")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(body))
+            .content(body)
+            .with(csrf()))
             .andExpect(status().is5xxServerError())
             .andExpect(jsonPath("$.message").value("Can't send e'mail"));
 

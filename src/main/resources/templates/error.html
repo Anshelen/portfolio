@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="_csrf" th:content="${_csrf.token}" content="token"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}" content="X-CSRF-TOKEN"/>
   <title th:text="#{error.head.title}">Ошибка</title>
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -10,6 +12,7 @@
         crossorigin="anonymous"/>
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
   <link rel="icon" href="../static/img/favicon.ico" th:href="@{/resources/img/favicon.ico}" type="image/x-icon">
+  <script src="../static/js/common.js" th:src="@{/resources/js/common.js}"></script>
 </head>
 <body>
 <div

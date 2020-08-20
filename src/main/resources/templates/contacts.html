@@ -5,6 +5,8 @@
   <title th:text="#{contacts.head.title}">Контакты</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
+  <meta name="_csrf" th:content="${_csrf.token}" content="token"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}" content="X-CSRF-TOKEN"/>
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
   <script
@@ -21,6 +23,7 @@
   <script src="literals.js" th:src="@{/literals.js}"></script>
   <script src="../static/js/dal.js" th:src="@{/resources/js/dal.js}"></script>
   <script src="../static/js/contacts.js" th:src="@{/resources/js/contacts.js}"></script>
+  <script src="../static/js/common.js" th:src="@{/resources/js/common.js}"></script>
   <link rel="icon" href="../static/img/favicon.ico" th:href="@{/resources/img/favicon.ico}" type="image/x-icon">
 </head>
 <body>
@@ -88,8 +91,10 @@
               <span>Антон</span>
             </a>
             <div class="dropdown-menu py-1">
-              <a class="dropdown-item"
-                 href="/logout">Выйти</a>
+              <form id="logout-form" action="/logout" method="POST">
+              </form>
+              <a id="logout" class="dropdown-item"
+                 href="javascript:void(0);">Выйти</a>
             </div>
           </li>
           <li class="nav-item ml-md-3 ml-lg-5">
