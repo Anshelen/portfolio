@@ -1,7 +1,6 @@
 package dev.shelenkov.portfolio.security;
 
 import dev.shelenkov.portfolio.security.oauth2.OAuth2NoVerifiedEmailException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
@@ -31,11 +30,13 @@ import java.util.Map;
 
 @EnableWebSecurity
 @Import(SecurityProperties.class)
-@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
-    private final SecurityProperties securityProperties;
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    private SecurityProperties securityProperties;
 
     @Autowired
     private PersistentTokenRepository tokenRepository;
@@ -88,51 +89,39 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
+    @SuppressWarnings("FeatureEnvy")
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.authorizeRequests(e -> e
-            .antMatchers("/admin/**").hasRole("ADMIN")
-            .requestMatchers(EndpointRequest.to(HealthEndpoint.class, InfoEndpoint.class)).permitAll()
-            .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
-        );
-
-        http.sessionManagement(e -> e
-            .maximumSessions(1)
-            .expiredUrl("/expiredSession.html")
-        );
-
-        http.formLogin(e -> e
-            .loginPage("/login.html")
-            .usernameParameter("email")
-            .defaultSuccessUrl("/")
-            .failureHandler(authenticationFailureHandler())
-            .permitAll()
-        );
-
-        http.oauth2Login(e -> e
-            .loginPage("/login.html")
-            .defaultSuccessUrl("/")
-            .failureHandler(authenticationFailureHandler())
-        );
-
-        http.logout(e -> e.deleteCookies(cookieName));
-
-        http.rememberMe(e -> e
-            .tokenRepository(tokenRepository)
-            .useSecureCookie(securityProperties.getRememberMe().isSecure())
-        );
-
-        http.headers(e -> e
-            .httpStrictTransportSecurity(hsts -> hsts.includeSubDomains(true))
-            .contentSecurityPolicy(csp -> csp.policyDirectives(
-                securityProperties.getHeaders().getContentSecurityPolicy()))
-            .referrerPolicy(ref -> ref.policy(
-                securityProperties.getHeaders().getReferrerPolicy()))
-            .featurePolicy(
-                securityProperties.getHeaders().getFeaturePolicy())
-        );
-
-        http.cors();
+        http
+            .authorizeRequests(e -> e
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers(EndpointRequest.to(HealthEndpoint.class, InfoEndpoint.class)).permitAll()
+                .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN"))
+            .sessionManagement(e -> e
+                .maximumSessions(1)
+                .expiredUrl("/expiredSession.html"))
+            .formLogin(e -> e
+                .loginPage("/login.html")
+                .usernameParameter("email")
+                .defaultSuccessUrl("/")
+                .failureHandler(authenticationFailureHandler())
+                .permitAll())
+            .oauth2Login(e -> e
+                .loginPage("/login.html")
+                .defaultSuccessUrl("/")
+                .failureHandler(authenticationFailureHandler()))
+            .logout(e -> e.deleteCookies(cookieName))
+            .rememberMe(e -> e
+                .tokenRepository(tokenRepository)
+                .useSecureCookie(securityProperties.getRememberMe().isSecure()))
+            .headers(e -> e
+                .httpStrictTransportSecurity(hsts -> hsts.includeSubDomains(true))
+                .contentSecurityPolicy(csp -> csp.policyDirectives(
+                    securityProperties.getHeaders().getContentSecurityPolicy()))
+                .referrerPolicy(ref -> ref.policy(
+                    securityProperties.getHeaders().getReferrerPolicy()))
+                .featurePolicy(
+                    securityProperties.getHeaders().getFeaturePolicy()))
+            .cors();
     }
 }
