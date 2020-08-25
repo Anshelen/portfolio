@@ -1,6 +1,10 @@
 package dev.shelenkov.portfolio.security;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.convert.DurationUnit;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
@@ -16,9 +20,18 @@ import java.util.List;
 @Data
 public class SecurityProperties {
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @Autowired
+    private org.springframework.boot.autoconfigure.security.SecurityProperties buildInProperties;
+
     private SecurityProperties.RememberMeProperties rememberMe;
 
     private SecurityProperties.HeaderProperties headers;
+
+    public int getSecurityFilterChainOrder() {
+        return buildInProperties.getFilter().getOrder();
+    }
 
     @Data
     public static class RememberMeProperties {
