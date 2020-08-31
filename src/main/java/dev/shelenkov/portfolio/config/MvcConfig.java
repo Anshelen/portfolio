@@ -9,7 +9,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -28,7 +27,6 @@ import java.util.Map;
 
 @Configuration
 @EnableTransactionManagement
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MvcConfig implements WebMvcConfigurer {
 
     @Autowired
