@@ -60,15 +60,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             = new ParametersMappingAuthenticationFailureHandler();
         Map<String, String> map = new HashMap<>();
         map.put(BadCredentialsException.class.getName(),
-            "/login.html?error=BadCredentials");
+            "/login?error=BadCredentials");
         map.put(CredentialsExpiredException.class.getName(),
-            "/login.html?error=CredentialsExpired");
+            "/login?error=CredentialsExpired");
         map.put(LockedException.class.getName(),
-            "/login.html?error=Locked");
+            "/login?error=Locked");
         map.put(DisabledException.class.getName(),
-            "/login.html?error=Disabled&email=${email}");
+            "/login?error=Disabled&email=${email}");
         map.put(OAuth2NoVerifiedEmailException.class.getName(),
-            "/login.html?error=NoVerifiedEmail");
+            "/login?error=NoVerifiedEmail");
         handler.setExceptionMappings(map);
         return handler;
     }
@@ -116,15 +116,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN"))
             .sessionManagement(e -> e
                 .maximumSessions(1)
-                .expiredUrl("/expiredSession.html"))
+                .expiredUrl("/expiredSession"))
             .formLogin(e -> e
-                .loginPage("/login.html")
+                .loginPage("/login")
                 .usernameParameter("email")
                 .defaultSuccessUrl("/")
                 .failureHandler(authenticationFailureHandler())
                 .permitAll())
             .oauth2Login(e -> e
-                .loginPage("/login.html")
+                .loginPage("/login")
                 .defaultSuccessUrl("/")
                 .failureHandler(authenticationFailureHandler()))
             .logout(e -> e.deleteCookies(cookieName))

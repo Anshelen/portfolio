@@ -35,14 +35,14 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
-        registry.addViewController("/index.html").setViewName("index");
-        registry.addViewController("/about.html").setViewName("about");
-        registry.addViewController("/skills.html").setViewName("skills");
-        registry.addViewController("/projects.html").setViewName("projects");
-        registry.addViewController("/contacts.html").setViewName("contacts");
-        registry.addViewController("/login.html").setViewName("login");
-        registry.addViewController("/register.html").setViewName("register");
-        registry.addViewController("/expiredSession.html").setViewName("expiredSession");
+        registry.addViewController("/index").setViewName("index");
+        registry.addViewController("/about").setViewName("about");
+        registry.addViewController("/skills").setViewName("skills");
+        registry.addViewController("/projects").setViewName("projects");
+        registry.addViewController("/contacts").setViewName("contacts");
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/register").setViewName("register");
+        registry.addViewController("/expiredSession").setViewName("expiredSession");
         registry.addViewController("/literals.js").setViewName("literals");
         registry.addViewController("/admin/").setViewName("admin/admin_home");
     }
