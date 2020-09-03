@@ -37,7 +37,7 @@ Other
 - Download resume in different formats and languages
 - Customize Hibernate to save set of roles as an array of PostgreSQL enum values
 - Testing with Travis CI, automatic deploy to Heroku
-- SSL and DDoS protection via Cloudflare
+- SSL via Cloudflare
 
 ## Technologies
 
