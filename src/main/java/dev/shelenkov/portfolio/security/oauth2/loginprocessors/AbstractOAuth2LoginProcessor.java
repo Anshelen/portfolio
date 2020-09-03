@@ -42,7 +42,7 @@ public abstract class AbstractOAuth2LoginProcessor implements OAuth2LoginProcess
 
             // If user with such email already exists, then attach oauth id to
             // him or else create new user
-            account = accountRepository.getByEmailWithRoles(email);
+            account = accountRepository.getByEmail(email);
             if (account == null) {
                 account = registerNewAccount(userAttributes, email, oauth2Id);
             } else {
@@ -120,7 +120,7 @@ public abstract class AbstractOAuth2LoginProcessor implements OAuth2LoginProcess
 
     private static Collection<? extends GrantedAuthority> generateAuthoritiesList(Account account) {
         return account.getRoles().stream()
-            .map(e -> new SimpleGrantedAuthority(e.getName()))
+            .map(e -> new SimpleGrantedAuthority(e.getFullName()))
             .collect(Collectors.toList());
     }
 }

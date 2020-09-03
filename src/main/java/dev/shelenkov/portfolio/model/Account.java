@@ -4,15 +4,14 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.EnumSet;
 import java.util.Set;
 
 @Entity
@@ -37,15 +36,16 @@ public class Account extends AbstractPersistable<Long> {
     private String googleId;
 
     @Setter(AccessLevel.NONE)
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<Role> roles = new HashSet<>();
+    @Type(type = "dev.shelenkov.portfolio.model.utils.SetOfRolesType")
+    @Column(columnDefinition = "user_role[]")
+    private Set<Role> roles = EnumSet.noneOf(Role.class);
 
     public Account(String username, String email, String password,
-                   Iterable<? extends Role> roles) {
+                   Collection<Role> roles) {
         this.username = username;
         this.email = email;
         this.password = password;
-        roles.forEach(this::addRole);
+        this.roles = EnumSet.copyOf(roles);
     }
 
     public Account(String username, String email, String password, Role role) {
@@ -54,18 +54,14 @@ public class Account extends AbstractPersistable<Long> {
 
     public void addRole(Role role) {
         roles.add(role);
-        role.addAccount(this);
     }
 
     public void removeRole(Role role) {
         roles.remove(role);
-        role.removeAccount(this);
     }
 
     public void clearRoles() {
-        for (Role role : new ArrayList<>(roles)) {
-            removeRole(role);
-        }
+        roles.clear();
     }
 
     public Set<Role> getRoles() {

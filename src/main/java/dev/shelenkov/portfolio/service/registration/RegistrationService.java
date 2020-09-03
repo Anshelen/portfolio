@@ -4,7 +4,6 @@ import dev.shelenkov.portfolio.model.Account;
 import dev.shelenkov.portfolio.model.Role;
 import dev.shelenkov.portfolio.model.VerificationToken;
 import dev.shelenkov.portfolio.repository.AccountRepository;
-import dev.shelenkov.portfolio.repository.RoleRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -27,7 +26,6 @@ public class RegistrationService implements IRegistrationService {
 
     private final PasswordEncoder passwordEncoder;
     private final AccountRepository accountRepository;
-    private final RoleRepository roleRepository;
     private final VerificationTokenRepository tokenRepository;
     private final ApplicationEventPublisher eventPublisher;
 
@@ -39,12 +37,11 @@ public class RegistrationService implements IRegistrationService {
                 "There is an account with that email address: " + email);
         }
 
-        Role role = roleRepository.getByName("ROLE_USER");
         Account account = new Account(
             userName,
             email,
             passwordEncoder.encode(password),
-            role);
+            Role.USER);
         accountRepository.save(account);
         sendConfirmationEmail(email);
     }
@@ -52,14 +49,13 @@ public class RegistrationService implements IRegistrationService {
     @Transactional
     @Override
     public Account registerNewGitHubUser(String userName, String email, String githubId) {
-        Role role = roleRepository.getByName("ROLE_USER");
         String password = getRandomPassword();
 
         Account account = new Account(
             userName,
             email,
             passwordEncoder.encode(password),
-            role);
+            Role.USER);
         account.setGithubId(githubId);
         account.setEnabled(true);
 
@@ -70,14 +66,13 @@ public class RegistrationService implements IRegistrationService {
     @Transactional
     @Override
     public Account registerNewGoogleUser(String userName, String email, String googleId) {
-        Role role = roleRepository.getByName("ROLE_USER");
         String password = getRandomPassword();
 
         Account account = new Account(
             userName,
             email,
             passwordEncoder.encode(password),
-            role);
+            Role.USER);
         account.setGoogleId(googleId);
         account.setEnabled(true);
 

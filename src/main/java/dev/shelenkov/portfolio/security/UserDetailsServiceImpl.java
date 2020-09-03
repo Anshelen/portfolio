@@ -13,6 +13,6 @@ public class UserDetailsServiceImpl extends AbstractExtendedUserDetailsService {
 
     @Override
     protected Account getAccountByEmail(String email) {
-        return accountRepository.getByEmailWithRoles(email);
+        return accountRepository.getByEmail(email);
     }
 }

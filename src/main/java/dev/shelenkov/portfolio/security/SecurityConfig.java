@@ -1,5 +1,6 @@
 package dev.shelenkov.portfolio.security;
 
+import dev.shelenkov.portfolio.model.Role;
 import dev.shelenkov.portfolio.security.oauth2.OAuth2NoVerifiedEmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -97,7 +98,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
-        hierarchy.setHierarchy("ROLE_ADMIN > ROLE_USER");
+        hierarchy.setHierarchy(String.format(
+            "%s > %s", Role.ADMIN.getFullName(), Role.USER.getFullName()));
         return hierarchy;
     }
 

@@ -34,7 +34,7 @@ public abstract class AbstractExtendedUserDetailsService implements UserDetailsS
 
     private static Collection<? extends GrantedAuthority> generateAuthoritiesList(Account account) {
         return account.getRoles().stream()
-            .map(e -> new SimpleGrantedAuthority(e.getName()))
+            .map(e -> new SimpleGrantedAuthority(e.getFullName()))
             .collect(Collectors.toList());
     }
 }

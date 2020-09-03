@@ -4,7 +4,6 @@ import dev.shelenkov.portfolio.model.Account;
 import dev.shelenkov.portfolio.model.Role;
 import dev.shelenkov.portfolio.model.VerificationToken;
 import dev.shelenkov.portfolio.repository.AccountRepository;
-import dev.shelenkov.portfolio.repository.RoleRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,7 +45,7 @@ class RegistrationServiceTests {
     private static final String EMAIL = "anshelen@yandex.ru";
     private static final String USERNAME = "name";
     private static final String PASSWORD = "password";
-    private static final String ROLE_NAME = "ROLE_USER";
+    private static final Role ROLE = Role.USER;
     private static final UUID TOKEN = UUID.randomUUID();
 
     @Autowired
@@ -59,9 +58,6 @@ class RegistrationServiceTests {
     private AccountRepository accountRepository;
 
     @MockBean
-    private RoleRepository roleRepository;
-
-    @MockBean
     private VerificationTokenRepository tokenRepository;
 
     @MockBean
@@ -72,7 +68,7 @@ class RegistrationServiceTests {
 
     @AfterEach
     public void afterAll() {
-        reset(accountRepository, roleRepository, tokenRepository, registrationListener);
+        reset(accountRepository, tokenRepository, registrationListener);
     }
 
     @Nested
@@ -82,7 +78,6 @@ class RegistrationServiceTests {
         @BeforeEach
         public void beforeEach() {
             Account newAccount = createDisabledAccount();
-            doReturn(createRole()).when(roleRepository).getByName(ROLE_NAME);
             doReturn(newAccount).when(accountRepository).getByEmail(EMAIL);
         }
 
@@ -103,9 +98,7 @@ class RegistrationServiceTests {
             assertThat(passwordEncoder.matches(PASSWORD, savedAccount.getPassword()))
                 .isTrue();
             assertThat(savedAccount.getRoles())
-                .hasSize(1)
-                .extracting("name")
-                .containsOnly(ROLE_NAME);
+                .containsExactly(ROLE);
 
             verify(accountRepository).save(any());
             verify(registrationListener).onApplicationEvent(any());
@@ -243,12 +236,8 @@ class RegistrationServiceTests {
 
     }
 
-    private Role createRole() {
-        return new Role(ROLE_NAME);
-    }
-
     private Account createDisabledAccount() {
-        Account account = new Account(USERNAME, EMAIL, PASSWORD, createRole());
+        Account account = new Account(USERNAME, EMAIL, PASSWORD, ROLE);
         ReflectionTestUtils.setField(account, "id", ACCOUNT_ID);
         return account;
     }

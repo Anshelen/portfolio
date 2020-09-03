@@ -41,7 +41,7 @@ public class GitHubOAuth2LoginProcessor extends AbstractOAuth2LoginProcessor {
 
     @Override
     protected Account loadUserByOauth2Id(String oauth2Id) {
-        return getAccountRepository().getByGithubIdWithRoles(oauth2Id);
+        return getAccountRepository().getByGithubId(oauth2Id);
     }
 
     @Override

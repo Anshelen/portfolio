@@ -29,7 +29,7 @@ public class GoogleOAuth2LoginProcessor extends AbstractOAuth2LoginProcessor {
 
     @Override
     protected Account loadUserByOauth2Id(String oauth2Id) {
-        return getAccountRepository().getByGoogleIdWithRoles(oauth2Id);
+        return getAccountRepository().getByGoogleId(oauth2Id);
     }
 
     @Override

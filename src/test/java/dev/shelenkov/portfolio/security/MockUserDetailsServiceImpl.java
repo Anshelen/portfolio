@@ -18,14 +18,14 @@ public class MockUserDetailsServiceImpl extends AbstractExtendedUserDetailsServi
             "user",
             "user@mail.ru",
             passwordEncoder.encode("user"),
-            new Role("ROLE_USER"));
+            Role.USER);
         users.put(user.getEmail(), user);
 
         Account admin = new Account(
             "admin",
             "admin@mail.ru",
             passwordEncoder.encode("admin"),
-            new Role("ROLE_ADMIN"));
+            Role.ADMIN);
         users.put(admin.getEmail(), admin);
 
     }
