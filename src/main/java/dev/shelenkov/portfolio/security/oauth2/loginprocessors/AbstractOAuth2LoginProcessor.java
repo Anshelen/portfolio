@@ -3,19 +3,16 @@ package dev.shelenkov.portfolio.security.oauth2.loginprocessors;
 import dev.shelenkov.portfolio.model.Account;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.security.ExtendedUser;
+import dev.shelenkov.portfolio.security.SecurityUtils;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static dev.shelenkov.portfolio.security.oauth2.OAuth2ErrorHelper.throwOnNoUserNameAttributeSpecified;
 import static dev.shelenkov.portfolio.security.oauth2.OAuth2ErrorHelper.throwOnNotKnownRegistrationId;
@@ -55,7 +52,7 @@ public abstract class AbstractOAuth2LoginProcessor implements OAuth2LoginProcess
             account.getEmail(),
             account.getPassword(),
             account.isEnabled(),
-            generateAuthoritiesList(account),
+            SecurityUtils.generateAuthoritiesList(account),
             account.getUsername(),
             userAttributes);
     }
@@ -116,11 +113,5 @@ public abstract class AbstractOAuth2LoginProcessor implements OAuth2LoginProcess
         }
 
         return userAttributes.get(userNameAttributeName).toString();
-    }
-
-    private static Collection<? extends GrantedAuthority> generateAuthoritiesList(Account account) {
-        return account.getRoles().stream()
-            .map(e -> new SimpleGrantedAuthority(e.getFullName()))
-            .collect(Collectors.toList());
     }
 }
