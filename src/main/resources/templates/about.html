@@ -2,27 +2,33 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title th:text="#{about.head.title}">Обо мне</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="utf-8">
-  <meta name="_csrf" th:content="${_csrf.token}" content="token"/>
-  <meta name="_csrf_header" th:content="${_csrf.headerName}" content="X-CSRF-TOKEN"/>
-  <meta http-equiv="refresh" content="1800" th:content="${#session?.maxInactiveInterval?:1800}">
+  <!--/*/<th:block th:replace="fragments::headers(#{about.head.title})">/*/-->
+  <title>Обо мне</title>
 
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="_csrf" content="token"/>
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+  <meta http-equiv="refresh" content="1800">
+
   <script
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        rel="stylesheet">
-  <script src="literals.js" th:src="@{/literals.js}"></script>
-  <script src="../static/js/common.js" th:src="@{/resources/js/common.js}"></script>
-  <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
-  <link rel="icon" href="../static/img/favicon.ico" th:href="@{/resources/img/favicon.ico}" type="image/x-icon">
+
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="literals.js"></script>
+  <script src="../static/js/common.js"></script>
+
+  <link rel="stylesheet" href="../static/css/style.css"/>
+  <link rel="icon" href="../static/img/favicon.ico" type="image/x-icon">
+  <!--/*/</th:block>/*/-->
 </head>
 <body>
 <!--/*/ <th:block th:replace="fragments::navbar('about')"> /*/-->

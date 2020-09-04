@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous"/>
-  <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/resources/css/style.css}"/>
-  <link rel="icon" href="../../static/img/favicon.ico" th:href="@{/resources/img/favicon.ico}" type="image/x-icon">
+  <!--/*/<th:block th:replace="fragments::headers('FORBIDDEN')">/*/-->
   <title>FORBIDDEN</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="_csrf" content="token"/>
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+  <meta http-equiv="refresh" content="1800">
+
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="../../static/css/style.css"/>
+  <link rel="icon" href="../../static/img/favicon.ico" type="image/x-icon">
+  <!--/*/</th:block>/*/-->
 </head>
 <body>
 <div
