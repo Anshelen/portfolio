@@ -26,6 +26,7 @@ Security
 - CSRF protection
 - Hierarchical roles
 - Restriction on number of user sessions
+- Security tests
 
 Other
 
@@ -33,6 +34,7 @@ Other
 - Multi language support
 - Custom logic of initial language selection
 - JS-files templating with Thymeleaf for localizing frontend validation messages
+- Spring Boot + bootpag.js pagination
 - Send emails via [Sendgrid][SENDGRID]
 - Download resume in different formats and languages
 - Customize Hibernate to save set of roles as an array of PostgreSQL enum values

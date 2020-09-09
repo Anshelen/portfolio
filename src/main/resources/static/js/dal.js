@@ -22,3 +22,12 @@ function resendEmailConfirmationRequest(email) {
     url: ajax_urls['resendRegistrationEmail']
   });
 }
+
+function getAllUsersRequest(page, size) {
+  return $.ajax({
+    type: 'GET',
+    contentType: "application/json",
+    data: {page: page, size: size},
+    url: ajax_urls["getAllUsers"]
+  });
+}

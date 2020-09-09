@@ -2,13 +2,101 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin home</title>
-    <link rel="icon" href="../../static/img/favicon.ico" th:href="@{/resources/img/favicon.ico}" type="image/x-icon">
+  <!--/*/<th:block th:replace="fragments::headers('Admin home')">/*/-->
+  <title>Admin home</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="_csrf" content="token"/>
+  <meta name="_csrf_header" content="X-CSRF-TOKEN"/>
+  <meta http-equiv="refresh" content="1800">
+
+  <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="../literals.js"></script>
+  <script src="../../static/js/common.js"></script>
+  <script src="../../static/js/dal.js"></script>
+
+  <link rel="stylesheet" href="../../static/css/style.css"/>
+  <link rel="icon" href="../../static/img/favicon.ico" type="image/x-icon">
+  <!--/*/</th:block>/*/-->
+
+  <script src="../../static/js/bootpag.min.js" th:src="@{/resources/js/bootpag.min.js}"></script>
+  <script src="../../static/js/admin.js" th:src="@{/resources/js/admin.js}"></script>
 </head>
 <body>
-<div class="container">
-    <h1>Welcome, admin!</h1>
-</div>
+  <h2>Users:</h2>
+  <table id="content" class="table table-hover table-active">
+    <thead class="thead-light">
+      <tr>
+        <th>№</th>
+        <th>UserName</th>
+        <th>Email</th>
+        <th>Enabled</th>
+        <th>Roles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--/*/<th:block th:remove="all">/*/-->
+      <tr>
+        <td>1</td>
+        <td>Admin</td>
+        <td>admin@gmail.com</td>
+        <td>True</td>
+        <td>ADMIN</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>User</td>
+        <td>user@mail.ru</td>
+        <td>False</td>
+        <td>USER</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <!--/*/</th:block>/*/-->
+    </tbody>
+  </table>
+  <div>
+    <div id="pagination-container">
+      <!--/*/<th:block th:remove="all">/*/-->
+      <nav>
+        <ul class="pagination">
+          <li class="first page-item disabled"><a class="page-link" href="#">←</a></li>
+          <li class="prev page-item disabled"><a class="page-link" href="#">«</a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="next page-item"><a class="page-link" href="#">»</a></li>
+          <li class="last page-item"><a class="page-link" href="#">→</a></li>
+        </ul>
+      </nav>
+      <!--/*/</th:block>/*/-->
+    </div>
+  </div>
 </body>
 </html>

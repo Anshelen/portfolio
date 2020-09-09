@@ -23,4 +23,5 @@ messages["contacts.js.validation.text.maxlength"] = "Слишком длинно
 
 ajax_urls["sendMail"] = "/email/send";
 ajax_urls["resendRegistrationEmail"] = "/resendRegistrationEmail";
+ajax_urls["getAllUsers"] = "/admin/users";
 /* -]*/

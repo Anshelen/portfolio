@@ -134,6 +134,7 @@ public class MvcConfig implements WebMvcConfigurer {
         Map<String, String> ajaxMap = new HashMap<>();
         ajaxMap.put("sendMail", "/email/send");
         ajaxMap.put("resendRegistrationEmail", "/resendRegistrationEmail");
+        ajaxMap.put("getAllUsers", "/admin/users");
         return ajaxMap;
     }
 }
