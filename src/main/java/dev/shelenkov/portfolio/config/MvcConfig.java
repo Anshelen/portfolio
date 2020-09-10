@@ -33,7 +33,6 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
-        registry.addViewController("/index").setViewName("index");
         registry.addViewController("/about").setViewName("about");
         registry.addViewController("/skills").setViewName("skills");
         registry.addViewController("/projects").setViewName("projects");
@@ -41,8 +40,18 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/register").setViewName("register");
         registry.addViewController("/expiredSession").setViewName("expiredSession");
+        //noinspection SpringMVCViewInspection
         registry.addViewController("/literals.js").setViewName("literals");
-        registry.addViewController("/admin/").setViewName("admin/admin_home");
+        registry.addViewController("/admin").setViewName("admin/admin_home");
+
+        registry.addRedirectViewController("/about/", "/about");
+        registry.addRedirectViewController("/skills/", "/skills");
+        registry.addRedirectViewController("/projects/", "/projects");
+        registry.addRedirectViewController("/contacts/", "/contacts");
+        registry.addRedirectViewController("/login/", "/login").setKeepQueryParams(true);
+        registry.addRedirectViewController("/register/", "/register");
+        registry.addRedirectViewController("/expiredSession/", "/expiredSession");
+        registry.addRedirectViewController("/admin/", "/admin");
     }
 
     @Override
