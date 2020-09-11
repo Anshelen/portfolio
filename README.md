@@ -54,7 +54,6 @@ Other
 ## Prerequisites
 
 - Java 1.8+
-- Maven 3.3+
 - PostgreSQL 9.0+
 
 ## Installation
@@ -99,7 +98,7 @@ Optionally you can set all these variables in `application.properties`.
 
 Launch locally:
 ```bash
-mvn package -DskipTests
+./mvnw package -DskipTests
 java -jar target/portfolio-*.jar
 ```
 
