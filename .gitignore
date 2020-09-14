@@ -40,7 +40,7 @@ Desktop.ini
 # Maven
 log/
 target/
-.mvn/
+.mvn/maven-wrapper.jar
 
 # Package Files
 *.jar
