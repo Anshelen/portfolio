@@ -174,7 +174,7 @@
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
             <p class="skills-block__content-title" th:text="#{skills.experience.title}">
-              Опыт работы 1.5 года</p>
+              Опыт работы 2.5 года</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -185,11 +185,12 @@
           <div class="card-body p-2">
             <h3 class="card-title mb-4" th:text="#{skills.experience.title}">Опыт работы</h3>
             <p class="card-text" th:text="#{skills.experience.content}">
-              Я занимаюсь программированием на Java в течение 3 лет, из них 1.5 года коммерческой
-              разработкой. 9 месяцев работал в компании Simplex Software на должности младшего Java
-              программиста. После, в течение еще 10 месяцев я занимался поддержкой и доработкой
+              Я занимаюсь коммерческой разработкой на Java в течение 2.5 лет. 9 месяцев работал
+              в компании Simplex Software на должности младшего Java программиста. После, в
+              течение еще 10 месяцев я занимался поддержкой и доработкой
               одноименного проекта фирмы IQManager (частичная занятость, неофициальное
-              трудоустройство).
+              трудоустройство). После этого на протяжении 1 года и 2 месяцев работал в стартапе
+              Aximetria.
             </p>
           </div>
         </div>
@@ -265,7 +266,7 @@
           </div>
         </div>
         <div id="algorithms_more" class="d-none" th:utext="#{skills.algorithms.more.content}">
-          Я изучал алгоритмы и стуктуры данных по онлайн-курсам Stepic. Ссылки на сертификаты:
+          Я изучал алгоритмы и стуктуры данных по онлайн-курсам Stepik. Ссылки на сертификаты:
           <div class="list-group my-2">
             <a href="https://stepik.org/cert/187216" target="_blank"
                class="list-group-item list-group-item-action py-1">Алгоритмы: теория и практика.
@@ -276,6 +277,44 @@
           </div>
           Изученные мной алгоритмы и структуры данных были реализованы и собраны в
           <a href="https://github.com/Anshelen/algorithms-explore" target="_blank">репозитории</a>.
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/security.png"
+               th:src="@{/resources/img/techlogos/security.png}"
+               alt="Web security logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.security.title}">
+              Веб-безопасность</p>
+            <a href="javascript:void(0);" class="skills-block__more-link"
+               data-toggle="popover"
+               data-trigger="focus"
+               data-details="security_more" th:text="#{skills.more}">Подробнее...</a>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="security"></i>
+        </div>
+        <div id="security" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.security.title}">
+              Веб-безопасность</h3>
+            <p class="card-text" th:text="#{skills.security.content}">
+              Я знаю основы веб-безопасности, основные векторы атак и методы противодействия им.
+            </p>
+          </div>
+        </div>
+        <div id="security_more" class="d-none" th:utext="#{skills.security.more.content}">
+          Я прошел онлайн-курс Stepik по основам веб-безопасности. Сертификат:
+          <div class="list-group my-2">
+            <a href="https://stepik.org/cert/349423" target="_blank"
+               class="list-group-item list-group-item-action py-1">Анализ безопасности веб-проектов</a>
+          </div>
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
@@ -299,10 +338,8 @@
           <div class="card-body p-2">
             <h3 class="card-title mb-4" th:text="#{skills.soft-skills.title}">Мягкие навыки</h3>
             <p class="card-text" th:text="#{skills.soft-skills.content}">
-              Я имею опыт работы в команде, а также имею опыт управления проектом и небольшой
-              командой разработчиков. В мои обязанности входили ревью кода других разработчиков,
-              оценка временных затрат проектов, а также управление задачами с помощью программы
-              Redmine (аналог Jira).
+              Я имею опыт работы в команде, проведения ревью кода других разработчиков,
+              оценки временных затрат проектов, а также управления задачами с помощью Jira.
             </p>
           </div>
         </div>
@@ -338,7 +375,7 @@
           <div class="card-body p-2">
             <h3 class="card-title mb-4" th:text="#{skills.java.title}">Java</h3>
             <p class="card-text" th:text="#{skills.java.content}">
-              Мой основной язык программирования. Использую Java 8.</p>
+              Мой основной язык программирования. Работал с Java 8 и 11.</p>
           </div>
         </div>
         <div id="java_more" class="d-none" th:text="#{skills.java.more.content}">
@@ -371,6 +408,34 @@
               Универсальный фреймворк, обеспечивающий IoC и DI и многие другие
               дополнительные возможности, такие как управление транзакциями и упрощение
               тестирования.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/spring-boot.png"
+               th:src="@{/resources/img/techlogos/spring-boot.png}"
+               alt="Spring Boot logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.spring-boot.title}">
+              Spring Boot</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="spring-boot"></i>
+        </div>
+        <div id="spring-boot" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.spring-boot.title}">Spring Boot</h3>
+            <p class="card-text" th:text="#{skills.spring-boot.content}">
+              Модуль Spring для быстрой настройки и развертывания приложений. Также предоставляет
+              ряд решений для повышения производительности разработки, таких как LiveReload и Hot
+              Restart.
             </p>
           </div>
         </div>
@@ -412,7 +477,7 @@
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
             <p class="skills-block__content-title" th:text="#{skills.spring-security.title}">
-              Spring Security</p>
+              Spring Security + OAuth2</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
@@ -422,39 +487,12 @@
         <div id="spring-security" class="card d-none">
           <div class="card-body p-2">
             <h3 class="card-title mb-4" th:text="#{skills.spring-security.title}">
-              Spring Security</h3>
+              Spring Security + OAuth2</h3>
             <p class="card-text" th:text="#{skills.spring-security.content}">
               Модуль Spring, предоставляющий механизмы построения систем аутентификации и
               авторизации, а также другие возможности обеспечения безопасности для промышленных
-              приложений.
-          </div>
-        </div>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
-               src="../static/img/techlogos/spring-boot.png"
-               th:src="@{/resources/img/techlogos/spring-boot.png}"
-               alt="Spring Boot logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.spring-boot.title}">
-              Spring Boot</p>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="spring-boot"></i>
-        </div>
-        <div id="spring-boot" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.spring-boot.title}">Spring Boot</h3>
-            <p class="card-text" th:text="#{skills.spring-boot.content}">
-              Модуль Spring для быстрой настройки и развертывания приложений. Также предоставляет
-              ряд решений для повышения производительности разработки, таких как LiveReload и Hot
-              Restart.
-            </p>
+              приложений. Дополнительный модуль OAuth2 позволяет организовать авторизацию
+              пользователей через стороннего провайдера (№ Facebook).
           </div>
         </div>
       </div>
@@ -491,7 +529,7 @@
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
         <h3 class="skills-header__text my-auto" th:text="#{skills.database.title}">
-          Слой баз данных приложения</h3>
+          Базы данных и брокеры сообщений</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -518,17 +556,111 @@
           <div class="card-body p-2">
             <h3 class="card-title mb-4" th:text="#{skills.postgresql.title}">PostgreSQL</h3>
             <p class="card-text" th:text="#{skills.postgresql.content}">
-              Свободная объектно-реляционная система управления базами данных. Я имею опыт написания
-              запросов, а также проектирования небольших БД.
+              Свободная объектно-реляционная система управления базами данных.
             </p>
           </div>
         </div>
         <div id="postgresql_more" class="d-none" th:text="#{skills.postgresql.more.content}">
-          Это единственная СУБД, с которой я имел дело. У меня есть опыт написания SQL
-          запросов различной сложности, а также опыт работы со специфичными для PostgreSQL
-          типами (№ inet, enums, arrays). В работе мне не раз приходилось писать запросы
-          в процедурном стиле с помощью языкового расширения PL/pgSQL.
+          У меня есть опыт написания SQL запросов различной сложности, а также опыт работы со
+          специфичными для PostgreSQL типами (№ inet, enums, arrays). В работе мне не раз
+          приходилось писать запросы в процедурном стиле с помощью языкового расширения PL/pgSQL.
         </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/clickhouse.png"
+               th:src="@{/resources/img/techlogos/clickhouse.png}"
+               alt="ClickHouse logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.clickhouse.title}">
+              ClickHouse</p>
+            <a href="javascript:void(0);" class="skills-block__more-link"
+               data-toggle="popover"
+               data-trigger="focus"
+               data-details="clickhouse_more" th:text="#{skills.more}">Подробнее...</a>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="clickhouse"></i>
+        </div>
+        <div id="clickhouse" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.clickhouse.title}">ClickHouse</h3>
+            <p class="card-text" th:text="#{skills.clickhouse.content}">
+              Колоночная аналитическая СУБД с открытым кодом, позволяющая выполнять аналитические
+              запросы в режиме реального времени на структурированных больших данных.
+            </p>
+          </div>
+        </div>
+        <div id="clickhouse_more" class="d-none" th:text="#{skills.clickhouse.more.content}">
+          Помимо написания аналитических запросов, я работал с представлениями агрегированных данных
+          и внешними словарями ClickHouse.
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/aerospike.png"
+               th:src="@{/resources/img/techlogos/aerospike.png}"
+               alt="Aerospike logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.aerospike.title}">
+              Aerospike</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="aerospike"></i>
+        </div>
+        <div id="aerospike" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.aerospike.title}">Aerospike</h3>
+            <p class="card-text" th:text="#{skills.aerospike.content}">
+              Высокопроизводительная распределенная key-value база данных, работающая по принципу
+              хэш-таблицы. Имеет гибридную архитектуру: данные хранятся на SSD диске, в то время
+              как индексы располагаются в RAM.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/kafka.png"
+               th:src="@{/resources/img/techlogos/kafka.png}"
+               alt="Apache Kafka logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.kafka.title}">
+              Apache Kafka</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="kafka"></i>
+        </div>
+        <div id="kafka" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.kafka.title}">Apache Kafka</h3>
+            <p class="card-text" th:text="#{skills.kafka.content}">
+              Распределенная потоковая платформа, позволяющая обрабатывать триллионы событий в день.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-group skill-group mx-auto mt-3">
+      <div class="skills-header mb-2">
+        <h3 class="skills-header__text my-auto" th:text="#{skills.database-layer.title}">
+          Слой баз данных приложения</h3>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -562,111 +694,32 @@
         <div id="hibernate_more" class="d-none" th:text="#{skills.hibernate.more.content}">
           Из всех известных мне фреймворков, думаю, Hibernate я знаю лучше всего. В процессе
           работы я имел дело с оптимизацией запросов, имею опыт в реализации адаптеров для работы
-          со специфичными для PostgreSQL типами.
+          со специфичными для PostgreSQL типами. Также работал с дополнительными модулями Hibernate
+          Envers для организации аудита сущностей и Hibernate Search для полнотекстового поиска.
         </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
           <img class="skills-block__image"
-               src="../static/img/techlogos/hibernate_envers.png"
-               th:src="@{/resources/img/techlogos/hibernate_envers.png}"
-               alt="Hibernate Envers logo">
+               src="../static/img/techlogos/mybatis.png"
+               th:src="@{/resources/img/techlogos/mybatis.png}"
+               alt="MyBatis logo">
         </div>
         <div class="skills-block__content d-inline-flex ml-4">
           <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.hibernate-envers.title}">
-              Hibernate Envers</p>
-            <a href="javascript:void(0);" class="skills-block__more-link"
-               data-toggle="popover"
-               data-trigger="focus"
-               data-details="envers_more" th:text="#{skills.more}">Подробнее...</a>
+            <p class="skills-block__content-title" th:text="#{skills.mybatis.title}">MyBatis</p>
           </div>
           <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
              data-toggle="popover"
              data-trigger="hover"
-             data-details="envers"></i>
+             data-details="mybatis"></i>
         </div>
-        <div id="envers" class="card d-none">
+        <div id="mybatis" class="card d-none">
           <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.hibernate-envers.title}">
-              Hibernate Envers</h3>
-            <p class="card-text" th:text="#{skills.hibernate-envers.content}">
-              Модуль Hibernate, позволяющий отслеживать изменение сущностей. Нужен для осуществления
-              контроля над такими критическими элементами как платежи и права, а также
-              регистрировать действия пользователей/администраторов.
-            </p>
-          </div>
-        </div>
-        <div id="envers_more" class="d-none">
-          <span th:text="#{skills.hibernate-envers.more.content.part1}">
-            С помощью Hibernate Envers я реализовывал аудит действий пользователей в проекте</span>
-          <a href="projects.html#iqmanager" th:href="@{/projects#iqmanager}">iqmanager</a>.
-          <span th:text="#{skills.hibernate-envers.more.content.part2}">
-          Мной была реализована настройка аудита сущностей согласно условиям (conditional
-          auditing).</span>
-        </div>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
-               src="../static/img/techlogos/hibernate_search.png"
-               th:src="@{/resources/img/techlogos/hibernate_search.png}"
-               alt="Hibernate Search logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.hibernate-search.title}">
-              Hibernate Search</p>
-            <a href="javascript:void(0);" class="skills-block__more-link"
-               data-toggle="popover"
-               data-trigger="focus"
-               data-details="search_more" th:text="#{skills.more}">Подробнее...</a>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="search"></i>
-        </div>
-        <div id="search" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.hibernate-search.title}">
-              Hibernate Search</h3>
-            <p class="card-text" th:text="#{skills.hibernate-search.content}">
-              Модуль Hibernate для осуществления полнотекстового поиска (надстройка над Apache
-              Lucene).
-            </p>
-          </div>
-        </div>
-        <div id="search_more" class="d-none" th:text="#{skills.hibernate-search.more.content}">
-          Я имею опыт в составлении анализаторов полнотекстового поиска, а также написания
-          запросов к ним. Также я осуществлял доработку анализатора, анализируя содержимое индекса
-          с помощью модуля luke.
-        </div>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
-               src="../static/img/techlogos/hibernate_validator.png"
-               th:src="@{/resources/img/techlogos/hibernate_validator.png}"
-               alt="Hibernate Validator logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.hibernate-validator.title}">
-              Hibernate Validator</p>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="hibernate_validator"></i>
-        </div>
-        <div id="hibernate_validator" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.hibernate-validator.title}">
-              Hibernate Validator</h3>
-            <p class="card-text" th:text="#{skills.hibernate-validator.content}">
-              Модуль Hibernate для проверки верности и целостности данных согласно спецификации
-              JSR 380 (Bean Validation 2.0).
+            <h3 class="card-title mb-4" th:text="#{skills.mybatis.title}">MyBatis</h3>
+            <p class="card-text" th:text="#{skills.mybatis.content}">
+              Фреймворк для маппинга обектов СУБД к Java объектам. Более удобен, чем Hibernate, в
+              случае работы со сложными запросами или же хранимыми процедурами.
             </p>
           </div>
         </div>
@@ -693,6 +746,32 @@
             <p class="card-text" th:text="#{skills.flyway.content}">
               Библиотека, обеспечивающая версионность и управление миграциями баз данных. Нужна для
               синхронизации состояния БД у всей команды разработчиков.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/liquibase.png"
+               th:src="@{/resources/img/techlogos/liquibase.png}"
+               alt="Liquibase logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.liquibase.title}">Liquibase</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="liquibase"></i>
+        </div>
+        <div id="liquibase" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.liquibase.title}">Liquibase</h3>
+            <p class="card-text" th:text="#{skills.liquibase.content}">
+              Библиотека с открытым исходным кодом для отслеживания, управления и применения
+              изменений схемы базы данных. Альтернатива Flyway.
             </p>
           </div>
         </div>
@@ -726,32 +805,6 @@
             <p class="card-text" th:text="#{skills.thymeleaf.content}">
               Современный серверный механизм Java-шаблонов. Отлично взаимодействует со Spring
               технологиями.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
-               src="../static/img/techlogos/jsp.png"
-               th:src="@{/resources/img/techlogos/jsp.png}"
-               alt="JSP logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.jsp.title}">JSP</p>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="jsp"></i>
-        </div>
-        <div id="jsp" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.jsp.title}">JSP</h3>
-            <p class="card-text" th:text="#{skills.jsp.content}">
-              Технология, позволяющая веб-разработчикам создавать содержимое, которое имеет как
-              статические, так и динамические компоненты.
             </p>
           </div>
         </div>
@@ -1033,33 +1086,6 @@
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
           <img class="skills-block__image"
-               src="../static/img/techlogos/powermock.png"
-               th:src="@{/resources/img/techlogos/powermock.png}"
-               alt="Powermock logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.powermock.title}">Powermock</p>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="powermock"></i>
-        </div>
-        <div id="powermock"
-             class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.powermock.title}">Powermock</h3>
-            <p class="card-text" th:text="#{skills.powermock.content}">
-              Фреймворк, предоставляющий дополнительные возможности для создание заглушек по
-              сравнению с Mockito (№ задавать поведение приватных или же final методов).
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
                src="../static/img/techlogos/selenium.png"
                th:src="@{/resources/img/techlogos/selenium.png}"
                alt="Selenium logo">
@@ -1087,7 +1113,410 @@
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
+        <h3 class="skills-header__text my-auto" th:text="#{skills.assembly.title}">
+          Сборка и развертывание проектов</h3>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/maven.png"
+               th:src="@{/resources/img/techlogos/maven.png}"
+               alt="Maven logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.maven.title}">Maven</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="maven"></i>
+        </div>
+        <div id="maven" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.maven.title}">Maven</h3>
+            <p class="card-text" th:text="#{skills.maven.content}">
+              Фреймворк для автоматизации сборки проектов.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/tomcat.png"
+               th:src="@{/resources/img/techlogos/tomcat.png}"
+               alt="Tomcat logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.tomcat.title}">
+              Apache Tomcat</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="tomcat"></i>
+        </div>
+        <div id="tomcat" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.tomcat.title}">Apache Tomcat</h3>
+            <p class="card-text" th:text="#{skills.tomcat.content}">Контейнер сервлетов.</p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/docker.png"
+               th:src="@{/resources/img/techlogos/docker.png}"
+               alt="Docker logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.docker.title}">
+              Docker</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="docker"></i>
+        </div>
+        <div id="docker" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.docker.title}">Docker</h3>
+            <p class="card-text" th:text="#{skills.docker.content}">
+              Программное обеспечение для автоматизации развёртывания и управления приложениями в
+              средах с поддержкой контейнеризации. Позволяет «упаковать» приложение со всем его
+              окружением и зависимостями в контейнер, который может быть перенесён на любую
+              Linux-систему с поддержкой cgroups в ядре, а также предоставляет среду по управлению
+              контейнерами.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/jenkins.png"
+               th:src="@{/resources/img/techlogos/jenkins.png}"
+               alt="Jenkins logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.jenkins.title}">Jenkins</p>
+            <a href="javascript:void(0);" class="skills-block__more-link"
+               data-toggle="popover"
+               data-trigger="focus"
+               data-details="jenkins_more" th:text="#{skills.more}">Подробнее...</a>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="jenkins"></i>
+        </div>
+        <div id="jenkins" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.jenkins.title}">Jenkins</h3>
+            <p class="card-text" th:text="#{skills.jenkins.content}">Сервер непрерывной интеграции.
+            </p>
+          </div>
+        </div>
+        <div id="jenkins_more" class="d-none" th:utext="#{skills.jenkins.more.content}">
+          В рамках домашнего проекта я настраивал пайплайн со следующими шагами:
+          <ul>
+            <li>Сборка и тестирование кода</li>
+            <li>Создание Docker-образа и загрузка его в реестр образов</li>
+            <li>Обновление подов в кластере Kubernetes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/travis.png"
+               th:src="@{/resources/img/techlogos/travis.png}"
+               alt="Travis logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.travis.title}">Travis CI</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="travis"></i>
+        </div>
+        <div id="travis" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.travis.title}">Travis CI</h3>
+            <p class="card-text" th:text="#{skills.travis.content}">Веб-сервис для сборки и
+              тестирования программного обеспечения.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-group skill-group mx-auto mt-3">
+      <div class="skills-header mb-2">
+        <h3 class="skills-header__text my-auto" th:text="#{skills.infrastructure.title}">
+          Инфраструктура</h3>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/kubernetes.png"
+               th:src="@{/resources/img/techlogos/kubernetes.png}"
+               alt="Kubernetes logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.kubernetes.title}">Kubernetes</p>
+            <a href="javascript:void(0);" class="skills-block__more-link"
+               data-toggle="popover"
+               data-trigger="focus"
+               data-details="kubernetes_more" th:text="#{skills.more}">Подробнее...</a>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="kubernetes"></i>
+        </div>
+        <div id="kubernetes" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.kubernetes.title}">Kubernetes</h3>
+            <p class="card-text" th:text="#{skills.kubernetes.content}">
+              Открытое программное обеспечение для автоматизации развёртывания, масштабирования
+              контейнеризированных приложений и управления ими.
+            </p>
+          </div>
+        </div>
+        <div id="kubernetes_more" class="d-none" th:text="#{skills.kubernetes.more.content}">
+          В рамках домашнего проекта я писал конфигурацию кластера Kubernetes, где пытался
+          использовать максимальное количество возможностей этой платформы (такие как
+          автомасштабирование, квоты на ресурсы, управление секретами).
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/helm.png"
+               th:src="@{/resources/img/techlogos/helm.png}"
+               alt="Helm logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.helm.title}">Helm</p>
+            <a href="javascript:void(0);" class="skills-block__more-link"
+               data-toggle="popover"
+               data-trigger="focus"
+               data-details="helm_more" th:text="#{skills.more}">Подробнее...</a>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="helm"></i>
+        </div>
+        <div id="helm" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.helm.title}">Helm</h3>
+            <p class="card-text" th:text="#{skills.helm.content}">Система управления приложениями в
+              Kubernetes, позволяющая выполнять их установку, отслеживать состояние, выполнять
+              обновление, удаление.
+            </p>
+          </div>
+        </div>
+        <div id="helm_more" class="d-none" th:text="#{skills.helm.more.content}">
+          Имею опыт написания чарта на Helm 3, работал с Helm-репозиториями, создал свой на базе
+          GitHub Pages.
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/gcp.png"
+               th:src="@{/resources/img/techlogos/gcp.png}"
+               alt="Google Cloud Platform logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.gcp.title}">
+              Google Cloud Platform</p>
+            <a href="javascript:void(0);" class="skills-block__more-link"
+               data-toggle="popover"
+               data-trigger="focus"
+               data-details="gcp_more" th:text="#{skills.more}">Подробнее...</a>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="gcp"></i>
+        </div>
+        <div id="gcp" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.gcp.title}">Google Cloud Platform</h3>
+            <p class="card-text" th:text="#{skills.gcp.content}">Предоставляемый компанией Google
+              набор облачных служб.
+            </p>
+          </div>
+        </div>
+        <div id="gcp_more" class="d-none" th:text="#{skills.gcp.more.content}">
+          Работал с Google Kubernetes Engine, Google Compute Engine и Google Cloud Storage.
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/elk.png"
+               th:src="@{/resources/img/techlogos/elk.png}"
+               alt="ELK logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.elk.title}">ELK</p>
+            <a href="javascript:void(0);" class="skills-block__more-link"
+               data-toggle="popover"
+               data-trigger="focus"
+               data-details="elk_more" th:text="#{skills.more}">Подробнее...</a>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="elk"></i>
+        </div>
+        <div id="elk" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.elk.title}">ELK</h3>
+            <p class="card-text" th:text="#{skills.elk.content}">
+              ELK стек (Elasticsearch + Logstash + Kibana) позволяет организовать эффективный сбор
+              и мониторинг логов. Логи собираются с помощью beats (наиболее часто FileBeat),
+              обрабатываются в Logstash и сохраняются в БД Elasticsearch. Впоследствии с логами
+              можно работать через графический интерфейс Kibana.
+            </p>
+          </div>
+        </div>
+        <div id="elk_more" class="d-none" th:text="#{skills.elk.more.content}">
+          В рамках домашнего проекта я организовывал сбор логов с Kubernetes кластера. Разворачивал
+          кластер Elasticsearch из 3 нод, настраивал ILM-политики, описывал пайплайн в Logstash,
+          работал с Kibana.
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/heroku.png"
+               th:src="@{/resources/img/techlogos/heroku.png}"
+               alt="Heroku logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.heroku.title}">Heroku</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="heroku"></i>
+        </div>
+        <div id="heroku" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.heroku.title}">Heroku</h3>
+            <p class="card-text" th:text="#{skills.heroku.content}">Heroku - это PaaS-платформа,
+              которая позволяет создавать, запускать и эксплуатировать приложения в облаке.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/nginx.png"
+               th:src="@{/resources/img/techlogos/nginx.png}"
+               alt="Nginx logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.nginx.title}">Nginx</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="nginx"></i>
+        </div>
+        <div id="nginx" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.nginx.title}">Nginx</h3>
+            <p class="card-text" th:text="#{skills.nginx.content}">Веб-сервер, работающий на
+              Unix-подобных операционных системах. Обычно используется как балансировщик нагрузки
+              или же как обратный прокси.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-group skill-group mx-auto mt-3">
+      <div class="skills-header mb-2">
         <h3 class="skills-header__text my-auto" th:text="#{skills.blockchain.title}">Блокчейн</h3>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/bitcoin.png"
+               th:src="@{/resources/img/techlogos/bitcoin.png}"
+               alt="Bitcoin logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.bitcoin.title}">Bitcoin</p>
+            <a href="javascript:void(0);" class="skills-block__more-link"
+               data-toggle="popover"
+               data-trigger="focus"
+               data-details="bitcoin_more" th:text="#{skills.more}">Подробнее...</a>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="bitcoin"></i>
+        </div>
+        <div id="bitcoin" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.bitcoin.title}">Bitcoin</h3>
+            <p class="card-text" th:text="#{skills.bitcoin.content}">
+              Пиринговая платёжная система, использующая одноимённую единицу для учёта операций.
+            </p>
+          </div>
+        </div>
+        <div id="bitcoin_more" class="d-none" th:text="#{skills.bitcoin.more.content}">
+          Я работал с сетью Bitcoin как через Java фреймворк bitcoinj, так и напрямую через ноду
+          Bitcoin Core по протоколу JSON-RPC.
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/bitcoinj.png"
+               th:src="@{/resources/img/techlogos/bitcoinj.png}"
+               alt="Bitcoinj logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.bitcoinj.title}">bitcoinj</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="bitcoinj"></i>
+        </div>
+        <div id="bitcoinj" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.bitcoinj.title}">bitcoinj</h3>
+            <p class="card-text" th:text="#{skills.bitcoinj.content}">
+              Библиотека для работы по протоколу биткоина. Для управления кошельками и
+              транзакциями поддерживает собственную ноду.
+            </p>
+          </div>
+        </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -1110,8 +1539,8 @@
             <h3 class="card-title mb-4" th:text="#{skills.ethereum.title}">Ethereum</h3>
             <p class="card-text" th:text="#{skills.ethereum.content}">
               Блокчейн-платформа для создания децентрализованных онлайн-сервисов на базе умных
-              контрактов. Для ручного тестирования смарт-контрактов использовался тестовый блокчейн
-              Rinkeby.
+              контрактов. Для ручного тестирования смарт-контрактов может быть использован тестовый
+              блокчейн Rinkeby.
             </p>
           </div>
         </div>
@@ -1177,7 +1606,7 @@
           <div class="card-body p-2">
             <h3 class="card-title mb-4" th:text="#{skills.web3j.title}">Web3j</h3>
             <p class="card-text" th:text="#{skills.web3j.content}">Библиотека, предоставляющая Java
-              API к ethereum ноде.</p>
+              API к Ethereum ноде.</p>
           </div>
         </div>
         <div id="web3j_more" class="d-none" th:text="#{skills.web3j.more.content}">
@@ -1285,116 +1714,61 @@
 
     <div class="list-group skill-group mx-auto mt-3">
       <div class="skills-header mb-2">
-        <h3 class="skills-header__text my-auto" th:text="#{skills.assembly.title}">
-          Сборка и развертывание проектов</h3>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
-               src="../static/img/techlogos/maven.png"
-               th:src="@{/resources/img/techlogos/maven.png}"
-               alt="Maven logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.maven.title}">Maven</p>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="maven"></i>
-        </div>
-        <div id="maven" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.maven.title}">Maven</h3>
-            <p class="card-text" th:text="#{skills.maven.content}">
-              Фреймворк для автоматизации сборки проектов. В качестве домашнего проекта я создал
-              maven-архетип для быстрого создания веб-приложений с использованием Spring Boot +
-              Thymeleaf.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
-               src="../static/img/techlogos/travis.png"
-               th:src="@{/resources/img/techlogos/travis.png}"
-               alt="Travis logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.travis.title}">Travis CI</p>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="travis"></i>
-        </div>
-        <div id="travis" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.travis.title}">Travis CI</h3>
-            <p class="card-text" th:text="#{skills.travis.content}">Веб-сервис для сборки и
-              тестирования программного обеспечения.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
-               src="../static/img/techlogos/tomcat.png"
-               th:src="@{/resources/img/techlogos/tomcat.png}"
-               alt="Tomcat logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.tomcat.title}">
-              Apache Tomcat</p>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="tomcat"></i>
-        </div>
-        <div id="tomcat" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.tomcat.title}">Apache Tomcat</h3>
-            <p class="card-text" th:text="#{skills.tomcat.content}">Контейнер сервлетов.</p>
-          </div>
-        </div>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
-               src="../static/img/techlogos/heroku.png"
-               th:src="@{/resources/img/techlogos/heroku.png}"
-               alt="Heroku logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.heroku.title}">Heroku</p>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="heroku"></i>
-        </div>
-        <div id="heroku" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.heroku.title}">Heroku</h3>
-            <p class="card-text" th:text="#{skills.heroku.content}">Heroku - это PaaS-платформа,
-              которая позволяет создавать, запускать и эксплуатировать приложения в облаке.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="list-group skill-group mx-auto mt-3">
-      <div class="skills-header mb-2">
         <h3 class="skills-header__text my-auto" th:text="#{skills.auxiliary-technologies.title}">
-          Вспомогательные серверные технологии</h3>
+          Прочее</h3>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/rest.png"
+               th:src="@{/resources/img/techlogos/rest.png}"
+               alt="REST logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.rest.title}">REST</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="rest"></i>
+        </div>
+        <div id="rest" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.rest.title}">REST</h3>
+            <p class="card-text" th:text="#{skills.rest.content}">
+              Архитектурный стиль взаимодействия компонентов распределенной системы в
+              компьютерной сети. Как правило, используется для построения веб-служб.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="list-group-item skills-block d-inline-flex">
+        <div class="skills-block__image-container">
+          <img class="skills-block__image"
+               src="../static/img/techlogos/thrift.png"
+               th:src="@{/resources/img/techlogos/thrift.png}"
+               alt="Apache Thrift logo">
+        </div>
+        <div class="skills-block__content d-inline-flex ml-4">
+          <div class="d-flex mr-3 flex-column w-100">
+            <p class="skills-block__content-title" th:text="#{skills.thrift.title}">Apache Thrift</p>
+          </div>
+          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
+             data-toggle="popover"
+             data-trigger="hover"
+             data-details="thrift"></i>
+        </div>
+        <div id="thrift" class="card d-none">
+          <div class="card-body p-2">
+            <h3 class="card-title mb-4" th:text="#{skills.thrift.title}">Apache Thrift</h3>
+            <p class="card-text" th:text="#{skills.thrift.content}">
+              Язык описания интерфейсов, который используется для определения и создания служб
+              под разные языки программирования. Является фреймворком к удалённому вызову процедур.
+              Сочетает в себе программный конвейер с движком генерации кода для разработки служб.
+            </p>
+          </div>
+        </div>
       </div>
       <div class="list-group-item skills-block d-inline-flex">
         <div class="skills-block__image-container">
@@ -1451,82 +1825,6 @@
               что позволяет гарантировать их выполнение даже при временном отказе системы или же
               после перезагрузки сервера.
             </p>
-          </div>
-        </div>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
-               src="../static/img/techlogos/velocity.png"
-               th:src="@{/resources/img/techlogos/velocity.png}"
-               alt="Velocity logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.velocity.title}">
-              Apache Velocity</p>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="velocity"></i>
-        </div>
-        <div id="velocity"
-             class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.velocity.title}">Apache Velocity</h3>
-            <p class="card-text" th:text="#{skills.velocity.content}">
-              Процессор шаблонов, предоставляющий простой, но одновременно гибкий шаблонный язык.
-              В основном использовался мной для генерации e-mail сообщений.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
-               src="../static/img/techlogos/jackson.png"
-               th:src="@{/resources/img/techlogos/jackson.png}"
-               alt="Jackson logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.jackson.title}">Jackson</p>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="jackson"></i>
-        </div>
-        <div id="jackson" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.jackson.title}">Jackson</h3>
-            <p class="card-text" th:text="#{skills.jackson.content}">Java библиотека для работы с
-              данными в формате JSON.</p>
-          </div>
-        </div>
-      </div>
-      <div class="list-group-item skills-block d-inline-flex">
-        <div class="skills-block__image-container">
-          <img class="skills-block__image"
-               src="../static/img/techlogos/jaxb.png"
-               th:src="@{/resources/img/techlogos/jaxb.png}"
-               alt="JAXB logo">
-        </div>
-        <div class="skills-block__content d-inline-flex ml-4">
-          <div class="d-flex mr-3 flex-column w-100">
-            <p class="skills-block__content-title" th:text="#{skills.jaxb.title}">JAXB</p>
-          </div>
-          <i class="fa fa-question-circle-o ml-auto skills-block__question" aria-hidden="true"
-             data-toggle="popover"
-             data-trigger="hover"
-             data-details="jaxb"></i>
-        </div>
-        <div id="jaxb" class="card d-none">
-          <div class="card-body p-2">
-            <h3 class="card-title mb-4" th:text="#{skills.jaxb.title}">JAXB</h3>
-            <p class="card-text" th:text="#{skills.jaxb.content}">Java библиотека для работы с
-              данными в формате XML.</p>
           </div>
         </div>
       </div>
