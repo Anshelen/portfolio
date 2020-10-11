@@ -141,6 +141,14 @@ label.error {
   margin-right: 3px;
 }
 
+.social-widget__telegram_header {
+  font-size: 20px;
+}
+
+.social-widget__telegram_footer {
+  font-size: 14px;
+}
+
 .social-widget:hover {
   color: #fdc134;
 }
