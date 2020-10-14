@@ -5,15 +5,22 @@ import dev.shelenkov.portfolio.model.Role;
 import dev.shelenkov.portfolio.model.VerificationToken;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
+import dev.shelenkov.portfolio.security.ExtendedUser;
+import dev.shelenkov.portfolio.security.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -101,6 +108,9 @@ public class RegistrationService implements IRegistrationService {
         }
 
         account.setEnabled(true);
+
+        loginAccount(account);
+
         return accountRepository.save(account);
     }
 
@@ -122,5 +132,19 @@ public class RegistrationService implements IRegistrationService {
 
     private static String getRandomPassword() {
         return RandomStringUtils.random(8);
+    }
+
+    private void loginAccount(Account account) {
+        Collection<? extends GrantedAuthority> authorities
+            = SecurityUtils.generateAuthoritiesList(account);
+        ExtendedUser user = new ExtendedUser(
+            account.getEmail(),
+            account.getPassword(),
+            account.isEnabled(),
+            authorities,
+            account.getUsername());
+        user.eraseCredentials();
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, authorities);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }
