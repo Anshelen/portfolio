@@ -1,5 +1,6 @@
 package dev.shelenkov.portfolio.config;
 
+import dev.shelenkov.portfolio.web.auxiliary.IpArgumentResolver;
 import dev.shelenkov.portfolio.web.auxiliary.SupportedLanguagesCookieLocaleResolver;
 import dev.shelenkov.portfolio.web.converter.ResumeFormatConverter;
 import dev.shelenkov.portfolio.web.converter.ResumeLanguageConverter;
@@ -9,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -21,6 +23,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -58,6 +61,11 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new ResumeLanguageConverter());
         registry.addConverter(new ResumeFormatConverter());
+    }
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new IpArgumentResolver());
     }
 
     @Override

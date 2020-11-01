@@ -61,5 +61,5 @@ public interface IRegistrationService {
      *
      * @param email user's email
      */
-    boolean canSendConfirmationEmail(String email);
+    boolean isSendConfirmationEmailForbidden(String email);
 }

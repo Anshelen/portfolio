@@ -29,6 +29,7 @@
         <sendgrid.version>4.5.0</sendgrid.version>
         <thymeleaf.spring.sercurity>3.0.4.RELEASE</thymeleaf.spring.sercurity>
         <jsoup>1.12.1</jsoup>
+        <guava>29.0-jre</guava>
     </properties>
 
     <dependencies>
@@ -121,6 +122,11 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${apache.commons.io}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

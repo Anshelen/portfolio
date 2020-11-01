@@ -1,11 +1,15 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import dev.shelenkov.portfolio.model.Account;
+import dev.shelenkov.portfolio.service.auxiliary.RequestAttemptsService;
 import dev.shelenkov.portfolio.service.registration.IRegistrationService;
 import dev.shelenkov.portfolio.service.registration.TokenExpiredException;
 import dev.shelenkov.portfolio.service.registration.TokenNotValidException;
+import dev.shelenkov.portfolio.web.auxiliary.Ip;
 import dev.shelenkov.portfolio.web.wrappers.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +25,11 @@ import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class RegistrationController {
 
     private final IRegistrationService registrationService;
+    private final RequestAttemptsService requestAttemptsService;
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -61,12 +67,19 @@ public class RegistrationController {
     }
 
     @GetMapping("/resendRegistrationEmail")
-    public ResponseEntity<Void> resendConfirmationEmail(@RequestParam("email") String email) {
-        if (registrationService.canSendConfirmationEmail(email)) {
-            registrationService.sendConfirmationEmail(email);
-            return ResponseEntity.ok().build();
-        } else {
+    public ResponseEntity<Void> resendConfirmationEmail(@RequestParam("email") String email,
+                                                        @Ip String ip) {
+
+        log.debug("Resending confirmation email. Email: {}, ip: {}", email, ip);
+        if (requestAttemptsService.areTooManyConfirmationEmailsResent(ip)) {
+            log.warn("Too much attempts to resend confirmation emails. Blocked ip: {}", ip);
+            return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
+        }
+        if (registrationService.isSendConfirmationEmailForbidden(email)) {
             return ResponseEntity.badRequest().build();
         }
+        registrationService.sendConfirmationEmail(email);
+        requestAttemptsService.registerConfirmationEmailResent(ip);
+        return ResponseEntity.ok().build();
     }
 }

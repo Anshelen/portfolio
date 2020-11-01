@@ -33,7 +33,6 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
@@ -182,22 +181,22 @@ class RegistrationServiceTests {
             OnRegistrationCompleteEvent event = eventCaptor.getValue();
             assertThat(event.getAccountId()).isEqualTo(ACCOUNT_ID);
 
-            verify(accountRepository, times(2)).getByEmail(EMAIL);
+            verify(accountRepository).getByEmail(EMAIL);
             verify(registrationListener).onApplicationEvent(any());
         }
 
         @Test
-        public void noAccountWithProvidedEmail_IllegalArgumentException() {
-            assertThrows(IllegalArgumentException.class,
+        public void noAccountWithProvidedEmail_IllegalStateException() {
+            assertThrows(IllegalStateException.class,
                 () -> registrationService.sendConfirmationEmail(EMAIL));
             verify(accountRepository).getByEmail(EMAIL);
             verify(registrationListener, never()).onApplicationEvent(any());
         }
 
         @Test
-        public void accountIsEnabled_IllegalArgumentException() {
+        public void accountIsEnabled_IllegalStateException() {
             doReturn(createEnabledAccount()).when(accountRepository).getByEmail(EMAIL);
-            assertThrows(IllegalArgumentException.class,
+            assertThrows(IllegalStateException.class,
                 () -> registrationService.sendConfirmationEmail(EMAIL));
             verify(accountRepository).getByEmail(EMAIL);
             verify(registrationListener, never()).onApplicationEvent(any());
@@ -206,8 +205,8 @@ class RegistrationServiceTests {
     }
 
     @Nested
-    @DisplayName("canSendConfirmationEmail tests")
-    class CanSendConfirmationEmailTests {
+    @DisplayName("isSendConfirmationEmailForbidden tests")
+    class IsSendConfirmationEmailForbiddenTests {
 
         @AfterEach
         public void afterEach() {
@@ -215,23 +214,23 @@ class RegistrationServiceTests {
         }
 
         @Test
-        public void ok_True() {
+        public void disabledAccount_False() {
             doReturn(createDisabledAccount()).when(accountRepository).getByEmail(EMAIL);
-            boolean result = registrationService.canSendConfirmationEmail(EMAIL);
+            boolean result = registrationService.isSendConfirmationEmailForbidden(EMAIL);
+            assertThat(result).isFalse();
+        }
+
+        @Test
+        public void noAccountWithProvidedEmail_True() {
+            boolean result = registrationService.isSendConfirmationEmailForbidden(EMAIL);
             assertThat(result).isTrue();
         }
 
         @Test
-        public void noAccountWithProvidedEmail_False() {
-            boolean result = registrationService.canSendConfirmationEmail(EMAIL);
-            assertThat(result).isFalse();
-        }
-
-        @Test
-        public void accountIsEnabled_False() {
+        public void accountIsEnabled_True() {
             doReturn(createEnabledAccount()).when(accountRepository).getByEmail(EMAIL);
-            boolean result = registrationService.canSendConfirmationEmail(EMAIL);
-            assertThat(result).isFalse();
+            boolean result = registrationService.isSendConfirmationEmailForbidden(EMAIL);
+            assertThat(result).isTrue();
         }
 
     }

@@ -117,17 +117,17 @@ public class RegistrationService implements IRegistrationService {
     @Transactional
     @Override
     public void sendConfirmationEmail(String email) {
-        Validate.isTrue(canSendConfirmationEmail(email),
-            "Confirmation email can't be sent");
         Account account = accountRepository.getByEmail(email);
+        Validate.validState(account != null);
+        Validate.validState(!account.isEnabled());
         eventPublisher.publishEvent(
             new OnRegistrationCompleteEvent(this, account));
     }
 
     @Override
-    public boolean canSendConfirmationEmail(String email) {
+    public boolean isSendConfirmationEmailForbidden(String email) {
         Account account = accountRepository.getByEmail(email);
-        return (account != null) && !account.isEnabled();
+        return (account == null) || account.isEnabled();
     }
 
     private static String getRandomPassword() {
