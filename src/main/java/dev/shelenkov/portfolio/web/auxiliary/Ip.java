@@ -8,8 +8,7 @@ import java.lang.annotation.Target;
 
 /**
  * Annotation which indicates that a method parameter should be bound to client IP address
- * string variable. Only IPv4 are supported. In case of not valid request data {@code null} can
- * be returned.
+ * string variable. Only IPv4 are supported.
  */
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)

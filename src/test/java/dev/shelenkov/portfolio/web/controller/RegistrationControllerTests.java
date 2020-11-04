@@ -89,16 +89,12 @@ public class RegistrationControllerTests {
     }
 
     @Test
-    public void resendConfirmationEmail_tooManyAttemptsWithCorruptedXForwardedForHeader_429AndIpParameterIsNull() throws Exception {
-        expectTooManyResendConfirmationEmailAttemptsForIp(null);
-
+    public void resendConfirmationEmail_corruptedXForwardedForHeader_400() throws Exception {
         mockMvc.perform(
             get("/resendRegistrationEmail")
                 .queryParam("email", "email@mail.com")
                 .header("X-Forwarded-For", "corrupted"))
-            .andExpect(status().isTooManyRequests());
-
-        assertIpCheckedForTooManyResendAttempts(null);
+            .andExpect(status().isBadRequest());
     }
 
     private void expectTooManyResendConfirmationEmailAttemptsForIp(String ip) {

@@ -17,12 +17,6 @@ public class RequestAttemptsServiceTests {
     }
 
     @Test
-    public void areTooManyConfirmationEmailsResent_nullIp_true() {
-        boolean result = service.areTooManyConfirmationEmailsResent(null);
-        assertThat(result).isTrue();
-    }
-
-    @Test
     public void areTooManyConfirmationEmailsResent_noConfirmationEmailsSent_false() {
         boolean result = service.areTooManyConfirmationEmailsResent("192.168.1.1");
         assertThat(result).isFalse();

@@ -6,7 +6,6 @@ import com.google.common.cache.LoadingCache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutionException;
@@ -27,7 +26,7 @@ public class RequestAttemptsService {
         this.maxResendConfirmationEmailAttempts = maxResendConfirmationEmailAttempts;
     }
 
-    @SuppressWarnings("AnonymousInnerClass")
+    @SuppressWarnings({"AnonymousInnerClass", "AnonymousInnerClassMayBeStatic"})
     private final LoadingCache<String, Integer> confirmationEmailAttemptsCache
         = CacheBuilder.newBuilder()
         .expireAfterWrite(1, TimeUnit.DAYS)
@@ -47,12 +46,8 @@ public class RequestAttemptsService {
         }
     }
 
-    public boolean areTooManyConfirmationEmailsResent(@Nullable String ip) {
+    public boolean areTooManyConfirmationEmailsResent(@NonNull String ip) {
         try {
-            if (ip == null) {
-                log.warn("areTooManyConfirmationEmailsResent. Null IP");
-                return true;
-            }
             return confirmationEmailAttemptsCache.get(ip) >= maxResendConfirmationEmailAttempts;
         } catch (ExecutionException e) {
             log.error("areTooManyConfirmationEmailsResent. Error", e);
