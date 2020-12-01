@@ -19,15 +19,23 @@ public class MockUserDetailsServiceImpl extends AbstractExtendedUserDetailsServi
             "user@mail.ru",
             passwordEncoder.encode("user"),
             Role.USER);
+        user.setEnabled(true);
         users.put(user.getEmail(), user);
+
+        Account disabledUser = new Account(
+            "disabled",
+            "disabled@mail.ru",
+            passwordEncoder.encode("disabled"),
+            Role.USER);
+        users.put(disabledUser.getEmail(), disabledUser);
 
         Account admin = new Account(
             "admin",
             "admin@mail.ru",
             passwordEncoder.encode("admin"),
             Role.ADMIN);
+        admin.setEnabled(true);
         users.put(admin.getEmail(), admin);
-
     }
 
     @Override
