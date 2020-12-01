@@ -1,6 +1,8 @@
 package dev.shelenkov.portfolio.web.controller;
 
+import dev.shelenkov.portfolio.service.auxiliary.ISendEmailToAdminAttemptsAware;
 import dev.shelenkov.portfolio.service.mail.EmailService;
+import dev.shelenkov.portfolio.web.auxiliary.Ip;
 import dev.shelenkov.portfolio.web.wrappers.dto.EmailDTO;
 import dev.shelenkov.portfolio.web.wrappers.error.ServerErrorResponse;
 import lombok.RequiredArgsConstructor;
@@ -22,14 +24,22 @@ import java.io.IOException;
 public class EmailController {
 
     private final EmailService emailService;
+    private final ISendEmailToAdminAttemptsAware sendEmailToAdminAttemptsAwareService;
 
     @SuppressWarnings("FeatureEnvy")
     @PostMapping("/email/send")
-    public ResponseEntity<Void> sendEmail(@Valid @RequestBody EmailDTO emailDTO)
+    public ResponseEntity<Void> sendEmail(@Valid @RequestBody EmailDTO emailDTO, @Ip String ip)
         throws IOException {
+
+        if (sendEmailToAdminAttemptsAwareService.areTooManyEmailsToAdminSent(ip)) {
+            log.warn("Too much attempts to send email to admin. Blocked ip: {}", ip);
+            return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
+        }
 
         emailService.sendSimpleEmailToAdmin(
             emailDTO.getName(), emailDTO.getSubject(), emailDTO.getText());
+        sendEmailToAdminAttemptsAwareService.registerEmailToAdminSent(ip);
+
         return ResponseEntity.ok().build();
     }
 

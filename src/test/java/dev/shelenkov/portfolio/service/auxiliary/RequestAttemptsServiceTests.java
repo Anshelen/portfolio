@@ -9,12 +9,14 @@ public class RequestAttemptsServiceTests {
 
     private static final int MAX_RESEND_CONFIRMATION_EMAIL_ATTEMPTS = 3;
     private static final int MAX_LOGIN_ATTEMPTS = 3;
+    private static final int MAX_SEND_EMAIL_TO_ADMIN_ATTEMPTS = 3;
 
     private RequestAttemptsService service;
 
     @BeforeEach
     public void init() {
-        service = new RequestAttemptsService(MAX_RESEND_CONFIRMATION_EMAIL_ATTEMPTS, MAX_LOGIN_ATTEMPTS);
+        service = new RequestAttemptsService(
+            MAX_RESEND_CONFIRMATION_EMAIL_ATTEMPTS, MAX_LOGIN_ATTEMPTS, MAX_SEND_EMAIL_TO_ADMIN_ATTEMPTS);
     }
 
     @Test
@@ -55,5 +57,20 @@ public class RequestAttemptsServiceTests {
         service.registerFailedLogin("192.168.1.1");
         boolean result = service.areTooManyFailedLoginAttempts("192.168.1.1");
         assertThat(result).isFalse();
+    }
+
+    @Test
+    public void areTooManyEmailsToAdminSent_noEmailsToAdminSent_false() {
+        boolean result = service.areTooManyEmailsToAdminSent("192.168.1.1");
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    public void areTooManyEmailsToAdminSent_tooManyEmailsToAdminSent_true() {
+        service.registerEmailToAdminSent("192.168.1.1");
+        service.registerEmailToAdminSent("192.168.1.1");
+        service.registerEmailToAdminSent("192.168.1.1");
+        boolean result = service.areTooManyEmailsToAdminSent("192.168.1.1");
+        assertThat(result).isTrue();
     }
 }

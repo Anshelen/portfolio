@@ -2,6 +2,7 @@ package dev.shelenkov.portfolio.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.shelenkov.portfolio.annotations.ConfiguredWebMvcTest;
+import dev.shelenkov.portfolio.service.auxiliary.ISendEmailToAdminAttemptsAware;
 import dev.shelenkov.portfolio.service.mail.EmailService;
 import dev.shelenkov.portfolio.web.wrappers.dto.EmailDTO;
 import org.junit.jupiter.api.Test;
@@ -14,11 +15,13 @@ import java.io.IOException;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -36,6 +39,9 @@ public class EmailControllerTests {
     @MockBean
     private EmailService emailService;
 
+    @MockBean
+    private ISendEmailToAdminAttemptsAware sendEmailToAdminAttemptsAwareService;
+
     @Test
     public void test_noCsrfToken_forbidden() throws Exception {
         EmailDTO data = new EmailDTO("name", "subject", "text");
@@ -45,7 +51,6 @@ public class EmailControllerTests {
             .content(body))
             .andExpect(status().isForbidden());
     }
-
 
     @Test
     public void test_normal() throws Exception {
@@ -89,5 +94,18 @@ public class EmailControllerTests {
         verify(emailService, times(1))
             .sendSimpleEmailToAdmin(anyString(), anyString(), anyString());
         verifyNoMoreInteractions(emailService);
+    }
+
+    @Test
+    public void test_tooManySendAttempts_429() throws Exception {
+        when(sendEmailToAdminAttemptsAwareService.areTooManyEmailsToAdminSent(any())).thenReturn(true);
+
+        EmailDTO data = new EmailDTO("name", "subject", "text");
+        String body = objectMapper.writeValueAsString(data);
+        mockMvc.perform(post("/email/send")
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content(body)
+            .with(csrf()))
+            .andExpect(status().isTooManyRequests());
     }
 }

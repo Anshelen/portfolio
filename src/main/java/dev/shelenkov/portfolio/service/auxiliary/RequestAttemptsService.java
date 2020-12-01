@@ -16,10 +16,12 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
-public class RequestAttemptsService implements ILoginAttemptsAware, IResendConfirmationEmailAttemptsAware {
+public class RequestAttemptsService
+    implements ILoginAttemptsAware, IResendConfirmationEmailAttemptsAware, ISendEmailToAdminAttemptsAware {
 
     private final int maxResendConfirmationEmailAttempts;
     private final int maxLoginAttempts;
+    private final int maxSendEmailToAdminAttempts;
 
     @SuppressWarnings({"AnonymousInnerClass", "AnonymousInnerClassMayBeStatic"})
     private final LoadingCache<String, Integer> confirmationEmailAttemptsCache
@@ -41,12 +43,24 @@ public class RequestAttemptsService implements ILoginAttemptsAware, IResendConfi
             }
         });
 
+    @SuppressWarnings({"AnonymousInnerClass", "AnonymousInnerClassMayBeStatic"})
+    private final LoadingCache<String, Integer> sendEmailToAdminAttemptsCache
+        = CacheBuilder.newBuilder()
+        .expireAfterWrite(1, TimeUnit.DAYS)
+        .build(new CacheLoader<String, Integer>() {
+            public Integer load(@NonNull String key) {
+                return 0;
+            }
+        });
+
     public RequestAttemptsService(
         @Value("${max_attempts.resend_confirmation_email:3}") int maxResendConfirmationEmailAttempts,
-        @Value("${max_attempts.login:3}") int maxLoginAttempts) {
+        @Value("${max_attempts.login:3}") int maxLoginAttempts,
+        @Value("${max_attempts.send_email_to_admin:3}") int maxSendEmailToAdminAttempts) {
 
         this.maxResendConfirmationEmailAttempts = maxResendConfirmationEmailAttempts;
         this.maxLoginAttempts = maxLoginAttempts;
+        this.maxSendEmailToAdminAttempts = maxSendEmailToAdminAttempts;
     }
 
     @Override
@@ -92,6 +106,27 @@ public class RequestAttemptsService implements ILoginAttemptsAware, IResendConfi
             return loginAttemptsCache.get(ip) >= maxLoginAttempts;
         } catch (ExecutionException e) {
             log.error("areTooManyFailedLoginAttempts. Error", e);
+            return false;
+        }
+    }
+
+    @Override
+    public void registerEmailToAdminSent(@NonNull String ip) {
+        try {
+            int attempts = sendEmailToAdminAttemptsCache.get(ip);
+            attempts++;
+            sendEmailToAdminAttemptsCache.put(ip, attempts);
+        } catch (ExecutionException e) {
+            log.error("registerEmailToAdminSent. Error", e);
+        }
+    }
+
+    @Override
+    public boolean areTooManyEmailsToAdminSent(@NonNull String ip) {
+        try {
+            return sendEmailToAdminAttemptsCache.get(ip) >= maxSendEmailToAdminAttempts;
+        } catch (ExecutionException e) {
+            log.error("areTooManyEmailsToAdminSent. Error", e);
             return false;
         }
     }
