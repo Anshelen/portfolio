@@ -26,6 +26,7 @@ Security
 - CSRF protection
 - Hierarchical roles
 - Restriction on number of user sessions
+- Protection against brute force authentication attempts
 - Security tests
 
 Other
@@ -70,6 +71,7 @@ following environment variables:
   * SECURITY_REMEMBER_ME_KEY
   * SECURITY_REMEMBER_ME_SECURE
   * SECURITY_HEADERS_ACCESS_CONTROL_ALLOW_ORIGIN
+  * SERVER_SERVLET_SESSION_COOKIE_SECURE
   
   OAuth2
   

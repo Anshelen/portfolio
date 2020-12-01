@@ -16,26 +16,40 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
-public class RequestAttemptsService {
+public class RequestAttemptsService implements ILoginAttemptsAware, IResendConfirmationEmailAttemptsAware {
 
     private final int maxResendConfirmationEmailAttempts;
-
-    public RequestAttemptsService(
-        @Value("${max_attempts.resend_confirmation_email:3}") int maxResendConfirmationEmailAttempts) {
-
-        this.maxResendConfirmationEmailAttempts = maxResendConfirmationEmailAttempts;
-    }
+    private final int maxLoginAttempts;
 
     @SuppressWarnings({"AnonymousInnerClass", "AnonymousInnerClassMayBeStatic"})
     private final LoadingCache<String, Integer> confirmationEmailAttemptsCache
         = CacheBuilder.newBuilder()
         .expireAfterWrite(1, TimeUnit.DAYS)
         .build(new CacheLoader<String, Integer>() {
-            public Integer load(String key) {
+            public Integer load(@NonNull String key) {
                 return 0;
             }
         });
 
+    @SuppressWarnings({"AnonymousInnerClass", "AnonymousInnerClassMayBeStatic"})
+    private final LoadingCache<String, Integer> loginAttemptsCache
+        = CacheBuilder.newBuilder()
+        .expireAfterWrite(1, TimeUnit.DAYS)
+        .build(new CacheLoader<String, Integer>() {
+            public Integer load(@NonNull String key) {
+                return 0;
+            }
+        });
+
+    public RequestAttemptsService(
+        @Value("${max_attempts.resend_confirmation_email:3}") int maxResendConfirmationEmailAttempts,
+        @Value("${max_attempts.login:3}") int maxLoginAttempts) {
+
+        this.maxResendConfirmationEmailAttempts = maxResendConfirmationEmailAttempts;
+        this.maxLoginAttempts = maxLoginAttempts;
+    }
+
+    @Override
     public void registerConfirmationEmailResent(@NonNull String ip) {
         try {
             int attempts = confirmationEmailAttemptsCache.get(ip);
@@ -46,11 +60,38 @@ public class RequestAttemptsService {
         }
     }
 
+    @Override
     public boolean areTooManyConfirmationEmailsResent(@NonNull String ip) {
         try {
             return confirmationEmailAttemptsCache.get(ip) >= maxResendConfirmationEmailAttempts;
         } catch (ExecutionException e) {
             log.error("areTooManyConfirmationEmailsResent. Error", e);
+            return false;
+        }
+    }
+
+    @Override
+    public void registerSuccessfulLogin(@NonNull String ip) {
+        loginAttemptsCache.invalidate(ip);
+    }
+
+    @Override
+    public void registerFailedLogin(@NonNull String ip) {
+        try {
+            int attempts = loginAttemptsCache.get(ip);
+            attempts++;
+            loginAttemptsCache.put(ip, attempts);
+        } catch (ExecutionException e) {
+            log.error("registerFailedLogin. Error", e);
+        }
+    }
+
+    @Override
+    public boolean areTooManyFailedLoginAttempts(@NonNull String ip) {
+        try {
+            return loginAttemptsCache.get(ip) >= maxLoginAttempts;
+        } catch (ExecutionException e) {
+            log.error("areTooManyFailedLoginAttempts. Error", e);
             return false;
         }
     }

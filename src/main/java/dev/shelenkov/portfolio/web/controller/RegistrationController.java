@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import dev.shelenkov.portfolio.model.Account;
-import dev.shelenkov.portfolio.service.auxiliary.RequestAttemptsService;
+import dev.shelenkov.portfolio.service.auxiliary.IResendConfirmationEmailAttemptsAware;
 import dev.shelenkov.portfolio.service.registration.IRegistrationService;
 import dev.shelenkov.portfolio.service.registration.TokenExpiredException;
 import dev.shelenkov.portfolio.service.registration.TokenNotValidException;
@@ -29,7 +29,7 @@ import java.util.UUID;
 public class RegistrationController {
 
     private final IRegistrationService registrationService;
-    private final RequestAttemptsService requestAttemptsService;
+    private final IResendConfirmationEmailAttemptsAware resendConfirmationEmailAttemptsAwareService;
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -71,7 +71,7 @@ public class RegistrationController {
                                                         @Ip String ip) {
 
         log.debug("Resending confirmation email. Email: {}, ip: {}", email, ip);
-        if (requestAttemptsService.areTooManyConfirmationEmailsResent(ip)) {
+        if (resendConfirmationEmailAttemptsAwareService.areTooManyConfirmationEmailsResent(ip)) {
             log.warn("Too much attempts to resend confirmation emails. Blocked ip: {}", ip);
             return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
         }
@@ -79,7 +79,7 @@ public class RegistrationController {
             return ResponseEntity.badRequest().build();
         }
         registrationService.sendConfirmationEmail(email);
-        requestAttemptsService.registerConfirmationEmailResent(ip);
+        resendConfirmationEmailAttemptsAwareService.registerConfirmationEmailResent(ip);
         return ResponseEntity.ok().build();
     }
 }

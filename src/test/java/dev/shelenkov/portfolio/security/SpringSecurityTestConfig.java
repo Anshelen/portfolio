@@ -1,5 +1,6 @@
 package dev.shelenkov.portfolio.security;
 
+import dev.shelenkov.portfolio.service.auxiliary.ILoginAttemptsAware;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
@@ -14,6 +15,12 @@ public class SpringSecurityTestConfig {
     @Primary
     public UserDetailsService userDetailsService() {
         return new MockUserDetailsServiceImpl();
+    }
+
+    @Bean
+    @Primary
+    public ILoginAttemptsAware requestAttemptsService() {
+        return new MockLoginAttemptsAwareService();
     }
 
     @Bean

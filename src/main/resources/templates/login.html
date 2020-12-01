@@ -163,6 +163,8 @@
           Аккаунт заблокирован</p>
         <p th:case="'NoVerifiedEmail'" th:text="#{login.error.no-verified-account}">
           К провайдеру входа не привязан адрес электронной почты</p>
+        <p th:case="'TooManyAttempts'" th:text="#{login.error.too-many-login-attempts}">
+          Превышено количество неуспешных попыток входа. Попробуйте позже</p>
         <!--suppress ThymeleafVariablesResolveInspection -->
         <div th:case="'Disabled'" th:with="mail=${param.email[0]}">
           <p th:text="#{login.error.account-disabled}">Аккаунт не активирован.</p>

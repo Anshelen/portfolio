@@ -2,6 +2,7 @@ package dev.shelenkov.portfolio.security;
 
 import dev.shelenkov.portfolio.model.Role;
 import dev.shelenkov.portfolio.security.oauth2.OAuth2NoVerifiedEmailException;
+import dev.shelenkov.portfolio.service.auxiliary.ILoginAttemptsAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
@@ -24,6 +25,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.web.cors.CorsConfiguration;
@@ -46,6 +48,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private PersistentTokenRepository tokenRepository;
+
+    @Autowired
+    private ILoginAttemptsAware loginAttemptsAwareService;
 
     @Value("${server.servlet.session.cookie.name}")
     private String cookieName;
@@ -70,6 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/login?error=Disabled&email=${email}");
         map.put(OAuth2NoVerifiedEmailException.class.getName(),
             "/login?error=NoVerifiedEmail");
+        map.put(TooManyLoginAttemptsException.class.getName(),
+            "/login?error=TooManyAttempts");
         handler.setExceptionMappings(map);
         return handler;
     }
@@ -96,6 +103,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public WebAuthenticationDetailsSource webAuthenticationDetailsSource() {
+        return new OverridingIpWebAuthenticationDetailsSource();
+    }
+
+    @Bean
     public RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
         hierarchy.setHierarchy(String.format(
@@ -103,9 +115,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return hierarchy;
     }
 
+    @Bean
+    public ExtendedDaoAuthenticationProvider daoAuthenticationProvider() {
+        return new ExtendedDaoAuthenticationProvider(
+            loginAttemptsAwareService, userDetailsService, passwordEncoder());
+    }
+
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    protected void configure(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(daoAuthenticationProvider());
     }
 
     @SuppressWarnings("FeatureEnvy")
@@ -123,11 +141,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .usernameParameter("email")
                 .defaultSuccessUrl("/")
+                .authenticationDetailsSource(webAuthenticationDetailsSource())
                 .failureHandler(authenticationFailureHandler())
                 .permitAll())
             .oauth2Login(e -> e
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
+                .authenticationDetailsSource(webAuthenticationDetailsSource())
                 .failureHandler(authenticationFailureHandler()))
             .logout(e -> e.deleteCookies(cookieName))
             .rememberMe(e -> e

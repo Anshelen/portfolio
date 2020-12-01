@@ -1,14 +1,20 @@
 package dev.shelenkov.portfolio.web;
 
 import dev.shelenkov.portfolio.annotations.ConfiguredWebMvcTest;
+import dev.shelenkov.portfolio.service.auxiliary.ILoginAttemptsAware;
+import dev.shelenkov.portfolio.web.error.CorruptedIpException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.net.URLEncoder;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -18,6 +24,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ConfiguredWebMvcTest
 public class LoginTests {
+
+    @MockBean
+    private ILoginAttemptsAware loginAttemptsAwareService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -65,6 +74,18 @@ public class LoginTests {
     }
 
     @Test
+    public void login_corruptedIpInHeader_exception() {
+        assertThatExceptionOfType(CorruptedIpException.class).isThrownBy(() ->
+            mockMvc.perform(
+                post("/login")
+                    .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                    .param("email", "user@mail.ru")
+                    .param("password", "user")
+                    .header("X-Forwarded-For", "corrupted")
+                    .with(csrf())));
+    }
+
+    @Test
     public void login_invalidCredentials_redirectToLoginPageWithBadCredentialsParameter() throws Exception {
         mockMvc.perform(
             post("/login")
@@ -87,5 +108,23 @@ public class LoginTests {
             .andExpect(status().isFound())
             .andExpect(redirectedUrl(
                 "/login?error=Disabled&email=" + URLEncoder.encode("disabled@mail.ru", "UTF-8")));
+    }
+
+    @Test
+    public void login_tooManyFailedLoginAttempts_redirectToLoginPageWithTooManyAttemptsParameter() throws Exception {
+        expectTooManyFailedLoginAttempts();
+
+        mockMvc.perform(
+            post("/login")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+                .param("email", "user@mail.ru")
+                .param("password", "user")
+                .with(csrf()))
+            .andExpect(status().isFound())
+            .andExpect(redirectedUrl("/login?error=TooManyAttempts"));
+    }
+
+    private void expectTooManyFailedLoginAttempts() {
+        when(loginAttemptsAwareService.areTooManyFailedLoginAttempts(any())).thenReturn(true);
     }
 }
