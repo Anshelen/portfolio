@@ -31,5 +31,5 @@ public @interface ConfiguredWebMvcTest {
      * @return the controllers to test
      */
     @AliasFor(annotation = WebMvcTest.class, attribute = "controllers")
-    Class<?>[] value() default {};
+    Class<?>[] value() default Void.class;
 }

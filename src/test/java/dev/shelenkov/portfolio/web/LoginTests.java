@@ -16,8 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-// TODO: 04.11.2020 set default value to @ConfiguredWebMvcTest
-@ConfiguredWebMvcTest(Void.class)
+@ConfiguredWebMvcTest
 public class LoginTests {
 
     @Autowired
