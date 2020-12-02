@@ -64,7 +64,7 @@ public class RequestAttemptsService
     }
 
     @Override
-    public void registerConfirmationEmailResent(@NonNull String ip) {
+    public void registerConfirmationEmailResent(String ip) {
         try {
             int attempts = confirmationEmailAttemptsCache.get(ip);
             attempts++;
@@ -75,7 +75,7 @@ public class RequestAttemptsService
     }
 
     @Override
-    public boolean areTooManyConfirmationEmailsResent(@NonNull String ip) {
+    public boolean areTooManyConfirmationEmailsResent(String ip) {
         try {
             return confirmationEmailAttemptsCache.get(ip) >= maxResendConfirmationEmailAttempts;
         } catch (ExecutionException e) {
@@ -85,12 +85,12 @@ public class RequestAttemptsService
     }
 
     @Override
-    public void registerSuccessfulLogin(@NonNull String ip) {
+    public void registerSuccessfulLogin(String ip) {
         loginAttemptsCache.invalidate(ip);
     }
 
     @Override
-    public void registerFailedLogin(@NonNull String ip) {
+    public void registerFailedLogin(String ip) {
         try {
             int attempts = loginAttemptsCache.get(ip);
             attempts++;
@@ -101,7 +101,7 @@ public class RequestAttemptsService
     }
 
     @Override
-    public boolean areTooManyFailedLoginAttempts(@NonNull String ip) {
+    public boolean areTooManyFailedLoginAttempts(String ip) {
         try {
             return loginAttemptsCache.get(ip) >= maxLoginAttempts;
         } catch (ExecutionException e) {
@@ -111,7 +111,7 @@ public class RequestAttemptsService
     }
 
     @Override
-    public void registerEmailToAdminSent(@NonNull String ip) {
+    public void registerEmailToAdminSent(String ip) {
         try {
             int attempts = sendEmailToAdminAttemptsCache.get(ip);
             attempts++;
@@ -122,7 +122,7 @@ public class RequestAttemptsService
     }
 
     @Override
-    public boolean areTooManyEmailsToAdminSent(@NonNull String ip) {
+    public boolean areTooManyEmailsToAdminSent(String ip) {
         try {
             return sendEmailToAdminAttemptsCache.get(ip) >= maxSendEmailToAdminAttempts;
         } catch (ExecutionException e) {
