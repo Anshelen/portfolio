@@ -1,5 +1,6 @@
 package dev.shelenkov.portfolio.annotations;
 
+import dev.shelenkov.portfolio.security.SecurityConstants;
 import org.springframework.security.test.context.support.WithUserDetails;
 
 import java.lang.annotation.Documented;
@@ -17,6 +18,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
-@WithUserDetails("admin@mail.ru")
+@WithUserDetails(SecurityConstants.ADMIN_EMAIL)
 public @interface WithAdmin {
 }

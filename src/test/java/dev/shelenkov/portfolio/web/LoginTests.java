@@ -12,6 +12,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.net.URLEncoder;
 
+import static dev.shelenkov.portfolio.security.SecurityConstants.ADMIN_EMAIL;
+import static dev.shelenkov.portfolio.security.SecurityConstants.ADMIN_PASSWORD;
+import static dev.shelenkov.portfolio.security.SecurityConstants.DISABLED_USER_EMAIL;
+import static dev.shelenkov.portfolio.security.SecurityConstants.DISABLED_USER_PASSWORD;
+import static dev.shelenkov.portfolio.security.SecurityConstants.ENABLED_USER_EMAIL;
+import static dev.shelenkov.portfolio.security.SecurityConstants.ENABLED_USER_NAME;
+import static dev.shelenkov.portfolio.security.SecurityConstants.ENABLED_USER_PASSWORD;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -36,8 +43,8 @@ public class LoginTests {
         mockMvc.perform(
             post("/login")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("email", "user@mail.ru")
-                .param("password", "user")
+                .param("email", ENABLED_USER_EMAIL)
+                .param("password", ENABLED_USER_PASSWORD)
                 .with(csrf()))
             .andExpect(status().isFound())
             .andExpect(redirectedUrl("/"));
@@ -56,8 +63,8 @@ public class LoginTests {
             post("/login")
                 .session(session)
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("email", "admin@mail.ru")
-                .param("password", "admin")
+                .param("email", ADMIN_EMAIL)
+                .param("password", ADMIN_PASSWORD)
                 .with(csrf()))
             .andExpect(status().isFound())
             .andExpect(redirectedUrlPattern("http://*/admin"));
@@ -68,8 +75,8 @@ public class LoginTests {
         mockMvc.perform(
             post("/login")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("email", "user@mail.ru")
-                .param("password", "user"))
+                .param("email", ENABLED_USER_EMAIL)
+                .param("password", ENABLED_USER_PASSWORD))
             .andExpect(status().isForbidden());
     }
 
@@ -79,8 +86,8 @@ public class LoginTests {
             mockMvc.perform(
                 post("/login")
                     .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                    .param("email", "user@mail.ru")
-                    .param("password", "user")
+                    .param("email", ENABLED_USER_NAME)
+                    .param("password", ENABLED_USER_PASSWORD)
                     .header("X-Forwarded-For", "corrupted")
                     .with(csrf())));
     }
@@ -90,7 +97,7 @@ public class LoginTests {
         mockMvc.perform(
             post("/login")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("email", "user@mail.ru")
+                .param("email", ENABLED_USER_EMAIL)
                 .param("password", "invalid")
                 .with(csrf()))
             .andExpect(status().isFound())
@@ -102,12 +109,12 @@ public class LoginTests {
         mockMvc.perform(
             post("/login")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("email", "disabled@mail.ru")
-                .param("password", "disabled")
+                .param("email", DISABLED_USER_EMAIL)
+                .param("password", DISABLED_USER_PASSWORD)
                 .with(csrf()))
             .andExpect(status().isFound())
             .andExpect(redirectedUrl(
-                "/login?error=Disabled&email=" + URLEncoder.encode("disabled@mail.ru", "UTF-8")));
+                "/login?error=Disabled&email=" + URLEncoder.encode(DISABLED_USER_EMAIL, "UTF-8")));
     }
 
     @Test
@@ -117,8 +124,8 @@ public class LoginTests {
         mockMvc.perform(
             post("/login")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("email", "user@mail.ru")
-                .param("password", "user")
+                .param("email", ENABLED_USER_EMAIL)
+                .param("password", ENABLED_USER_PASSWORD)
                 .with(csrf()))
             .andExpect(status().isFound())
             .andExpect(redirectedUrl("/login?error=TooManyAttempts"));
