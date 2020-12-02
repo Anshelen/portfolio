@@ -2,7 +2,7 @@
 
 
 function sendMailRequest(name, subject, text) {
-    var data = {};
+    const data = {};
     data.name = name;
     data.subject = subject;
     data.text = text;
@@ -15,10 +15,12 @@ function sendMailRequest(name, subject, text) {
 }
 
 function resendEmailConfirmationRequest(email) {
+  const data = {};
+  data.email = email;
   return $.ajax({
-    type: 'GET',
+    type: 'POST',
     contentType: "application/json",
-    data: {email: email},
+    data: JSON.stringify(data),
     url: ajax_urls['resendRegistrationEmail']
   });
 }

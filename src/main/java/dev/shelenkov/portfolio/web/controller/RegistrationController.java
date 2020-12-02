@@ -6,10 +6,12 @@ import dev.shelenkov.portfolio.service.registration.IRegistrationService;
 import dev.shelenkov.portfolio.service.registration.TokenExpiredException;
 import dev.shelenkov.portfolio.service.registration.TokenNotValidException;
 import dev.shelenkov.portfolio.web.auxiliary.Ip;
+import dev.shelenkov.portfolio.web.wrappers.dto.ResendConfirmationEmailDTO;
 import dev.shelenkov.portfolio.web.wrappers.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -66,10 +69,13 @@ public class RegistrationController {
         }
     }
 
-    @GetMapping("/resendRegistrationEmail")
-    public ResponseEntity<Void> resendConfirmationEmail(@RequestParam("email") String email,
+    @PostMapping(
+        value = "/resendRegistrationEmail",
+        consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> resendConfirmationEmail(@Valid @RequestBody ResendConfirmationEmailDTO emailDTO,
                                                         @Ip String ip) {
 
+        String email = emailDTO.getEmail();
         log.debug("Resending confirmation email. Email: {}, ip: {}", email, ip);
         if (resendConfirmationEmailAttemptsAwareService.areTooManyConfirmationEmailsResent(ip)) {
             log.warn("Too much attempts to resend confirmation emails. Blocked ip: {}", ip);

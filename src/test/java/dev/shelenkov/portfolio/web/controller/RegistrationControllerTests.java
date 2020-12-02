@@ -1,13 +1,20 @@
 package dev.shelenkov.portfolio.web.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.shelenkov.portfolio.annotations.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.service.auxiliary.RequestAttemptsService;
 import dev.shelenkov.portfolio.service.registration.IRegistrationService;
+import dev.shelenkov.portfolio.web.wrappers.dto.ResendConfirmationEmailDTO;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
@@ -16,7 +23,8 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ConfiguredWebMvcTest(RegistrationController.class)
@@ -31,15 +39,43 @@ public class RegistrationControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Captor
     private ArgumentCaptor<String> ipCaptor;
 
     @Test
+    public void resendConfirmationEmail_noCsrfToken_403() throws Exception {
+        mockMvc.perform(
+            post("/resendRegistrationEmail")
+                .content(createRequestBody("email@mail.com"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .with(remoteHost("10.10.10.10")))
+            .andExpect(status().isForbidden());
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"email", "email@mail", "mail.ru"})
+    public void resendConfirmationEmail_notValidEmails_400(String email) throws Exception {
+        mockMvc.perform(
+            post("/resendRegistrationEmail")
+                .content(createRequestBody(email))
+                .contentType(MediaType.APPLICATION_JSON)
+                .with(remoteHost("10.10.10.10"))
+                .with(csrf()))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
     public void resendConfirmationEmail_commonScenario_200() throws Exception {
         mockMvc.perform(
-            get("/resendRegistrationEmail")
-                .queryParam("email", "email@mail.com")
-                .with(remoteHost("10.10.10.10")))
+            post("/resendRegistrationEmail")
+                .content(createRequestBody("email@mail.com"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .with(remoteHost("10.10.10.10"))
+                .with(csrf()))
             .andExpect(status().isOk());
 
         assertIpCheckedForTooManyResendAttempts("10.10.10.10");
@@ -52,9 +88,11 @@ public class RegistrationControllerTests {
         expectSendConfirmationEmailForbidden();
 
         mockMvc.perform(
-            get("/resendRegistrationEmail")
-                .queryParam("email", "email@mail.com")
-                .with(remoteHost("10.10.10.10")))
+            post("/resendRegistrationEmail")
+                .content(createRequestBody("email@mail.com"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .with(remoteHost("10.10.10.10"))
+                .with(csrf()))
             .andExpect(status().isBadRequest());
 
         assertIpCheckedForTooManyResendAttempts("10.10.10.10");
@@ -67,9 +105,11 @@ public class RegistrationControllerTests {
         expectTooManyResendConfirmationEmailAttemptsForIp("10.10.10.10");
 
         mockMvc.perform(
-            get("/resendRegistrationEmail")
-                .queryParam("email", "email@mail.com")
-                .with(remoteHost("10.10.10.10")))
+            post("/resendRegistrationEmail")
+                .content(createRequestBody("email@mail.com"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .with(remoteHost("10.10.10.10"))
+                .with(csrf()))
             .andExpect(status().isTooManyRequests());
 
         assertIpCheckedForTooManyResendAttempts("10.10.10.10");
@@ -80,9 +120,11 @@ public class RegistrationControllerTests {
         expectTooManyResendConfirmationEmailAttemptsForIp("10.10.10.10");
 
         mockMvc.perform(
-            get("/resendRegistrationEmail")
-                .queryParam("email", "email@mail.com")
-                .header("X-Forwarded-For", "10.10.10.10,100.200.1.1"))
+            post("/resendRegistrationEmail")
+                .content(createRequestBody("email@mail.com"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("X-Forwarded-For", "10.10.10.10,100.200.1.1")
+                .with(csrf()))
             .andExpect(status().isTooManyRequests());
 
         assertIpCheckedForTooManyResendAttempts("10.10.10.10");
@@ -91,9 +133,11 @@ public class RegistrationControllerTests {
     @Test
     public void resendConfirmationEmail_corruptedXForwardedForHeader_400() throws Exception {
         mockMvc.perform(
-            get("/resendRegistrationEmail")
-                .queryParam("email", "email@mail.com")
-                .header("X-Forwarded-For", "corrupted"))
+            post("/resendRegistrationEmail")
+                .content(createRequestBody("email@mail.com"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("X-Forwarded-For", "corrupted")
+                .with(csrf()))
             .andExpect(status().isBadRequest());
     }
 
@@ -132,5 +176,11 @@ public class RegistrationControllerTests {
             request.setRemoteAddr(ip);
             return request;
         };
+    }
+
+    @SneakyThrows
+    private String createRequestBody(String email) {
+        ResendConfirmationEmailDTO data = new ResendConfirmationEmailDTO(email);
+        return objectMapper.writeValueAsString(data);
     }
 }
