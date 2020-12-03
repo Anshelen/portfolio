@@ -1,9 +1,12 @@
 language: java
 dist: xenial
 jdk: openjdk8
+services:
+  - docker
 cache:
   directories:
   - "$HOME/.m2"
+script: ./mvnw verify -B
 notifications:
   email:
     on_success: change

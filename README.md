@@ -39,6 +39,7 @@ Other
 - Send emails via [Sendgrid][SENDGRID]
 - Download resume in different formats and languages
 - Customize Hibernate to save set of roles as an array of PostgreSQL enum values
+- Integration tests using Testcontainers
 - Testing with Travis CI, automatic deploy to Heroku
 - SSL via Cloudflare
 
@@ -49,7 +50,7 @@ Other
 - Thymeleaf
 - HTML, CSS, JS, jQuery, Bootstrap 4
 - Lombok
-- JUnit, Mockito
+- JUnit, Mockito, Testcontainers
 - Maven, Travis, Heroku, CloudFlare
 
 ## Prerequisites
