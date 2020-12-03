@@ -1,45 +1,49 @@
 package dev.shelenkov.portfolio.security;
 
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.boot.convert.DurationUnit;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
-import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @SuppressWarnings("PublicInnerClass")
-@Component
 @ConfigurationProperties("security")
-@Data
+@Getter
+@RequiredArgsConstructor
+@ConstructorBinding
 public class SecurityProperties {
+
+    private final SecurityProperties.RememberMeProperties rememberMe;
+    private final SecurityProperties.HeaderProperties headers;
 
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     @Autowired
     private org.springframework.boot.autoconfigure.security.SecurityProperties buildInProperties;
 
-    private SecurityProperties.RememberMeProperties rememberMe;
-
-    private SecurityProperties.HeaderProperties headers;
-
     public int getSecurityFilterChainOrder() {
         return buildInProperties.getFilter().getOrder();
     }
 
-    @Data
+    @SuppressWarnings("WeakerAccess")
+    @Getter
+    @RequiredArgsConstructor
     public static class RememberMeProperties {
-        private boolean secure;
+        private final boolean secure;
     }
 
     @SuppressWarnings({"WeakerAccess", "MagicNumber"})
-    @Data
+    @Getter
+    @Setter
+    // TODO: make this class immutable after spring boot 2.4.0 release
     public static class HeaderProperties {
 
         private List<String> accessControlAllowOrigin;

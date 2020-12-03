@@ -1,13 +1,22 @@
 package dev.shelenkov.portfolio.service.mail;
 
-import lombok.Data;
+import dev.shelenkov.portfolio.validation.ValidEmail;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.context.properties.ConstructorBinding;
+import org.springframework.validation.annotation.Validated;
 
-@Component
+import javax.validation.constraints.NotBlank;
+
 @ConfigurationProperties("mail")
-@Data
+@Getter
+@RequiredArgsConstructor
+@ConstructorBinding
+@Validated
 public class MailProperties {
-    private String adminAddress;
-    private String adminName;
+    @ValidEmail
+    private final String adminAddress;
+    @NotBlank
+    private final String adminName;
 }
