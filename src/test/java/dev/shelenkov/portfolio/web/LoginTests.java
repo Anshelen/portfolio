@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.web;
 
-import dev.shelenkov.portfolio.annotations.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.service.auxiliary.ILoginAttemptsAware;
+import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.web.error.CorruptedIpException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

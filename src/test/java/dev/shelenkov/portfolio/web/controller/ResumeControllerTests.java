@@ -1,9 +1,9 @@
 package dev.shelenkov.portfolio.web.controller;
 
-import dev.shelenkov.portfolio.annotations.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.model.resume.ResumeFormat;
 import dev.shelenkov.portfolio.model.resume.ResumeLanguage;
 import dev.shelenkov.portfolio.service.resume.ResumeResourceFactory;
+import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

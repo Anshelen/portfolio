@@ -1,4 +1,4 @@
-package dev.shelenkov.portfolio.annotations;
+package dev.shelenkov.portfolio.support;
 
 import dev.shelenkov.portfolio.security.SecurityConstants;
 import org.springframework.security.test.context.support.WithUserDetails;

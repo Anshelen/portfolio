@@ -1,11 +1,11 @@
 package dev.shelenkov.portfolio.web.controller;
 
-import dev.shelenkov.portfolio.annotations.ConfiguredWebMvcTest;
-import dev.shelenkov.portfolio.annotations.WithAdmin;
-import dev.shelenkov.portfolio.annotations.WithUser;
 import dev.shelenkov.portfolio.model.Account;
 import dev.shelenkov.portfolio.model.Role;
 import dev.shelenkov.portfolio.repository.AccountRepository;
+import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
+import dev.shelenkov.portfolio.support.WithAdmin;
+import dev.shelenkov.portfolio.support.WithUser;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

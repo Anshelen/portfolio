@@ -1,9 +1,9 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.shelenkov.portfolio.annotations.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.service.auxiliary.ISendEmailToAdminAttemptsAware;
 import dev.shelenkov.portfolio.service.mail.EmailService;
+import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.web.wrappers.dto.EmailDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

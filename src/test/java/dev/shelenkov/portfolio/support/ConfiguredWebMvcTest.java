@@ -1,4 +1,4 @@
-package dev.shelenkov.portfolio.annotations;
+package dev.shelenkov.portfolio.support;
 
 import dev.shelenkov.portfolio.security.SpringSecurityTestConfig;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

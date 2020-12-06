@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.web.controller;
 
-import dev.shelenkov.portfolio.annotations.ConfiguredWebMvcTest;
+import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

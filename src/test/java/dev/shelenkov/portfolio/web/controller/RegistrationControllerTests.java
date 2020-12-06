@@ -1,9 +1,9 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.shelenkov.portfolio.annotations.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.service.auxiliary.RequestAttemptsService;
 import dev.shelenkov.portfolio.service.registration.IRegistrationService;
+import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.web.wrappers.dto.ResendConfirmationEmailDTO;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
