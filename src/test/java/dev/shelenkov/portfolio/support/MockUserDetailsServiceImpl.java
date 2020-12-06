@@ -1,21 +1,22 @@
-package dev.shelenkov.portfolio.security;
+package dev.shelenkov.portfolio.support;
 
 import dev.shelenkov.portfolio.model.Account;
 import dev.shelenkov.portfolio.model.Role;
+import dev.shelenkov.portfolio.security.AbstractExtendedUserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.HashMap;
 
-import static dev.shelenkov.portfolio.security.SecurityConstants.ADMIN_EMAIL;
-import static dev.shelenkov.portfolio.security.SecurityConstants.ADMIN_NAME;
-import static dev.shelenkov.portfolio.security.SecurityConstants.ADMIN_PASSWORD;
-import static dev.shelenkov.portfolio.security.SecurityConstants.DISABLED_USER_EMAIL;
-import static dev.shelenkov.portfolio.security.SecurityConstants.DISABLED_USER_NAME;
-import static dev.shelenkov.portfolio.security.SecurityConstants.DISABLED_USER_PASSWORD;
-import static dev.shelenkov.portfolio.security.SecurityConstants.ENABLED_USER_EMAIL;
-import static dev.shelenkov.portfolio.security.SecurityConstants.ENABLED_USER_NAME;
-import static dev.shelenkov.portfolio.security.SecurityConstants.ENABLED_USER_PASSWORD;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_EMAIL;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_NAME;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_PASSWORD;
+import static dev.shelenkov.portfolio.support.SecurityConstants.DISABLED_USER_EMAIL;
+import static dev.shelenkov.portfolio.support.SecurityConstants.DISABLED_USER_NAME;
+import static dev.shelenkov.portfolio.support.SecurityConstants.DISABLED_USER_PASSWORD;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_EMAIL;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_NAME;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_PASSWORD;
 
 public class MockUserDetailsServiceImpl extends AbstractExtendedUserDetailsService {
 

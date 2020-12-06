@@ -1,4 +1,4 @@
-package dev.shelenkov.portfolio.security;
+package dev.shelenkov.portfolio.support;
 
 import dev.shelenkov.portfolio.service.auxiliary.ILoginAttemptsAware;
 import org.springframework.lang.NonNull;

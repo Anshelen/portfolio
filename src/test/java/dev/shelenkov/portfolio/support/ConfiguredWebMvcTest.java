@@ -1,6 +1,5 @@
 package dev.shelenkov.portfolio.support;
 
-import dev.shelenkov.portfolio.security.SpringSecurityTestConfig;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.AliasFor;

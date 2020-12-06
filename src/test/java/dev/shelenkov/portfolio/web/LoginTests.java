@@ -12,13 +12,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.net.URLEncoder;
 
-import static dev.shelenkov.portfolio.security.SecurityConstants.ADMIN_EMAIL;
-import static dev.shelenkov.portfolio.security.SecurityConstants.ADMIN_PASSWORD;
-import static dev.shelenkov.portfolio.security.SecurityConstants.DISABLED_USER_EMAIL;
-import static dev.shelenkov.portfolio.security.SecurityConstants.DISABLED_USER_PASSWORD;
-import static dev.shelenkov.portfolio.security.SecurityConstants.ENABLED_USER_EMAIL;
-import static dev.shelenkov.portfolio.security.SecurityConstants.ENABLED_USER_NAME;
-import static dev.shelenkov.portfolio.security.SecurityConstants.ENABLED_USER_PASSWORD;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_EMAIL;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_PASSWORD;
+import static dev.shelenkov.portfolio.support.SecurityConstants.DISABLED_USER_EMAIL;
+import static dev.shelenkov.portfolio.support.SecurityConstants.DISABLED_USER_PASSWORD;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_EMAIL;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_NAME;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_PASSWORD;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;

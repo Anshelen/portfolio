@@ -1,4 +1,4 @@
-package dev.shelenkov.portfolio.security;
+package dev.shelenkov.portfolio.support;
 
 import lombok.experimental.UtilityClass;
 
