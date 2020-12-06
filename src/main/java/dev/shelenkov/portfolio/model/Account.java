@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Version;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -26,6 +27,9 @@ public class Account extends AbstractPersistable<Long> {
     private String email;
 
     private String password;
+
+    @Version
+    private int version;
 
     private boolean enabled;
 

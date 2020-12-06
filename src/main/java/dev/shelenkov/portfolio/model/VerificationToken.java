@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.Version;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.UUID;
@@ -29,6 +30,9 @@ public class VerificationToken {
     @OneToOne
     @JoinColumn(nullable = false)
     private Account account;
+
+    @Version
+    private int version;
 
     private Instant creationDate;
 

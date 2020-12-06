@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.OptimisticLockException;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
@@ -23,6 +24,12 @@ public class ErrorHandlingControllerAdvice {
     @ExceptionHandler(CorruptedIpException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void onCorruptedIpException(CorruptedIpException e) {
+        log.warn(e.getMessage());
+    }
+
+    @ExceptionHandler(OptimisticLockException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public void onOptimisticLockException(OptimisticLockException e) {
         log.warn(e.getMessage());
     }
 

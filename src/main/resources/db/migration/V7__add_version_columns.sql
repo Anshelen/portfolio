@@ -1,0 +1,4 @@
+ALTER TABLE account
+    ADD COLUMN version INTEGER DEFAULT 0;
+ALTER TABLE verification_token
+    ADD COLUMN version INTEGER DEFAULT 0;
