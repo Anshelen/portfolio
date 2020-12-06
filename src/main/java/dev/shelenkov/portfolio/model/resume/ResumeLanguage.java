@@ -31,6 +31,6 @@ public enum ResumeLanguage {
         }
         throw new IllegalArgumentException(
             "Unknown abbreviation: " + abbreviation
-            + ", Allowed values are " + Arrays.toString(values()));
+                + ", Allowed values are " + Arrays.toString(values()));
     }
 }

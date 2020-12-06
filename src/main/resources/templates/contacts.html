@@ -12,13 +12,13 @@
   <meta http-equiv="refresh" content="1800">
 
   <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
   <script
-    src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+      src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
 
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -44,7 +44,8 @@
       <div class="btn-group headline__locale mr-4">
         <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          ru</button>
+          ru
+        </button>
         <div class="dropdown-menu">
           <a class="dropdown-item disabled" href="?lang=ru">ru</a>
           <a class="dropdown-item" href="?lang=en">en</a>
@@ -160,7 +161,8 @@
       </div>
       <div class="control-group form-group">
         <div class="controls">
-          <label for="subject"><span th:text="#{contacts.send-message.subject}">Заголовок</span>:</label>
+          <label for="subject"><span
+              th:text="#{contacts.send-message.subject}">Заголовок</span>:</label>
           <input id="subject" type="text" class="form-control" name="subject"
                  th:placeholder="#{contacts.send-message.subject.placeholder}"
                  placeholder="Укажите тему письма">
@@ -177,7 +179,8 @@
       </div>
       <div id="success"></div>
       <button id="submitBtn" type="submit" class="btn btn-warning"
-              th:text="#{contacts.send-message.submit}">Отправить</button>
+              th:text="#{contacts.send-message.submit}">Отправить
+      </button>
     </form>
     <div id="successModal" class="modal fade">
       <div class="modal-dialog modal-dialog-centered modal-sm">

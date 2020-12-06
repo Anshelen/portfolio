@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
  * Signals that test (or all tests in class) should be performed on the behalf
  * of the admin.
  */
-@Target({ ElementType.METHOD, ElementType.TYPE })
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented

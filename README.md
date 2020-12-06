@@ -5,7 +5,7 @@
 
 ## About
 
-Private portfolio site hosted on https://shelenkov.site. 
+Private portfolio site hosted on https://shelenkov.site.
 
 ## Features
 
@@ -60,57 +60,59 @@ Other
 
 ## Installation
 
-You may need to override a few properties. It can be done by setting the
-following environment variables:
+You may need to override a few properties. It can be done by setting the following environment
+variables:
 
-  Overall
+Overall
 
-  * APPLICATION_BASE_URL
-  
-  Security
-  
-  * SECURITY_REMEMBER_ME_KEY
-  * SECURITY_REMEMBER_ME_SECURE
-  * SECURITY_HEADERS_ACCESS_CONTROL_ALLOW_ORIGIN
-  * SERVER_SERVLET_SESSION_COOKIE_SECURE
-  
-  OAuth2
-  
-  * SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_ID
-  * SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_SECRET
-  * SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID
-  * SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET
-  
-  Database
-  
-  * SPRING_DATASOURCE_URL
-  * SPRING_DATASOURCE_PASSWORD
-  * SPRING_DATASOURCE_USERNAME
-  
-    or
-    
-  * DATABASE_URL
-  
-  Mail
-  
-  * SPRING_SENDGRID_API_KEY
-  * MAIL_ADMIN_ADDRESS
-  * MAIL_ADMIN_NAME
+* APPLICATION_BASE_URL
 
-Optionally you can set all these variables in `application.properties`. 
+Security
+
+* SECURITY_REMEMBER_ME_KEY
+* SECURITY_REMEMBER_ME_SECURE
+* SECURITY_HEADERS_ACCESS_CONTROL_ALLOW_ORIGIN
+* SERVER_SERVLET_SESSION_COOKIE_SECURE
+
+OAuth2
+
+* SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_ID
+* SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_SECRET
+* SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID
+* SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_SECRET
+
+Database
+
+* SPRING_DATASOURCE_URL
+* SPRING_DATASOURCE_PASSWORD
+* SPRING_DATASOURCE_USERNAME
+
+  or
+
+* DATABASE_URL
+
+Mail
+
+* SPRING_SENDGRID_API_KEY
+* MAIL_ADMIN_ADDRESS
+* MAIL_ADMIN_NAME
+
+Optionally you can set all these variables in `application.properties`.
 
 Launch locally:
+
 ```bash
 ./mvnw package -DskipTests
 java -jar target/portfolio-*.jar
 ```
 
 Project can be deployed to Heroku as is.
- 
 
 ## License
 
-This software is licensed under the [BSD License][BSD]. For more information, read the file [LICENSE](LICENSE).
+This software is licensed under the [BSD License][BSD]. For more information, read the
+file [LICENSE](LICENSE).
 
 [BSD]: https://opensource.org/licenses/BSD-3-Clause
+
 [SENDGRID]: https://sendgrid.com/

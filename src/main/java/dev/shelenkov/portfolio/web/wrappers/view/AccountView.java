@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Data
 public class AccountView {
+
     private final Long id;
     private final String username;
     private final String email;

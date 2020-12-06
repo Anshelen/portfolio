@@ -25,6 +25,7 @@ public final class PostgreSQLContainerStarter {
 
     @SuppressWarnings("PublicInnerClass")
     public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+
         @Override
         public void initialize(@NonNull ConfigurableApplicationContext applicationContext) {
             TestPropertySourceUtils.addInlinedPropertiesToEnvironment(

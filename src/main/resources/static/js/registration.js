@@ -1,8 +1,8 @@
 'use strict';
 
 
-$(function () {
-  $('#resend').click(function () {
+$(function() {
+  $('#resend').click(function() {
     $('#loader').show();
     $(this).prop('disabled', true);
     const response = resendEmailConfirmationRequest($(this).data('email'));

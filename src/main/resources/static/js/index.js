@@ -1,7 +1,7 @@
 'use strict';
 
 
-$().ready(function () {
+$().ready(function() {
   const download_link = $("#download_link");
   const download_basic_url = download_link.attr('href') + '?';
   let download_params = {

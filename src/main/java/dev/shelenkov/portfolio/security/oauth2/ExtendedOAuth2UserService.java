@@ -70,7 +70,7 @@ public class ExtendedOAuth2UserService implements OAuth2UserService<OAuth2UserRe
             RequestEntity<?> request = requestEntityConverter.convert(userRequest);
             //noinspection ConstantConditions,AnonymousInnerClassMayBeStatic,AnonymousInnerClass
             ResponseEntity<Map<String, Object>> response
-                = restOperations.exchange(request, new ParameterizedTypeReference<Map<String, Object>>(){});
+                = restOperations.exchange(request, new ParameterizedTypeReference<Map<String, Object>>() {});
 
             Map<String, Object> userAttributes = response.getBody();
             String provider = registration.getClientName();

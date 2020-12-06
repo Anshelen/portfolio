@@ -17,13 +17,13 @@
   <meta http-equiv="refresh" content="1800" th:content="${#session?.maxInactiveInterval?:1800}">
 
   <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
   <script
-    src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+      src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
 
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -35,9 +35,13 @@
   <script src="../static/js/dal.js" th:src="@{/resources/js/dal.js}"></script>
 
   <link rel="stylesheet" href="../static/css/style.css" th:href="@{/resources/css/style.css}"/>
-  <link rel="icon" href="../static/img/favicon.ico" th:href="@{/resources/img/favicon.ico}" type="image/x-icon">
+  <link rel="icon" href="../static/img/favicon.ico" th:href="@{/resources/img/favicon.ico}"
+        type="image/x-icon">
 
-  <noscript><div><img src="https://mc.yandex.ru/watch/68230450" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <noscript>
+    <div><img src="https://mc.yandex.ru/watch/68230450" style="position:absolute; left:-9999px;"
+              alt=""/></div>
+  </noscript>
 </th:block>
 
 <th:block th:fragment="navbar(activebar)" th:with="auth=${#authentication.getPrincipal()}">

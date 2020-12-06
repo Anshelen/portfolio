@@ -5,6 +5,7 @@ package dev.shelenkov.portfolio.web.error;
  * via 'X-Forwarded-For' header.
  */
 public class CorruptedIpException extends RuntimeException {
+
     public CorruptedIpException(String ip) {
         super("Corrupted ip detected: " + ip);
     }

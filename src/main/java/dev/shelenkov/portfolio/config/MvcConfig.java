@@ -114,7 +114,7 @@ public class MvcConfig implements WebMvcConfigurer {
         resolver.setContentType("application/javascript");
         resolver.setProducePartialOutputWhileProcessing(
             thymeleafProperties.getServlet().isProducePartialOutputWhileProcessing());
-        resolver.setViewNames(new String[]{"*.js"});
+        resolver.setViewNames(new String[] {"*.js"});
         resolver.setCache(thymeleafProperties.isCache());
         return resolver;
     }

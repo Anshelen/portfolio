@@ -29,6 +29,7 @@ h3 {
   body {
     font-size: 13px;
   }
+
   h2 {
     font-size: 18px;
   }
@@ -50,8 +51,8 @@ a:hover {
 
 /* Errors of JQuery validation plugin */
 
-input.error, textarea.error{
-  border: 1px solid #ff0000;
+input.error, textarea.error {
+    border: 1px solid #ff0000;
 }
 
 label.error {
@@ -174,14 +175,14 @@ label.error {
 }
 
 .footer__social {
-  font-size: 16px;
-  position:absolute;
-  bottom: 0;
-  right: 0;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
-.footer__social a{
-  text-decoration: none;
+.footer__social a {
+    text-decoration: none;
 }
 
 /** Index page */
@@ -386,7 +387,8 @@ a.download-resume__link:hover {
     line-height: 1;
     margin: 1rem 0;
   }
-  .error__explanation {
+
+    .error__explanation {
     font-size: 1.5rem;
   }
 }

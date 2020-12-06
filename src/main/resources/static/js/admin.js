@@ -1,7 +1,7 @@
 'use strict';
 
 
-$(function(){
+$(function() {
   const pageSize = 2;
 
   getAllUsersRequest(0, pageSize)

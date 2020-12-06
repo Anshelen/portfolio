@@ -13,7 +13,7 @@ public interface OAuth2LoginProcessor {
      * Create user principal and register user if needed.
      *
      * @param userAttributes user attributes from OAuth2 provider
-     * @param accessToken OAuth2 provider access token
+     * @param accessToken    OAuth2 provider access token
      * @return user principal
      */
     ExtendedUser processUser(Map<String, Object> userAttributes, String accessToken);

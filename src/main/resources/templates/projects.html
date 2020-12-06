@@ -12,11 +12,11 @@
   <meta http-equiv="refresh" content="1800">
 
   <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -39,7 +39,8 @@
       <div class="btn-group headline__locale mr-4">
         <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          ru</button>
+          ru
+        </button>
         <div class="dropdown-menu">
           <a class="dropdown-item disabled" href="?lang=ru">ru</a>
           <a class="dropdown-item" href="?lang=en">en</a>
@@ -148,16 +149,20 @@
       <ul class="list-group">
         <li class="list-group-item" th:text="#{projects.aximetria.challenge1}">
           Разработка алгоритма антифрода для сравнения ФИО пользователя с данными держателя карты
-          с учетом транслитерации, составных имен, опечаток, сокращений и т.д.</li>
+          с учетом транслитерации, составных имен, опечаток, сокращений и т.д.
+        </li>
         <li class="list-group-item" th:text="#{projects.aximetria.challenge2}">
           Создание системы субсидирования транзакций, позволяющей пользователям переводить
-          стейблкоины без комиссии блокчейна</li>
+          стейблкоины без комиссии блокчейна
+        </li>
         <li class="list-group-item" th:text="#{projects.aximetria.challenge3}">
           Интеграция с сервисом видеоверификации и доработка системы проверки личности
-          пользователей</li>
+          пользователей
+        </li>
         <li class="list-group-item" th:text="#{projects.aximetria.challenge4}">
           Создание удобных представлений агрегированных данных в ClickHouse, что ускорило и
-          упростило работу с аналитикой</li>
+          упростило работу с аналитикой
+        </li>
       </ul>
     </div>
   </div>
@@ -187,13 +192,16 @@
         </li>
         <li class="list-group-item" th:text="#{projects.iqmanager.challenge2}">
           Подключение эквайринга от Сбербанка, настройка возможности частичной оплаты и
-          автоматического возврата средств</li>
+          автоматического возврата средств
+        </li>
         <li class="list-group-item" th:text="#{projects.iqmanager.challenge3}">
           Профилирование и устранение узких мест системы, что ускорило загрузку некоторых страниц
-          на порядок</li>
+          на порядок
+        </li>
         <li class="list-group-item" th:text="#{projects.iqmanager.challenge4}">
           Доработка полнотекстового поиска сайта - настройка нечеткого поиска, улучшение логики
-          поиска, анализ индексов</li>
+          поиска, анализ индексов
+        </li>
       </ul>
     </div>
   </div>
@@ -283,11 +291,14 @@
           я создал учебный проект
         </span>
         (GitHub:
-        <a class="text-warning" href="https://github.com/Anshelen/microservices-backend" target="_blank"
+        <a class="text-warning" href="https://github.com/Anshelen/microservices-backend"
+           target="_blank"
            th:text="#{projects.microservices-project.content1.link1}">раз</a>,
-        <a class="text-warning" href="https://github.com/Anshelen/microservices-gateway" target="_blank"
+        <a class="text-warning" href="https://github.com/Anshelen/microservices-gateway"
+           target="_blank"
            th:text="#{projects.microservices-project.content1.link2}">два</a>,
-        <a class="text-warning" href="https://github.com/Anshelen/microservices-deploy" target="_blank"
+        <a class="text-warning" href="https://github.com/Anshelen/microservices-deploy"
+           target="_blank"
            th:text="#{projects.microservices-project.content1.link3}">три</a>).
         <span th:text="#{projects.microservices-project.content1.part2}">
           Он состоял из следующих шагов:
@@ -298,13 +309,17 @@
           Создание 2 микросервисов и оптимизация их Docker образов
         </li>
         <li class="list-group-item" th:text="#{projects.microservices-project.challenge2}">
-          Описание конфигурации Kubernetes кластера, деплой в Google Kubernetes Engine</li>
+          Описание конфигурации Kubernetes кластера, деплой в Google Kubernetes Engine
+        </li>
         <li class="list-group-item" th:text="#{projects.microservices-project.challenge3}">
-          Создание и деплой Helm-чарта</li>
+          Создание и деплой Helm-чарта
+        </li>
         <li class="list-group-item" th:text="#{projects.microservices-project.challenge4}">
-          Настройка CI/CD в Jenkins</li>
+          Настройка CI/CD в Jenkins
+        </li>
         <li class="list-group-item" th:text="#{projects.microservices-project.challenge5}">
-          Деплой ELK-инфраструктуры, организация мониторинга логов сервисов</li>
+          Деплой ELK-инфраструктуры, организация мониторинга логов сервисов
+        </li>
       </ul>
       <p class="mt-3">
         <span th:text="#{projects.microservices-project.content2}">

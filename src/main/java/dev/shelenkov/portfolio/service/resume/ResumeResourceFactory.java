@@ -17,7 +17,7 @@ public class ResumeResourceFactory {
      * Returns a resume resource for provided language and format.
      *
      * @param language resume language
-     * @param format resume format
+     * @param format   resume format
      * @return resume resource
      */
     public Resource getResumeResource(ResumeLanguage language,

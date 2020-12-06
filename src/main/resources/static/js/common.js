@@ -1,6 +1,6 @@
 'use strict';
 
-$(function () {
+$(function() {
   const token = $("meta[name='_csrf']").attr("content");
   const header = $("meta[name='_csrf_header']").attr("content");
   $(document).ajaxSend(function(e, xhr) {
@@ -9,7 +9,7 @@ $(function () {
 
   const logoutLink = $('#logout');
   if (logoutLink.length) {
-    logoutLink.click(function () {
+    logoutLink.click(function() {
       $('#logout-form').submit();
       return false;
     });
@@ -22,8 +22,8 @@ $(function () {
 (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
 ym(68230450, "init", {
-  clickmap:true,
-  trackLinks:true,
-  accurateTrackBounce:true,
-  webvisor:true
+  clickmap: true,
+  trackLinks: true,
+  accurateTrackBounce: true,
+  webvisor: true
 });

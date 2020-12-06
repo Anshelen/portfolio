@@ -21,13 +21,16 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * address.
  */
 @SuppressWarnings("unused")
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
+@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
 @Email(regexp = ".+@.+\\..+")
 @Constraint(validatedBy = {})
 @Documented
 public @interface ValidEmail {
+
     String message() default "Email address is not valid";
-    Class<?>[] groups() default { };
-    Class<? extends Payload>[] payload() default { };
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }

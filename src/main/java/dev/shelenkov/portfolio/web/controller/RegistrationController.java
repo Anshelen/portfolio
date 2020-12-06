@@ -72,8 +72,9 @@ public class RegistrationController {
     @PostMapping(
         value = "/resendRegistrationEmail",
         consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> resendConfirmationEmail(@Valid @RequestBody ResendConfirmationEmailDTO emailDTO,
-                                                        @Ip String ip) {
+    public ResponseEntity<Void> resendConfirmationEmail(
+        @Valid @RequestBody ResendConfirmationEmailDTO emailDTO,
+        @Ip String ip) {
 
         String email = emailDTO.getEmail();
         log.debug("Resending confirmation email. Email: {}, ip: {}", email, ip);

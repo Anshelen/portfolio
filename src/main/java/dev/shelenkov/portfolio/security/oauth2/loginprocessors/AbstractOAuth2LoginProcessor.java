@@ -76,8 +76,8 @@ public abstract class AbstractOAuth2LoginProcessor implements OAuth2LoginProcess
      * Creates new user account.
      *
      * @param userAttributes user profile attributes from OAuth2 provider
-     * @param email user email
-     * @param oauth2Id user id from OAuth2 provider
+     * @param email          user email
+     * @param oauth2Id       user id from OAuth2 provider
      * @return created account
      */
     protected abstract Account registerNewAccount(Map<String, Object> userAttributes,
@@ -93,7 +93,7 @@ public abstract class AbstractOAuth2LoginProcessor implements OAuth2LoginProcess
      * Fetches verified email from OAuth2 provider.
      *
      * @param userAttributes user profile attributes from OAuth2 provider
-     * @param accessToken OAuth2 access token
+     * @param accessToken    OAuth2 access token
      * @return user email
      */
     protected abstract @Nullable String getVerifiedEmail(Map<String, Object> userAttributes,

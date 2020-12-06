@@ -15,7 +15,8 @@
       "email": "email2",
       "enabled": true,
       "roles": [
-        "ADMIN", "USER"
+        "ADMIN",
+        "USER"
       ]
     }
   ],

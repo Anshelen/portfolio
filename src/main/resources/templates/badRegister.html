@@ -11,11 +11,11 @@
   <meta http-equiv="refresh" content="1800">
 
   <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -38,7 +38,8 @@
       <div class="btn-group headline__locale mr-4">
         <button type="button" class="my-2 btn dropdown-toggle headline__locale-btn"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          ru</button>
+          ru
+        </button>
         <div class="dropdown-menu">
           <a class="dropdown-item disabled" href="?lang=ru">ru</a>
           <a class="dropdown-item" href="?lang=en">en</a>
@@ -120,12 +121,13 @@
   <div class="text-center my-3 ">
     <div class="register__container border border-warning rounded p-3 mx-auto">
       <!--/*/<th:block th:switch="${error}">/*/-->
-        <h2 th:case="'InvalidToken'" th:text="#{badRegister.invalid-token}">Токен не валиден</h2>
-        <h2 th:case="'TokenExpired'" th:text="#{badRegister.token-expired}">Срок действия токена истек</h2>
+      <h2 th:case="'InvalidToken'" th:text="#{badRegister.invalid-token}">Токен не валиден</h2>
+      <h2 th:case="'TokenExpired'" th:text="#{badRegister.token-expired}">Срок действия токена
+        истек</h2>
       <!--/*/</th:block>/*/-->
       <a class="btn btn-lg btn-outline-dark btn-block my-4 mx-auto registration__button"
          href="register.html" th:href="@{/register}" th:text="#{badRegister.sign_up}">
-         Регистрация</a>
+        Регистрация</a>
     </div>
   </div>
 </div>

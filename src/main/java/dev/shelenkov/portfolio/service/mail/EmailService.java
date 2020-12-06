@@ -41,7 +41,9 @@ public class EmailService {
      * @param subject email subject
      * @param text    email plain content
      */
-    public void sendSimpleEmailToAdmin(String name, String subject, String text) throws IOException {
+    public void sendSimpleEmailToAdmin(String name, String subject,
+                                       String text) throws IOException {
+
         log.debug("Sending email to admin. Name: {}, subject: {}, text: {}",
             name, subject, text);
 

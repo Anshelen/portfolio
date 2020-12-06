@@ -2,16 +2,16 @@
 
 
 function sendMailRequest(name, subject, text) {
-    const data = {};
-    data.name = name;
-    data.subject = subject;
-    data.text = text;
-    return $.ajax({
-      type: 'POST',
-      contentType: "application/json",
-      url: ajax_urls['sendMail'],
-      data: JSON.stringify(data)
-    })
+  const data = {};
+  data.name = name;
+  data.subject = subject;
+  data.text = text;
+  return $.ajax({
+    type: 'POST',
+    contentType: "application/json",
+    url: ajax_urls['sendMail'],
+    data: JSON.stringify(data)
+  })
 }
 
 function resendEmailConfirmationRequest(email) {

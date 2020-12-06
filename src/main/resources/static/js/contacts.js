@@ -1,7 +1,7 @@
 'use strict';
 
 
-$(function(){
+$(function() {
   $('#emailForm').validate({
     rules: {
       name: {
@@ -35,7 +35,7 @@ $(function(){
         maxlength: messages["contacts.js.validation.text.maxlength"]
       }
     },
-    submitHandler: function () {
+    submitHandler: function() {
       $('#loader').show();
       $('#submitBtn').prop('disabled', true);
       const response = sendMailRequest(

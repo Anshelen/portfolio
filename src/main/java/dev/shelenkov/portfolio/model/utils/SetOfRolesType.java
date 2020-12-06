@@ -25,7 +25,7 @@ public class SetOfRolesType implements UserType {
 
     @Override
     public int[] sqlTypes() {
-        return new int[]{Types.ARRAY};
+        return new int[] {Types.ARRAY};
     }
 
     @SuppressWarnings("rawtypes")

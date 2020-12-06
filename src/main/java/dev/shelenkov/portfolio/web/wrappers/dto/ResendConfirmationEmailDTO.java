@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Data
 public class ResendConfirmationEmailDTO {
+
     @NotNull
     @ValidEmail
     private String email;

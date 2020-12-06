@@ -27,8 +27,9 @@ public @interface ConfiguredWebMvcTest {
     /**
      * Specifies the controllers to test. May be left blank if all {@code @Controller}
      * beans should be added to the application context.
-     * @see WebMvcTest#controllers()
+     *
      * @return the controllers to test
+     * @see WebMvcTest#controllers()
      */
     @AliasFor(annotation = WebMvcTest.class, attribute = "controllers")
     Class<?>[] value() default Void.class;

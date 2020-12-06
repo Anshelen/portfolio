@@ -65,8 +65,8 @@ public class GitHubOAuth2LoginProcessor extends AbstractOAuth2LoginProcessor {
         //noinspection AnonymousInnerClassMayBeStatic,AnonymousInnerClass
         ResponseEntity<List<GitHubOAuth2LoginProcessor.GitHubEmail>> emailResponse
             = restOperations.exchange(
-                GET_EMAIL_URL, HttpMethod.GET, new HttpEntity<>(headers),
-                new ParameterizedTypeReference<List<GitHubOAuth2LoginProcessor.GitHubEmail>>(){});
+            GET_EMAIL_URL, HttpMethod.GET, new HttpEntity<>(headers),
+            new ParameterizedTypeReference<List<GitHubOAuth2LoginProcessor.GitHubEmail>>() {});
         /*
          * Response example:
          * [{"email":"anshelen@yandex.ru","primary":true,"verified":true,"visibility":"private"},

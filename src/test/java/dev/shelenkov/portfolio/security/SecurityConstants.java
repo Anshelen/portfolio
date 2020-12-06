@@ -4,6 +4,7 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public final class SecurityConstants {
+
     public static final String ENABLED_USER_NAME = "user";
     public static final String ENABLED_USER_EMAIL = "user@mail.ru";
     public static final String ENABLED_USER_PASSWORD = "user";
