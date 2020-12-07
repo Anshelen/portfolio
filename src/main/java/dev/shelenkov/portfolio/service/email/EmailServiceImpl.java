@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.service.email;
 
 import dev.shelenkov.portfolio.domain.VerificationToken;
-import dev.shelenkov.portfolio.mail.SendGridService;
+import dev.shelenkov.portfolio.mail.EmailOperations;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,17 +11,17 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
 
-    private final SendGridService sendGridService;
+    private final EmailOperations emailOperations;
 
     @Override
     public void sendConfirmationEmail(VerificationToken token) throws IOException {
-        sendGridService.sendConfirmationEmail(token);
+        emailOperations.sendConfirmationEmail(token);
     }
 
     @Override
     public void sendSimpleEmailToAdmin(String name, String subject,
                                        String text) throws IOException {
 
-        sendGridService.sendSimpleEmailToAdmin(name, subject, text);
+        emailOperations.sendSimpleEmailToAdmin(name, subject, text);
     }
 }

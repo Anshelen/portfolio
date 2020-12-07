@@ -26,7 +26,7 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class SendGridService {
+public class SendGridOperations implements EmailOperations {
 
     private final SendGrid sendGrid;
     private final MailProperties mailProperties;
@@ -35,13 +35,7 @@ public class SendGridService {
     @Value("${application.root-url}")
     private String rootUrl;
 
-    /**
-     * Sends a simple email message to admin.
-     *
-     * @param name    name of email sender
-     * @param subject email subject
-     * @param text    email plain content
-     */
+    @Override
     public void sendSimpleEmailToAdmin(String name, String subject,
                                        String text) throws IOException {
 
@@ -59,13 +53,7 @@ public class SendGridService {
         }
     }
 
-
-    /**
-     * Sends an email to a user-registered email address with a link (composed
-     * from token) to confirm ownership of this address.
-     *
-     * @param token verification token to prove email accessory for a user
-     */
+    @Override
     public void sendConfirmationEmail(VerificationToken token) throws IOException {
         Long userId = token.getAccount().getId();
 
