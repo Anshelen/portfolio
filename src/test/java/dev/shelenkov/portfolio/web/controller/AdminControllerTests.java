@@ -2,7 +2,7 @@ package dev.shelenkov.portfolio.web.controller;
 
 import dev.shelenkov.portfolio.domain.Account;
 import dev.shelenkov.portfolio.domain.Role;
-import dev.shelenkov.portfolio.repository.AccountRepository;
+import dev.shelenkov.portfolio.service.account.IAccountService;
 import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.support.WithAdmin;
 import dev.shelenkov.portfolio.support.WithUser;
@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AdminControllerTests {
 
     @MockBean
-    private AccountRepository accountRepository;
+    private IAccountService accountService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -85,7 +85,7 @@ public class AdminControllerTests {
             EnumSet.of(Role.ADMIN, Role.USER), true);
         Page<Account> page = new PageImpl<>(Arrays.asList(account1, account2), pageable, 5);
 
-        when(accountRepository.findAll(eq(pageable))).thenReturn(page);
+        when(accountService.findAll(eq(pageable))).thenReturn(page);
     }
 
     private Account createAccount(long id, String userName, String email, String password,

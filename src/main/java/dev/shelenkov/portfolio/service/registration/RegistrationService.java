@@ -7,22 +7,15 @@ import dev.shelenkov.portfolio.domain.VerificationToken;
 import dev.shelenkov.portfolio.publisher.EventsPublisher;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
+import dev.shelenkov.portfolio.security.ISecurityOperations;
 import dev.shelenkov.portfolio.service.exception.TokenExpiredException;
 import dev.shelenkov.portfolio.service.exception.TokenNotValidException;
-import dev.shelenkov.portfolio.web.security.ExtendedUser;
-import dev.shelenkov.portfolio.web.support.security.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -34,7 +27,7 @@ import java.util.UUID;
 @Transactional
 public class RegistrationService implements IRegistrationService {
 
-    private final PasswordEncoder passwordEncoder;
+    private final ISecurityOperations securityOperations;
     private final AccountRepository accountRepository;
     private final VerificationTokenRepository tokenRepository;
     private final EventsPublisher eventsPublisher;
@@ -49,7 +42,7 @@ public class RegistrationService implements IRegistrationService {
         Account account = new Account(
             userName,
             email,
-            passwordEncoder.encode(password),
+            securityOperations.encryptPassword(password),
             Role.USER);
         accountRepository.save(account);
 
@@ -63,7 +56,7 @@ public class RegistrationService implements IRegistrationService {
         Account account = new Account(
             userName,
             email,
-            passwordEncoder.encode(password),
+            securityOperations.encryptPassword(password),
             Role.USER);
         account.setGithubId(githubId);
         account.setEnabled(true);
@@ -82,7 +75,7 @@ public class RegistrationService implements IRegistrationService {
         Account account = new Account(
             userName,
             email,
-            passwordEncoder.encode(password),
+            securityOperations.encryptPassword(password),
             Role.USER);
         account.setGoogleId(googleId);
         account.setEnabled(true);
@@ -116,26 +109,12 @@ public class RegistrationService implements IRegistrationService {
 
         account.setEnabled(true);
 
-        loginAccount(account);
+        securityOperations.loginAccount(account);
 
         return accountRepository.save(account);
     }
 
     private static String getRandomPassword() {
         return RandomStringUtils.random(8);
-    }
-
-    private void loginAccount(Account account) {
-        Collection<? extends GrantedAuthority> authorities
-            = SecurityUtils.generateAuthoritiesList(account);
-        ExtendedUser user = new ExtendedUser(
-            account.getEmail(),
-            account.getPassword(),
-            account.isEnabled(),
-            authorities,
-            account.getUsername());
-        user.eraseCredentials();
-        Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, authorities);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }

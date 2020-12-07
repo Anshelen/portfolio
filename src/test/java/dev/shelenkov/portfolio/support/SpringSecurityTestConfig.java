@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.support;
 
+import dev.shelenkov.portfolio.security.config.SecurityProperties;
 import dev.shelenkov.portfolio.service.attempts.ILoginAttemptsAware;
-import dev.shelenkov.portfolio.web.config.SecurityProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;

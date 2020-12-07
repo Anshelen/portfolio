@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.web.controller.error;
 
-import dev.shelenkov.portfolio.web.exception.CorruptedIpException;
+import dev.shelenkov.portfolio.support.ip.CorruptedIpException;
 import dev.shelenkov.portfolio.web.response.ValidationErrorResponse;
 import dev.shelenkov.portfolio.web.response.Violation;
 import lombok.extern.slf4j.Slf4j;

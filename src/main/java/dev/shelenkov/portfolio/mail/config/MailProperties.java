@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.mail.config;
 
-import dev.shelenkov.portfolio.web.support.validation.ValidEmail;
+import dev.shelenkov.portfolio.support.validation.ValidEmail;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;

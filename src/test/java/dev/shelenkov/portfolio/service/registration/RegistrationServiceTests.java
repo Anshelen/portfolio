@@ -7,6 +7,7 @@ import dev.shelenkov.portfolio.domain.VerificationToken;
 import dev.shelenkov.portfolio.publisher.EventsPublisher;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
+import dev.shelenkov.portfolio.security.ISecurityOperations;
 import dev.shelenkov.portfolio.service.exception.TokenExpiredException;
 import dev.shelenkov.portfolio.service.exception.TokenNotValidException;
 import org.junit.jupiter.api.AfterEach;
@@ -19,8 +20,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -39,7 +38,7 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {RegistrationService.class, BCryptPasswordEncoder.class})
+@ContextConfiguration(classes = RegistrationService.class)
 @DisplayName("RegistrationService tests")
 public class RegistrationServiceTests {
 
@@ -53,8 +52,8 @@ public class RegistrationServiceTests {
     @Autowired
     private RegistrationService registrationService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    @MockBean
+    private ISecurityOperations securityOperations;
 
     @MockBean
     private AccountRepository accountRepository;
@@ -70,7 +69,7 @@ public class RegistrationServiceTests {
 
     @AfterEach
     public void afterAll() {
-        reset(accountRepository, tokenRepository, eventsPublisher);
+        reset(accountRepository, tokenRepository, eventsPublisher, securityOperations);
     }
 
     @Nested
@@ -97,8 +96,6 @@ public class RegistrationServiceTests {
             assertThat(savedAccount)
                 .extracting("username", "email", "enabled")
                 .contains(USERNAME, EMAIL, false);
-            assertThat(passwordEncoder.matches(PASSWORD, savedAccount.getPassword()))
-                .isTrue();
             assertThat(savedAccount.getRoles())
                 .containsExactly(ROLE);
 

@@ -3,9 +3,9 @@ package dev.shelenkov.portfolio.service.registration;
 import dev.shelenkov.portfolio.domain.Account;
 import dev.shelenkov.portfolio.domain.Role;
 import dev.shelenkov.portfolio.domain.VerificationToken;
-import dev.shelenkov.portfolio.mail.EmailService;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
+import dev.shelenkov.portfolio.service.email.IEmailService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ public class ConfirmEmailServiceTests {
     private VerificationTokenRepository tokenRepository;
 
     @MockBean
-    private EmailService emailService;
+    private IEmailService emailService;
 
     @Captor
     private ArgumentCaptor<VerificationToken> tokenCaptor;

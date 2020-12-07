@@ -2,9 +2,9 @@ package dev.shelenkov.portfolio.service.registration;
 
 import dev.shelenkov.portfolio.domain.Account;
 import dev.shelenkov.portfolio.domain.VerificationToken;
-import dev.shelenkov.portfolio.mail.EmailService;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
+import dev.shelenkov.portfolio.service.email.IEmailService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.Validate;
 import org.springframework.scheduling.annotation.Async;
@@ -20,7 +20,7 @@ public class ConfirmEmailService implements IConfirmEmailService {
 
     private final AccountRepository accountRepository;
     private final VerificationTokenRepository tokenRepository;
-    private final EmailService emailService;
+    private final IEmailService emailService;
 
     @Async
     @Override

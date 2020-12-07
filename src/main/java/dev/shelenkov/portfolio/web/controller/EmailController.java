@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.web.controller;
 
-import dev.shelenkov.portfolio.mail.EmailService;
 import dev.shelenkov.portfolio.service.attempts.ISendEmailToAdminAttemptsAware;
+import dev.shelenkov.portfolio.service.email.IEmailService;
 import dev.shelenkov.portfolio.web.request.SendEmailRequest;
 import dev.shelenkov.portfolio.web.response.ServerErrorResponse;
 import dev.shelenkov.portfolio.web.support.ip.Ip;
@@ -23,7 +23,7 @@ import java.io.IOException;
 @Slf4j
 public class EmailController {
 
-    private final EmailService emailService;
+    private final IEmailService emailService;
     private final ISendEmailToAdminAttemptsAware sendEmailToAdminAttemptsAwareService;
 
     @SuppressWarnings("FeatureEnvy")

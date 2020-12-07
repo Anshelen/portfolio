@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.web.request;
 
+import dev.shelenkov.portfolio.support.validation.UniqueEmail;
 import dev.shelenkov.portfolio.web.support.validation.PasswordMatches;
-import dev.shelenkov.portfolio.web.support.validation.UniqueEmail;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

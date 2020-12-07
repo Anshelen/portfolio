@@ -1,8 +1,8 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.shelenkov.portfolio.mail.EmailService;
 import dev.shelenkov.portfolio.service.attempts.ISendEmailToAdminAttemptsAware;
+import dev.shelenkov.portfolio.service.email.IEmailService;
 import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.web.request.SendEmailRequest;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,7 @@ public class EmailControllerTests {
     private ObjectMapper objectMapper;
 
     @MockBean
-    private EmailService emailService;
+    private IEmailService emailService;
 
     @MockBean
     private ISendEmailToAdminAttemptsAware sendEmailToAdminAttemptsAwareService;
