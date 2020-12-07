@@ -19,7 +19,6 @@ public class EventsPublisherImpl implements EventsPublisher {
         Long accountId = account.getId();
         Validate.notNull(accountId);
         Validate.notNull(registrationMethod);
-        eventPublisher.publishEvent(
-            new AccountRegisteredEvent(this, accountId, registrationMethod));
+        eventPublisher.publishEvent(new AccountRegisteredEvent(accountId, registrationMethod));
     }
 }

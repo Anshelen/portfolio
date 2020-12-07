@@ -4,21 +4,21 @@ import dev.shelenkov.portfolio.domain.RegistrationMethod;
 import dev.shelenkov.portfolio.event.AccountRegisteredEvent;
 import dev.shelenkov.portfolio.service.registration.ConfirmEmailService;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import org.springframework.context.ApplicationListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-public class RegistrationListener implements ApplicationListener<AccountRegisteredEvent> {
+public class RegistrationListener {
 
     private final ConfirmEmailService confirmEmailService;
 
-    @SneakyThrows(IOException.class)
-    @Override
-    public void onApplicationEvent(AccountRegisteredEvent event) {
+    @Async
+    @TransactionalEventListener
+    public void onApplicationEvent(AccountRegisteredEvent event) throws IOException {
         if (event.getRegistrationMethod() == RegistrationMethod.EMAIL) {
             confirmEmailService.sendConfirmationEmail(event.getAccountId());
         }
