@@ -1,12 +1,15 @@
 package dev.shelenkov.portfolio.service.registration;
 
-import dev.shelenkov.portfolio.model.Account;
-import dev.shelenkov.portfolio.model.Role;
-import dev.shelenkov.portfolio.model.VerificationToken;
+import dev.shelenkov.portfolio.domain.Account;
+import dev.shelenkov.portfolio.domain.Role;
+import dev.shelenkov.portfolio.domain.VerificationToken;
+import dev.shelenkov.portfolio.event.OnRegistrationCompleteEvent;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
-import dev.shelenkov.portfolio.security.ExtendedUser;
-import dev.shelenkov.portfolio.security.SecurityUtils;
+import dev.shelenkov.portfolio.service.exception.TokenExpiredException;
+import dev.shelenkov.portfolio.service.exception.TokenNotValidException;
+import dev.shelenkov.portfolio.web.security.ExtendedUser;
+import dev.shelenkov.portfolio.web.support.security.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
@@ -120,8 +123,7 @@ public class RegistrationService implements IRegistrationService {
         Account account = accountRepository.getByEmail(email);
         Validate.validState(account != null);
         Validate.validState(!account.isEnabled());
-        eventPublisher.publishEvent(
-            new OnRegistrationCompleteEvent(this, account));
+        eventPublisher.publishEvent(new OnRegistrationCompleteEvent(this, account));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.web.controller;
 
-import dev.shelenkov.portfolio.model.resume.ResumeFormat;
-import dev.shelenkov.portfolio.model.resume.ResumeLanguage;
+import dev.shelenkov.portfolio.domain.resume.ResumeFormat;
+import dev.shelenkov.portfolio.domain.resume.ResumeLanguage;
 import dev.shelenkov.portfolio.service.resume.ResumeResourceFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

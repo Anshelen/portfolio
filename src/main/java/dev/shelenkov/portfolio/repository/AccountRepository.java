@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.repository;
 
-import dev.shelenkov.portfolio.model.Account;
+import dev.shelenkov.portfolio.domain.Account;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface AccountRepository extends PagingAndSortingRepository<Account, Long> {

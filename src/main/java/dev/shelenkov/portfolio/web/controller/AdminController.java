@@ -1,8 +1,8 @@
 package dev.shelenkov.portfolio.web.controller;
 
-import dev.shelenkov.portfolio.model.Account;
+import dev.shelenkov.portfolio.domain.Account;
 import dev.shelenkov.portfolio.repository.AccountRepository;
-import dev.shelenkov.portfolio.web.wrappers.view.AccountView;
+import dev.shelenkov.portfolio.web.response.AccountResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -25,10 +25,10 @@ public class AdminController {
     private AccountRepository accountRepository;
 
     @GetMapping("users")
-    public Page<AccountView> getAllUsers(@PageableDefault(sort = "id") Pageable pageable) {
+    public Page<AccountResponse> getAllUsers(@PageableDefault(sort = "id") Pageable pageable) {
         Page<Account> page = accountRepository.findAll(pageable);
-        List<AccountView> content = page.getContent().stream()
-            .map(AccountView::new)
+        List<AccountResponse> content = page.getContent().stream()
+            .map(AccountResponse::new)
             .collect(Collectors.toList());
         return new PageImpl<>(content, pageable, page.getTotalElements());
     }

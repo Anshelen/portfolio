@@ -1,8 +1,8 @@
 package dev.shelenkov.portfolio.support;
 
-import dev.shelenkov.portfolio.model.Account;
-import dev.shelenkov.portfolio.model.Role;
-import dev.shelenkov.portfolio.security.AbstractExtendedUserDetailsService;
+import dev.shelenkov.portfolio.domain.Account;
+import dev.shelenkov.portfolio.domain.Role;
+import dev.shelenkov.portfolio.web.security.AbstractExtendedUserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

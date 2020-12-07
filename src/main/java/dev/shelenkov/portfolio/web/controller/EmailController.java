@@ -1,10 +1,10 @@
 package dev.shelenkov.portfolio.web.controller;
 
-import dev.shelenkov.portfolio.service.auxiliary.ISendEmailToAdminAttemptsAware;
-import dev.shelenkov.portfolio.service.mail.EmailService;
-import dev.shelenkov.portfolio.web.auxiliary.Ip;
-import dev.shelenkov.portfolio.web.wrappers.dto.EmailDTO;
-import dev.shelenkov.portfolio.web.wrappers.error.ServerErrorResponse;
+import dev.shelenkov.portfolio.mail.EmailService;
+import dev.shelenkov.portfolio.service.attempts.ISendEmailToAdminAttemptsAware;
+import dev.shelenkov.portfolio.web.request.SendEmailRequest;
+import dev.shelenkov.portfolio.web.response.ServerErrorResponse;
+import dev.shelenkov.portfolio.web.support.ip.Ip;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,8 @@ public class EmailController {
 
     @SuppressWarnings("FeatureEnvy")
     @PostMapping("/email/send")
-    public ResponseEntity<Void> sendEmail(@Valid @RequestBody EmailDTO emailDTO, @Ip String ip)
+    public ResponseEntity<Void> sendEmail(@Valid @RequestBody SendEmailRequest sendEmailRequest,
+                                          @Ip String ip)
         throws IOException {
 
         if (sendEmailToAdminAttemptsAwareService.areTooManyEmailsToAdminSent(ip)) {
@@ -37,7 +38,7 @@ public class EmailController {
         }
 
         emailService.sendSimpleEmailToAdmin(
-            emailDTO.getName(), emailDTO.getSubject(), emailDTO.getText());
+            sendEmailRequest.getName(), sendEmailRequest.getSubject(), sendEmailRequest.getText());
         sendEmailToAdminAttemptsAwareService.registerEmailToAdminSent(ip);
 
         return ResponseEntity.ok().build();

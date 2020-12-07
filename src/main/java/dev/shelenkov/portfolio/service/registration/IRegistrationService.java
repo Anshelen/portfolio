@@ -1,6 +1,7 @@
 package dev.shelenkov.portfolio.service.registration;
 
-import dev.shelenkov.portfolio.model.Account;
+import dev.shelenkov.portfolio.domain.Account;
+import dev.shelenkov.portfolio.service.exception.TokenNotValidException;
 
 import java.util.UUID;
 

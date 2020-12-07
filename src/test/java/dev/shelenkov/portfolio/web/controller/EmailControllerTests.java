@@ -1,10 +1,10 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.shelenkov.portfolio.service.auxiliary.ISendEmailToAdminAttemptsAware;
-import dev.shelenkov.portfolio.service.mail.EmailService;
+import dev.shelenkov.portfolio.mail.EmailService;
+import dev.shelenkov.portfolio.service.attempts.ISendEmailToAdminAttemptsAware;
 import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
-import dev.shelenkov.portfolio.web.wrappers.dto.EmailDTO;
+import dev.shelenkov.portfolio.web.request.SendEmailRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -44,7 +44,7 @@ public class EmailControllerTests {
 
     @Test
     public void test_noCsrfToken_forbidden() throws Exception {
-        EmailDTO data = new EmailDTO("name", "subject", "text");
+        SendEmailRequest data = new SendEmailRequest("name", "subject", "text");
         String body = objectMapper.writeValueAsString(data);
         mockMvc.perform(post("/email/send")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -54,7 +54,7 @@ public class EmailControllerTests {
 
     @Test
     public void test_normal() throws Exception {
-        EmailDTO data = new EmailDTO("name", "subject", "text");
+        SendEmailRequest data = new SendEmailRequest("name", "subject", "text");
         String body = objectMapper.writeValueAsString(data);
         mockMvc.perform(post("/email/send")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -65,7 +65,7 @@ public class EmailControllerTests {
 
     @Test
     public void test_validation_errors() throws Exception {
-        EmailDTO data = new EmailDTO("a", null, "text");
+        SendEmailRequest data = new SendEmailRequest("a", null, "text");
         String body = objectMapper.writeValueAsString(data);
         mockMvc.perform(post("/email/send")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -81,7 +81,7 @@ public class EmailControllerTests {
         doThrow(IOException.class).when(emailService)
             .sendSimpleEmailToAdmin(anyString(), anyString(), anyString());
 
-        EmailDTO data = new EmailDTO("name", "subject", "text");
+        SendEmailRequest data = new SendEmailRequest("name", "subject", "text");
         String body = objectMapper.writeValueAsString(data);
 
         mockMvc.perform(post("/email/send")
@@ -100,7 +100,7 @@ public class EmailControllerTests {
     public void test_tooManySendAttempts_429() throws Exception {
         when(sendEmailToAdminAttemptsAwareService.areTooManyEmailsToAdminSent(any())).thenReturn(true);
 
-        EmailDTO data = new EmailDTO("name", "subject", "text");
+        SendEmailRequest data = new SendEmailRequest("name", "subject", "text");
         String body = objectMapper.writeValueAsString(data);
         mockMvc.perform(post("/email/send")
             .contentType(MediaType.APPLICATION_JSON_VALUE)

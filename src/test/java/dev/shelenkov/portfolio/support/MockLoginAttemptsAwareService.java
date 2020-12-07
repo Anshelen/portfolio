@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.support;
 
-import dev.shelenkov.portfolio.service.auxiliary.ILoginAttemptsAware;
+import dev.shelenkov.portfolio.service.attempts.ILoginAttemptsAware;
 import org.springframework.lang.NonNull;
 
 public class MockLoginAttemptsAwareService implements ILoginAttemptsAware {

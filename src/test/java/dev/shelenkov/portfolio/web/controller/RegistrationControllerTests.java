@@ -1,10 +1,10 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.shelenkov.portfolio.service.auxiliary.RequestAttemptsService;
+import dev.shelenkov.portfolio.service.attempts.RequestAttemptsService;
 import dev.shelenkov.portfolio.service.registration.IRegistrationService;
 import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
-import dev.shelenkov.portfolio.web.wrappers.dto.ResendConfirmationEmailDTO;
+import dev.shelenkov.portfolio.web.request.ResendConfirmationEmailRequest;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -180,7 +180,7 @@ public class RegistrationControllerTests {
 
     @SneakyThrows
     private String createRequestBody(String email) {
-        ResendConfirmationEmailDTO data = new ResendConfirmationEmailDTO(email);
+        ResendConfirmationEmailRequest data = new ResendConfirmationEmailRequest(email);
         return objectMapper.writeValueAsString(data);
     }
 }

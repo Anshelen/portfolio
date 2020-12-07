@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.web.controller;
 
-import dev.shelenkov.portfolio.model.Account;
-import dev.shelenkov.portfolio.model.Role;
+import dev.shelenkov.portfolio.domain.Account;
+import dev.shelenkov.portfolio.domain.Role;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.support.WithAdmin;

@@ -1,13 +1,13 @@
 package dev.shelenkov.portfolio.web.controller;
 
-import dev.shelenkov.portfolio.model.Account;
-import dev.shelenkov.portfolio.service.auxiliary.IResendConfirmationEmailAttemptsAware;
+import dev.shelenkov.portfolio.domain.Account;
+import dev.shelenkov.portfolio.service.attempts.IResendConfirmationEmailAttemptsAware;
+import dev.shelenkov.portfolio.service.exception.TokenExpiredException;
+import dev.shelenkov.portfolio.service.exception.TokenNotValidException;
 import dev.shelenkov.portfolio.service.registration.IRegistrationService;
-import dev.shelenkov.portfolio.service.registration.TokenExpiredException;
-import dev.shelenkov.portfolio.service.registration.TokenNotValidException;
-import dev.shelenkov.portfolio.web.auxiliary.Ip;
-import dev.shelenkov.portfolio.web.wrappers.dto.ResendConfirmationEmailDTO;
-import dev.shelenkov.portfolio.web.wrappers.dto.UserDTO;
+import dev.shelenkov.portfolio.web.request.RegisterUserRequest;
+import dev.shelenkov.portfolio.web.request.ResendConfirmationEmailRequest;
+import dev.shelenkov.portfolio.web.support.ip.Ip;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -36,21 +36,22 @@ public class RegistrationController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new UserDTO());
+        model.addAttribute("user", new RegisterUserRequest());
         return "register";
     }
 
     @SuppressWarnings("FeatureEnvy")
     @PostMapping("/register")
     public ModelAndView registerUserAccount(
-        @ModelAttribute("user") @Valid UserDTO userDTO, BindingResult result) {
+        @ModelAttribute("user") @Valid RegisterUserRequest registerUserRequest,
+        BindingResult result) {
 
         if (result.hasErrors()) {
-            return new ModelAndView("register", "user", userDTO);
+            return new ModelAndView("register", "user", registerUserRequest);
         } else {
             registrationService.registerNewUser(
-                userDTO.getUserName(), userDTO.getEmail(), userDTO.getPassword());
-            return new ModelAndView("registrationEmailSent", "user", userDTO);
+                registerUserRequest.getUserName(), registerUserRequest.getEmail(), registerUserRequest.getPassword());
+            return new ModelAndView("registrationEmailSent", "user", registerUserRequest);
         }
     }
 
@@ -73,7 +74,7 @@ public class RegistrationController {
         value = "/resendRegistrationEmail",
         consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> resendConfirmationEmail(
-        @Valid @RequestBody ResendConfirmationEmailDTO emailDTO,
+        @Valid @RequestBody ResendConfirmationEmailRequest emailDTO,
         @Ip String ip) {
 
         String email = emailDTO.getEmail();

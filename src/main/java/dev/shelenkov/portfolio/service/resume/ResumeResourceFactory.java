@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.service.resume;
 
-import dev.shelenkov.portfolio.model.resume.ResumeFormat;
-import dev.shelenkov.portfolio.model.resume.ResumeLanguage;
+import dev.shelenkov.portfolio.domain.resume.ResumeFormat;
+import dev.shelenkov.portfolio.domain.resume.ResumeLanguage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
