@@ -30,7 +30,7 @@ public class ConfirmEmailServiceImpl implements ConfirmEmailService {
         Validate.validState(!account.isEnabled());
 
         VerificationToken token = new VerificationToken(account);
-        token = tokenRepository.save(token);
+        tokenRepository.save(token);
         emailService.sendConfirmationEmail(token);
     }
 
@@ -42,7 +42,7 @@ public class ConfirmEmailServiceImpl implements ConfirmEmailService {
         Validate.validState(!account.isEnabled());
 
         VerificationToken token = new VerificationToken(account);
-        token = tokenRepository.save(token);
+        tokenRepository.save(token);
         emailService.sendConfirmationEmail(token);
     }
 

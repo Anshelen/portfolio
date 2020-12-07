@@ -82,11 +82,6 @@ public class RegistrationServiceImplTests {
             doReturn(newAccount).when(accountRepository).getByEmail(EMAIL);
         }
 
-        @AfterEach
-        public void afterEach() {
-            verify(accountRepository).existsByEmail(EMAIL);
-        }
-
         @Test
         public void ok_Success() {
             doReturn(createDisabledAccount()).when(accountRepository).save(captor.capture());
@@ -101,15 +96,6 @@ public class RegistrationServiceImplTests {
 
             verify(accountRepository).save(any());
             verify(eventsPublisher).accountRegistered(savedAccount, RegistrationMethod.EMAIL);
-        }
-
-        @Test
-        public void existsAccountWithSuchEmail_IllegalArgumentException() {
-            doReturn(true).when(accountRepository).existsByEmail(EMAIL);
-            assertThrows(IllegalArgumentException.class,
-                () -> registrationService.registerNewUser(USERNAME, EMAIL, PASSWORD));
-            verify(accountRepository, never()).save(any());
-            verify(eventsPublisher, never()).accountRegistered(any(), any());
         }
     }
 

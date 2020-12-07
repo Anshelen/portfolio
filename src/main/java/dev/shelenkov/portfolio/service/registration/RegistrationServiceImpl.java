@@ -34,11 +34,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     @Override
     public void registerNewUser(String userName, String email, String password) {
-        if (accountRepository.existsByEmail(email)) {
-            throw new IllegalArgumentException(
-                "There is an account with that email address: " + email);
-        }
-
         Account account = new Account(
             userName,
             email,

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
 import java.util.Locale;
@@ -27,6 +28,7 @@ public abstract class AbstractOAuth2LoginProcessor implements OAuth2LoginProcess
 
     @SuppressWarnings("FeatureEnvy")
     @Override
+    @Transactional
     public ExtendedUser processUser(Map<String, Object> userAttributes, String accessToken) {
         String oauth2Id = getOauth2Id(userAttributes);
         Account account = loadUserByOauth2Id(oauth2Id);
@@ -44,7 +46,6 @@ public abstract class AbstractOAuth2LoginProcessor implements OAuth2LoginProcess
                 account = registerNewAccount(userAttributes, email, oauth2Id);
             } else {
                 setOAuth2IdForAccount(account, oauth2Id);
-                accountService.save(account);
             }
         }
 
