@@ -1,8 +1,8 @@
 package dev.shelenkov.portfolio.security.oauth2.loginprocessors;
 
 import dev.shelenkov.portfolio.domain.Account;
-import dev.shelenkov.portfolio.service.account.IAccountService;
-import dev.shelenkov.portfolio.service.registration.IRegistrationService;
+import dev.shelenkov.portfolio.service.account.AccountService;
+import dev.shelenkov.portfolio.service.registration.RegistrationService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
@@ -13,11 +13,11 @@ import java.util.Map;
 @Component
 public class GoogleOAuth2LoginProcessor extends AbstractOAuth2LoginProcessor {
 
-    private final IRegistrationService registrationService;
+    private final RegistrationService registrationService;
 
-    public GoogleOAuth2LoginProcessor(IAccountService accountService,
+    public GoogleOAuth2LoginProcessor(AccountService accountService,
                                       ClientRegistrationRepository clientRegistrationRepository,
-                                      IRegistrationService registrationService) {
+                                      RegistrationService registrationService) {
         super(accountService, clientRegistrationRepository);
         this.registrationService = registrationService;
     }

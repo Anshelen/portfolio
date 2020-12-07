@@ -1,9 +1,9 @@
 package dev.shelenkov.portfolio.support;
 
-import dev.shelenkov.portfolio.service.attempts.ILoginAttemptsAware;
+import dev.shelenkov.portfolio.service.attempts.LoginAttemptsAware;
 import org.springframework.lang.NonNull;
 
-public class MockLoginAttemptsAwareService implements ILoginAttemptsAware {
+public class MockLoginAttemptsAwareService implements LoginAttemptsAware {
 
     @Override
     public void registerSuccessfulLogin(@NonNull String ip) {

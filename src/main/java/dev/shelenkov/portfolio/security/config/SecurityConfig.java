@@ -7,7 +7,7 @@ import dev.shelenkov.portfolio.security.internal.LoggingAccessDeniedHandler;
 import dev.shelenkov.portfolio.security.internal.OverridingIpWebAuthenticationDetailsSource;
 import dev.shelenkov.portfolio.security.internal.ParametersMappingAuthenticationFailureHandler;
 import dev.shelenkov.portfolio.security.oauth2.OAuth2NoVerifiedEmailException;
-import dev.shelenkov.portfolio.service.attempts.ILoginAttemptsAware;
+import dev.shelenkov.portfolio.service.attempts.LoginAttemptsAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private PersistentTokenRepository tokenRepository;
 
     @Autowired
-    private ILoginAttemptsAware loginAttemptsAwareService;
+    private LoginAttemptsAware loginAttemptsAwareService;
 
     @Value("${server.servlet.session.cookie.name}")
     private String cookieName;

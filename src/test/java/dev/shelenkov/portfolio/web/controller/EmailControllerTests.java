@@ -1,8 +1,8 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.shelenkov.portfolio.service.attempts.ISendEmailToAdminAttemptsAware;
-import dev.shelenkov.portfolio.service.email.IEmailService;
+import dev.shelenkov.portfolio.service.attempts.SendEmailToAdminAttemptsAware;
+import dev.shelenkov.portfolio.service.email.EmailService;
 import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.web.request.SendEmailRequest;
 import org.junit.jupiter.api.Test;
@@ -37,10 +37,10 @@ public class EmailControllerTests {
     private ObjectMapper objectMapper;
 
     @MockBean
-    private IEmailService emailService;
+    private EmailService emailService;
 
     @MockBean
-    private ISendEmailToAdminAttemptsAware sendEmailToAdminAttemptsAwareService;
+    private SendEmailToAdminAttemptsAware sendEmailToAdminAttemptsAwareService;
 
     @Test
     public void test_noCsrfToken_forbidden() throws Exception {

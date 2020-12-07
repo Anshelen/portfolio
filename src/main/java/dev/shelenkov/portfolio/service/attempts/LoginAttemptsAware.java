@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.service.attempts;
 
-public interface ILoginAttemptsAware {
+public interface LoginAttemptsAware {
 
     void registerSuccessfulLogin(String ip);
 

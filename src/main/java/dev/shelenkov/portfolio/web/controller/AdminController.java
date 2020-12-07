@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import dev.shelenkov.portfolio.domain.Account;
-import dev.shelenkov.portfolio.service.account.IAccountService;
+import dev.shelenkov.portfolio.service.account.AccountService;
 import dev.shelenkov.portfolio.web.response.AccountResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class AdminController {
 
     @Autowired
-    private IAccountService accountService;
+    private AccountService accountService;
 
     @GetMapping("users")
     public Page<AccountResponse> getAllUsers(@PageableDefault(sort = "id") Pageable pageable) {

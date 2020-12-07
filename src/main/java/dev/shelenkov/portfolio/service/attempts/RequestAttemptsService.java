@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 @Slf4j
 public class RequestAttemptsService
-    implements ILoginAttemptsAware, IResendConfirmationEmailAttemptsAware, ISendEmailToAdminAttemptsAware {
+    implements LoginAttemptsAware, ResendConfirmationEmailAttemptsAware, SendEmailToAdminAttemptsAware {
 
     private final int maxResendConfirmationEmailAttempts;
     private final int maxLoginAttempts;

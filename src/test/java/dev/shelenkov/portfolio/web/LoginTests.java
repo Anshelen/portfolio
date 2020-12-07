@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.web;
 
-import dev.shelenkov.portfolio.service.attempts.ILoginAttemptsAware;
+import dev.shelenkov.portfolio.service.attempts.LoginAttemptsAware;
 import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.support.ip.CorruptedIpException;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class LoginTests {
 
     @MockBean
-    private ILoginAttemptsAware loginAttemptsAwareService;
+    private LoginAttemptsAware loginAttemptsAwareService;
 
     @Autowired
     private MockMvc mockMvc;

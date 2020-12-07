@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.support.validation;
 
-import dev.shelenkov.portfolio.service.account.IAccountService;
+import dev.shelenkov.portfolio.service.account.AccountService;
 import lombok.RequiredArgsConstructor;
 
 import javax.validation.ConstraintValidator;
@@ -9,7 +9,7 @@ import javax.validation.ConstraintValidatorContext;
 @RequiredArgsConstructor
 public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, String> {
 
-    private final IAccountService accountService;
+    private final AccountService accountService;
 
     @Override
     public void initialize(UniqueEmail constraintAnnotation) {

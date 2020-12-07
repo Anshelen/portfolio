@@ -5,7 +5,7 @@ import dev.shelenkov.portfolio.domain.Role;
 import dev.shelenkov.portfolio.domain.VerificationToken;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
-import dev.shelenkov.portfolio.service.email.IEmailService;
+import dev.shelenkov.portfolio.service.email.EmailService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,12 +27,12 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@SpringJUnitConfig(ConfirmEmailService.class)
+@SpringJUnitConfig(ConfirmEmailServiceImpl.class)
 @DisplayName("ConfirmEmailService tests")
-public class ConfirmEmailServiceTests {
+public class ConfirmEmailServiceImplTests {
 
     @Autowired
-    private IConfirmEmailService confirmEmailService;
+    private ConfirmEmailService confirmEmailService;
 
     @MockBean
     private AccountRepository accountRepository;
@@ -41,7 +41,7 @@ public class ConfirmEmailServiceTests {
     private VerificationTokenRepository tokenRepository;
 
     @MockBean
-    private IEmailService emailService;
+    private EmailService emailService;
 
     @Captor
     private ArgumentCaptor<VerificationToken> tokenCaptor;

@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.security.internal;
 
 import dev.shelenkov.portfolio.security.exception.TooManyLoginAttemptsException;
-import dev.shelenkov.portfolio.service.attempts.ILoginAttemptsAware;
+import dev.shelenkov.portfolio.service.attempts.LoginAttemptsAware;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
@@ -16,9 +16,9 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 @Slf4j
 public final class ExtendedDaoAuthenticationProvider extends DaoAuthenticationProvider {
 
-    private final ILoginAttemptsAware loginAttemptsAwareService;
+    private final LoginAttemptsAware loginAttemptsAwareService;
 
-    public ExtendedDaoAuthenticationProvider(ILoginAttemptsAware loginAttemptsAwareService,
+    public ExtendedDaoAuthenticationProvider(LoginAttemptsAware loginAttemptsAwareService,
                                              UserDetailsService userDetailsService,
                                              PasswordEncoder passwordEncoder) {
         this.loginAttemptsAwareService = loginAttemptsAwareService;

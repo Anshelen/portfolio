@@ -1,8 +1,8 @@
 package dev.shelenkov.portfolio.security.oauth2.loginprocessors;
 
 import dev.shelenkov.portfolio.domain.Account;
-import dev.shelenkov.portfolio.service.account.IAccountService;
-import dev.shelenkov.portfolio.service.registration.IRegistrationService;
+import dev.shelenkov.portfolio.service.account.AccountService;
+import dev.shelenkov.portfolio.service.registration.RegistrationService;
 import lombok.Data;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -23,12 +23,12 @@ public class GitHubOAuth2LoginProcessor extends AbstractOAuth2LoginProcessor {
 
     private static final String GET_EMAIL_URL = "https://api.github.com/user/emails";
 
-    private final IRegistrationService registrationService;
+    private final RegistrationService registrationService;
     private final RestOperations restOperations;
 
-    public GitHubOAuth2LoginProcessor(IAccountService accountService,
+    public GitHubOAuth2LoginProcessor(AccountService accountService,
                                       ClientRegistrationRepository clientRegistrationRepository,
-                                      IRegistrationService registrationService) {
+                                      RegistrationService registrationService) {
         super(accountService, clientRegistrationRepository);
         this.registrationService = registrationService;
         this.restOperations = new RestTemplate();

@@ -3,7 +3,7 @@ package dev.shelenkov.portfolio.security.oauth2.loginprocessors;
 import dev.shelenkov.portfolio.domain.Account;
 import dev.shelenkov.portfolio.security.internal.ExtendedUser;
 import dev.shelenkov.portfolio.security.support.SecurityUtils;
-import dev.shelenkov.portfolio.service.account.IAccountService;
+import dev.shelenkov.portfolio.service.account.AccountService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
@@ -22,7 +22,7 @@ import static dev.shelenkov.portfolio.security.oauth2.OAuth2ErrorHelper.throwOnN
 public abstract class AbstractOAuth2LoginProcessor implements OAuth2LoginProcessor {
 
     @Getter
-    private final IAccountService accountService;
+    private final AccountService accountService;
     private final ClientRegistrationRepository clientRegistrationRepository;
 
     @SuppressWarnings("FeatureEnvy")

@@ -7,7 +7,7 @@ import dev.shelenkov.portfolio.domain.VerificationToken;
 import dev.shelenkov.portfolio.publisher.EventsPublisher;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
-import dev.shelenkov.portfolio.security.ISecurityOperations;
+import dev.shelenkov.portfolio.security.SecurityOperations;
 import dev.shelenkov.portfolio.service.exception.TokenExpiredException;
 import dev.shelenkov.portfolio.service.exception.TokenNotValidException;
 import org.junit.jupiter.api.AfterEach;
@@ -38,9 +38,9 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = RegistrationService.class)
+@ContextConfiguration(classes = RegistrationServiceImpl.class)
 @DisplayName("RegistrationService tests")
-public class RegistrationServiceTests {
+public class RegistrationServiceImplTests {
 
     private static final Long ACCOUNT_ID = 1L;
     private static final String EMAIL = "anshelen@yandex.ru";
@@ -53,7 +53,7 @@ public class RegistrationServiceTests {
     private RegistrationService registrationService;
 
     @MockBean
-    private ISecurityOperations securityOperations;
+    private SecurityOperations securityOperations;
 
     @MockBean
     private AccountRepository accountRepository;

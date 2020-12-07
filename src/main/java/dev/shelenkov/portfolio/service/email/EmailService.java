@@ -1,27 +1,13 @@
 package dev.shelenkov.portfolio.service.email;
 
 import dev.shelenkov.portfolio.domain.VerificationToken;
-import dev.shelenkov.portfolio.mail.SendGridService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-@Service
-@RequiredArgsConstructor
-public class EmailService implements IEmailService {
+public interface EmailService {
 
-    private final SendGridService sendGridService;
+    void sendConfirmationEmail(VerificationToken token) throws IOException;
 
-    @Override
-    public void sendConfirmationEmail(VerificationToken token) throws IOException {
-        sendGridService.sendConfirmationEmail(token);
-    }
-
-    @Override
-    public void sendSimpleEmailToAdmin(String name, String subject,
-                                       String text) throws IOException {
-
-        sendGridService.sendSimpleEmailToAdmin(name, subject, text);
-    }
+    void sendSimpleEmailToAdmin(String name, String subject,
+                                String text) throws IOException;
 }

@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.support;
 
 import dev.shelenkov.portfolio.security.config.SecurityProperties;
-import dev.shelenkov.portfolio.service.attempts.ILoginAttemptsAware;
+import dev.shelenkov.portfolio.service.attempts.LoginAttemptsAware;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +22,7 @@ public class SpringSecurityTestConfig {
 
     @Bean
     @Primary
-    public ILoginAttemptsAware requestAttemptsService() {
+    public LoginAttemptsAware requestAttemptsService() {
         return new MockLoginAttemptsAwareService();
     }
 

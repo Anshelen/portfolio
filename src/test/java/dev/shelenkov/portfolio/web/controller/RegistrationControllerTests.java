@@ -1,9 +1,9 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.shelenkov.portfolio.service.attempts.RequestAttemptsService;
-import dev.shelenkov.portfolio.service.registration.IConfirmEmailService;
-import dev.shelenkov.portfolio.service.registration.IRegistrationService;
+import dev.shelenkov.portfolio.service.attempts.ResendConfirmationEmailAttemptsAware;
+import dev.shelenkov.portfolio.service.registration.ConfirmEmailService;
+import dev.shelenkov.portfolio.service.registration.RegistrationService;
 import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.web.request.ResendConfirmationEmailRequest;
 import lombok.SneakyThrows;
@@ -33,15 +33,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ConfiguredWebMvcTest(RegistrationController.class)
 @MockBeans(
-    @MockBean(classes = IRegistrationService.class)
+    @MockBean(classes = RegistrationService.class)
 )
 public class RegistrationControllerTests {
 
     @MockBean
-    private IConfirmEmailService confirmEmailService;
+    private ConfirmEmailService confirmEmailService;
 
     @MockBean
-    private RequestAttemptsService requestAttemptsService;
+    private ResendConfirmationEmailAttemptsAware resendConfirmationEmailAttemptsService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -149,7 +149,7 @@ public class RegistrationControllerTests {
     }
 
     private void expectTooManyResendConfirmationEmailAttemptsForIp(String ip) {
-        when(requestAttemptsService.areTooManyConfirmationEmailsResent(ip)).thenReturn(true);
+        when(resendConfirmationEmailAttemptsService.areTooManyConfirmationEmailsResent(ip)).thenReturn(true);
     }
 
     private void expectSendConfirmationEmailForbidden() {
@@ -167,15 +167,15 @@ public class RegistrationControllerTests {
     }
 
     private void assertResendEmailAttemptRegisteredForIp(String ip) {
-        verify(requestAttemptsService).registerConfirmationEmailResent(ip);
+        verify(resendConfirmationEmailAttemptsService).registerConfirmationEmailResent(ip);
     }
 
     private void assertResendEmailAttemptNotRegisteredForIp(String ip) {
-        verify(requestAttemptsService, never()).registerConfirmationEmailResent(ip);
+        verify(resendConfirmationEmailAttemptsService, never()).registerConfirmationEmailResent(ip);
     }
 
     private void assertIpCheckedForTooManyResendAttempts(String ip) {
-        verify(requestAttemptsService).areTooManyConfirmationEmailsResent(ipCaptor.capture());
+        verify(resendConfirmationEmailAttemptsService).areTooManyConfirmationEmailsResent(ipCaptor.capture());
         String actualIp = ipCaptor.getValue();
         assertThat(actualIp).isEqualTo(ip);
     }

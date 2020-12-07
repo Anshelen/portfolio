@@ -2,7 +2,7 @@ package dev.shelenkov.portfolio.listener;
 
 import dev.shelenkov.portfolio.domain.RegistrationMethod;
 import dev.shelenkov.portfolio.event.AccountRegisteredEvent;
-import dev.shelenkov.portfolio.service.registration.IConfirmEmailService;
+import dev.shelenkov.portfolio.service.registration.ConfirmEmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.context.ApplicationListener;
@@ -14,7 +14,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class RegistrationListener implements ApplicationListener<AccountRegisteredEvent> {
 
-    private final IConfirmEmailService confirmEmailService;
+    private final ConfirmEmailService confirmEmailService;
 
     @SneakyThrows(IOException.class)
     @Override

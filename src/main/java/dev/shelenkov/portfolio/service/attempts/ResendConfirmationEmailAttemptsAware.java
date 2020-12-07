@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.service.attempts;
 
-public interface IResendConfirmationEmailAttemptsAware {
+public interface ResendConfirmationEmailAttemptsAware {
 
     void registerConfirmationEmailResent(String ip);
 

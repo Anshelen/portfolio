@@ -2,7 +2,7 @@ package dev.shelenkov.portfolio.web.controller;
 
 import dev.shelenkov.portfolio.domain.Account;
 import dev.shelenkov.portfolio.domain.Role;
-import dev.shelenkov.portfolio.service.account.IAccountService;
+import dev.shelenkov.portfolio.service.account.AccountService;
 import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.support.WithAdmin;
 import dev.shelenkov.portfolio.support.WithUser;
@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AdminControllerTests {
 
     @MockBean
-    private IAccountService accountService;
+    private AccountService accountService;
 
     @Autowired
     private MockMvc mockMvc;

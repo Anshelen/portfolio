@@ -1,11 +1,11 @@
 package dev.shelenkov.portfolio.web.controller;
 
 import dev.shelenkov.portfolio.domain.Account;
-import dev.shelenkov.portfolio.service.attempts.IResendConfirmationEmailAttemptsAware;
+import dev.shelenkov.portfolio.service.attempts.ResendConfirmationEmailAttemptsAware;
 import dev.shelenkov.portfolio.service.exception.TokenExpiredException;
 import dev.shelenkov.portfolio.service.exception.TokenNotValidException;
-import dev.shelenkov.portfolio.service.registration.IConfirmEmailService;
-import dev.shelenkov.portfolio.service.registration.IRegistrationService;
+import dev.shelenkov.portfolio.service.registration.ConfirmEmailService;
+import dev.shelenkov.portfolio.service.registration.RegistrationService;
 import dev.shelenkov.portfolio.web.request.RegisterUserRequest;
 import dev.shelenkov.portfolio.web.request.ResendConfirmationEmailRequest;
 import dev.shelenkov.portfolio.web.response.ServerErrorResponse;
@@ -36,9 +36,9 @@ import java.util.UUID;
 @Slf4j
 public class RegistrationController {
 
-    private final IRegistrationService registrationService;
-    private final IConfirmEmailService confirmEmailService;
-    private final IResendConfirmationEmailAttemptsAware resendConfirmationEmailAttemptsAwareService;
+    private final RegistrationService registrationService;
+    private final ConfirmEmailService confirmEmailService;
+    private final ResendConfirmationEmailAttemptsAware resendConfirmationEmailAttemptsAwareService;
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {

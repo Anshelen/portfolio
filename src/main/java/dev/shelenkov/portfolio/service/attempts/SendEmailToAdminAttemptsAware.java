@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.service.attempts;
 
-public interface ISendEmailToAdminAttemptsAware {
+public interface SendEmailToAdminAttemptsAware {
 
     void registerEmailToAdminSent(String ip);
 
