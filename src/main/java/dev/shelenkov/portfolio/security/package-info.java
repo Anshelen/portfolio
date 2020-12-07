@@ -1,4 +1,4 @@
 /**
- * Spring Security classes
+ * Spring Security classes.
  */
 package dev.shelenkov.portfolio.security;

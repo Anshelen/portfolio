@@ -1,4 +1,4 @@
 /**
- * Validation annotations and corresponding classes.
+ * Custom validation annotations and corresponding classes.
  */
 package dev.shelenkov.portfolio.support.validation;

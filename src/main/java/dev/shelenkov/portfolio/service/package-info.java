@@ -1,4 +1,4 @@
 /**
- * Service Layer Beans
+ * Service Layer Beans.
  */
 package dev.shelenkov.portfolio.service;
