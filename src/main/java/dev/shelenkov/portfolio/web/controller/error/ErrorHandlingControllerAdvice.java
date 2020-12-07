@@ -2,7 +2,6 @@ package dev.shelenkov.portfolio.web.controller.error;
 
 import dev.shelenkov.portfolio.support.ip.CorruptedIpException;
 import dev.shelenkov.portfolio.web.response.ValidationErrorResponse;
-import dev.shelenkov.portfolio.web.response.Violation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -52,8 +51,7 @@ public class ErrorHandlingControllerAdvice {
         ConstraintViolationException e) {
         ValidationErrorResponse error = new ValidationErrorResponse();
         for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
-            error.addViolation(
-                new Violation(violation.getPropertyPath().toString(), violation.getMessage()));
+            error.addViolation(violation.getPropertyPath().toString(), violation.getMessage());
         }
         return error;
     }
@@ -65,8 +63,7 @@ public class ErrorHandlingControllerAdvice {
         MethodArgumentNotValidException e) {
         ValidationErrorResponse error = new ValidationErrorResponse();
         for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
-            error.addViolation(
-                new Violation(fieldError.getField(), fieldError.getDefaultMessage()));
+            error.addViolation(fieldError.getField(), fieldError.getDefaultMessage());
         }
         return error;
     }
