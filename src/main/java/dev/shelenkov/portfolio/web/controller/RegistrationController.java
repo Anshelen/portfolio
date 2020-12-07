@@ -4,9 +4,11 @@ import dev.shelenkov.portfolio.domain.Account;
 import dev.shelenkov.portfolio.service.attempts.IResendConfirmationEmailAttemptsAware;
 import dev.shelenkov.portfolio.service.exception.TokenExpiredException;
 import dev.shelenkov.portfolio.service.exception.TokenNotValidException;
+import dev.shelenkov.portfolio.service.registration.IConfirmEmailService;
 import dev.shelenkov.portfolio.service.registration.IRegistrationService;
 import dev.shelenkov.portfolio.web.request.RegisterUserRequest;
 import dev.shelenkov.portfolio.web.request.ResendConfirmationEmailRequest;
+import dev.shelenkov.portfolio.web.response.ServerErrorResponse;
 import dev.shelenkov.portfolio.web.support.ip.Ip;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,14 +18,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.UUID;
 
 @Controller
@@ -32,6 +37,7 @@ import java.util.UUID;
 public class RegistrationController {
 
     private final IRegistrationService registrationService;
+    private final IConfirmEmailService confirmEmailService;
     private final IResendConfirmationEmailAttemptsAware resendConfirmationEmailAttemptsAwareService;
 
     @GetMapping("/register")
@@ -75,7 +81,7 @@ public class RegistrationController {
         consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> resendConfirmationEmail(
         @Valid @RequestBody ResendConfirmationEmailRequest emailDTO,
-        @Ip String ip) {
+        @Ip String ip) throws IOException {
 
         String email = emailDTO.getEmail();
         log.debug("Resending confirmation email. Email: {}, ip: {}", email, ip);
@@ -83,11 +89,18 @@ public class RegistrationController {
             log.warn("Too much attempts to resend confirmation emails. Blocked ip: {}", ip);
             return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).build();
         }
-        if (registrationService.isSendConfirmationEmailForbidden(email)) {
+        if (confirmEmailService.isSendConfirmationEmailForbidden(email)) {
             return ResponseEntity.badRequest().build();
         }
-        registrationService.sendConfirmationEmail(email);
+        confirmEmailService.sendConfirmationEmail(email);
         resendConfirmationEmailAttemptsAwareService.registerConfirmationEmailResent(ip);
         return ResponseEntity.ok().build();
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(IOException.class)
+    public ServerErrorResponse handleSendConfirmEmailError(IOException ex) {
+        log.error("Error sending confirm email message", ex);
+        return new ServerErrorResponse("Can't send e'mail");
     }
 }

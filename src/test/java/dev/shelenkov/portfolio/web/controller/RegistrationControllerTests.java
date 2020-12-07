@@ -2,6 +2,7 @@ package dev.shelenkov.portfolio.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.shelenkov.portfolio.service.attempts.RequestAttemptsService;
+import dev.shelenkov.portfolio.service.registration.IConfirmEmailService;
 import dev.shelenkov.portfolio.service.registration.IRegistrationService;
 import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
 import dev.shelenkov.portfolio.web.request.ResendConfirmationEmailRequest;
@@ -14,9 +15,12 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.MockBeans;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
+
+import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -28,10 +32,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ConfiguredWebMvcTest(RegistrationController.class)
+@MockBeans(
+    @MockBean(classes = IRegistrationService.class)
+)
 public class RegistrationControllerTests {
 
     @MockBean
-    private IRegistrationService registrationService;
+    private IConfirmEmailService confirmEmailService;
 
     @MockBean
     private RequestAttemptsService requestAttemptsService;
@@ -146,15 +153,17 @@ public class RegistrationControllerTests {
     }
 
     private void expectSendConfirmationEmailForbidden() {
-        when(registrationService.isSendConfirmationEmailForbidden(anyString())).thenReturn(true);
+        when(confirmEmailService.isSendConfirmationEmailForbidden(anyString())).thenReturn(true);
     }
 
+    @SneakyThrows(IOException.class)
     private void assertConfirmationEmailSent(String email) {
-        verify(registrationService).sendConfirmationEmail(email);
+        verify(confirmEmailService).sendConfirmationEmail(email);
     }
 
+    @SneakyThrows(IOException.class)
     private void assertConfirmationEmailNotSent(String email) {
-        verify(registrationService, never()).sendConfirmationEmail(email);
+        verify(confirmEmailService, never()).sendConfirmationEmail(email);
     }
 
     private void assertResendEmailAttemptRegisteredForIp(String ip) {

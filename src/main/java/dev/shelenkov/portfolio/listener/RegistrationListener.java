@@ -1,11 +1,8 @@
 package dev.shelenkov.portfolio.listener;
 
-import dev.shelenkov.portfolio.domain.Account;
-import dev.shelenkov.portfolio.domain.VerificationToken;
-import dev.shelenkov.portfolio.event.OnRegistrationCompleteEvent;
-import dev.shelenkov.portfolio.mail.EmailService;
-import dev.shelenkov.portfolio.repository.AccountRepository;
-import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
+import dev.shelenkov.portfolio.domain.RegistrationMethod;
+import dev.shelenkov.portfolio.event.AccountRegisteredEvent;
+import dev.shelenkov.portfolio.service.registration.IConfirmEmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.context.ApplicationListener;
@@ -15,24 +12,15 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-public class RegistrationListener
-    implements ApplicationListener<OnRegistrationCompleteEvent> {
+public class RegistrationListener implements ApplicationListener<AccountRegisteredEvent> {
 
-    private final EmailService emailService;
-    private final VerificationTokenRepository tokenRepository;
-    private final AccountRepository accountRepository;
-
-    @Override
-    public void onApplicationEvent(OnRegistrationCompleteEvent event) {
-        Account account = accountRepository.findById(event.getAccountId())
-            .orElseThrow(() -> new RuntimeException("Account to be confirmed doesn't exist"));
-        confirmEmailAddress(account);
-    }
+    private final IConfirmEmailService confirmEmailService;
 
     @SneakyThrows(IOException.class)
-    private void confirmEmailAddress(Account account) {
-        VerificationToken token = new VerificationToken(account);
-        token = tokenRepository.save(token);
-        emailService.sendConfirmationEmail(token);
+    @Override
+    public void onApplicationEvent(AccountRegisteredEvent event) {
+        if (event.getRegistrationMethod() == RegistrationMethod.EMAIL) {
+            confirmEmailService.sendConfirmationEmail(event.getAccountId());
+        }
     }
 }

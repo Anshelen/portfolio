@@ -1,10 +1,10 @@
 package dev.shelenkov.portfolio.service.registration;
 
 import dev.shelenkov.portfolio.domain.Account;
+import dev.shelenkov.portfolio.domain.RegistrationMethod;
 import dev.shelenkov.portfolio.domain.Role;
 import dev.shelenkov.portfolio.domain.VerificationToken;
-import dev.shelenkov.portfolio.event.OnRegistrationCompleteEvent;
-import dev.shelenkov.portfolio.listener.RegistrationListener;
+import dev.shelenkov.portfolio.publisher.EventsPublisher;
 import dev.shelenkov.portfolio.repository.AccountRepository;
 import dev.shelenkov.portfolio.repository.VerificationTokenRepository;
 import dev.shelenkov.portfolio.service.exception.TokenExpiredException;
@@ -33,7 +33,6 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
@@ -42,7 +41,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {RegistrationService.class, BCryptPasswordEncoder.class})
 @DisplayName("RegistrationService tests")
-class RegistrationServiceTests {
+public class RegistrationServiceTests {
 
     private static final Long ACCOUNT_ID = 1L;
     private static final String EMAIL = "anshelen@yandex.ru";
@@ -64,14 +63,14 @@ class RegistrationServiceTests {
     private VerificationTokenRepository tokenRepository;
 
     @MockBean
-    private RegistrationListener registrationListener;
+    private EventsPublisher eventsPublisher;
 
     @Captor
     private ArgumentCaptor<Account> captor;
 
     @AfterEach
     public void afterAll() {
-        reset(accountRepository, tokenRepository, registrationListener);
+        reset(accountRepository, tokenRepository, eventsPublisher);
     }
 
     @Nested
@@ -104,7 +103,7 @@ class RegistrationServiceTests {
                 .containsExactly(ROLE);
 
             verify(accountRepository).save(any());
-            verify(registrationListener).onApplicationEvent(any());
+            verify(eventsPublisher).accountRegistered(savedAccount, RegistrationMethod.EMAIL);
         }
 
         @Test
@@ -113,7 +112,7 @@ class RegistrationServiceTests {
             assertThrows(IllegalArgumentException.class,
                 () -> registrationService.registerNewUser(USERNAME, EMAIL, PASSWORD));
             verify(accountRepository, never()).save(any());
-            verify(registrationListener, never()).onApplicationEvent(any());
+            verify(eventsPublisher, never()).accountRegistered(any(), any());
         }
     }
 
@@ -166,77 +165,6 @@ class RegistrationServiceTests {
                 () -> registrationService.confirmRegistration(TOKEN));
             verify(accountRepository, never()).save(any());
         }
-    }
-
-    @Nested
-    @DisplayName("sendConfirmationEmail tests")
-    class SendConfirmationEmailTests {
-
-        @Captor
-        private ArgumentCaptor<OnRegistrationCompleteEvent> eventCaptor;
-
-        @Test
-        public void ok_Success() {
-            doReturn(createDisabledAccount()).when(accountRepository).getByEmail(EMAIL);
-            doNothing().when(registrationListener).onApplicationEvent(eventCaptor.capture());
-
-            registrationService.sendConfirmationEmail(EMAIL);
-
-            OnRegistrationCompleteEvent event = eventCaptor.getValue();
-            assertThat(event.getAccountId()).isEqualTo(ACCOUNT_ID);
-
-            verify(accountRepository).getByEmail(EMAIL);
-            verify(registrationListener).onApplicationEvent(any());
-        }
-
-        @Test
-        public void noAccountWithProvidedEmail_IllegalStateException() {
-            assertThrows(IllegalStateException.class,
-                () -> registrationService.sendConfirmationEmail(EMAIL));
-            verify(accountRepository).getByEmail(EMAIL);
-            verify(registrationListener, never()).onApplicationEvent(any());
-        }
-
-        @Test
-        public void accountIsEnabled_IllegalStateException() {
-            doReturn(createEnabledAccount()).when(accountRepository).getByEmail(EMAIL);
-            assertThrows(IllegalStateException.class,
-                () -> registrationService.sendConfirmationEmail(EMAIL));
-            verify(accountRepository).getByEmail(EMAIL);
-            verify(registrationListener, never()).onApplicationEvent(any());
-        }
-
-    }
-
-    @Nested
-    @DisplayName("isSendConfirmationEmailForbidden tests")
-    class IsSendConfirmationEmailForbiddenTests {
-
-        @AfterEach
-        public void afterEach() {
-            verify(accountRepository).getByEmail(EMAIL);
-        }
-
-        @Test
-        public void disabledAccount_False() {
-            doReturn(createDisabledAccount()).when(accountRepository).getByEmail(EMAIL);
-            boolean result = registrationService.isSendConfirmationEmailForbidden(EMAIL);
-            assertThat(result).isFalse();
-        }
-
-        @Test
-        public void noAccountWithProvidedEmail_True() {
-            boolean result = registrationService.isSendConfirmationEmailForbidden(EMAIL);
-            assertThat(result).isTrue();
-        }
-
-        @Test
-        public void accountIsEnabled_True() {
-            doReturn(createEnabledAccount()).when(accountRepository).getByEmail(EMAIL);
-            boolean result = registrationService.isSendConfirmationEmailForbidden(EMAIL);
-            assertThat(result).isTrue();
-        }
-
     }
 
     private Account createDisabledAccount() {
