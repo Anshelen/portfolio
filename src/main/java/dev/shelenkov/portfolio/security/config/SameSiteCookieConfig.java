@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SameSiteCookieConfig {
     /*
-     * This config can not be moved to SecurityConfig due to issue
+     * This config can not be moved to WebSecurityConfigurerAdapter due to issue
      * https://stackoverflow.com/questions/48971937/ugrade-spring-boot-2-0-0-rc2-exception-no-servletcontext-set
      */
 

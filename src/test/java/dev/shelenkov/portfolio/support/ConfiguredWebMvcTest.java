@@ -1,5 +1,7 @@
 package dev.shelenkov.portfolio.support;
 
+import dev.shelenkov.portfolio.config.ApplicationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.AliasFor;
@@ -21,6 +23,7 @@ import java.lang.annotation.Target;
 @Inherited
 @WebMvcTest
 @Import(SpringSecurityTestConfig.class)
+@EnableConfigurationProperties(ApplicationProperties.class)
 public @interface ConfiguredWebMvcTest {
 
     /**

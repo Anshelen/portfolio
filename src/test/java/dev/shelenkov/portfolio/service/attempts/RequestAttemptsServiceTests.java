@@ -1,5 +1,6 @@
 package dev.shelenkov.portfolio.service.attempts;
 
+import dev.shelenkov.portfolio.service.config.MaxAttemptsProperties;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -7,16 +8,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class RequestAttemptsServiceTests {
 
-    private static final int MAX_RESEND_CONFIRMATION_EMAIL_ATTEMPTS = 3;
-    private static final int MAX_LOGIN_ATTEMPTS = 3;
-    private static final int MAX_SEND_EMAIL_TO_ADMIN_ATTEMPTS = 3;
-
     private RequestAttemptsService service;
 
     @BeforeEach
     public void init() {
-        service = new RequestAttemptsService(
-            MAX_RESEND_CONFIRMATION_EMAIL_ATTEMPTS, MAX_LOGIN_ATTEMPTS, MAX_SEND_EMAIL_TO_ADMIN_ATTEMPTS);
+        MaxAttemptsProperties maxAttemptsProperties
+            = new MaxAttemptsProperties(3, 3, 3);
+        service = new RequestAttemptsService(maxAttemptsProperties);
     }
 
     @Test

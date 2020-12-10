@@ -7,11 +7,11 @@ import com.sendgrid.SendGrid;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
+import dev.shelenkov.portfolio.config.ApplicationProperties;
 import dev.shelenkov.portfolio.domain.VerificationToken;
 import dev.shelenkov.portfolio.mail.config.MailProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -30,10 +30,8 @@ public class SendGridOperations implements EmailOperations {
 
     private final SendGrid sendGrid;
     private final MailProperties mailProperties;
+    private final ApplicationProperties applicationProperties;
     private final TemplateEngine templateEngine;
-
-    @Value("${application.root-url}")
-    private String rootUrl;
 
     @Override
     public void sendSimpleEmailToAdmin(String name, String subject,
@@ -82,7 +80,7 @@ public class SendGridOperations implements EmailOperations {
     private Mail getConfirmationMail(VerificationToken token) {
         Context context = new Context();
         context.setVariable("webVersion", false);
-        context.setVariable("rootUrl", rootUrl);
+        context.setVariable("rootUrl", applicationProperties.getRootUrl());
         context.setVariable("token", token.getToken());
         String body = templateEngine.process("email/verifyEmailAddress.html", context);
         Content content = new Content(MediaType.TEXT_HTML_VALUE, body);

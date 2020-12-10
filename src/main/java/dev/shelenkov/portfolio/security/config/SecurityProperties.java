@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.boot.convert.DurationUnit;
@@ -27,7 +28,16 @@ public class SecurityProperties {
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     @Autowired
+    private ServerProperties serverProperties;
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @Autowired
     private org.springframework.boot.autoconfigure.security.SecurityProperties buildInProperties;
+
+    public String getCookieName() {
+        return serverProperties.getServlet().getSession().getCookie().getName();
+    }
 
     public int getSecurityFilterChainOrder() {
         return buildInProperties.getFilter().getOrder();
@@ -37,6 +47,7 @@ public class SecurityProperties {
     @Getter
     @RequiredArgsConstructor
     public static class RememberMeProperties {
+
         private final boolean secure;
     }
 

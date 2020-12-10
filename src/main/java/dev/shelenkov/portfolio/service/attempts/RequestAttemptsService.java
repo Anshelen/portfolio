@@ -3,8 +3,9 @@ package dev.shelenkov.portfolio.service.attempts;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import dev.shelenkov.portfolio.service.config.MaxAttemptsProperties;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +17,11 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class RequestAttemptsService
     implements LoginAttemptsAware, ResendConfirmationEmailAttemptsAware, SendEmailToAdminAttemptsAware {
 
-    private final int maxResendConfirmationEmailAttempts;
-    private final int maxLoginAttempts;
-    private final int maxSendEmailToAdminAttempts;
+    private final MaxAttemptsProperties maxAttemptsProperties;
 
     @SuppressWarnings({"AnonymousInnerClass", "AnonymousInnerClassMayBeStatic"})
     private final LoadingCache<String, Integer> confirmationEmailAttemptsCache
@@ -53,16 +53,6 @@ public class RequestAttemptsService
             }
         });
 
-    public RequestAttemptsService(
-        @Value("${max_attempts.resend_confirmation_email:3}") int maxResendConfirmationEmailAttempts,
-        @Value("${max_attempts.login:3}") int maxLoginAttempts,
-        @Value("${max_attempts.send_email_to_admin:3}") int maxSendEmailToAdminAttempts) {
-
-        this.maxResendConfirmationEmailAttempts = maxResendConfirmationEmailAttempts;
-        this.maxLoginAttempts = maxLoginAttempts;
-        this.maxSendEmailToAdminAttempts = maxSendEmailToAdminAttempts;
-    }
-
     @Override
     public void registerConfirmationEmailResent(String ip) {
         try {
@@ -77,7 +67,7 @@ public class RequestAttemptsService
     @Override
     public boolean areTooManyConfirmationEmailsResent(String ip) {
         try {
-            return confirmationEmailAttemptsCache.get(ip) >= maxResendConfirmationEmailAttempts;
+            return confirmationEmailAttemptsCache.get(ip) >= maxAttemptsProperties.getResendConfirmationEmail();
         } catch (ExecutionException e) {
             log.error("areTooManyConfirmationEmailsResent. Error", e);
             return false;
@@ -103,7 +93,7 @@ public class RequestAttemptsService
     @Override
     public boolean areTooManyFailedLoginAttempts(String ip) {
         try {
-            return loginAttemptsCache.get(ip) >= maxLoginAttempts;
+            return loginAttemptsCache.get(ip) >= maxAttemptsProperties.getLogin();
         } catch (ExecutionException e) {
             log.error("areTooManyFailedLoginAttempts. Error", e);
             return false;
@@ -124,7 +114,7 @@ public class RequestAttemptsService
     @Override
     public boolean areTooManyEmailsToAdminSent(String ip) {
         try {
-            return sendEmailToAdminAttemptsCache.get(ip) >= maxSendEmailToAdminAttempts;
+            return sendEmailToAdminAttemptsCache.get(ip) >= maxAttemptsProperties.getSendEmailToAdmin();
         } catch (ExecutionException e) {
             log.error("areTooManyEmailsToAdminSent. Error", e);
             return false;

@@ -1,7 +1,7 @@
 package dev.shelenkov.portfolio.web.controller;
 
+import dev.shelenkov.portfolio.config.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
@@ -20,9 +20,7 @@ import java.util.Map;
 public class EmailWebViewController {
 
     private final ResourceLoader resourceLoader;
-
-    @Value("${application.root-url}")
-    private String rootUrl;
+    private final ApplicationProperties applicationProperties;
 
     @GetMapping("/mail/{view:\\w+}")
     public String viewMail(@PathVariable("view") String viewName,
@@ -45,6 +43,6 @@ public class EmailWebViewController {
     @ModelAttribute
     public void markWebVersion(Model model) {
         model.addAttribute("webVersion", true);
-        model.addAttribute("rootUrl", rootUrl);
+        model.addAttribute("rootUrl", applicationProperties.getRootUrl());
     }
 }
