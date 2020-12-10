@@ -16,9 +16,7 @@ public class EventsPublisherImpl implements EventsPublisher {
 
     @Override
     public void accountRegistered(Account account, RegistrationMethod registrationMethod) {
-        Long accountId = account.getId();
-        Validate.notNull(accountId);
-        Validate.notNull(registrationMethod);
+        long accountId = Validate.notNull(account.getId());
         eventPublisher.publishEvent(new AccountRegisteredEvent(accountId, registrationMethod));
     }
 }
