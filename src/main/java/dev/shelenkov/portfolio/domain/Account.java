@@ -5,10 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,7 +22,15 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Account extends AbstractPersistable<Long> {
+public class Account {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_seq_generator")
+    @SequenceGenerator(
+        name = "account_seq_generator",
+        sequenceName = "account_id_seq",
+        allocationSize = 10)
+    private Long id;
 
     private String username;
 
