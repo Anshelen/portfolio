@@ -2,7 +2,6 @@ package dev.shelenkov.portfolio.security.oauth2.loginprocessors;
 
 import dev.shelenkov.portfolio.domain.Account;
 import dev.shelenkov.portfolio.security.internal.ExtendedUser;
-import dev.shelenkov.portfolio.security.support.SecurityUtils;
 import dev.shelenkov.portfolio.service.account.AccountService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +25,6 @@ public abstract class AbstractOAuth2LoginProcessor implements OAuth2LoginProcess
     private final AccountService accountService;
     private final ClientRegistrationRepository clientRegistrationRepository;
 
-    @SuppressWarnings("FeatureEnvy")
     @Override
     @Transactional
     public ExtendedUser processUser(Map<String, Object> userAttributes, String accessToken) {
@@ -49,13 +47,7 @@ public abstract class AbstractOAuth2LoginProcessor implements OAuth2LoginProcess
             }
         }
 
-        return new ExtendedUser(
-            account.getEmail(),
-            account.getPassword(),
-            account.isEnabled(),
-            SecurityUtils.generateAuthoritiesList(account),
-            account.getUsername(),
-            userAttributes);
+        return new ExtendedUser(account, userAttributes);
     }
 
     @Override

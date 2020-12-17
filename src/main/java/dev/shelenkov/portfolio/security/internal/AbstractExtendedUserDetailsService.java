@@ -1,7 +1,6 @@
 package dev.shelenkov.portfolio.security.internal;
 
 import dev.shelenkov.portfolio.domain.Account;
-import dev.shelenkov.portfolio.security.support.SecurityUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 @Slf4j
 public abstract class AbstractExtendedUserDetailsService implements UserDetailsService {
 
-    @SuppressWarnings("FeatureEnvy")
     @Override
     public UserDetails loadUserByUsername(String email) {
         Account account = getAccountByEmail(email);
@@ -18,12 +16,7 @@ public abstract class AbstractExtendedUserDetailsService implements UserDetailsS
             log.debug("User not found for email: {}", email);
             throw new UsernameNotFoundException(email + " not found");
         }
-        return new ExtendedUser(
-            email,
-            account.getPassword(),
-            account.isEnabled(),
-            SecurityUtils.generateAuthoritiesList(account),
-            account.getUsername());
+        return new ExtendedUser(account);
     }
 
     protected abstract Account getAccountByEmail(String email);
