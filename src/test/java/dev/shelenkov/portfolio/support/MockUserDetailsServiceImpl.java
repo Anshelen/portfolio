@@ -9,12 +9,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.HashMap;
 
 import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_EMAIL;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_ID;
 import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_NAME;
 import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_PASSWORD;
 import static dev.shelenkov.portfolio.support.SecurityConstants.DISABLED_USER_EMAIL;
+import static dev.shelenkov.portfolio.support.SecurityConstants.DISABLED_USER_ID;
 import static dev.shelenkov.portfolio.support.SecurityConstants.DISABLED_USER_NAME;
 import static dev.shelenkov.portfolio.support.SecurityConstants.DISABLED_USER_PASSWORD;
 import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_EMAIL;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_ID;
 import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_NAME;
 import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_PASSWORD;
 
@@ -30,6 +33,7 @@ public class MockUserDetailsServiceImpl extends AbstractExtendedUserDetailsServi
             ENABLED_USER_EMAIL,
             passwordEncoder.encode(ENABLED_USER_PASSWORD),
             Role.USER);
+        user.setId(ENABLED_USER_ID);
         user.setEnabled(true);
         users.put(user.getEmail(), user);
 
@@ -38,6 +42,7 @@ public class MockUserDetailsServiceImpl extends AbstractExtendedUserDetailsServi
             DISABLED_USER_EMAIL,
             passwordEncoder.encode(DISABLED_USER_PASSWORD),
             Role.USER);
+        disabledUser.setId(DISABLED_USER_ID);
         users.put(disabledUser.getEmail(), disabledUser);
 
         Account admin = new Account(
@@ -45,6 +50,7 @@ public class MockUserDetailsServiceImpl extends AbstractExtendedUserDetailsServi
             ADMIN_EMAIL,
             passwordEncoder.encode(ADMIN_PASSWORD),
             Role.ADMIN);
+        admin.setId(ADMIN_ID);
         admin.setEnabled(true);
         users.put(admin.getEmail(), admin);
     }

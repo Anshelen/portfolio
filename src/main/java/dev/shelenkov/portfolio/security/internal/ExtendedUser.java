@@ -4,6 +4,7 @@ import dev.shelenkov.portfolio.domain.Account;
 import dev.shelenkov.portfolio.domain.Role;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.Validate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -24,6 +25,10 @@ public class ExtendedUser extends User implements OAuth2User {
 
     @Getter
     @Setter
+    private long id;
+
+    @Getter
+    @Setter
     private String name;
 
     public ExtendedUser(Account account) {
@@ -36,6 +41,7 @@ public class ExtendedUser extends User implements OAuth2User {
             true,
             true,
             generateAuthoritiesList(account.getRoles()));
+        this.id = Validate.notNull(account.getId());
         this.name = account.getUsername();
         this.oauth2Attributes = Collections.unmodifiableMap(new LinkedHashMap<>(oauth2Attributes));
     }
