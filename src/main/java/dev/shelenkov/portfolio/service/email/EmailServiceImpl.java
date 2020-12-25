@@ -1,5 +1,7 @@
 package dev.shelenkov.portfolio.service.email;
 
+import dev.shelenkov.portfolio.domain.Account;
+import dev.shelenkov.portfolio.domain.Country;
 import dev.shelenkov.portfolio.domain.VerificationToken;
 import dev.shelenkov.portfolio.mail.EmailOperations;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +25,12 @@ public class EmailServiceImpl implements EmailService {
                                        String text) throws IOException {
 
         emailOperations.sendSimpleEmailToAdmin(name, subject, text);
+    }
+
+    @Override
+    public void sendSuspiciousLocationEmail(Account account, String ip,
+                                            Country country) throws IOException {
+
+        emailOperations.sendSuspiciousLocationEmail(account, ip, country);
     }
 }
