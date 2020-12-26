@@ -91,11 +91,15 @@ Database
 
 * DATABASE_URL
 
-Mail
+[SendGrid mail API][SENDGRID]
 
 * SPRING_SENDGRID_API_KEY
 * MAIL_ADMIN_ADDRESS
 * MAIL_ADMIN_NAME
+
+[Ipstack geo API][IPSTACK]
+
+* IPSTACK_KEY
 
 Optionally you can set all these variables in `application.properties`.
 
@@ -116,3 +120,5 @@ file [LICENSE](LICENSE).
 [BSD]: https://opensource.org/licenses/BSD-3-Clause
 
 [SENDGRID]: https://sendgrid.com/
+
+[IPSTACK]: https://ipstack.com/
