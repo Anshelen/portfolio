@@ -37,6 +37,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 
+// TODO: 27.01.2020 Replace with SpringJUnitConfig
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = RegistrationServiceImpl.class)
 @DisplayName("RegistrationService tests")
