@@ -86,7 +86,7 @@ public class RegistrationServiceImpl implements RegistrationService {
      * @throws TokenExpiredException in case of token is expired
      */
     @Override
-    public Account confirmRegistration(UUID token) throws TokenNotValidException {
+    public Account confirmRegistration(UUID token, String ip) throws TokenNotValidException {
 
         Optional<VerificationToken> verificationTokenOpt = tokenRepository.findById(token);
         if (!verificationTokenOpt.isPresent()) {
@@ -105,6 +105,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         account.setEnabled(true);
 
         securityOperations.loginAccount(account);
+        eventsPublisher.loginCompleted(account.getId(), ip);
 
         return accountRepository.save(account);
     }

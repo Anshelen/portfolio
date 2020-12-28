@@ -8,6 +8,8 @@ public interface AccountService {
 
     boolean existsByEmail(String email);
 
+    Account getByIdWithCountries(long id);
+
     Account getByEmail(String email);
 
     Account getByGithubId(String githubId);

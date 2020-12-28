@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -37,6 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
 
+    @Autowired
+    private AuthenticationSuccessHandler authenticationSuccessHandler;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(daoAuthenticationProvider);
@@ -56,13 +60,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin(e -> e
                 .loginPage("/login")
                 .usernameParameter("email")
-                .defaultSuccessUrl("/")
                 .authenticationDetailsSource(webAuthenticationDetailsSource)
+                .successHandler(authenticationSuccessHandler)
                 .failureHandler(authenticationFailureHandler)
                 .permitAll())
             .oauth2Login(e -> e
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
+                .successHandler(authenticationSuccessHandler)
                 .authenticationDetailsSource(webAuthenticationDetailsSource)
                 .failureHandler(authenticationFailureHandler))
             .logout(e -> e.deleteCookies(securityProperties.getCookieName()))

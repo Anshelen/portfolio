@@ -1,5 +1,6 @@
 package dev.shelenkov.portfolio.support;
 
+import dev.shelenkov.portfolio.publisher.EventsPublisherImpl;
 import dev.shelenkov.portfolio.security.config.AuthenticationConfig;
 import dev.shelenkov.portfolio.security.config.AuthorizationConfig;
 import dev.shelenkov.portfolio.security.config.CorsConfig;
@@ -21,7 +22,8 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
     AuthenticationConfig.class,
     AuthorizationConfig.class,
     CorsConfig.class,
-    SameSiteCookieConfig.class
+    SameSiteCookieConfig.class,
+    EventsPublisherImpl.class
 })
 public class SpringSecurityTestConfig {
 

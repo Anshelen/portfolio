@@ -62,9 +62,9 @@ public class RegistrationController {
     }
 
     @GetMapping("/confirmRegistration")
-    public ModelAndView confirmRegistration(@RequestParam("token") UUID token) {
+    public ModelAndView confirmRegistration(@RequestParam("token") UUID token, @Ip String ip) {
         try {
-            Account account = registrationService.confirmRegistration(token);
+            Account account = registrationService.confirmRegistration(token, ip);
             return new ModelAndView("successRegistration",
                 "account", account);
         } catch (TokenExpiredException e) {

@@ -19,6 +19,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public Account getByIdWithCountries(long id) {
+        return accountRepository.getByIdWithCountries(id);
+    }
+
+    @Override
     public Account getByEmail(String email) {
         return accountRepository.getByEmail(email);
     }
