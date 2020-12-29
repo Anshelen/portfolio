@@ -1,0 +1,2 @@
+org.springframework.test.context.TestExecutionListener=\
+  dev.shelenkov.portfolio.support.MockApplicationEventPublisherResetTestExecutionListener
