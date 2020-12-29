@@ -1,7 +1,10 @@
 package dev.shelenkov.portfolio.web;
 
+import dev.shelenkov.portfolio.event.LoginEvent;
 import dev.shelenkov.portfolio.service.attempts.LoginAttemptsAware;
+import dev.shelenkov.portfolio.support.AutoConfigureMockApplicationEventPublisher;
 import dev.shelenkov.portfolio.support.ConfiguredWebMvcTest;
+import dev.shelenkov.portfolio.support.MockApplicationEventPublisher;
 import dev.shelenkov.portfolio.support.ip.CorruptedIpException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +16,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.net.URLEncoder;
 
 import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_EMAIL;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_ID;
 import static dev.shelenkov.portfolio.support.SecurityConstants.ADMIN_PASSWORD;
 import static dev.shelenkov.portfolio.support.SecurityConstants.DISABLED_USER_EMAIL;
 import static dev.shelenkov.portfolio.support.SecurityConstants.DISABLED_USER_PASSWORD;
 import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_EMAIL;
+import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_ID;
 import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_NAME;
 import static dev.shelenkov.portfolio.support.SecurityConstants.ENABLED_USER_PASSWORD;
+import static dev.shelenkov.portfolio.support.WebMvcUtils.remoteHost;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -30,6 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ConfiguredWebMvcTest
+@AutoConfigureMockApplicationEventPublisher
 public class LoginTests {
 
     @MockBean
@@ -38,16 +45,21 @@ public class LoginTests {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private MockApplicationEventPublisher publisher;
+
     @Test
-    public void login_successLogin_redirectToDefaultSuccessUrl() throws Exception {
+    public void login_successLogin_redirectToDefaultSuccessUrlAndLoginEventFired() throws Exception {
         mockMvc.perform(
             post("/login")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                 .param("email", ENABLED_USER_EMAIL)
                 .param("password", ENABLED_USER_PASSWORD)
-                .with(csrf()))
+                .with(csrf())
+                .with(remoteHost("77.88.33.22")))
             .andExpect(status().isFound())
             .andExpect(redirectedUrl("/"));
+        publisher.assertEventsWereFired(new LoginEvent(ENABLED_USER_ID, "77.88.33.22"));
     }
 
     @Test
@@ -68,6 +80,8 @@ public class LoginTests {
                 .with(csrf()))
             .andExpect(status().isFound())
             .andExpect(redirectedUrlPattern("http://*/admin"));
+
+        publisher.assertEventsWereFired(new LoginEvent(ADMIN_ID, "127.0.0.1"));
     }
 
     @Test
@@ -78,6 +92,7 @@ public class LoginTests {
                 .param("email", ENABLED_USER_EMAIL)
                 .param("password", ENABLED_USER_PASSWORD))
             .andExpect(status().isForbidden());
+        publisher.assertNoEventsWereFired();
     }
 
     @Test
@@ -90,6 +105,7 @@ public class LoginTests {
                     .param("password", ENABLED_USER_PASSWORD)
                     .header("X-Forwarded-For", "corrupted")
                     .with(csrf())));
+        publisher.assertNoEventsWereFired();
     }
 
     @Test
@@ -102,6 +118,7 @@ public class LoginTests {
                 .with(csrf()))
             .andExpect(status().isFound())
             .andExpect(redirectedUrl("/login?error=BadCredentials"));
+        publisher.assertNoEventsWereFired();
     }
 
     @Test
@@ -115,6 +132,7 @@ public class LoginTests {
             .andExpect(status().isFound())
             .andExpect(redirectedUrl(
                 "/login?error=Disabled&email=" + URLEncoder.encode(DISABLED_USER_EMAIL, "UTF-8")));
+        publisher.assertNoEventsWereFired();
     }
 
     @Test
@@ -129,6 +147,7 @@ public class LoginTests {
                 .with(csrf()))
             .andExpect(status().isFound())
             .andExpect(redirectedUrl("/login?error=TooManyAttempts"));
+        publisher.assertNoEventsWereFired();
     }
 
     private void expectTooManyFailedLoginAttempts() {

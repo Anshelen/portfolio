@@ -1,5 +1,6 @@
 package dev.shelenkov.portfolio.event;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Positive;
 
 @ToString
 @Getter
+@EqualsAndHashCode
 @RequiredArgsConstructor
 public class LoginEvent {
 
