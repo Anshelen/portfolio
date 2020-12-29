@@ -43,10 +43,11 @@ public interface RegistrationService {
      * Enables previously created account if token provided by user is correct.
      *
      * @param token verification token (provided by user)
+     * @param ip    IP address from which account was confirmed
      * @return user's account
      * @throws TokenNotValidException in case of token is not valid (it can be
      *                                if e.g. token wasn't given out or the
      *                                account was already activated)
      */
-    Account confirmRegistration(UUID token) throws TokenNotValidException;
+    Account confirmRegistration(UUID token, String ip) throws TokenNotValidException;
 }

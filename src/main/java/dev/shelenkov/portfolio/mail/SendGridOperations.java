@@ -8,6 +8,8 @@ import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 import dev.shelenkov.portfolio.config.ApplicationProperties;
+import dev.shelenkov.portfolio.domain.Account;
+import dev.shelenkov.portfolio.domain.Country;
 import dev.shelenkov.portfolio.domain.VerificationToken;
 import dev.shelenkov.portfolio.mail.config.MailProperties;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,7 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 @Slf4j
+// TODO: 23.01.2021 Refactor. Too many duplication. Maybe add factory to generate emails
 public class SendGridOperations implements EmailOperations {
 
     private final SendGrid sendGrid;
@@ -68,6 +71,26 @@ public class SendGridOperations implements EmailOperations {
         }
     }
 
+    @Override
+    public void sendSuspiciousLocationEmail(Account account, String ip,
+                                            Country country) throws IOException {
+        long userId = account.getId();
+
+        log.debug("Sending suspicious location email to user {}", userId);
+
+        Mail mail = getSuspiciousLocationMail(account, ip, country);
+        Request request = new Request();
+        request.setMethod(Method.POST);
+        request.setEndpoint("mail/send");
+        request.setBody(mail.build());
+        Response response = sendGrid.api(request);
+        if (!HttpStatus.valueOf(response.getStatusCode()).is2xxSuccessful()) {
+            log.error("Error sending suspicious location email to user {}. Response: {}",
+                userId, response.getBody());
+        }
+    }
+
+    @SuppressWarnings("FeatureEnvy")
     private Mail getSimpleMailToAdmin(String name, String subject, String text) {
         Email fromEmail = new Email(mailProperties.getAdminAddress(), mailProperties.getAdminName());
         Email toEmail = new Email(mailProperties.getAdminAddress());
@@ -88,6 +111,21 @@ public class SendGridOperations implements EmailOperations {
         Email fromEmail = new Email(mailProperties.getAdminAddress(), mailProperties.getAdminName());
         String subject = "Подтверждение регистрации";
         Email toEmail = new Email(token.getAccount().getEmail());
+        return new Mail(fromEmail, subject, toEmail, content);
+    }
+
+    private Mail getSuspiciousLocationMail(Account account, String ip, Country country) {
+        Context context = new Context();
+        context.setVariable("webVersion", false);
+        context.setVariable("rootUrl", applicationProperties.getRootUrl());
+        context.setVariable("ip", ip);
+        context.setVariable("country", country.getName());
+        String body = templateEngine.process("email/suspiciousLocation.html", context);
+        Content content = new Content(MediaType.TEXT_HTML_VALUE, body);
+
+        Email fromEmail = new Email(mailProperties.getAdminAddress(), mailProperties.getAdminName());
+        String subject = "Подозрительная попытка входа";
+        Email toEmail = new Email(account.getEmail());
         return new Mail(fromEmail, subject, toEmail, content);
     }
 }

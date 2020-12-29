@@ -1,7 +1,9 @@
 package dev.shelenkov.portfolio.security.config;
 
+import dev.shelenkov.portfolio.publisher.EventsPublisher;
 import dev.shelenkov.portfolio.security.exception.TooManyLoginAttemptsException;
 import dev.shelenkov.portfolio.security.internal.ExtendedDaoAuthenticationProvider;
+import dev.shelenkov.portfolio.security.internal.ExtendedSuccessAuthenticationHandler;
 import dev.shelenkov.portfolio.security.internal.OverridingIpWebAuthenticationDetailsSource;
 import dev.shelenkov.portfolio.security.internal.ParametersMappingAuthenticationFailureHandler;
 import dev.shelenkov.portfolio.security.oauth2.OAuth2NoVerifiedEmailException;
@@ -15,6 +17,7 @@ import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
 import java.util.HashMap;
@@ -52,6 +55,11 @@ public class AuthenticationConfig {
     @Bean
     public WebAuthenticationDetailsSource webAuthenticationDetailsSource() {
         return new OverridingIpWebAuthenticationDetailsSource();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler successHandler(EventsPublisher eventsPublisher) {
+        return new ExtendedSuccessAuthenticationHandler(eventsPublisher);
     }
 
     @Bean

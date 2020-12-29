@@ -18,10 +18,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.MockBeans;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
 import java.io.IOException;
 
+import static dev.shelenkov.portfolio.support.WebMvcUtils.remoteHost;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.never;
@@ -178,13 +178,6 @@ public class RegistrationControllerTests {
         verify(resendConfirmationEmailAttemptsService).areTooManyConfirmationEmailsResent(ipCaptor.capture());
         String actualIp = ipCaptor.getValue();
         assertThat(actualIp).isEqualTo(ip);
-    }
-
-    private static RequestPostProcessor remoteHost(String ip) {
-        return request -> {
-            request.setRemoteAddr(ip);
-            return request;
-        };
     }
 
     @SneakyThrows

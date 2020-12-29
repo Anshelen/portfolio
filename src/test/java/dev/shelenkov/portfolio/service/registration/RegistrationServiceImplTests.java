@@ -37,6 +37,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 
+// TODO: 27.01.2020 Replace with SpringJUnitConfig
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = RegistrationServiceImpl.class)
 @DisplayName("RegistrationService tests")
@@ -48,6 +49,7 @@ public class RegistrationServiceImplTests {
     private static final String PASSWORD = "password";
     private static final Role ROLE = Role.USER;
     private static final UUID TOKEN = UUID.randomUUID();
+    private static final String IP = "77.88.11.22";
 
     @Autowired
     private RegistrationService registrationService;
@@ -93,6 +95,8 @@ public class RegistrationServiceImplTests {
                 .contains(USERNAME, EMAIL, false);
             assertThat(savedAccount.getRoles())
                 .containsExactly(ROLE);
+            assertThat(savedAccount.getLoginCountries())
+                .isEmpty();
 
             verify(accountRepository).save(any());
             verify(eventsPublisher).accountRegistered(savedAccount, RegistrationMethod.EMAIL);
@@ -115,7 +119,7 @@ public class RegistrationServiceImplTests {
             doReturn(Optional.of(token)).when(tokenRepository).findById(TOKEN);
             doReturn(account).when(accountRepository).save(captor.capture());
 
-            registrationService.confirmRegistration(TOKEN);
+            registrationService.confirmRegistration(TOKEN, IP);
 
             verify(accountRepository).save(any());
             assertThat(captor.getValue().isEnabled()).isTrue();
@@ -125,7 +129,7 @@ public class RegistrationServiceImplTests {
         public void noSuchToken_TokenNotValidException() {
             doReturn(Optional.empty()).when(tokenRepository).findById(TOKEN);
             assertThrows(TokenNotValidException.class,
-                () -> registrationService.confirmRegistration(TOKEN));
+                () -> registrationService.confirmRegistration(TOKEN, IP));
             verify(accountRepository, never()).save(any());
         }
 
@@ -135,7 +139,7 @@ public class RegistrationServiceImplTests {
             VerificationToken token = createToken(account);
             doReturn(Optional.of(token)).when(tokenRepository).findById(TOKEN);
             assertThrows(TokenNotValidException.class,
-                () -> registrationService.confirmRegistration(TOKEN));
+                () -> registrationService.confirmRegistration(TOKEN, IP));
             verify(accountRepository, never()).save(any());
         }
 
@@ -145,7 +149,7 @@ public class RegistrationServiceImplTests {
             VerificationToken token = createExpiredToken(account);
             doReturn(Optional.of(token)).when(tokenRepository).findById(TOKEN);
             assertThrows(TokenExpiredException.class,
-                () -> registrationService.confirmRegistration(TOKEN));
+                () -> registrationService.confirmRegistration(TOKEN, IP));
             verify(accountRepository, never()).save(any());
         }
     }
