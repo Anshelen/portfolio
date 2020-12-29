@@ -1,0 +1,7 @@
+%EXTENDS suspiciousLocation.test
+# ------------------------------------------
+%CONTEXT
+webVersion = true
+servletContext = 'app'
+# ------------------------------------------
+%OUTPUT (web_ver_result.html)

@@ -1,0 +1,10 @@
+%TEMPLATE_MODE HTML
+# ------------------------------------------
+%CONTEXT
+rootUrl = 'https://shelenkov.site'
+ip = '77.145.11.25'
+country = 'Russia'
+# ------------------------------------------
+%MESSAGES
+# ------------------------------------------
+%INPUT (classpath:templates/email/suspiciousLocation.html)

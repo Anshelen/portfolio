@@ -1,0 +1,6 @@
+%EXTENDS suspiciousLocation.test
+# ------------------------------------------
+%CONTEXT
+webVersion = false
+# ------------------------------------------
+%OUTPUT (mail_ver_result.html)

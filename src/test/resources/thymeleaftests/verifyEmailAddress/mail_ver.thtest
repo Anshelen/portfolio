@@ -1,0 +1,6 @@
+%EXTENDS verifyEmailAddress.test
+# ------------------------------------------
+%CONTEXT
+webVersion = false
+# ------------------------------------------
+%OUTPUT (mail_ver_result.html)

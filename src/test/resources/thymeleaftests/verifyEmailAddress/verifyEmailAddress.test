@@ -1,0 +1,9 @@
+%TEMPLATE_MODE HTML
+# ------------------------------------------
+%CONTEXT
+rootUrl = 'https://shelenkov.site'
+token = '123e4567-e89b-12d3-a456-426655440000'
+# ------------------------------------------
+%MESSAGES
+# ------------------------------------------
+%INPUT (classpath:templates/email/verifyEmailAddress.html)
