@@ -2,6 +2,8 @@ package dev.shelenkov.portfolio.repository;
 
 import dev.shelenkov.portfolio.domain.Country;
 import dev.shelenkov.portfolio.support.EnablePostgresContainer;
+import dev.shelenkov.portfolio.support.EnableQueryCounter;
+import dev.shelenkov.portfolio.support.ExpectQueriesCount;
 import dev.shelenkov.portfolio.support.IntegrationTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @EnablePostgresContainer
+@EnableQueryCounter
+@ExpectQueriesCount(1)
 @IntegrationTest
 public class CountryRepositoryTests {
 

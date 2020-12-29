@@ -33,6 +33,7 @@
     <guava.version>29.0-jre</guava.version>
     <lombok.version>1.18.12</lombok.version>
     <testcontainers.version>1.15.0</testcontainers.version>
+    <spring.hibernate.query.utils.version>1.0.3</spring.hibernate.query.utils.version>
     <thymeleaf.testing.version>3.0.4.RELEASE</thymeleaf.testing.version>
   </properties>
 
@@ -151,6 +152,11 @@
       <groupId>org.flywaydb</groupId>
       <artifactId>flyway-core</artifactId>
       <version>${flyway.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.yannbriancon</groupId>
+      <artifactId>spring-hibernate-query-utils</artifactId>
+      <version>${spring.hibernate.query.utils.version}</version>
     </dependency>
 
     <!-- Email -->
