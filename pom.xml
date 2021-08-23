@@ -29,7 +29,7 @@
     <apache.commons.lang.version>3.8.1</apache.commons.lang.version>
     <sendgrid.version>4.5.0</sendgrid.version>
     <thymeleaf.spring.sercurity.version>3.0.4.RELEASE</thymeleaf.spring.sercurity.version>
-    <jsoup.version>1.12.1</jsoup.version>
+    <jsoup.version>1.14.2</jsoup.version>
     <guava.version>29.0-jre</guava.version>
     <lombok.version>1.18.12</lombok.version>
     <testcontainers.version>1.15.0</testcontainers.version>
