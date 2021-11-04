@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.support;
 
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -21,6 +21,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@Import(QueryCounterConfiguration.class)
+@ComponentScan(basePackages = "com.yannbriancon")
 public @interface EnableQueryCounter {
 }
