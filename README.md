@@ -32,11 +32,12 @@ Security
 Other
 
 - Handmade ugly but adaptive design
-- Multi language support
+- Multi-language support
 - Custom logic of initial language selection
 - JS-files templating with Thymeleaf for localizing frontend validation messages
 - Spring Boot + bootpag.js pagination
 - Send emails via [Sendgrid][SENDGRID]
+- Determine user login location using [ipstack][IPSTACK] and send email on login from new country
 - Download resume in different formats and languages
 - Customize Hibernate to save set of roles as an array of PostgreSQL enum values
 - Integration tests using Testcontainers
@@ -76,6 +77,7 @@ Security
 
 OAuth2
 
+* SECURITY_OAUTH2_REDIRECT_SCHEME
 * SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_ID
 * SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_SECRET
 * SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GOOGLE_CLIENT_ID
