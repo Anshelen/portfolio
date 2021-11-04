@@ -8,9 +8,9 @@ import dev.shelenkov.portfolio.service.account.AccountService;
 import dev.shelenkov.portfolio.service.exception.GeoDataUnavailableException;
 import dev.shelenkov.portfolio.service.geo.GeoService;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -36,12 +36,8 @@ public class LoginListenerTests {
     @Mock
     private EventsPublisher eventsPublisher;
 
+    @InjectMocks
     private LoginListener loginListener;
-
-    @BeforeEach
-    public void setUp() {
-        loginListener = new LoginListener(geoService, accountService, eventsPublisher);
-    }
 
     @Test
     public void onLoginEvent_geoDataNotAvailable_noEventFired() {

@@ -8,9 +8,9 @@ import dev.shelenkov.portfolio.repository.CountryRepository;
 import dev.shelenkov.portfolio.service.exception.GeoDataUnavailableException;
 import dev.shelenkov.portfolio.support.dto.CountryGeoData;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -29,12 +29,8 @@ public class GeoServiceImplTests {
     @Mock
     private CountryRepository countryRepository;
 
-    private GeoService geoService;
-
-    @BeforeEach
-    public void setUp() {
-        geoService = new GeoServiceImpl(geoOperations, countryRepository);
-    }
+    @InjectMocks
+    private GeoServiceImpl geoService;
 
     @Test
     public void getCountryByIp_unknownIpForProvider_GeoDataUnavailableException() {
