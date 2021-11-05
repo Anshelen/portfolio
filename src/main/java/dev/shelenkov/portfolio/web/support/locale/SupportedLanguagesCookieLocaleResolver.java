@@ -1,13 +1,17 @@
 package dev.shelenkov.portfolio.web.support.locale;
 
+import org.springframework.context.i18n.LocaleContext;
+import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -38,6 +42,17 @@ public class SupportedLanguagesCookieLocaleResolver extends CookieLocaleResolver
             }
         }
         return super.determineDefaultLocale(request);
+    }
+
+    @Override
+    public void setLocaleContext(HttpServletRequest request,
+                                 @Nullable HttpServletResponse response,
+                                 @Nullable LocaleContext localeContext) {
+        Optional.ofNullable(localeContext)
+            .map(LocaleContext::getLocale)
+            .map(Locale::getLanguage)
+            .filter(supportedLanguages::contains)
+            .ifPresent(e -> super.setLocaleContext(request, response, localeContext));
     }
 
     public Set<String> getSupportedLanguages() {
