@@ -6,18 +6,16 @@ import dev.shelenkov.portfolio.geo.exception.GeoProviderFailedRequestException;
 import dev.shelenkov.portfolio.geo.exception.GeoServiceException;
 import dev.shelenkov.portfolio.geo.response.IpstackResponse;
 import dev.shelenkov.portfolio.support.dto.CountryGeoData;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.Validate;
-import org.apache.http.client.utils.URIBuilder;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 @Service
 @Slf4j
@@ -64,12 +62,11 @@ public class IpstackGeoOperations implements GeoOperations {
         return new CountryGeoData(body.getCountryCode(), body.getCountryName());
     }
 
-    @SneakyThrows(URISyntaxException.class)
     private URI buildRequest(String ip) {
-        return new URIBuilder(ipstackConfig.getUrl())
-            .setPath(ip)
-            .setParameter("access_key", ipstackConfig.getKey())
-            .setParameter("output", "json")
-            .build();
+        return UriComponentsBuilder.fromUriString(ipstackConfig.getUrl())
+            .path(ip)
+            .queryParam("access_key", ipstackConfig.getKey())
+            .queryParam("output", "json")
+            .build().toUri();
     }
 }
