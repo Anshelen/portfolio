@@ -28,6 +28,7 @@
     <apache.commons.io.version>2.6</apache.commons.io.version>
     <apache.commons.lang.version>3.8.1</apache.commons.lang.version>
     <sendgrid.version>4.5.0</sendgrid.version>
+    <logstash.logback.encoder.version>6.3</logstash.logback.encoder.version>
     <thymeleaf.spring.sercurity.version>3.0.4.RELEASE</thymeleaf.spring.sercurity.version>
     <jsoup.version>1.12.1</jsoup.version>
     <guava.version>29.0-jre</guava.version>
@@ -164,6 +165,13 @@
       <groupId>com.sendgrid</groupId>
       <artifactId>sendgrid-java</artifactId>
       <version>${sendgrid.version}</version>
+    </dependency>
+
+    <!-- Logging -->
+    <dependency>
+      <groupId>net.logstash.logback</groupId>
+      <artifactId>logstash-logback-encoder</artifactId>
+      <version>${logstash.logback.encoder.version}</version>
     </dependency>
 
     <!-- Support -->
