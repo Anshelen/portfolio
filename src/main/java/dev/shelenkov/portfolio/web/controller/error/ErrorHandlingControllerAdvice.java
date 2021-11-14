@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,9 +35,12 @@ public class ErrorHandlingControllerAdvice {
         log.warn(e.getMessage());
     }
 
-    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ExceptionHandler({
+        MethodArgumentTypeMismatchException.class,
+        MissingServletRequestParameterException.class
+    })
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public void onMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+    public void onMethodArgumentTypeMismatchException(Exception e) {
         log.warn(e.getMessage());
     }
 
@@ -76,8 +80,8 @@ public class ErrorHandlingControllerAdvice {
     }
 
     @ExceptionHandler(RuntimeException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public void onUnexpectedRuntimeException(RuntimeException e) {
         log.error("Unexpected exception", e);
+        throw e;
     }
 }
