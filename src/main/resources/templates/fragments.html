@@ -12,8 +12,9 @@
   <title th:text="${title}">Заголовок</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
-  <meta name="_csrf" th:content="${_csrf.token}" content="token"/>
-  <meta name="_csrf_header" th:content="${_csrf.headerName}" content="X-CSRF-TOKEN"/>
+  <meta name="_csrf" th:if="${_csrf}" th:content="${_csrf.token}" content="token"/>
+  <meta name="_csrf_header" th:if="${_csrf}" th:content="${_csrf.headerName}"
+        content="X-CSRF-TOKEN"/>
   <meta http-equiv="refresh" content="1800" th:content="${#session?.maxInactiveInterval?:1800}">
 
   <script
