@@ -23,9 +23,9 @@
   <div class="d-flex flex-column">
     <p class="error__status">404</p>
     <p class="error__status">PAGE NOT FOUND</p>
-    <p class="error__explanation">Страница не найдена</p>
+    <p class="error__explanation" th:text="#{error.not-found.message}">Страница не существует</p>
     <a class="btn btn-outline-dark btn-lg mx-auto my-4 px-5" href="../index.html"
-       th:href="@{/}">На главную</a>
+       th:href="@{/}" th:text="#{error.home}">На главную</a>
   </div>
 </div>
 </body>

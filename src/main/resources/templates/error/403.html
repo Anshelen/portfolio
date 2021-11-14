@@ -23,9 +23,10 @@
   <div class="d-flex flex-column">
     <p class="error__status text-white">403</p>
     <p class="error__status text-white">FORBIDDEN</p>
-    <p class="error__explanation text-white">Недостаточно прав</p>
+    <p class="error__explanation text-white" th:text="#{error.forbidden.message}">
+      Недостаточно прав</p>
     <a class="btn btn-outline-light btn-lg mx-auto my-4 px-5" href="../index.html"
-       th:href="@{/}">На главную</a>
+       th:href="@{/}" th:text="#{error.home}">На главную</a>
   </div>
 </div>
 </body>
