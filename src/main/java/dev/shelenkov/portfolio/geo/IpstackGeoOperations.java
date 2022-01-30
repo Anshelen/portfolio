@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.geo;
 
-import dev.shelenkov.portfolio.geo.config.IpstackConfig;
+import dev.shelenkov.portfolio.geo.config.IpstackProperties;
 import dev.shelenkov.portfolio.geo.exception.GeoDataNotFoundException;
 import dev.shelenkov.portfolio.geo.exception.GeoProviderFailedRequestException;
 import dev.shelenkov.portfolio.geo.exception.GeoServiceException;
@@ -22,12 +22,12 @@ import java.net.URI;
 public class IpstackGeoOperations implements GeoOperations {
 
     private final RestTemplate restTemplate;
-    private final IpstackConfig ipstackConfig;
+    private final IpstackProperties ipstackProperties;
 
     public IpstackGeoOperations(RestTemplateBuilder restTemplateBuilder,
-                                IpstackConfig ipstackConfig) {
+                                IpstackProperties ipstackProperties) {
         this.restTemplate = restTemplateBuilder.build();
-        this.ipstackConfig = ipstackConfig;
+        this.ipstackProperties = ipstackProperties;
     }
 
     @SuppressWarnings("FeatureEnvy")
@@ -63,9 +63,9 @@ public class IpstackGeoOperations implements GeoOperations {
     }
 
     private URI buildRequest(String ip) {
-        return UriComponentsBuilder.fromUriString(ipstackConfig.getUrl())
+        return UriComponentsBuilder.fromUriString(ipstackProperties.getUrl())
             .path(ip)
-            .queryParam("access_key", ipstackConfig.getKey())
+            .queryParam("access_key", ipstackProperties.getKey())
             .queryParam("output", "json")
             .build().toUri();
     }

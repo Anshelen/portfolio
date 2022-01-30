@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 @RequiredArgsConstructor
 @ConstructorBinding
 @Validated
-public class IpstackConfig {
+public class IpstackProperties {
 
     @NotBlank
     private final String key;

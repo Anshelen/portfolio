@@ -1,6 +1,6 @@
 package dev.shelenkov.portfolio.geo;
 
-import dev.shelenkov.portfolio.geo.config.IpstackConfig;
+import dev.shelenkov.portfolio.geo.config.IpstackProperties;
 import dev.shelenkov.portfolio.geo.exception.GeoDataNotFoundException;
 import dev.shelenkov.portfolio.geo.exception.GeoProviderFailedRequestException;
 import dev.shelenkov.portfolio.geo.exception.GeoServiceException;
@@ -22,7 +22,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 @RestClientTest(IpstackGeoOperations.class)
-@EnableConfigurationProperties(IpstackConfig.class)
+@EnableConfigurationProperties(IpstackProperties.class)
 @TestPropertySource(properties = {
     "ipstack.url=http://api.ipstack.com",
     "ipstack.key=key"
