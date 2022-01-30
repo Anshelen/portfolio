@@ -1,0 +1,131 @@
+{
+  "groups": [
+    {
+      "name": "application",
+      "type": "dev.shelenkov.portfolio.config.ApplicationProperties",
+      "sourceType": "dev.shelenkov.portfolio.config.ApplicationProperties"
+    },
+    {
+      "name": "mail",
+      "type": "dev.shelenkov.portfolio.mail.config.MailProperties",
+      "sourceType": "dev.shelenkov.portfolio.mail.config.MailProperties"
+    },
+    {
+      "name": "ipstack",
+      "type": "dev.shelenkov.portfolio.geo.config.IpstackProperties",
+      "sourceType": "dev.shelenkov.portfolio.geo.config.IpstackProperties"
+    },
+    {
+      "name": "security.remember-me",
+      "type": "dev.shelenkov.portfolio.security.config.SecurityProperties$RememberMeProperties",
+      "sourceType": "dev.shelenkov.portfolio.security.config.SecurityProperties$RememberMeProperties",
+      "sourceMethod": "getRememberMe()"
+    },
+    {
+      "name": "security.headers",
+      "type": "dev.shelenkov.portfolio.security.config.SecurityProperties$HeaderProperties",
+      "sourceType": "dev.shelenkov.portfolio.security.config.SecurityProperties$HeaderProperties",
+      "sourceMethod": "getHeaders()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "application.base-url",
+      "type": "java.lang.String",
+      "description": "Application FQDN.",
+      "sourceType": "dev.shelenkov.portfolio.config.ApplicationProperties"
+    },
+    {
+      "name": "application.root-url",
+      "type": "java.lang.String",
+      "description": "Root application URL.",
+      "defaultValue": "${application.base-url}${server.servlet.context-path:}",
+      "sourceType": "dev.shelenkov.portfolio.config.ApplicationProperties"
+    },
+    {
+      "name": "mail.admin-address",
+      "type": "java.lang.String",
+      "description": "Administrator e-mail address.",
+      "sourceType": "dev.shelenkov.portfolio.mail.config.MailProperties"
+    },
+    {
+      "name": "mail.admin-name",
+      "type": "java.lang.String",
+      "description": "Administrator name (used in e-mails).",
+      "sourceType": "dev.shelenkov.portfolio.mail.config.MailProperties"
+    },
+    {
+      "name": "security.remember-me.secure",
+      "type": "java.lang.Boolean",
+      "description": "If \"rememberMe\" cookie should be marked as Secure.",
+      "defaultValue": false,
+      "sourceType": "dev.shelenkov.portfolio.security.config.SecurityProperties$RememberMeProperties"
+    },
+    {
+      "name": "security.headers.access-control-allow-origin",
+      "type": "java.util.List<java.lang.String>",
+      "description": "List of origins for which cross-origin requests are allowed.",
+      "defaultValue": "${application.root-url}",
+      "sourceType": "dev.shelenkov.portfolio.security.config.SecurityProperties$HeaderProperties"
+    },
+    {
+      "name": "security.headers.access-control-max-age",
+      "type": "java.time.Duration",
+      "description": "How long, as a duration, the response from a pre-flight request can be cached by clients.",
+      "defaultValue": "30m",
+      "sourceType": "dev.shelenkov.portfolio.security.config.SecurityProperties$HeaderProperties"
+    },
+    {
+      "name": "security.headers.content-security-policy",
+      "type": "java.lang.String",
+      "description": "Value of global Content-Security-Policy header.",
+      "defaultValue": "default-src 'self'",
+      "sourceType": "dev.shelenkov.portfolio.security.config.SecurityProperties$HeaderProperties"
+    },
+    {
+      "name": "security.headers.referrer-policy",
+      "type": "org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter$ReferrerPolicy",
+      "description": "Value of global Content-Security-Policy header.",
+      "defaultValue": "strict_origin_when_cross_origin",
+      "sourceType": "dev.shelenkov.portfolio.security.config.SecurityProperties$HeaderProperties"
+    },
+    {
+      "name": "security.headers.feature-policy",
+      "type": "java.lang.String",
+      "description": "Value of global Feature-Policy header.",
+      "defaultValue": "geolocation 'none'",
+      "sourceType": "dev.shelenkov.portfolio.security.config.SecurityProperties$HeaderProperties"
+    },
+    {
+      "name": "security.oauth2.redirect-scheme",
+      "type": "java.lang.String",
+      "defaultValue": "http",
+      "description": "Protocol used for redirect URL in OAuth2 requests."
+    },
+    {
+      "name": "ipstack.url",
+      "type": "java.lang.String",
+      "description": "URL of IpStack API.",
+      "sourceType": "dev.shelenkov.portfolio.geo.config.IpstackProperties"
+    },
+    {
+      "name": "ipstack.key",
+      "type": "java.lang.String",
+      "description": "IpStack API-key.",
+      "sourceType": "dev.shelenkov.portfolio.geo.config.IpstackProperties"
+    }
+  ],
+  "hints": [
+    {
+      "name": "security.oauth2.redirect-scheme",
+      "values": [
+        {
+          "value": "http"
+        },
+        {
+          "value": "https"
+        }
+      ]
+    }
+  ]
+}
