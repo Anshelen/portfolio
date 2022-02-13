@@ -50,7 +50,7 @@ Other
 - PostgreSQL, Hibernate, Flyway
 - Thymeleaf
 - HTML, CSS, JS, jQuery, Bootstrap 4
-- Lombok
+- Mapstruct, Lombok
 - JUnit, Mockito, Testcontainers
 - Maven, Travis, Heroku, CloudFlare
 

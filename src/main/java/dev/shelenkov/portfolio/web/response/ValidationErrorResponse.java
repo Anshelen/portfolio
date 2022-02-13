@@ -23,9 +23,9 @@ public class ValidationErrorResponse {
     }
 
     @Value
-    public static class Violation {
+    private static class Violation {
 
-        private final String fieldName;
-        private final String message;
+        String fieldName;
+        String message;
     }
 }

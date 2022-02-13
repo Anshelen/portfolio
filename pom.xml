@@ -36,6 +36,9 @@
     <testcontainers.version>1.15.0</testcontainers.version>
     <spring.hibernate.query.utils.version>1.0.3</spring.hibernate.query.utils.version>
     <thymeleaf.testing.version>3.0.4.RELEASE</thymeleaf.testing.version>
+    <mapstruct.version>1.4.2.Final</mapstruct.version>
+    <mapstruct.spring.extensions.version>0.1.1</mapstruct.spring.extensions.version>
+    <mapstruct.lombok.binding.version>0.1.0</mapstruct.lombok.binding.version>
   </properties>
 
   <dependencyManagement>
@@ -196,6 +199,16 @@
       <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mapstruct.extensions.spring</groupId>
+      <artifactId>mapstruct-spring-annotations</artifactId>
+      <version>${mapstruct.spring.extensions.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -238,6 +251,43 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.mapstruct.extensions.spring</groupId>
+              <artifactId>mapstruct-spring-extensions</artifactId>
+              <version>${mapstruct.spring.extensions.version}</version>
+            </path>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${mapstruct.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok-mapstruct-binding</artifactId>
+              <version>${mapstruct.lombok.binding.version}</version>
+            </path>
+          </annotationProcessorPaths>
+          <showWarnings>true</showWarnings>
+          <compilerArgs>
+            <arg>
+              -Amapstruct.defaultComponentModel=spring
+            </arg>
+          </compilerArgs>
+        </configuration>
       </plugin>
     </plugins>
   </build>

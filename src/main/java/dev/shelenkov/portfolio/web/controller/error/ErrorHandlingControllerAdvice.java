@@ -2,9 +2,10 @@ package dev.shelenkov.portfolio.web.controller.error;
 
 import dev.shelenkov.portfolio.support.ip.CorruptedIpException;
 import dev.shelenkov.portfolio.web.response.ValidationErrorResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -16,12 +17,14 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.OptimisticLockException;
-import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
 @ControllerAdvice
 @Slf4j
+@RequiredArgsConstructor
 public class ErrorHandlingControllerAdvice {
+
+    private final ConversionService conversionService;
 
     @ExceptionHandler(CorruptedIpException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -58,13 +61,8 @@ public class ErrorHandlingControllerAdvice {
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ValidationErrorResponse onConstraintValidationException(
-        ConstraintViolationException e) {
-        ValidationErrorResponse error = new ValidationErrorResponse();
-        for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
-            error.addViolation(violation.getPropertyPath().toString(), violation.getMessage());
-        }
-        return error;
+    public ValidationErrorResponse onConstraintViolationException(ConstraintViolationException e) {
+        return conversionService.convert(e.getConstraintViolations(), ValidationErrorResponse.class);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -72,11 +70,7 @@ public class ErrorHandlingControllerAdvice {
     @ResponseBody
     public ValidationErrorResponse onMethodArgumentNotValidException(
         MethodArgumentNotValidException e) {
-        ValidationErrorResponse error = new ValidationErrorResponse();
-        for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
-            error.addViolation(fieldError.getField(), fieldError.getDefaultMessage());
-        }
-        return error;
+        return conversionService.convert(e.getBindingResult(), ValidationErrorResponse.class);
     }
 
     @ExceptionHandler(RuntimeException.class)
